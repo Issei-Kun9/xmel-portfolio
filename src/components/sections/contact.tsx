@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
 
-const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", project: "", message: "" });
