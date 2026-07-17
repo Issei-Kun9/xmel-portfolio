@@ -8,6 +8,7 @@ const navLinks = [
   { name: "WORK", href: "#work" },
   { name: "ISA SYSTEM", href: "#isa-system" },
   { name: "PROCESS", href: "#process" },
+  { name: "BLOG", href: "/blog" },
   { name: "ABOUT", href: "#about" },
   { name: "CONTACT", href: "#contact" },
 ];
