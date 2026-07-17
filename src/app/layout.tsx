@@ -112,6 +112,7 @@ export default function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
+        <meta name="msvalidate.01" content="E9481E7B32B8AF471E3115827525D3C9" />
       </head>
       <body className="grain">
         <JsonLd />
