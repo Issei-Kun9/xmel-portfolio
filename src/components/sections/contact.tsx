@@ -107,6 +107,15 @@ export default function Contact() {
                 <span className="font-mono text-[11px] text-[var(--text-tertiary)] w-16">LINKEDIN</span>
                 <span className="font-mono text-sm">linkedin.com/in/yashwardhan-chauhan</span>
               </a>
+              <a
+                href="https://www.instagram.com/yashwardhan.ai/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
+              >
+                <span className="font-mono text-[11px] text-[var(--text-tertiary)] w-16">INSTAGRAM</span>
+                <span className="font-mono text-sm">@yashwardhan.ai</span>
+              </a>
             </motion.div>
 
             <motion.div

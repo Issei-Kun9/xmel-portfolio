@@ -12,7 +12,10 @@ export default function JsonLd() {
       url: "https://www.linkedin.com/in/yashwardhan-chauhan-075684414/",
       jobTitle: "AI Automation Engineer",
     },
-    sameAs: ["https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"],
+    sameAs: [
+      "https://www.linkedin.com/in/yashwardhan-chauhan-075684414/",
+      "https://www.instagram.com/yashwardhan.ai/",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       email: "yashwwardhanai@gmail.com",
@@ -32,7 +35,10 @@ export default function JsonLd() {
     },
     description:
       "Solo founder building AI automation systems — 67-node n8n workflows, GPT-4o-mini qualification, Twilio voice calling, and real-time lead response under 50 seconds.",
-    sameAs: ["https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"],
+    sameAs: [
+      "https://www.linkedin.com/in/yashwardhan-chauhan-075684414/",
+      "https://www.instagram.com/yashwardhan.ai/",
+    ],
     knowsAbout: [
       "AI Automation",
       "n8n Workflow Automation",
