@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import JsonLd from "@/components/shared/json-ld";
 import "./globals.css";
@@ -115,6 +116,18 @@ export default function RootLayout({
         <meta name="msvalidate.01" content="E9481E7B32B8AF471E3115827525D3C9" />
       </head>
       <body className="grain">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-8BQBP7P5KC"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8BQBP7P5KC');
+          `}
+        </Script>
         <JsonLd />
         {children}
       </body>
