@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import CursorWrapper from "@/components/shared/cursor-wrapper";
+import FloatingContact from "@/components/shared/floating-contact";
 import JsonLd from "@/components/shared/json-ld";
 import "./globals.css";
 
@@ -132,6 +133,7 @@ export default function RootLayout({
         <CursorWrapper />
         <JsonLd />
         {children}
+        <FloatingContact />
       </body>
     </html>
   );
