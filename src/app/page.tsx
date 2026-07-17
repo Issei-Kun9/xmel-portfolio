@@ -1,0 +1,37 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
+const CustomCursor = dynamic(() => import("@/components/shared/custom-cursor"), { ssr: false });
+const Nav = dynamic(() => import("@/components/sections/nav"));
+const Hero = dynamic(() => import("@/components/sections/hero"));
+const Stats = dynamic(() => import("@/components/sections/stats"));
+const Problem = dynamic(() => import("@/components/sections/problem"));
+const System = dynamic(() => import("@/components/sections/system"));
+const Projects = dynamic(() => import("@/components/sections/projects"));
+const Process = dynamic(() => import("@/components/sections/process"));
+const TechStack = dynamic(() => import("@/components/sections/tech-stack"));
+const About = dynamic(() => import("@/components/sections/about"));
+const Contact = dynamic(() => import("@/components/sections/contact"));
+const Footer = dynamic(() => import("@/components/sections/footer"));
+
+export default function Home() {
+  return (
+    <>
+      <CustomCursor />
+      <Nav />
+      <main>
+        <Hero />
+        <Stats />
+        <Problem />
+        <System />
+        <Projects />
+        <Process />
+        <TechStack />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
+}
