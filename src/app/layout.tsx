@@ -116,6 +116,10 @@ export default function RootLayout({
           content="black-translucent"
         />
         <meta name="msvalidate.01" content="E9481E7B32B8AF471E3115827525D3C9" />
+        <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </head>
       <body className="grain">
         <Script
