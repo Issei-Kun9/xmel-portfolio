@@ -213,7 +213,7 @@ export default function Hero() {
                 href="#isa-system"
                 className="shine-sweep magnetic-btn inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--accent)] text-[var(--bg-primary)] font-mono text-sm font-medium rounded hover:shadow-[0_0_30px_rgba(193,255,114,0.2)] transition-shadow duration-300"
               >
-                See the ISA in action
+                See the ISA system
                 <span className="text-lg leading-none">→</span>
               </a>
               <a

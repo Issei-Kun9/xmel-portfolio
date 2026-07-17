@@ -60,8 +60,24 @@ export default function Footer() {
           <div className="font-mono text-[10px] text-[var(--text-tertiary)]">
             © 2026 ISA Systems. All rights reserved.
           </div>
-          <div className="font-mono text-[10px] text-[var(--text-tertiary)]">
-            Built with precision. No templates. No shortcuts.
+          <div className="flex items-center gap-6">
+            <a
+              href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:yashwwardhanai@gmail.com"
+              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+            >
+              Email
+            </a>
+            <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
+              Built with precision. No templates.
+            </span>
           </div>
         </div>
       </div>

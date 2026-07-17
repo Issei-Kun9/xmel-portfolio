@@ -21,22 +21,40 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ISA Systems | AI Automation for Real Estate & Home Services",
+  title: "XMEL Automations | AI Automation for Real Estate & Home Services",
   description:
-    "I build AI systems that answer leads before your competitors wake up. Autonomous voice agents, n8n automations, and the AI Inside Sales Agent.",
+    "AI systems that answer leads before your competitors wake up. Autonomous voice agents, n8n automations, and the AI Inside Sales Agent — built by Yashwardhan Chauhan.",
   keywords: [
-    "AI automation",
+    "AI automation agency",
     "real estate AI",
     "lead response automation",
     "AI inside sales agent",
     "n8n automation",
     "voice AI agents",
+    "WhatsApp bot",
+    "Twilio automation",
+    "GPT-4o-mini",
+    "home services automation",
   ],
+  authors: [{ name: "Yashwardhan Chauhan" }],
   openGraph: {
-    title: "ISA Systems | AI Automation for Real Estate & Home Services",
+    title: "XMEL Automations | AI Automation for Real Estate & Home Services",
     description:
       "Autonomous AI agents and automation systems that eliminate slow lead response.",
     type: "website",
+    url: "https://xmelautomations.dpdns.org",
+    siteName: "XMEL Automations",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "XMEL Automations | AI Automation for Real Estate & Home Services",
+    description:
+      "Autonomous AI agents and automation systems that eliminate slow lead response.",
+  },
+  metadataBase: new URL("https://xmelautomations.dpdns.org"),
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

@@ -56,10 +56,22 @@ export default function About() {
                 real-time lead qualification that responds in under 50 seconds.
               </p>
               <p>
-                Based in India, working with clients globally. Systems are built to 
-                run 24/7 without babysitting. If you need a lead-response system that 
+                Based in India, working with clients globally. Systems are built to
+                run 24/7 without babysitting. If you need a lead-response system that
                 actually works — let&apos;s talk.
               </p>
+
+              <div className="pt-4">
+                <a
+                  href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-mono text-sm text-[var(--accent)] hover:underline"
+                >
+                  CONNECT ON LINKEDIN
+                  <span className="text-base">→</span>
+                </a>
+              </div>
             </motion.div>
           </div>
 

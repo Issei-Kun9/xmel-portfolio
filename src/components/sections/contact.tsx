@@ -3,16 +3,43 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-type SubmitState = "idle" | "sending" | "sent";
+type SubmitState = "idle" | "sending" | "sent" | "error";
+
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", project: "", message: "" });
   const [state, setState] = useState<SubmitState>("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState("sending");
-    setTimeout(() => setState("sent"), 2000);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: form.name,
+          email: form.email,
+          project_type: form.project,
+          message: form.message,
+          subject: `New Project Inquiry — ${form.project || "General"}`,
+          from_name: "ISA Systems Portfolio",
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setState("sent");
+        setForm({ name: "", email: "", project: "", message: "" });
+      } else {
+        setState("error");
+      }
+    } catch {
+      setState("error");
+    }
   };
 
   const inputClasses =
@@ -52,8 +79,8 @@ export default function Contact() {
               transition={{ delay: 0.2 }}
               className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-lg mb-8"
             >
-              Whether you&apos;re a real estate agent losing leads to slow response 
-              times or a home services contractor missing calls — I can build the 
+              Whether you&apos;re a real estate agent losing leads to slow response
+              times or a home services contractor missing calls — I can build the
               system that fixes it.
             </motion.p>
 
@@ -62,6 +89,31 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
+              className="space-y-4 mb-8"
+            >
+              <a
+                href="mailto:yashwwardhanai@gmail.com"
+                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
+              >
+                <span className="font-mono text-[11px] text-[var(--text-tertiary)] w-16">EMAIL</span>
+                <span className="font-mono text-sm">yashwwardhanai@gmail.com</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
+              >
+                <span className="font-mono text-[11px] text-[var(--text-tertiary)] w-16">LINKEDIN</span>
+                <span className="font-mono text-sm">linkedin.com/in/yashwardhan-chauhan</span>
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(74,222,128,0.3)] bg-[rgba(74,222,128,0.06)]"
             >
               <span className="w-2 h-2 rounded-full bg-[var(--success)] status-pulse" />
@@ -84,12 +136,15 @@ export default function Contact() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                <input type="hidden" name="botcheck" style={{ display: "none" }} />
+
                 <div className="input-line">
                   <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1">
                     &gt; your_name:
                   </label>
                   <input
                     type="text"
+                    name="name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="John Doe"
@@ -104,6 +159,7 @@ export default function Contact() {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="john@company.com"
@@ -118,6 +174,7 @@ export default function Contact() {
                   </label>
                   <input
                     type="text"
+                    name="project_type"
                     value={form.project}
                     onChange={(e) => setForm({ ...form, project: e.target.value })}
                     placeholder="real-estate / home-services / custom"
@@ -130,11 +187,13 @@ export default function Contact() {
                     &gt; message:
                   </label>
                   <textarea
+                    name="message"
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     rows={3}
                     placeholder="Tell me about your lead flow and what's broken..."
                     className={`${inputClasses} resize-none`}
+                    required
                   />
                 </div>
 
@@ -144,15 +203,33 @@ export default function Contact() {
                   className={`w-full py-3.5 rounded font-mono text-sm font-medium transition-all duration-300 ${
                     state === "sent"
                       ? "bg-[var(--success)] text-[var(--bg-primary)]"
-                      : state === "sending"
-                        ? "bg-[var(--accent)] text-[var(--bg-primary)] opacity-70"
-                        : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(193,255,114,0.2)]"
+                      : state === "error"
+                        ? "bg-[var(--warning)] text-[var(--bg-primary)]"
+                        : state === "sending"
+                          ? "bg-[var(--accent)] text-[var(--bg-primary)] opacity-70"
+                          : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(193,255,114,0.2)]"
                   }`}
                 >
                   {state === "idle" && "> send_message"}
                   {state === "sending" && "> sending..."}
                   {state === "sent" && "> message_sent ✓"}
+                  {state === "error" && "> error — try again"}
                 </button>
+
+                {state === "sent" && (
+                  <p className="font-mono text-[11px] text-[var(--success)] text-center">
+                    Message delivered. I&apos;ll respond within 24 hours.
+                  </p>
+                )}
+                {state === "error" && (
+                  <button
+                    type="button"
+                    onClick={() => setState("idle")}
+                    className="font-mono text-[11px] text-[var(--warning)] text-center w-full hover:underline"
+                  >
+                    Click to try again
+                  </button>
+                )}
               </form>
             </div>
           </motion.div>
