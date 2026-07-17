@@ -45,20 +45,22 @@ export default function About() {
               className="space-y-4 text-[var(--text-secondary)] leading-relaxed"
             >
               <p>
-                Solo founder building AI automation systems for real estate agents 
-                and home services contractors. Every system is designed, built, and 
-                deployed by me — from the first webhook trigger to the production 
+                Solo AI automation engineer building autonomous lead response systems 
+                for real estate agents and home services contractors. Every system — 
+                from n8n workflow automation to voice AI agents — is designed, built, 
+                and deployed by me, from the first webhook trigger to the production 
                 monitoring dashboard.
               </p>
               <p>
-                I started with simple chatbots and automations. Now I build 67-node 
-                n8n systems with GPT-4o-mini reasoning, Twilio voice calling, and 
-                real-time lead qualification that responds in under 50 seconds.
+                I started with simple chatbots and WhatsApp automation. Now I build 
+                67-node n8n systems with GPT-4o-mini reasoning, Twilio voice calling, 
+                ElevenLabs voice synthesis, and real-time lead qualification that 
+                responds in under 50 seconds — 400x faster than the industry average.
               </p>
               <p>
-                Based in India, working with clients globally. Systems are built to
-                run 24/7 without babysitting. If you need a lead-response system that
-                actually works — let&apos;s talk.
+                Based in India, working with clients globally. AI automation systems 
+                built to run 24/7 without babysitting. If you need a lead-response 
+                system, voice AI agent, or n8n workflow that actually works — let&apos;s talk.
               </p>
 
               <div className="pt-4">
@@ -92,10 +94,11 @@ export default function About() {
               </div>
               <div className="p-5 font-mono text-[13px] leading-relaxed">
                 <div className="text-[var(--text-tertiary)]">$ whoami</div>
-                <div className="text-[var(--text-secondary)] mt-1">AI automation engineer.</div>
+                <div className="text-[var(--text-secondary)] mt-1">AI automation engineer &amp; founder.</div>
                 <div className="text-[var(--text-secondary)]">Builder of the ISA system.</div>
-                <div className="text-[var(--text-secondary)]">67 nodes, 7 webhooks, 0 babysitting.</div>
-                <div className="text-[var(--text-secondary)] mt-2">Currently shipping for real estate</div>
+                <div className="text-[var(--text-secondary)]">67 n8n nodes, 7 webhooks, 0 babysitting.</div>
+                <div className="text-[var(--text-secondary)] mt-2">Specializing in voice AI, lead response</div>
+                <div className="text-[var(--text-secondary)]">automation &amp; WhatsApp bots for real estate</div>
                 <div className="text-[var(--text-secondary)]">and home services clients.</div>
                 <div className="text-[var(--accent)] mt-2 cursor-blink">$</div>
               </div>

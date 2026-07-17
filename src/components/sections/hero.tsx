@@ -171,7 +171,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--border-strong)] bg-[rgba(193,255,114,0.06)] mb-8"
             >
               <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)]">
-                AI Automation for Real Estate &amp; Home Services
+                AI Automation Agency — Voice AI &amp; n8n Workflows
               </span>
             </motion.div>
 
@@ -199,8 +199,9 @@ export default function Hero() {
               className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-xl mb-10"
             >
               I design and deploy autonomous AI agents, voice systems, and n8n 
-              automations that eliminate slow lead response — so you never lose 
-              a deal to a faster competitor again.
+              workflow automations that eliminate slow lead response — so real estate 
+              agents and home services contractors never lose a deal to a faster 
+              competitor again.
             </motion.p>
 
             <motion.div

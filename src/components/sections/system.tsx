@@ -107,7 +107,7 @@ const verticals = {
   realEstate: {
     title: "Real Estate",
     description:
-      "Built for agents drowning in Zillow leads. The ISA qualifies inbound leads via GPT-4o-mini, makes a Twilio call within 47 seconds, and books appointments directly into Google Calendar. Leads that score above 80 get an immediate SMS follow-up. Everything syncs to Google Sheets and triggers a Slack notification.",
+      "Built for real estate agents drowning in Zillow and Realtor.com leads. The AI Inside Sales Agent qualifies inbound leads via GPT-4o-mini, makes a Twilio voice call within 47 seconds, sends a follow-up SMS, and books appointments directly into Google Calendar. Leads that score above 80 get immediate outreach. Everything syncs to Google Sheets and triggers a Slack notification — a fully autonomous lead response automation system.",
     stats: [
       { label: "Response time", value: "< 50s" },
       { label: "Qualification accuracy", value: "94%" },
@@ -117,7 +117,7 @@ const verticals = {
   homeServices: {
     title: "Home Services",
     description:
-      "Same architecture, different vertical. For plumbing, HVAC, and electrical contractors who miss 60% of inbound calls. The agent answers every call, qualifies the job type and urgency, estimates pricing range, and books the slot. Emergency calls get escalated to the on-call technician instantly.",
+      "Same n8n workflow automation architecture, different vertical. For plumbing, HVAC, and electrical contractors who miss 60% of inbound calls. The AI voice agent answers every call using Vapi and ElevenLabs, qualifies the job type and urgency, estimates a pricing range, and books the slot into Google Calendar. Emergency calls get escalated to the on-call technician instantly via Twilio — turning missed calls into booked jobs.",
     stats: [
       { label: "Call answer rate", value: "100%" },
       { label: "Jobs booked/week", value: "28+" },

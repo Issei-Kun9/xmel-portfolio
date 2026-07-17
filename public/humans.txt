@@ -1,0 +1,14 @@
+XMEL Automations
+https://xmelautomations.dpdns.org
+
+AI automation agency — voice AI agents, n8n workflow automations,
+and autonomous lead response systems for real estate & home services.
+
+Built by Yashwardhan Chauhan.
+Located in India. Working globally.
+
+Stack: Next.js, TypeScript, n8n, GPT-4o-mini, Twilio, Vapi,
+ElevenLabs, PostgreSQL, Supabase, Google Workspace.
+
+Contact: yashwwardhanai@gmail.com
+LinkedIn: https://www.linkedin.com/in/yashwardhan-chauhan-075684414/
