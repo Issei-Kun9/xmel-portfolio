@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import CursorWrapper from "@/components/shared/cursor-wrapper";
 import JsonLd from "@/components/shared/json-ld";
 import "./globals.css";
 
@@ -128,6 +129,7 @@ export default function RootLayout({
             gtag('config', 'G-8BQBP7P5KC');
           `}
         </Script>
+        <CursorWrapper />
         <JsonLd />
         {children}
       </body>

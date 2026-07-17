@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 
-const CustomCursor = dynamic(() => import("@/components/shared/custom-cursor"), { ssr: false });
 const Nav = dynamic(() => import("@/components/sections/nav"));
 const Hero = dynamic(() => import("@/components/sections/hero"));
 const Stats = dynamic(() => import("@/components/sections/stats"));
@@ -19,7 +18,6 @@ const Footer = dynamic(() => import("@/components/sections/footer"));
 export default function Home() {
   return (
     <>
-      <CustomCursor />
       <Nav />
       <main>
         <Hero />
