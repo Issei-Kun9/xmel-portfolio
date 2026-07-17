@@ -3,6 +3,8 @@ import Script from "next/script";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import CursorWrapper from "@/components/shared/cursor-wrapper";
 import FloatingContact from "@/components/shared/floating-contact";
+import ScrollToTop from "@/components/shared/scroll-to-top";
+import ScrollReset from "@/components/shared/scroll-reset";
 import JsonLd from "@/components/shared/json-ld";
 import "./globals.css";
 
@@ -66,6 +68,14 @@ export const metadata: Metadata = {
     siteName: "XMEL Automations",
     locale: "en_IN",
     alternateLocale: "en_US",
+    images: [
+      {
+        url: "https://xmelautomations.dpdns.org/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "XMEL Automations — AI Automation Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -73,6 +83,7 @@ export const metadata: Metadata = {
       "XMEL Automations | AI Automation for Real Estate & Home Services",
     description:
       "Autonomous AI agents that respond to leads in under 50 seconds. Voice AI, n8n workflows, and WhatsApp bots for real estate and home services.",
+    images: ["https://xmelautomations.dpdns.org/og-image.png"],
   },
   metadataBase: new URL("https://xmelautomations.dpdns.org"),
   robots: {
@@ -135,9 +146,11 @@ export default function RootLayout({
           `}
         </Script>
         <CursorWrapper />
+        <ScrollReset />
         <JsonLd />
         {children}
         <FloatingContact />
+        <ScrollToTop />
       </body>
     </html>
   );

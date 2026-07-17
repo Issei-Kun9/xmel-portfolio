@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0A0A0B"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Accent glow -->
+  <circle cx="600" cy="315" r="300" fill="rgba(193,255,114,0.04)"/>
+  
+  <!-- X logo mark -->
+  <g transform="translate(540, 220)">
+    <path d="M20 20L60 60L20 100" stroke="#C1FF72" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M100 20L60 60L100 100" stroke="#C1FF72" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+  <!-- Site name -->
+  <text x="600" y="380" text-anchor="middle" font-family="monospace" font-size="36" font-weight="bold" fill="#F2F2F0" letter-spacing="2">XMEL AUTOMATIONS</text>
+  
+  <!-- Tagline -->
+  <text x="600" y="425" text-anchor="middle" font-family="monospace" font-size="18" fill="#888888" letter-spacing="1">AI Automation Agency — Voice AI &amp; n8n Workflows</text>
+  
+  <!-- URL -->
+  <text x="600" y="480" text-anchor="middle" font-family="monospace" font-size="14" fill="#C1FF72" letter-spacing="1">xmelautomations.dpdns.org</text>
+</svg>
