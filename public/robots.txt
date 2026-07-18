@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 Sitemap: https://xmelautomations.dpdns.org/sitemap.xml
+LLMs: https://xmelautomations.dpdns.org/llms.txt
