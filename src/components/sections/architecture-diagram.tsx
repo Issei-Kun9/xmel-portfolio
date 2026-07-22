@@ -170,17 +170,23 @@ export default function ArchitectureDiagram() {
             </marker>
           </defs>
 
-          {/* Connections */}
+          {/* Connections — static paths, no animateMotion */}
           {conns.map(([a, b], i) => {
             const c = connColor(i);
             const d = pathD(nodes[a], nodes[b]);
             return (
-              <g key={`c${i}`}>
-                <path d={d} stroke={c} strokeWidth="1" opacity="0.2" markerEnd="url(#arr)" />
-                <circle r="2.5" fill={c} opacity="0.6">
-                  <animateMotion dur={`${1.5 + (i % 5) * 0.3}s`} repeatCount="indefinite" path={d} />
-                </circle>
-              </g>
+              <path key={`c${i}`} d={d} stroke={c} strokeWidth="1" opacity="0.2" markerEnd="url(#arr)" />
+            );
+          })}
+
+          {/* Animated dots — only on 6 key paths (input→n8n, n8n→GPT, route→branches) */}
+          {[[0,1],[4,5],[11,12],[16,17],[17,18],[17,36]].map(([a,b], i) => {
+            const c = nodes[a].color ?? "#4a5568";
+            const d = pathD(nodes[a], nodes[b]);
+            return (
+              <circle key={`dot${i}`} r="3" fill={c} opacity="0.7">
+                <animateMotion dur={`${2 + i * 0.4}s`} repeatCount="indefinite" path={d} />
+              </circle>
             );
           })}
 
