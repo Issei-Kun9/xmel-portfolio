@@ -5,7 +5,7 @@ import { ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function Guarantee() {
   return (
-    <section className="relative py-16 lg:py-20">
+    <section id="pilot" className="relative py-16 lg:py-20">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

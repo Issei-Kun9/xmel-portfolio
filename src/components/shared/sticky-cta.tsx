@@ -32,7 +32,7 @@ export default function StickyCta() {
           className="fixed bottom-6 right-6 z-40 flex items-center gap-1"
         >
           <a
-            href="#contact"
+            href="#pilot"
             className="group inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-mono text-xs font-medium hover:opacity-90 transition-opacity shadow-lg shadow-[rgba(0,0,0,0.4)]"
           >
             Start Pilot
