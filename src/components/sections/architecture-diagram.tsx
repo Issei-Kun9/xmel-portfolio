@@ -2,6 +2,19 @@
 
 import { motion } from "framer-motion";
 
+const nodes = [
+  { label: "Webhook", icon: "⚡", color: "#10b981" },
+  { label: "GPT-4o-mini", icon: "🧠", color: "#a78bfa", sub: "qualify · score · route" },
+];
+
+const outputs = [
+  { label: "Sheets", icon: "📊", color: "#34d399" },
+  { label: "Slack", icon: "💬", color: "#fb923c" },
+  { label: "Email", icon: "✉️", color: "#60a5fa" },
+  { label: "Calendar", icon: "📅", color: "#f472b6" },
+  { label: "Twilio", icon: "📱", color: "#facc15" },
+];
+
 export default function ArchitectureDiagram() {
   return (
     <div className="w-full overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[#0a0a0f]">
@@ -15,198 +28,88 @@ export default function ArchitectureDiagram() {
         </span>
       </div>
 
-      {/* Architecture canvas */}
-      <div className="relative w-full" style={{ aspectRatio: "1100/500" }}>
-        {/* Grid background */}
-        <div
-          className="absolute inset-0 rounded-b-xl"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        {/* Title */}
-        <div className="absolute top-[4%] left-1/2 -translate-x-1/2 text-center z-10">
-          <div className="font-mono text-[11px] sm:text-[13px] font-medium text-[#3b82f6] tracking-[6px] uppercase">
-            AI ISA Pipeline
-          </div>
+      {/* Flow diagram */}
+      <div className="flex flex-col items-center gap-4 p-6 sm:p-8">
+        {/* Stage 1 — input */}
+        <div className="flex items-center justify-center gap-3">
+          {nodes.map((n, i) => (
+            <div key={n.label} className="flex items-center gap-3">
+              {i > 0 && (
+                <svg width="32" height="12" viewBox="0 0 32 12" fill="none" className="shrink-0">
+                  <path d="M0,6 H24 M20,2 L26,6 L20,10" stroke={n.color} strokeWidth="1.5" opacity="0.4" />
+                </svg>
+              )}
+              <motion.div
+                whileHover={{ y: -2, filter: "brightness(1.2)" }}
+                className="rounded-xl px-4 py-3 text-center cursor-default relative"
+                style={{
+                  background: `linear-gradient(135deg, ${n.color}22, ${n.color}08)`,
+                  border: `1px solid ${n.color}55`,
+                  boxShadow: `0 0 20px ${n.color}15`,
+                  minWidth: "110px",
+                }}
+              >
+                {n.sub && (
+                  <div
+                    className="absolute inset-[-1px] rounded-xl pointer-events-none"
+                    style={{
+                      border: `2px solid ${n.color}40`,
+                      animation: "pulse-ring 2s ease-out infinite",
+                    }}
+                  />
+                )}
+                <div className="text-lg sm:text-xl mb-1">{n.icon}</div>
+                <div className="font-mono text-[9px] sm:text-[11px] font-semibold tracking-wider uppercase" style={{ color: n.color }}>
+                  {n.label}
+                </div>
+                {n.sub && (
+                  <div className="font-mono text-[7px] sm:text-[9px] mt-0.5" style={{ color: `${n.color}cc` }}>
+                    {n.sub}
+                  </div>
+                )}
+              </motion.div>
+            </div>
+          ))}
         </div>
 
-        {/* SVG Connections */}
-        <svg className="absolute inset-0 w-full h-full z-[1] pointer-events-none" viewBox="0 0 1100 500" fill="none">
-          {/* Trigger → AI */}
-          <path stroke="#10b981" strokeWidth="1.5" opacity="0.3" d="M170,260 C220,260 230,250 280,250" />
-          <circle r="2.5" fill="#10b981" opacity="0.8">
-            <animateMotion dur="1.5s" repeatCount="indefinite" path="M170,260 C220,260 230,250 280,250" />
-          </circle>
-
-          {/* AI → Sheets */}
-          <path stroke="#8b5cf6" strokeWidth="1.5" opacity="0.3" d="M460,230 C530,230 550,120 600,120" />
-          <circle r="2.5" fill="#a78bfa" opacity="0.8">
-            <animateMotion dur="1.8s" repeatCount="indefinite" path="M460,230 C530,230 550,120 600,120" />
-          </circle>
-
-          {/* AI → Slack */}
-          <path stroke="#fb923c" strokeWidth="1.5" opacity="0.3" d="M460,240 C530,240 550,200 600,200" />
-          <circle r="2.5" fill="#fb923c" opacity="0.8">
-            <animateMotion dur="1.6s" repeatCount="indefinite" path="M460,240 C530,240 550,200 600,200" />
-          </circle>
-
-          {/* AI → Email */}
-          <path stroke="#3b82f6" strokeWidth="1.5" opacity="0.3" d="M460,255 C530,260 550,290 600,290" />
-          <circle r="2.5" fill="#60a5fa" opacity="0.8">
-            <animateMotion dur="2s" repeatCount="indefinite" path="M460,255 C530,260 550,290 600,290" />
-          </circle>
-
-          {/* AI → Calendar */}
-          <path stroke="#f472b6" strokeWidth="1.5" opacity="0.3" d="M460,265 C530,280 550,380 600,380" />
-          <circle r="2.5" fill="#f472b6" opacity="0.8">
-            <animateMotion dur="2.2s" repeatCount="indefinite" path="M460,265 C530,280 550,380 600,380" />
-          </circle>
-
-          {/* Email → Twilio */}
-          <path stroke="#facc15" strokeWidth="1.5" opacity="0.3" d="M760,290 C810,290 830,260 870,255" />
-          <circle r="2.5" fill="#facc15" opacity="0.8">
-            <animateMotion dur="1.7s" repeatCount="indefinite" path="M760,290 C810,290 830,260 870,255" />
-          </circle>
+        {/* Arrow down */}
+        <svg width="2" height="24" viewBox="0 0 2 24" fill="none" className="shrink-0">
+          <line x1="1" y1="0" x2="1" y2="18" stroke="#a78bfa" strokeWidth="1.5" opacity="0.3" />
+          <polygon points="0,18 1,24 2,18" fill="#a78bfa" opacity="0.3" />
         </svg>
 
-        {/* Nodes */}
-        {/* Webhook Trigger */}
-        <div className="absolute z-[5] w-[11%]" style={{ left: "4%", top: "42%" }}>
-          <motion.div
-            whileHover={{ y: -2, filter: "brightness(1.2)" }}
-            className="rounded-xl p-3 sm:p-4 text-center cursor-default"
-            style={{
-              background: "linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05))",
-              border: "1px solid rgba(16,185,129,0.3)",
-              boxShadow: "0 0 20px rgba(16,185,129,0.08)",
-            }}
-          >
-            <div className="text-base sm:text-xl mb-1">⚡</div>
-            <div className="font-mono text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#10b981]">
-              Webhook
-            </div>
-          </motion.div>
-        </div>
-
-        {/* GPT-4o-mini */}
-        <div className="absolute z-[5] w-[15%]" style={{ left: "26%", top: "36%" }}>
-          <motion.div
-            whileHover={{ y: -2, filter: "brightness(1.2)" }}
-            className="rounded-xl p-4 sm:p-5 text-center cursor-default relative"
-            style={{
-              background: "linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05))",
-              border: "1px solid rgba(139,92,246,0.4)",
-              boxShadow: "0 0 30px rgba(139,92,246,0.12)",
-            }}
-          >
-            <div
-              className="absolute inset-[-2px] rounded-xl pointer-events-none"
+        {/* Stage 2 — outputs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+          {outputs.map((n) => (
+            <motion.div
+              key={n.label}
+              whileHover={{ y: -2, filter: "brightness(1.2)" }}
+              className="rounded-xl px-3 py-2.5 text-center cursor-default"
               style={{
-                border: "2px solid rgba(139,92,246,0.3)",
-                animation: "pulse-ring 2s ease-out infinite",
+                background: `linear-gradient(135deg, ${n.color}18, ${n.color}05)`,
+                border: `1px solid ${n.color}33`,
+                boxShadow: `0 0 12px ${n.color}0a`,
+                minWidth: "80px",
               }}
-            />
-            <div className="text-lg sm:text-2xl mb-1">🧠</div>
-            <div className="font-mono text-[9px] sm:text-[12px] font-semibold tracking-wider uppercase text-[#a78bfa]">
-              GPT-4o-mini
-            </div>
-            <div className="font-mono text-[7px] sm:text-[9px] text-[#7c3aed] mt-0.5">qualify &middot; score &middot; route</div>
-          </motion.div>
+            >
+              <div className="text-base sm:text-lg mb-0.5">{n.icon}</div>
+              <div className="font-mono text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase" style={{ color: n.color }}>
+                {n.label}
+              </div>
+            </motion.div>
+          ))}
         </div>
+      </div>
 
-        {/* Google Sheets */}
-        <div className="absolute z-[5] w-[12%]" style={{ left: "55%", top: "12%" }}>
-          <motion.div
-            whileHover={{ y: -2, filter: "brightness(1.2)" }}
-            className="rounded-xl p-2 sm:p-3 text-center cursor-default"
-            style={{
-              background: "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(16,185,129,0.03))",
-              border: "1px solid rgba(16,185,129,0.25)",
-              boxShadow: "0 0 15px rgba(16,185,129,0.06)",
-            }}
-          >
-            <div className="text-base sm:text-xl mb-1">📊</div>
-            <div className="font-mono text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#34d399]">
-              Sheets
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Slack */}
-        <div className="absolute z-[5] w-[12%]" style={{ left: "55%", top: "30%" }}>
-          <motion.div
-            whileHover={{ y: -2, filter: "brightness(1.2)" }}
-            className="rounded-xl p-2 sm:p-3 text-center cursor-default"
-            style={{
-              background: "linear-gradient(135deg, rgba(251,146,60,0.12), rgba(251,146,60,0.03))",
-              border: "1px solid rgba(251,146,60,0.25)",
-              boxShadow: "0 0 15px rgba(251,146,60,0.06)",
-            }}
-          >
-            <div className="text-base sm:text-xl mb-1">💬</div>
-            <div className="font-mono text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#fb923c]">
-              Slack
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Email */}
-        <div className="absolute z-[5] w-[12%]" style={{ left: "55%", top: "48%" }}>
-          <motion.div
-            whileHover={{ y: -2, filter: "brightness(1.2)" }}
-            className="rounded-xl p-2 sm:p-3 text-center cursor-default"
-            style={{
-              background: "linear-gradient(135deg, rgba(59,130,246,0.12), rgba(59,130,246,0.03))",
-              border: "1px solid rgba(59,130,246,0.25)",
-              boxShadow: "0 0 15px rgba(59,130,246,0.06)",
-            }}
-          >
-            <div className="text-base sm:text-xl mb-1">✉️</div>
-            <div className="font-mono text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#60a5fa]">
-              Email
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Calendar */}
-        <div className="absolute z-[5] w-[12%]" style={{ left: "55%", top: "66%" }}>
-          <motion.div
-            whileHover={{ y: -2, filter: "brightness(1.2)" }}
-            className="rounded-xl p-2 sm:p-3 text-center cursor-default"
-            style={{
-              background: "linear-gradient(135deg, rgba(244,114,182,0.12), rgba(244,114,182,0.03))",
-              border: "1px solid rgba(244,114,182,0.25)",
-              boxShadow: "0 0 15px rgba(244,114,182,0.06)",
-            }}
-          >
-            <div className="text-base sm:text-xl mb-1">📅</div>
-            <div className="font-mono text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#f472b6]">
-              Calendar
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Twilio SMS */}
-        <div className="absolute z-[5] w-[12%]" style={{ left: "80%", top: "38%" }}>
-          <motion.div
-            whileHover={{ y: -2, filter: "brightness(1.2)" }}
-            className="rounded-xl p-2 sm:p-3 text-center cursor-default"
-            style={{
-              background: "linear-gradient(135deg, rgba(250,204,21,0.12), rgba(250,204,21,0.03))",
-              border: "1px solid rgba(250,204,21,0.25)",
-              boxShadow: "0 0 15px rgba(250,204,21,0.06)",
-            }}
-          >
-            <div className="text-base sm:text-xl mb-1">📱</div>
-            <div className="font-mono text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#facc15]">
-              Twilio
-            </div>
-          </motion.div>
-        </div>
+      {/* Bottom bar */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-t border-[var(--border-subtle)] bg-[var(--bg-tertiary)]">
+        <span className="font-mono text-[8px] sm:text-[9px] text-[var(--text-tertiary)] tracking-wider flex items-center gap-1.5">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
+          LIVE
+        </span>
+        <span className="font-mono text-[8px] sm:text-[9px] text-[var(--text-tertiary)] tracking-wider">
+          BUILT BY YASH
+        </span>
       </div>
     </div>
   );
