@@ -7,6 +7,7 @@ const Nav = dynamic(() => import("@/components/sections/nav"));
 const Hero = dynamic(() => import("@/components/sections/hero"));
 const Problem = dynamic(() => import("@/components/sections/problem"));
 const System = dynamic(() => import("@/components/sections/system"));
+const VideoDemo = dynamic(() => import("@/components/sections/video-demo"));
 const ResultsBanner = dynamic(() => import("@/components/sections/results-banner"));
 const Projects = dynamic(() => import("@/components/sections/projects"));
 const Testimonials = dynamic(() => import("@/components/sections/testimonials"));
@@ -35,6 +36,7 @@ export default function Home() {
           </a>
         </div>
         <System />
+        <VideoDemo />
         <ResultsBanner />
         <Projects />
         <Testimonials />
