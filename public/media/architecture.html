@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI ISA Pipeline — Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0f;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .canvas {
+    position: relative;
+    width: 1100px;
+    height: 700px;
+  }
+
+  /* Grid background */
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 16px;
+  }
+
+  /* Title */
+  .title {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+  }
+  .title h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3b82f6;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .title p {
+    font-size: 11px;
+    color: #4a5568;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Nodes */
+  .node {
+    position: absolute;
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    z-index: 5;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+  .node:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+  }
+
+  .node-icon {
+    font-size: 24px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .node-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .node-sub {
+    font-size: 9px;
+    color: #718096;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Node themes */
+  .node-trigger {
+    background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+    border: 1px solid rgba(16,185,129,0.3);
+    box-shadow: 0 0 30px rgba(16,185,129,0.1);
+    left: 40px; top: 290px;
+    width: 140px;
+  }
+  .node-trigger .node-label { color: #10b981; }
+
+  .node-ai {
+    background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.05));
+    border: 1px solid rgba(139,92,246,0.4);
+    box-shadow: 0 0 40px rgba(139,92,246,0.15);
+    left: 280px; top: 260px;
+    width: 180px;
+    padding: 24px 20px;
+  }
+  .node-ai .node-label { color: #a78bfa; font-size: 13px; }
+  .node-ai .node-sub { color: #7c3aed; font-size: 10px; }
+
+  .node-sheet {
+    background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(16,185,129,0.03));
+    border: 1px solid rgba(16,185,129,0.25);
+    box-shadow: 0 0 20px rgba(16,185,129,0.08);
+    left: 600px; top: 60px;
+    width: 150px;
+  }
+  .node-sheet .node-label { color: #34d399; }
+
+  .node-slack {
+    background: linear-gradient(135deg, rgba(251,146,60,0.12), rgba(251,146,60,0.03));
+    border: 1px solid rgba(251,146,60,0.25);
+    box-shadow: 0 0 20px rgba(251,146,60,0.08);
+    left: 600px; top: 190px;
+    width: 150px;
+  }
+  .node-slack .node-label { color: #fb923c; }
+
+  .node-email {
+    background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(59,130,246,0.03));
+    border: 1px solid rgba(59,130,246,0.25);
+    box-shadow: 0 0 20px rgba(59,130,246,0.08);
+    left: 600px; top: 320px;
+    width: 150px;
+  }
+  .node-email .node-label { color: #60a5fa; }
+
+  .node-calendar {
+    background: linear-gradient(135deg, rgba(244,114,182,0.12), rgba(244,114,182,0.03));
+    border: 1px solid rgba(244,114,182,0.25);
+    box-shadow: 0 0 20px rgba(244,114,182,0.08);
+    left: 600px; top: 450px;
+    width: 150px;
+  }
+  .node-calendar .node-label { color: #f472b6; }
+
+  .node-twilio {
+    background: linear-gradient(135deg, rgba(250,204,21,0.12), rgba(250,204,21,0.03));
+    border: 1px solid rgba(250,204,21,0.25);
+    box-shadow: 0 0 20px rgba(250,204,21,0.08);
+    left: 870px; top: 250px;
+    width: 150px;
+  }
+  .node-twilio .node-label { color: #facc15; }
+
+  /* Pulse on AI node */
+  .node-ai::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    border: 2px solid rgba(139,92,246,0.3);
+    animation: pulse-ring 2s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.08); }
+  }
+
+  /* SVG connections */
+  svg.connections {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .conn {
+    fill: none;
+    stroke-width: 1.5;
+    opacity: 0.4;
+  }
+  .conn-green { stroke: #10b981; }
+  .conn-purple { stroke: #8b5cf6; }
+  .conn-orange { stroke: #fb923c; }
+  .conn-blue { stroke: #3b82f6; }
+  .conn-pink { stroke: #f472b6; }
+  .conn-yellow { stroke: #facc15; }
+
+  /* Animated dots on paths */
+  .dot {
+    r: 3;
+    fill: #fff;
+    opacity: 0.9;
+  }
+  .dot-green { fill: #10b981; }
+  .dot-purple { fill: #a78bfa; }
+  .dot-orange { fill: #fb923c; }
+  .dot-blue { fill: #60a5fa; }
+  .dot-pink { fill: #f472b6; }
+  .dot-yellow { fill: #facc15; }
+
+  /* Data flow labels */
+  .flow-label {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 6;
+    white-space: nowrap;
+  }
+  .flow-label-green { color: #10b981; background: rgba(16,185,129,0.1); }
+  .flow-label-purple { color: #a78bfa; background: rgba(139,92,246,0.1); }
+
+  /* Corner tech details */
+  .tech-detail {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #2d3748;
+    z-index: 2;
+  }
+  .tech-detail.tl { top: 20px; left: 20px; }
+  .tech-detail.tr { top: 20px; right: 20px; text-align: right; }
+  .tech-detail.bl { bottom: 20px; left: 20px; }
+  .tech-detail.br { bottom: 20px; right: 20px; text-align: right; }
+
+  /* Status indicators */
+  .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: blink 2s ease-in-out infinite;
+  }
+  .status-dot.green { background: #10b981; box-shadow: 0 0 6px #10b981; }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Bottom info bar */
+  .info-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    background: rgba(15,15,25,0.8);
+    border-top: 1px solid rgba(59,130,246,0.1);
+    border-radius: 0 0 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 10;
+  }
+  .info-bar span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #4a5568;
+    letter-spacing: 1px;
+  }
+  .info-bar .live {
+    color: #10b981;
+    display: flex;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <!-- Title -->
+  <div class="title">
+    <h1>AI ISA Pipeline</h1>
+    <p>autonomous lead qualification &amp; engagement system</p>
+  </div>
+
+  <!-- Tech details -->
+  <div class="tech-detail tl">
+    <div><span class="status-dot green"></span>SYSTEM ACTIVE</div>
+    <div style="margin-top:4px">NODE.JS runtime</div>
+    <div>port :5680</div>
+  </div>
+  <div class="tech-detail tr">
+    <div>gpt-4o-mini // openrouter</div>
+    <div style="margin-top:4px">server-side scoring</div>
+    <div>session memory // 20 msg window</div>
+  </div>
+  <div class="tech-detail bl">
+    <div>google oauth 2.0</div>
+    <div>sheets api v4 // gmail api // calendar api v3</div>
+  </div>
+  <div class="tech-detail br">
+    <div>twilio sms // slack bot api</div>
+    <div>real-time webhook pipeline</div>
+  </div>
+
+  <!-- SVG Connections -->
+  <svg class="connections" viewBox="0 0 1100 700">
+    <!-- Trigger → AI -->
+    <path class="conn conn-green" d="M180,320 C230,320 230,310 280,310" />
+    <circle class="dot dot-green" r="3">
+      <animateMotion dur="1.5s" repeatCount="indefinite" path="M180,320 C230,320 230,310 280,310" />
+    </circle>
+
+    <!-- AI → Sheets -->
+    <path class="conn conn-purple" d="M460,290 C520,290 540,130 600,130" />
+    <circle class="dot dot-purple" r="3">
+      <animateMotion dur="1.8s" repeatCount="indefinite" path="M460,290 C520,290 540,130 600,130" />
+    </circle>
+
+    <!-- AI → Slack -->
+    <path class="conn conn-orange" d="M460,300 C530,300 550,240 600,240" />
+    <circle class="dot dot-orange" r="3">
+      <animateMotion dur="1.6s" repeatCount="indefinite" path="M460,300 C530,300 550,240 600,240" />
+    </circle>
+
+    <!-- AI → Email -->
+    <path class="conn conn-blue" d="M460,310 C530,310 550,370 600,370" />
+    <circle class="dot dot-blue" r="3">
+      <animateMotion dur="2s" repeatCount="indefinite" path="M460,310 C530,310 550,370 600,370" />
+    </circle>
+
+    <!-- AI → Calendar -->
+    <path class="conn conn-pink" d="M460,320 C530,330 550,490 600,490" />
+    <circle class="dot dot-pink" r="3">
+      <animateMotion dur="2.2s" repeatCount="indefinite" path="M460,320 C530,330 550,490 600,490" />
+    </circle>
+
+    <!-- Email → Twilio -->
+    <path class="conn conn-yellow" d="M750,370 C800,370 820,320 870,310" />
+    <circle class="dot dot-yellow" r="3">
+      <animateMotion dur="1.7s" repeatCount="indefinite" path="M750,370 C800,370 820,320 870,310" />
+    </circle>
+  </svg>
+
+  <!-- Nodes -->
+  <div class="node node-trigger">
+    <span class="node-icon">⚡</span>
+    <div class="node-label">Webhook</div>
+    <div class="node-sub">POST /isa-chat</div>
+  </div>
+
+  <div class="node node-ai">
+    <span class="node-icon">🧠</span>
+    <div class="node-label">GPT-4o-mini</div>
+    <div class="node-sub">Lead Qualification AI</div>
+    <div class="node-sub" style="margin-top:6px;color:#6d28d9">score // route // schedule</div>
+  </div>
+
+  <div class="node node-sheet">
+    <span class="node-icon">📊</span>
+    <div class="node-label">Google Sheets</div>
+    <div class="node-sub">Lead Database</div>
+  </div>
+
+  <div class="node node-slack">
+    <span class="node-icon">💬</span>
+    <div class="node-label">Slack</div>
+    <div class="node-sub">Live Lead Alerts</div>
+  </div>
+
+  <div class="node node-email">
+    <span class="node-icon">✉️</span>
+    <div class="node-label">Email</div>
+    <div class="node-sub">Listings + Invites</div>
+  </div>
+
+  <div class="node node-calendar">
+    <span class="node-icon">📅</span>
+    <div class="node-label">Calendar</div>
+    <div class="node-sub">Auto Scheduling</div>
+  </div>
+
+  <div class="node node-twilio">
+    <span class="node-icon">📱</span>
+    <div class="node-label">Twilio SMS</div>
+    <div class="node-sub">Instant Notifications</div>
+  </div>
+
+  <!-- Flow labels -->
+  <div class="flow-label flow-label-green" style="left:195px;top:295px">trigger</div>
+  <div class="flow-label flow-label-purple" style="left:490px;top:230px">qualify + score</div>
+
+  <!-- Bottom bar -->
+  <div class="info-bar">
+    <span><span class="status-dot green"></span> ALL SYSTEMS OPERATIONAL</span>
+    <span>LATENCY: &lt;200MS // UPTIME: 99.9%</span>
+    <span>BUILT BY YASH</span>
+  </div>
+</div>
+</body>
+</html>

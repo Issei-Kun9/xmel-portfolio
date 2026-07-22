@@ -23,12 +23,12 @@ export default function VideoDemo() {
             Not a mockup. The actual system.
           </h2>
           <p className="font-mono text-sm text-[var(--text-secondary)] mt-3">
-            Real screen recordings — n8n workflow running, leads being processed.
+            Real architecture, real screen recordings — the system running live.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-4">
-          {/* n8n Workflow */}
+          {/* n8n Architecture — Animated HTML */}
           <motion.div
             ref={ref}
             initial={{ opacity: 0, y: 30 }}
@@ -42,16 +42,14 @@ export default function VideoDemo() {
               <span className="w-3 h-3 rounded-full bg-[rgba(255,189,46,0.8)]" />
               <span className="w-3 h-3 rounded-full bg-[rgba(39,201,63,0.8)]" />
               <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">
-                n8n-workflow.mp4
+                architecture.html
               </span>
             </div>
-            <video
-              src="/media/n8n-workflow.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-auto"
+            <iframe
+              src="/media/architecture.html"
+              className="w-full border-0"
+              style={{ height: "420px" }}
+              title="AI ISA Pipeline Architecture"
             />
             <div className="px-4 py-3 border-t border-[var(--border-subtle)]">
               <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
