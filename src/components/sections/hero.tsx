@@ -80,7 +80,7 @@ function TerminalWidget() {
         <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">isa-system</span>
       </div>
-      <div className="p-4 font-mono text-[13px] leading-relaxed min-h-[180px]">
+      <div className="p-4 font-mono text-[11px] sm:text-[13px] leading-relaxed min-h-[140px] sm:min-h-[180px]">
         {displayedLines.map((line, i) => (
           <div key={i} className="flex">
             <span className="text-[var(--accent)] mr-2 select-none">$</span>
@@ -147,35 +147,35 @@ export default function Hero() {
       </div>
 
       {/* Corner HUD metadata */}
-      <div className="absolute top-24 left-6 lg:left-12 z-10">
+      <div className="hidden sm:block absolute top-24 left-6 lg:left-12 z-10">
         <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] leading-relaxed">
-          <div>LOCATION: REMOTE / BASED IN INDIA</div>
+          <div>LOCATION: REMOTE / INDIA</div>
           <div>TIMEZONE: IST (UTC+5:30)</div>
         </div>
       </div>
 
-      <div className="absolute top-24 right-6 lg:right-12 z-10">
+      <div className="hidden sm:block absolute top-24 right-6 lg:right-12 z-10">
         <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
           SYSTEMS SHIPPED: 04
         </div>
       </div>
 
-      <motion.div style={{ y, opacity }} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-32 pb-20 w-full">
-        <div className="grid lg:grid-cols-[1fr_480px] gap-12 lg:gap-16 items-center">
+      <motion.div style={{ y, opacity }} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-24 sm:pt-32 pb-20 w-full">
+        <div className="grid lg:grid-cols-[1fr_480px] gap-8 lg:gap-16 items-center">
           {/* Left column — asymmetric, confident */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--border-strong)] bg-[rgba(193,255,114,0.06)] mb-8"
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-[var(--border-strong)] bg-[rgba(193,255,114,0.06)] mb-6 sm:mb-8"
             >
-              <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)]">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.1em] text-[var(--accent)]">
                 AI Automation Agency — Voice AI &amp; n8n Workflows
               </span>
             </motion.div>
 
-            <h1 className="font-display text-[clamp(40px,7vw,80px)] font-semibold leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)] mb-8">
+            <h1 className="font-display text-[clamp(32px,7vw,80px)] font-semibold leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)] mb-6 sm:mb-8">
               {headlineLines.map((line, i) => (
                 <motion.div
                   key={i}
@@ -196,7 +196,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.6 }}
-              className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-xl mb-10"
+              className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-xl mb-8 sm:mb-10"
             >
               I design and deploy autonomous AI agents, voice systems, and n8n 
               workflow automations that eliminate slow lead response — so real estate 
@@ -208,7 +208,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-3 sm:gap-4"
             >
               <a
                 href="#isa-system"
@@ -231,7 +231,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.4, duration: 0.8 }}
-            className="hidden lg:block"
+            className="block"
           >
             <TerminalWidget />
           </motion.div>
