@@ -9,14 +9,20 @@ export default function FloatingContact() {
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 3000);
-    return () => clearTimeout(timer);
+    const handleScroll = () => {
+      const hero = document.getElementById("home");
+      if (!hero) return;
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      setVisible(heroBottom < 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-3">
       <AnimatePresence>
         {expanded && (
           <motion.div
