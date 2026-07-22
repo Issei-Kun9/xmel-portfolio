@@ -8,6 +8,10 @@ const Stats = dynamic(() => import("@/components/sections/stats"));
 const Problem = dynamic(() => import("@/components/sections/problem"));
 const System = dynamic(() => import("@/components/sections/system"));
 const Projects = dynamic(() => import("@/components/sections/projects"));
+const Testimonials = dynamic(() => import("@/components/sections/testimonials"));
+const ResultsBanner = dynamic(() => import("@/components/sections/results-banner"));
+const TrustBadges = dynamic(() => import("@/components/sections/trust-badges"));
+const Guarantee = dynamic(() => import("@/components/sections/guarantee"));
 const Process = dynamic(() => import("@/components/sections/process"));
 const TechStack = dynamic(() => import("@/components/sections/tech-stack"));
 const About = dynamic(() => import("@/components/sections/about"));
@@ -25,6 +29,10 @@ export default function Home() {
         <Problem />
         <System />
         <Projects />
+        <Testimonials />
+        <ResultsBanner />
+        <TrustBadges />
+        <Guarantee />
         <Process />
         <TechStack />
         <About />
