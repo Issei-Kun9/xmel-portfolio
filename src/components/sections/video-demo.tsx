@@ -1,7 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+
+const ArchitectureDiagram = dynamic(
+  () => import("./architecture-diagram"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] animate-pulse" style={{ aspectRatio: "1100/700" }} />
+    ),
+  }
+);
 
 export default function VideoDemo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -28,7 +39,7 @@ export default function VideoDemo() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-4">
-          {/* n8n Architecture — Animated HTML */}
+          {/* n8n Architecture — React Component */}
           <motion.div
             ref={ref}
             initial={{ opacity: 0, y: 30 }}
@@ -37,20 +48,7 @@ export default function VideoDemo() {
             transition={{ delay: 0.1 }}
             className="relative rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
           >
-            <div className="flex items-center gap-2 px-4 py-3 bg-[var(--bg-tertiary)] border-b border-[var(--border-subtle)]">
-              <span className="w-3 h-3 rounded-full bg-[rgba(255,95,86,0.8)]" />
-              <span className="w-3 h-3 rounded-full bg-[rgba(255,189,46,0.8)]" />
-              <span className="w-3 h-3 rounded-full bg-[rgba(39,201,63,0.8)]" />
-              <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">
-                architecture.html
-              </span>
-            </div>
-            <iframe
-              src="/media/architecture.html"
-              className="w-full border-0"
-              style={{ height: "420px" }}
-              title="AI ISA Pipeline Architecture"
-            />
+            <ArchitectureDiagram />
             <div className="px-4 py-3 border-t border-[var(--border-subtle)]">
               <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
                 The actual n8n workflow — not a mockup
