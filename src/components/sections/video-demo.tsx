@@ -18,10 +18,10 @@ export default function VideoDemo() {
           className="mb-10"
         >
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-            SEE IT IN ACTION
+            BEFORE vs AFTER
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
-            Watch the AI work.
+            See the difference.
           </h2>
           <p className="font-mono text-sm text-[var(--text-secondary)] mt-3">
             Same lead, same day — before ISA vs. after.
