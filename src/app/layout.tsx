@@ -5,6 +5,7 @@ import CursorWrapper from "@/components/shared/cursor-wrapper";
 import FloatingContact from "@/components/shared/floating-contact";
 import ScrollToTop from "@/components/shared/scroll-to-top";
 import ScrollReset from "@/components/shared/scroll-reset";
+import StickyCta from "@/components/shared/sticky-cta";
 import JsonLd from "@/components/shared/json-ld";
 import "./globals.css";
 
@@ -150,6 +151,7 @@ export default function RootLayout({
         <JsonLd />
         {children}
         <FloatingContact />
+        <StickyCta />
         <ScrollToTop />
       </body>
     </html>

@@ -33,13 +33,18 @@ export default function Guarantee() {
               </p>
             </div>
 
-            <a
-              href="#contact"
-              className="flex-shrink-0 group inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-mono text-sm font-medium hover:opacity-90 transition-opacity shine-sweep"
-            >
-              Start Pilot
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+            <div className="flex-shrink-0 flex flex-col items-start lg:items-end gap-3">
+              <p className="font-mono text-[11px] text-[var(--text-tertiary)] max-w-[280px] lg:text-right leading-relaxed">
+                No contracts. No upfront fees. Pricing is scoped to your pilot results — most clients recover the cost from a single recovered deal.
+              </p>
+              <a
+                href="#contact"
+                className="group inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-mono text-sm font-medium hover:opacity-90 transition-opacity shine-sweep"
+              >
+                Start Pilot
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

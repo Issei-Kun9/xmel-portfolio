@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "How much does AI automation cost for real estate agents?",
-    a: "AI automation pricing depends on the complexity of your lead flow and the number of integrations needed. Most real estate AI systems start from a one-time build fee plus a monthly hosting and API cost (typically $50–150/month for Twilio, OpenAI API, and n8n hosting). The ROI is immediate — agents typically recover 3–5x their investment in the first month through leads that would have otherwise been lost to slow response times.",
+    a: "Pricing depends on lead volume, integrations, and system complexity — every engagement starts with a 14-Day Pilot so you see results before any commitment. Most clients recover the full cost from a single recovered deal.",
   },
   {
     q: "Can AI answer phone calls for my business?",
