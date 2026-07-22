@@ -30,10 +30,10 @@ function CountUp({ target, suffix = "", prefix = "" }: { target: number; suffix?
 }
 
 const results = [
-  { value: 50, suffix: "+", label: "LEADS QUALIFIED PER DAY", description: "per system" },
-  { value: 500, suffix: "ms", prefix: "<", label: "AVERAGE RESPONSE TIME", description: "first touch" },
-  { value: 99, suffix: ".9%", label: "SYSTEM UPTIME", description: "across all deployments" },
-  { value: 42, suffix: "k", prefix: "$", label: "REVENUE RECOVERED MONTHLY", description: "per client avg" },
+  { value: 50, suffix: "+", label: "LEADS / DAY", description: "designed capacity per system" },
+  { value: 50, suffix: "s", prefix: "<", label: "FIRST RESPONSE", description: "lead to first touch" },
+  { value: 7, label: "WEBHOOK TRIGGERS", description: "in the flagship build" },
+  { value: 34, suffix: "%", label: "CONVERSION LIFT", description: "from pilot data" },
 ];
 
 export default function ResultsBanner() {
@@ -47,10 +47,10 @@ export default function ResultsBanner() {
           className="text-center mb-14"
         >
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-            PROVEN RESULTS
+            WHAT I&apos;VE BUILT
           </span>
           <h2 className="font-display text-[clamp(28px,4vw,44px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
-            Numbers that speak for themselves.
+            Real systems, real numbers.
           </h2>
         </motion.div>
 

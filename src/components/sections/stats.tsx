@@ -31,8 +31,8 @@ function CountUp({ target, suffix = "", prefix = "" }: { target: number; suffix?
 
 const stats = [
   { value: 67, label: "NODES IN FLAGSHIP SYSTEM", prefix: "" },
-  { value: 5, label: "MIN AVG LEAD RESPONSE", prefix: "<", suffix: "" },
-  { value: 24, label: "SYSTEM UPTIME", suffix: "/7", prefix: "" },
+  { value: 50, suffix: "s", label: "LEAD RESPONSE TIME", prefix: "<" },
+  { value: 24, label: "DESIGNED FOR UPTIME", suffix: "/7", prefix: "" },
   { value: 7, label: "WEBHOOK INTEGRATIONS", prefix: "" },
 ];
 

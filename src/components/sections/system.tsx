@@ -107,21 +107,21 @@ const verticals = {
   realEstate: {
     title: "Real Estate",
     description:
-      "Built for real estate agents drowning in Zillow and Realtor.com leads. The AI Inside Sales Agent qualifies inbound leads via GPT-4o-mini, makes a Twilio voice call within 47 seconds, sends a follow-up SMS, and books appointments directly into Google Calendar. Leads that score above 80 get immediate outreach. Everything syncs to Google Sheets and triggers a Slack notification — a fully autonomous lead response automation system.",
+      "Built for real estate agents drowning in leads from MagicBricks and 99acres. The AI Inside Sales Agent qualifies inbound leads with GPT-4o-mini, makes a Twilio voice call, sends a follow-up SMS, and books appointments into Google Calendar. High-intent leads get immediate outreach. Everything syncs to Google Sheets and triggers a Slack notification — fully autonomous, no babysitting.",
     stats: [
       { label: "Response time", value: "< 50s" },
-      { label: "Qualification accuracy", value: "94%" },
-      { label: "Appointments booked/week", value: "35+" },
+      { label: "Qualification", value: "AI-scored" },
+      { label: "Appointments", value: "automated" },
     ],
   },
   homeServices: {
     title: "Home Services",
     description:
-      "Same n8n workflow automation architecture, different vertical. For plumbing, HVAC, and electrical contractors who miss 60% of inbound calls. The AI voice agent answers every call using Vapi and ElevenLabs, qualifies the job type and urgency, estimates a pricing range, and books the slot into Google Calendar. Emergency calls get escalated to the on-call technician instantly via Twilio — turning missed calls into booked jobs.",
+      "Same workflow architecture, different vertical. For plumbing, HVAC, and electrical contractors who miss most inbound calls. The AI voice agent answers every call using Vapi and ElevenLabs, qualifies the job type and urgency, and books the slot into Google Calendar. Emergency calls get escalated to the on-call technician instantly via Twilio — turning missed calls into booked jobs.",
     stats: [
       { label: "Call answer rate", value: "100%" },
-      { label: "Jobs booked/week", value: "28+" },
-      { label: "Revenue recovered/month", value: "$42k" },
+      { label: "Booking", value: "automated" },
+      { label: "Revenue impact", value: "pilot data" },
     ],
   },
 };
@@ -147,7 +147,7 @@ export default function System() {
           className="mb-16"
         >
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-            CASE STUDY / 01
+            THE SYSTEM
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
             The AI Inside Sales Agent

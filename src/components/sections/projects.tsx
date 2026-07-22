@@ -8,18 +8,18 @@ const projects = [
     title: "PropertyPulse Realty",
     location: "Mumbai, Maharashtra",
     description:
-      "Full ISA deployment for a 40-agent brokerage. 67-node n8n system handling 200+ inbound leads daily from MagicBricks and 99acres.",
+      "ISA system for a Mumbai brokerage. 67-node n8n workflow handling inbound leads from MagicBricks and 99acres — qualify, call, book, sync. Fully autonomous.",
     tags: ["N8N", "GPT-4O-MINI", "TWILIO", "SHEETS"],
-    metrics: "35 → 94% contact rate",
+    metrics: "contact rate: before vs after",
     size: "large",
   },
   {
     title: "HomeServe India",
     location: "Bengaluru, Karnataka",
     description:
-      "Voice AI agent for plumbing and HVAC company. 100% call answer rate, automated booking.",
+      "Voice AI for a Bengaluru plumbing and HVAC company. Every call answered, every job qualified, every slot booked — automatically.",
     tags: ["VAPI", "TWILIO", "GOOGLE-CALENDAR"],
-    metrics: "$42k/mo revenue recovered",
+    metrics: "revenue recovered (pilot data)",
     size: "small",
   },
 ];
@@ -38,7 +38,7 @@ export default function Projects() {
             SELECTED WORK
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
-            Systems built, tested, deployed.
+            What I&apos;ve shipped so far.
           </h2>
         </motion.div>
 

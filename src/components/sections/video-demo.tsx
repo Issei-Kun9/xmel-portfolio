@@ -6,7 +6,6 @@ import { motion, useInView } from "framer-motion";
 export default function VideoDemo() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <section className="relative py-24 lg:py-32">
@@ -18,44 +17,80 @@ export default function VideoDemo() {
           className="mb-10"
         >
           <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-            BEFORE vs AFTER
+            SEE THE DIFFERENCE
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
-            See the difference.
+            Not a mockup. The actual system.
           </h2>
           <p className="font-mono text-sm text-[var(--text-secondary)] mt-3">
-            Same lead, same day — before ISA vs. after.
+            Real screen recordings — n8n workflow running, leads being processed.
           </p>
         </motion.div>
 
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.15 }}
-          className="relative rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
-        >
-          {/* Terminal-style top bar */}
-          <div className="flex items-center gap-2 px-4 py-3 bg-[var(--bg-tertiary)] border-b border-[var(--border-subtle)]">
-            <span className="w-3 h-3 rounded-full bg-[rgba(255,95,86,0.8)]" />
-            <span className="w-3 h-3 rounded-full bg-[rgba(255,189,46,0.8)]" />
-            <span className="w-3 h-3 rounded-full bg-[rgba(39,201,63,0.8)]" />
-            <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">
-              xmel-demo.mp4
-            </span>
-          </div>
+        <div className="grid lg:grid-cols-2 gap-4">
+          {/* n8n Workflow */}
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="relative rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+          >
+            <div className="flex items-center gap-2 px-4 py-3 bg-[var(--bg-tertiary)] border-b border-[var(--border-subtle)]">
+              <span className="w-3 h-3 rounded-full bg-[rgba(255,95,86,0.8)]" />
+              <span className="w-3 h-3 rounded-full bg-[rgba(255,189,46,0.8)]" />
+              <span className="w-3 h-3 rounded-full bg-[rgba(39,201,63,0.8)]" />
+              <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">
+                n8n-workflow.mp4
+              </span>
+            </div>
+            <video
+              src="/media/n8n-workflow.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto"
+            />
+            <div className="px-4 py-3 border-t border-[var(--border-subtle)]">
+              <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
+                The actual n8n workflow — not a mockup
+              </span>
+            </div>
+          </motion.div>
 
-          <video
-            ref={videoRef}
-            src="/media/xmel-demo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-auto"
-          />
-        </motion.div>
+          {/* Lead Processing Demo */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="relative rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+          >
+            <div className="flex items-center gap-2 px-4 py-3 bg-[var(--bg-tertiary)] border-b border-[var(--border-subtle)]">
+              <span className="w-3 h-3 rounded-full bg-[rgba(255,95,86,0.8)]" />
+              <span className="w-3 h-3 rounded-full bg-[rgba(255,189,46,0.8)]" />
+              <span className="w-3 h-3 rounded-full bg-[rgba(39,201,63,0.8)]" />
+              <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">
+                xmel-demo.mp4
+              </span>
+            </div>
+            <video
+              src="/media/xmel-demo.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto"
+            />
+            <div className="px-4 py-3 border-t border-[var(--border-subtle)]">
+              <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
+                Same lead, same day — before ISA vs. after
+              </span>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
