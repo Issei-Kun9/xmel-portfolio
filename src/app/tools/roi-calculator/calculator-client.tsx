@@ -185,7 +185,13 @@ export default function CalculatorClient() {
               estate agent recovered $42K/year in lost commission.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleUnlock();
+              }}
+              className="flex flex-col sm:flex-row gap-3"
+            >
               <input
                 type="email"
                 value={email}
@@ -195,14 +201,16 @@ export default function CalculatorClient() {
                 className="flex-1 bg-transparent border-b border-[var(--border-subtle)] focus:border-[var(--accent)] outline-none py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-colors"
               />
               <button
-                onClick={handleUnlock}
+                type="submit"
                 disabled={!email || submitState === "sending"}
                 className={`inline-flex items-center justify-center gap-2 px-6 py-3 font-mono text-sm font-medium rounded transition-all duration-300 whitespace-nowrap ${
                   submitState === "sent"
                     ? "bg-[var(--success)] text-[var(--bg-primary)]"
                     : submitState === "error"
                       ? "bg-[var(--warning)] text-[var(--bg-primary)]"
-                      : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(193,255,114,0.2)]"
+                      : !email
+                        ? "bg-[var(--accent)] text-[var(--bg-primary)] opacity-40 cursor-not-allowed"
+                        : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(193,255,114,0.2)]"
                 }`}
               >
                 {submitState === "idle" && (
@@ -220,7 +228,7 @@ export default function CalculatorClient() {
                 )}
                 {submitState === "error" && "Try again"}
               </button>
-            </div>
+            </form>
 
             <p className="font-mono text-[10px] text-[var(--text-tertiary)] mt-3">
               No spam. One email with your breakdown + one case study follow-up. Unsubscribe anytime.
