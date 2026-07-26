@@ -33,16 +33,31 @@ export default function CalculatorClient() {
   const annualLost = monthlyLost * 12;
   const quarterlyLost = monthlyLost * 3;
 
+  const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
+
   const handleUnlock = useCallback(async () => {
     if (!email) return;
     setSubmitState("sending");
     try {
-      const res = await fetch("/api/roi-capture", {
+      const monthlyLost = Math.round(leads * INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT * commission);
+      const annualLost = monthlyLost * 12;
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, leads, commission }),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          email,
+          leads_per_month: leads,
+          avg_commission: commission,
+          monthly_revenue_lost: monthlyLost,
+          annual_revenue_lost: annualLost,
+          subject: `ROI Calculator — New Lead Capture (${leads} leads/mo × $${commission.toLocaleString()})`,
+          from_name: "ROI Calculator",
+          message: `${email} used the ROI Calculator. Leads/mo: ${leads}, Avg commission: $${commission.toLocaleString()}, Monthly lost: $${monthlyLost.toLocaleString()}, Annual lost: $${annualLost.toLocaleString()}.`,
+        }),
       });
-      if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
         setSubmitState("sent");
         setTimeout(() => setStep("gated"), 400);
       } else {
