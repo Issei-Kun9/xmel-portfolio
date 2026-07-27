@@ -9,6 +9,28 @@ type Step = "calculator" | "gated";
 const INDUSTRY_CLOSE_RATE = 0.08;
 const AI_IMPROVEMENT = 0.34;
 
+const DISPOSABLE_DOMAINS = new Set([
+  "mailinator.com", "guerrillamail.com", "guerrillamail.net", "tempmail.com",
+  "throwaway.email", "temp-mail.org", "fakeinbox.com", "sharklasers.com",
+  "guerrillamailblock.com", "grr.la", "dispostable.com", "yopmail.com",
+  "yopmail.fr", "maildrop.cc", "trashmail.com", "trashmail.me",
+  "trashmail.net", "trashmail.org", "mailnator.com", "mailsac.com",
+  "mailscrap.com", "harakirimail.com", "jetable.org", "nospam.ze.tc",
+  "nomail.xl.cx", "nomail2me.com", "tmpmail.net", "tmpmail.org",
+  "10minutemail.com", "20minutemail.com", "mintemail.com", "mohmal.com",
+  "burnermail.io", "getnada.com", "emailondeck.com", "33mail.com",
+  "mytemp.email", "tempinbox.com", "discard.email", "discardmail.com",
+  "discardmail.org", "spamgourmet.com", "spam4.me", "bccto.me",
+  "chacuo.net", "sogetthis.com", "soodonims.com", "spamfree24.org",
+  "mysamp.de", "tmpmail.net", "tmpmail.org", "tempr.email",
+  "tempestrami.com", "mailforspam.com", "spamavert.com", "spamfree.eu",
+  "spamhole.com", "spamify.com", "spaminator.de", "spamoff.de",
+  "fastmail.com", "hushmail.com", "protonmail.com", "proton.me",
+  "tutanota.com", "tutamail.com", "guerrillamail.com",
+]);
+
+const FAKE_PREFIXES = /^(test|demo|fake|sample|example|admin|user|guest|temp|tmp|noone|null|none|undefined|aaa|bbb|ccc|asdf|qwer|123|abc)/i;
+
 function formatCurrency(value: number): string {
   if (value >= 1_00_000) {
     return `${(value / 1_00_000).toFixed(1)}L`;
@@ -20,12 +42,38 @@ function formatCurrencyFull(value: number): string {
   return value.toLocaleString("en-IN");
 }
 
+function isValidEmail(email: string): { valid: boolean; reason?: string } {
+  const trimmed = email.trim().toLowerCase();
+  if (!trimmed) return { valid: false };
+  if (trimmed.length > 254) return { valid: false, reason: "Email too long" };
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(trimmed)) return { valid: false, reason: "Invalid email format" };
+
+  const domain = trimmed.split("@")[1];
+  if (DISPOSABLE_DOMAINS.has(domain)) {
+    return { valid: false, reason: "Please use your work email, not a temporary one" };
+  }
+
+  const localPart = trimmed.split("@")[0];
+  if (FAKE_PREFIXES.test(localPart)) {
+    return { valid: false, reason: "Please enter your real email" };
+  }
+
+  if (localPart.length < 3) {
+    return { valid: false, reason: "Email seems too short" };
+  }
+
+  return { valid: true };
+}
+
 export default function CalculatorClient() {
   const [leads, setLeads] = useState(100);
   const [commission, setCommission] = useState(20000);
   const [step, setStep] = useState<Step>("calculator");
   const [email, setEmail] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [emailError, setEmailError] = useState<string | null>(null);
 
   const monthlyLost = Math.round(leads * INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT * commission);
   const monthlyBaseline = Math.round(leads * INDUSTRY_CLOSE_RATE * commission);
@@ -36,7 +84,12 @@ export default function CalculatorClient() {
   const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
 
   const handleUnlock = useCallback(async () => {
-    if (!email) return;
+    const validation = isValidEmail(email);
+    if (!validation.valid) {
+      setEmailError(validation.reason || "Please enter a valid email");
+      return;
+    }
+    setEmailError(null);
     setSubmitState("sending");
     try {
       const monthlyLost = Math.round(leads * INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT * commission);
@@ -210,10 +263,13 @@ export default function CalculatorClient() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (emailError) setEmailError(null);
+                }}
                 placeholder="you@company.com"
                 required
-                className="flex-1 bg-transparent border-b border-[var(--border-subtle)] focus:border-[var(--accent)] outline-none py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-colors"
+                className={`flex-1 bg-transparent border-b ${emailError ? "border-[var(--warning)]" : "border-[var(--border-subtle)] focus:border-[var(--accent)]"} outline-none py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-colors`}
               />
               <button
                 type="submit"
@@ -244,6 +300,12 @@ export default function CalculatorClient() {
                 {submitState === "error" && "Try again"}
               </button>
             </form>
+
+            {emailError && (
+              <p className="font-mono text-[11px] text-[var(--warning)] mt-2">
+                {emailError}
+              </p>
+            )}
 
             <p className="font-mono text-[10px] text-[var(--text-tertiary)] mt-3">
               No spam. One email with your breakdown + one case study follow-up. Unsubscribe anytime.
