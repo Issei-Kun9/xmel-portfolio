@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description: post.description,
       type: "article",
-      url: `https://xmelautomations.dpdns.org/blog/${post.slug}`,
+      url: `https://xmelautomations.xyz/blog/${post.slug}`,
       publishedTime: post.date,
       authors: ["Yashwardhan Chauhan"],
       tags: post.tags,
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
     },
     alternates: {
-      canonical: `https://xmelautomations.dpdns.org/blog/${post.slug}`,
+      canonical: `https://xmelautomations.xyz/blog/${post.slug}`,
     },
   };
 }
@@ -60,9 +60,9 @@ export default async function BlogPost({ params }: Props) {
     publisher: {
       "@type": "Organization",
       name: "XMEL Automations",
-      url: "https://xmelautomations.dpdns.org",
+      url: "https://xmelautomations.xyz",
     },
-    url: `https://xmelautomations.dpdns.org/blog/${post.slug}`,
+    url: `https://xmelautomations.xyz/blog/${post.slug}`,
     keywords: post.tags.join(", "),
   };
 

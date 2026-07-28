@@ -3,7 +3,7 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "XMEL Automations",
-    url: "https://xmelautomations.dpdns.org",
+    url: "https://xmelautomations.xyz",
     description:
       "AI automation agency building autonomous lead response systems, voice AI agents, and n8n workflow automations for real estate agents and home services contractors.",
     founder: {
@@ -27,7 +27,7 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Yashwardhan Chauhan",
-    url: "https://xmelautomations.dpdns.org#about",
+    url: "https://xmelautomations.xyz#about",
     jobTitle: "AI Automation Engineer & Founder",
     worksFor: {
       "@type": "Organization",
@@ -175,7 +175,7 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "XMEL Automations",
-    url: "https://xmelautomations.dpdns.org",
+    url: "https://xmelautomations.xyz",
     description:
       "AI automation agency building autonomous lead response systems, voice AI agents, and n8n workflow automations.",
     publisher: {
@@ -188,7 +188,7 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "XMEL Automations",
-    url: "https://xmelautomations.dpdns.org",
+    url: "https://xmelautomations.xyz",
     description:
       "AI automation agency specializing in lead response automation, voice AI agents, and n8n workflow automations for real estate and home services.",
     areaServed: [

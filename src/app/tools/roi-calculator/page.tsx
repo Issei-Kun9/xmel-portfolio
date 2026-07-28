@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     description:
       "See how much revenue you're losing to slow lead response. Free calculator — takes 30 seconds.",
     type: "website",
-    url: "https://xmelautomations.dpdns.org/tools/roi-calculator",
+    url: "https://xmelautomations.xyz/tools/roi-calculator",
     siteName: "XMEL Automations",
     locale: "en_IN",
     images: [
       {
-        url: "https://xmelautomations.dpdns.org/og-image.png",
+        url: "https://xmelautomations.xyz/og-image.png",
         width: 1200,
         height: 630,
         alt: "Lead Response ROI Calculator — XMEL Automations",
@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     title: "Lead Response ROI Calculator | XMEL Automations",
     description:
       "How much revenue are slow leads costing you? Free calculator — takes 30 seconds.",
-    images: ["https://xmelautomations.dpdns.org/og-image.png"],
+    images: ["https://xmelautomations.xyz/og-image.png"],
   },
   alternates: {
-    canonical: "https://xmelautomations.dpdns.org/tools/roi-calculator",
+    canonical: "https://xmelautomations.xyz/tools/roi-calculator",
   },
 };
 
@@ -51,7 +51,7 @@ export default function RoiCalculatorPage() {
     name: "Lead Response ROI Calculator",
     description:
       "Calculate how much commission you're losing to slow lead response times. Free ROI calculator for real estate agents and home services contractors.",
-    url: "https://xmelautomations.dpdns.org/tools/roi-calculator",
+    url: "https://xmelautomations.xyz/tools/roi-calculator",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: {
@@ -67,7 +67,7 @@ export default function RoiCalculatorPage() {
     publisher: {
       "@type": "Organization",
       name: "XMEL Automations",
-      url: "https://xmelautomations.dpdns.org",
+      url: "https://xmelautomations.xyz",
     },
   };
 

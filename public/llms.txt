@@ -8,21 +8,21 @@ Founded by Yashwardhan Chauhan, based in India, working with clients globally.
 
 ## Services
 
-- [AI Lead Response Automation](https://xmelautomations.dpdns.org/#isa-system): Autonomous systems that qualify, respond to, and book appointments with inbound leads across voice, SMS, WhatsApp, and web forms.
-- [Voice AI Agent Development](https://xmelautomations.dpdns.org/#isa-system): Custom AI phone agents built on Vapi, Twilio, and ElevenLabs that answer calls, qualify prospects, and book appointments 24/7.
-- [n8n Workflow Automation](https://xmelautomations.dpdns.org/#isa-system): Complex multi-step automations connecting CRM, lead qualification, appointment booking, notifications, and data sync.
-- [WhatsApp Automation Bot](https://xmelautomations.dpdns.org/#isa-system): AI-powered WhatsApp chatbots that qualify leads, answer questions, and sync data to CRM in real time.
+- [AI Lead Response Automation](https://xmelautomations.xyz/#isa-system): Autonomous systems that qualify, respond to, and book appointments with inbound leads across voice, SMS, WhatsApp, and web forms.
+- [Voice AI Agent Development](https://xmelautomations.xyz/#isa-system): Custom AI phone agents built on Vapi, Twilio, and ElevenLabs that answer calls, qualify prospects, and book appointments 24/7.
+- [n8n Workflow Automation](https://xmelautomations.xyz/#isa-system): Complex multi-step automations connecting CRM, lead qualification, appointment booking, notifications, and data sync.
+- [WhatsApp Automation Bot](https://xmelautomations.xyz/#isa-system): AI-powered WhatsApp chatbots that qualify leads, answer questions, and sync data to CRM in real time.
 
 ## Blog
 
-- [How AI Lead Response Automation Works for Real Estate Agents](https://xmelautomations.dpdns.org/blog/ai-lead-response-real-estate): Complete breakdown of AI lead qualification, response systems, and appointment booking for real estate.
-- [n8n Workflow Automation: Building a 67-Node Lead Qualification System](https://xmelautomations.dpdns.org/blog/n8n-workflow-automation-guide): Technical deep-dive into n8n workflow architecture for lead qualification and multi-channel outreach.
-- [Voice AI Agent vs Human Inside Sales Agent: Cost and Speed Comparison](https://xmelautomations.dpdns.org/blog/voice-ai-agent-vs-human-isa): Data-driven comparison of AI voice agents and human ISAs covering speed, accuracy, cost, and availability.
+- [How AI Lead Response Automation Works for Real Estate Agents](https://xmelautomations.xyz/blog/ai-lead-response-real-estate): Complete breakdown of AI lead qualification, response systems, and appointment booking for real estate.
+- [n8n Workflow Automation: Building a 67-Node Lead Qualification System](https://xmelautomations.xyz/blog/n8n-workflow-automation-guide): Technical deep-dive into n8n workflow architecture for lead qualification and multi-channel outreach.
+- [Voice AI Agent vs Human Inside Sales Agent: Cost and Speed Comparison](https://xmelautomations.xyz/blog/voice-ai-agent-vs-human-isa): Data-driven comparison of AI voice agents and human ISAs covering speed, accuracy, cost, and availability.
 
 ## Company
 
-- [About Yashwardhan Chauhan](https://xmelautomations.dpdns.org/#about): AI automation engineer and founder of XMEL Automations.
-- [Contact](https://xmelautomations.dpdns.org/#contact): Get in touch for AI automation projects.
+- [About Yashwardhan Chauhan](https://xmelautomations.xyz/#about): AI automation engineer and founder of XMEL Automations.
+- [Contact](https://xmelautomations.xyz/#contact): Get in touch for AI automation projects.
 - [LinkedIn](https://www.linkedin.com/in/yashwardhan-chauhan-075684414/): Professional profile and updates.
 - [Instagram](https://www.instagram.com/yashwardhan.ai/): Behind-the-scenes and project updates.
 

@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     title: "Blog | XMEL Automations",
     description:
       "AI automation insights — lead response, voice AI, n8n workflows.",
-    url: "https://xmelautomations.dpdns.org/blog",
+    url: "https://xmelautomations.xyz/blog",
   },
   alternates: {
-    canonical: "https://xmelautomations.dpdns.org/blog",
+    canonical: "https://xmelautomations.xyz/blog",
   },
 };
 

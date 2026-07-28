@@ -65,13 +65,13 @@ export const metadata: Metadata = {
     description:
       "Autonomous AI agents and n8n workflow automations that respond to leads in under 50 seconds. Voice AI, WhatsApp bots, and lead qualification — built for real estate and home services.",
     type: "website",
-    url: "https://xmelautomations.dpdns.org",
+    url: "https://xmelautomations.xyz",
     siteName: "XMEL Automations",
     locale: "en_IN",
     alternateLocale: "en_US",
     images: [
       {
-        url: "https://xmelautomations.dpdns.org/og-image.png",
+        url: "https://xmelautomations.xyz/og-image.png",
         width: 1200,
         height: 630,
         alt: "XMEL Automations — AI Automation Agency",
@@ -84,9 +84,9 @@ export const metadata: Metadata = {
       "XMEL Automations | AI Automation for Real Estate & Home Services",
     description:
       "Autonomous AI agents that respond to leads in under 50 seconds. Voice AI, n8n workflows, and WhatsApp bots for real estate and home services.",
-    images: ["https://xmelautomations.dpdns.org/og-image.png"],
+    images: ["https://xmelautomations.xyz/og-image.png"],
   },
-  metadataBase: new URL("https://xmelautomations.dpdns.org"),
+  metadataBase: new URL("https://xmelautomations.xyz"),
   robots: {
     index: true,
     follow: true,
@@ -99,7 +99,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://xmelautomations.dpdns.org",
+    canonical: "https://xmelautomations.xyz",
   },
 };
 

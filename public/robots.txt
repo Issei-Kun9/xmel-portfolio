@@ -19,5 +19,5 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: https://xmelautomations.dpdns.org/sitemap.xml
-LLMs: https://xmelautomations.dpdns.org/llms.txt
+Sitemap: https://xmelautomations.xyz/sitemap.xml
+LLMs: https://xmelautomations.xyz/llms.txt
