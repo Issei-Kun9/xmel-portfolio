@@ -7,6 +7,7 @@ const postsDir = path.join(process.cwd(), "content/blog");
 export interface BlogPost {
   slug: string;
   title: string;
+  seoTitle?: string;
   description: string;
   date: string;
   readTime: string;
@@ -25,6 +26,7 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
     return {
       slug,
       title: data.title,
+      seoTitle: data.seoTitle,
       description: data.description,
       date: data.date,
       readTime: data.readTime,
@@ -45,6 +47,7 @@ export function getPost(slug: string): BlogPost | null {
   return {
     slug,
     title: data.title,
+    seoTitle: data.seoTitle,
     description: data.description,
     date: data.date,
     readTime: data.readTime,

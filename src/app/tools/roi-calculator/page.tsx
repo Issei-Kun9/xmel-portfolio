@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import CalculatorClient from "./calculator-client";
 
 export const metadata: Metadata = {
-  title:
-    "Lead Response ROI Calculator | XMEL Automations — How Much Revenue Are Slow Leads Costing You?",
+  title: "Lead Response ROI Calculator | XMEL Automations",
   description:
-    "Calculate how much commission you're losing to slow lead response times. Free ROI calculator for real estate agents and home services contractors — see your monthly, quarterly, and annual recovery potential.",
+    "See how much revenue slow lead response is costing you. Free ROI calculator for real estate agents and home services contractors.",
   keywords: [
     "lead response ROI calculator",
     "real estate lead response time calculator",

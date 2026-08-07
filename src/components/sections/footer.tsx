@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import MailtoLink from "@/components/shared/mailto-link";
 
 function LiveClock() {
   const [time, setTime] = useState("");
@@ -77,12 +78,12 @@ export default function Footer() {
             >
               Instagram
             </a>
-            <a
-              href="mailto:yashwwardhanai@gmail.com"
+            <MailtoLink
+              email="yashwwardhanai@gmail.com"
               className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Email
-            </a>
+            </MailtoLink>
             <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
               Built with precision. No templates.
             </span>

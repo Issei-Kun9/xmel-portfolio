@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calculator, Mail, ArrowRight, Check, TrendingUp } from "lucide-react";
+import MailtoLink from "@/components/shared/mailto-link";
 
 type Step = "calculator" | "gated";
 
@@ -404,12 +405,12 @@ export default function CalculatorClient() {
                   Book a pilot call
                   <ArrowRight className="w-4 h-4" />
                 </a>
-                <a
-                  href="mailto:yashwwardhanai@gmail.com"
+                <MailtoLink
+                  email="yashwwardhanai@gmail.com"
                   className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--bg-primary)] text-[var(--bg-primary)] font-mono text-sm font-medium rounded hover:bg-[rgba(10,10,11,0.1)] transition-colors"
                 >
                   Email me directly
-                </a>
+                </MailtoLink>
               </div>
             </div>
           </motion.div>

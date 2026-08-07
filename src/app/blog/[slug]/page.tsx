@@ -18,11 +18,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPost(slug);
   if (!post) return {};
 
+  const metaTitle = post.seoTitle ?? post.title;
+
   return {
-    title: `${post.title} | XMEL Automations Blog`,
+    title: `${metaTitle} | XMEL`,
     description: post.description,
     openGraph: {
-      title: post.title,
+      title: metaTitle,
       description: post.description,
       type: "article",
       url: `https://xmelautomations.xyz/blog/${post.slug}`,
@@ -32,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: metaTitle,
       description: post.description,
     },
     alternates: {

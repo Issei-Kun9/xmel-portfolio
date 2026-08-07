@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import MailtoLink from "@/components/shared/mailto-link";
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
 
@@ -91,13 +92,13 @@ export default function Contact() {
               transition={{ delay: 0.3 }}
               className="mb-8"
             >
-              <a
-                href="mailto:yashwwardhanai@gmail.com"
+              <MailtoLink
+                email="yashwwardhanai@gmail.com"
                 className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
               >
                 <span className="font-mono text-[11px] text-[var(--text-tertiary)] w-16">EMAIL</span>
                 <span className="font-mono text-sm">yashwwardhanai@gmail.com</span>
-              </a>
+              </MailtoLink>
             </motion.div>
 
             <motion.div

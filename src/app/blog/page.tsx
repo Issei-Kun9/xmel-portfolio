@@ -3,10 +3,9 @@ import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title:
-    "Blog | XMEL Automations — AI Automation Insights for Real Estate & Home Services",
+  title: "Blog | XMEL Automations — AI Automation Insights",
   description:
-    "Technical deep-dives on AI lead response automation, n8n workflow systems, voice AI agents, and lead qualification for real estate agents and home services contractors.",
+    "Deep-dives on AI lead response automation, n8n workflows, voice AI agents, and lead qualification for real estate and home services.",
   openGraph: {
     title: "Blog | XMEL Automations",
     description:
@@ -41,8 +40,38 @@ export default function BlogIndex() {
           <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
             Technical deep-dives on AI automation, voice AI agents, n8n
             workflows, and lead response systems for real estate and home
-            services.
+            services. Every post is written from real builds we ship to
+            production — not theory.
           </p>
+        </div>
+
+        {/* What we cover */}
+        <div className="mb-16 p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
+          <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--accent)] mb-4 block">
+            WHAT WE COVER
+          </span>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-2">
+                Lead Response &amp; Qualification
+              </h2>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                How to respond to inbound leads in under 50 seconds, qualify
+                them automatically, and book appointments without manual
+                follow-up — the systems and numbers behind each workflow.
+              </p>
+            </div>
+            <div>
+              <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-2">
+                Voice AI &amp; n8n Workflows
+              </h2>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                Building voice AI agents and complex n8n automation systems
+                from scratch — webhook triggers, LLM reasoning, multi-channel
+                outreach, and the tradeoffs of each architecture.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Posts grid */}

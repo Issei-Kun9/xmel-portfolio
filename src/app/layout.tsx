@@ -32,9 +32,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title:
-    "XMEL Automations | AI Automation Agency — Voice AI, n8n Workflows, Lead Response Automation for Real Estate & Home Services",
+    "AI Automation Agency for Real Estate & Home Services | XMEL",
   description:
-    "AI automation agency building autonomous lead response systems, voice AI agents, and n8n workflow automations for real estate agents and home services contractors. Respond to leads in under 50 seconds — 400x faster than the industry average.",
+    "AI automation agency for real estate and home services — voice AI agents, n8n workflows, and lead response in under 50 seconds.",
   keywords: [
     "AI automation agency",
     "AI automation for real estate",

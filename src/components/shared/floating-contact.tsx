@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
+import MailtoLink from "@/components/shared/mailto-link";
 
 export default function FloatingContact() {
   const [visible, setVisible] = useState(false);
@@ -43,12 +44,12 @@ export default function FloatingContact() {
               >
                 Send a message
               </a>
-              <a
-                href="mailto:yashwwardhanai@gmail.com"
+              <MailtoLink
+                email="yashwwardhanai@gmail.com"
                 className="block py-2 px-4 border border-[var(--border-strong)] text-[var(--text-secondary)] font-mono text-[11px] text-center rounded hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
               >
                 Email directly
-              </a>
+              </MailtoLink>
             </div>
           </motion.div>
         )}
