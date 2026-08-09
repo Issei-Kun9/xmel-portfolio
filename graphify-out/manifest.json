@@ -265,18 +265,18 @@
     "semantic_hash": ""
   },
   "public/apple-touch-icon.png": {
-    "mtime": 1786270445.865979,
-    "ast_hash": "faa7f38e4987ef043836a3bf306ff320",
+    "mtime": 1786270875.2043307,
+    "ast_hash": "bec2e27ac73f5555c49288a399752530",
     "semantic_hash": ""
   },
   "public/favicon-16x16.png": {
-    "mtime": 1786270445.2619674,
-    "ast_hash": "b045db51118f004787a2da8435c7e889",
+    "mtime": 1786270875.2569482,
+    "ast_hash": "991bd429419120d94c674faf1ce11140",
     "semantic_hash": ""
   },
   "public/favicon-32x32.png": {
-    "mtime": 1786270445.4259706,
-    "ast_hash": "8b62923975019e6af7f3452b950f13de",
+    "mtime": 1786270875.2997215,
+    "ast_hash": "dd087fa3576bb41cbe362452453be2ca",
     "semantic_hash": ""
   },
   "public/file.svg": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "public/favicon-512.png": {
-    "mtime": 1786270446.6819944,
-    "ast_hash": "cd3b97a746298974aba4349b24166410",
+    "mtime": 1786270875.1863496,
+    "ast_hash": "05b9a93cb6237a64079b2771d526bb8d",
     "semantic_hash": ""
   }
 }
