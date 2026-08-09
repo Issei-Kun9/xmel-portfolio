@@ -177,18 +177,9 @@ export default function Hero() {
 
             <h1 className="font-display text-[clamp(32px,7vw,80px)] font-semibold leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)] mb-6 sm:mb-8">
               {headlineLines.map((line, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
-                  animate={{ opacity: 1, clipPath: "inset(0% 0 0 0)" }}
-                  transition={{
-                    delay: 0.5 + i * 0.12,
-                    duration: 0.7,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
+                <span key={i} className="block">
                   {line}
-                </motion.div>
+                </span>
               ))}
             </h1>
 
