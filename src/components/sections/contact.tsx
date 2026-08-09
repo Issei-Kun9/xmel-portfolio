@@ -35,6 +35,12 @@ export default function Contact() {
       if (data.success) {
         setState("sent");
         setForm({ name: "", email: "", project: "", message: "" });
+        window.gtag?.("event", "generate_lead", {
+          value: 100,
+          currency: "USD",
+          event_category: "contact_form",
+          project_type: form.project || "general",
+        });
       } else {
         setState("error");
       }

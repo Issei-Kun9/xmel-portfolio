@@ -1,11 +1,11 @@
 # Graph Report - my-portfolio  (2026-08-09)
 
 ## Corpus Check
-- 49 files · ~28,364 words
+- 48 files · ~28,355 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 305 nodes · 299 edges · 38 communities (21 shown, 17 thin omitted)
+- 303 nodes · 298 edges · 37 communities (21 shown, 16 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -25,7 +25,6 @@
 - include
 - calculator-client.tsx
 - skiper40.tsx
-- gtag.d.ts
 - route.ts
 - system.tsx
 - faq.tsx
@@ -77,15 +76,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (38 total, 17 thin omitted)
+## Communities (37 total, 16 thin omitted)
 
 ### Community 0 - "dependencies"
 Cohesion: 0.05
 Nodes (37): class-variance-authority, clsx, framer-motion, gray-matter, lucide-react, next, next-mdx-remote, dependencies (+29 more)
 
 ### Community 1 - "layout.tsx"
-Cohesion: 0.13
-Nodes (12): inter, jetbrainsMono, metadata, spaceGrotesk, CursorWrapper(), CustomCursor, FloatingContact(), graph (+4 more)
+Cohesion: 0.14
+Nodes (11): inter, jetbrainsMono, metadata, spaceGrotesk, CursorWrapper(), CustomCursor, graph, JsonLd() (+3 more)
 
 ### Community 2 - "components.json"
 Cohesion: 0.11
@@ -112,8 +111,8 @@ Cohesion: 0.20
 Nodes (9): **/*.mts, .next/dev/types/**/*.ts, next-env.d.ts, .next/types/**/*.ts, node_modules, **/*.ts, **/*.tsx, exclude (+1 more)
 
 ### Community 8 - "calculator-client.tsx"
-Cohesion: 0.15
-Nodes (10): CalculatorClient(), DISPOSABLE_DOMAINS, formatCurrency(), formatCurrencyFull(), isValidEmail(), Step, metadata, SubmitState (+2 more)
+Cohesion: 0.14
+Nodes (11): CalculatorClient(), DISPOSABLE_DOMAINS, formatCurrency(), formatCurrencyFull(), isValidEmail(), Step, metadata, SubmitState (+3 more)
 
 ### Community 9 - "skiper40.tsx"
 Cohesion: 0.36
@@ -148,9 +147,9 @@ Cohesion: 0.40
 Nodes (4): Add more Skiper UI components, Dev, My Portfolio, Setup
 
 ## Knowledge Gaps
-- **159 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+154 more)
+- **158 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+153 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -160,11 +159,11 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `compilerOptions` connect `compilerOptions` to `include`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _159 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _158 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._
 - **Should `layout.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.13450292397660818 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1437908496732026 - nodes in this community are weakly interconnected._
 - **Should `components.json` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**

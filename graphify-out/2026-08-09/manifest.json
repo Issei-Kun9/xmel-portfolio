@@ -338,10 +338,5 @@
     "mtime": 1786141960.0057437,
     "ast_hash": "2dcde0e5492013bb43bdfb98908d5a10",
     "semantic_hash": ""
-  },
-  "src/types/gtag.d.ts": {
-    "mtime": 1786265331.3965237,
-    "ast_hash": "c64becce110bd7ce9c2bf2953a0cf514",
-    "semantic_hash": ""
   }
 }

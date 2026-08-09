@@ -113,6 +113,12 @@ export default function CalculatorClient() {
       const data = await res.json();
       if (data.success) {
         setSubmitState("sent");
+        window.gtag?.("event", "generate_lead", {
+          value: 100,
+          currency: "USD",
+          event_category: "roi_calculator",
+          leads_per_month: leads,
+        });
         setTimeout(() => setStep("gated"), 400);
       } else {
         setSubmitState("error");
