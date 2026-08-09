@@ -34,13 +34,13 @@ export default function Contact() {
       const data = await res.json();
       if (data.success) {
         setState("sent");
-        setForm({ name: "", email: "", project: "", message: "" });
         window.gtag?.("event", "generate_lead", {
           value: 100,
           currency: "USD",
           event_category: "contact_form",
           project_type: form.project || "general",
         });
+        window.location.href = "/thank-you";
       } else {
         setState("error");
       }

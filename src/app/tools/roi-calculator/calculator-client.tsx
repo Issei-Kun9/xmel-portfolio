@@ -1,11 +1,9 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, Mail, ArrowRight, Check, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
+import { Calculator, Mail, ArrowRight, Check } from "lucide-react";
 import MailtoLink from "@/components/shared/mailto-link";
-
-type Step = "calculator" | "gated";
 
 const INDUSTRY_CLOSE_RATE = 0.08;
 const AI_IMPROVEMENT = 0.34;
@@ -71,7 +69,6 @@ function isValidEmail(email: string): { valid: boolean; reason?: string } {
 export default function CalculatorClient() {
   const [leads, setLeads] = useState(100);
   const [commission, setCommission] = useState(20000);
-  const [step, setStep] = useState<Step>("calculator");
   const [email, setEmail] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [emailError, setEmailError] = useState<string | null>(null);
@@ -80,7 +77,6 @@ export default function CalculatorClient() {
   const monthlyBaseline = Math.round(leads * INDUSTRY_CLOSE_RATE * commission);
   const monthlyWithAI = Math.round(leads * (INDUSTRY_CLOSE_RATE + INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT) * commission);
   const annualLost = monthlyLost * 12;
-  const quarterlyLost = monthlyLost * 3;
 
   const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
 
@@ -119,7 +115,7 @@ export default function CalculatorClient() {
           event_category: "roi_calculator",
           leads_per_month: leads,
         });
-        setTimeout(() => setStep("gated"), 400);
+        window.location.href = "/thank-you";
       } else {
         setSubmitState("error");
       }
@@ -240,15 +236,11 @@ export default function CalculatorClient() {
       </div>
 
       {/* Gated deep-dive — email gate */}
-      <AnimatePresence mode="wait">
-        {step === "calculator" ? (
-          <motion.div
-            key="gate"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]"
-          >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]"
+      >
             <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
               <Mail className="w-3 h-3 inline mr-1.5 -mt-0.5" />
               GET YOUR FULL BREAKDOWN
@@ -317,111 +309,7 @@ export default function CalculatorClient() {
             <p className="font-mono text-[10px] text-[var(--text-tertiary)] mt-3">
               No spam. One email with your breakdown + one case study follow-up. Unsubscribe anytime.
             </p>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="results"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            {/* Unlocked label */}
-            <div className="flex items-center gap-2 font-mono text-[11px] text-[var(--accent)]">
-              <Check className="w-4 h-4" />
-              <span>DETAILED BREAKDOWN — UNLOCKED</span>
-            </div>
-
-            {/* Recovery cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {[
-                { label: "MONTHLY", value: monthlyLost, icon: TrendingUp },
-                { label: "QUARTERLY", value: quarterlyLost, icon: TrendingUp },
-                { label: "ANNUALLY", value: annualLost, icon: TrendingUp },
-              ].map((card) => (
-                <div
-                  key={card.label}
-                  className="p-5 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] text-center"
-                >
-                  <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-2">
-                    {card.label} RECOVERY
-                  </div>
-                  <div className="font-mono text-2xl lg:text-3xl font-bold text-[var(--accent)]">
-                    ${formatCurrency(card.value)}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Summary breakdown */}
-            <div className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-              <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
-                YOUR PROJECTION
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between py-2 border-b border-[var(--border-subtle)]">
-                  <span className="text-sm text-[var(--text-secondary)]">Leads / month</span>
-                  <span className="font-mono text-sm text-[var(--text-primary)]">{leads}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[var(--border-subtle)]">
-                  <span className="text-sm text-[var(--text-secondary)]">Avg commission</span>
-                  <span className="font-mono text-sm text-[var(--text-primary)]">
-                    ${formatCurrencyFull(commission)}
-                  </span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[var(--border-subtle)]">
-                  <span className="text-sm text-[var(--text-secondary)]">Baseline close rate</span>
-                  <span className="font-mono text-sm text-[var(--text-primary)]">
-                    {(INDUSTRY_CLOSE_RATE * 100).toFixed(0)}%
-                  </span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[var(--border-subtle)]">
-                  <span className="text-sm text-[var(--text-secondary)]">
-                    AI conversion improvement
-                  </span>
-                  <span className="font-mono text-sm text-[var(--accent)]">
-                    +{(AI_IMPROVEMENT * 100).toFixed(0)}%
-                  </span>
-                </div>
-                <div className="flex justify-between py-2">
-                  <span className="text-sm font-medium text-[var(--text-primary)]">
-                    Annual commission recovered
-                  </span>
-                  <span className="font-mono text-sm font-bold text-[var(--accent)]">
-                    ${formatCurrencyFull(annualLost)}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="p-6 lg:p-8 bg-[var(--accent)] rounded-xl text-[var(--bg-primary)]">
-              <h3 className="font-display text-xl font-semibold mb-2">
-                Ready to stop losing this revenue?
-              </h3>
-              <p className="text-sm opacity-80 mb-6 max-w-lg">
-                I build AI lead-response systems that respond in under 50 seconds
-                and recover the commission you&apos;re currently leaving on the table.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="/#contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--bg-primary)] text-[var(--accent)] font-mono text-sm font-medium rounded hover:opacity-90 transition-opacity"
-                >
-                  Book a pilot call
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-                <MailtoLink
-                  email="yashwwardhanai@gmail.com"
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--bg-primary)] text-[var(--bg-primary)] font-mono text-sm font-medium rounded hover:bg-[rgba(10,10,11,0.1)] transition-colors"
-                >
-                  Email me directly
-                </MailtoLink>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </motion.div>
     </div>
   );
 }
