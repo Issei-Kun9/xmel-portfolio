@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "src/app/layout.tsx": {
-    "mtime": 1786267799.7518034,
-    "ast_hash": "e79b28f43cdc51af1225a52494960dea",
+    "mtime": 1786270458.4942198,
+    "ast_hash": "7eff26af8d8b2e9a9aaf918a25072f8e",
     "semantic_hash": ""
   },
   "src/app/not-found.tsx": {
@@ -265,18 +265,18 @@
     "semantic_hash": ""
   },
   "public/apple-touch-icon.png": {
-    "mtime": 1784284527.0063102,
-    "ast_hash": "000b0ea547df4a6c5de05d8b526e5f17",
+    "mtime": 1786270445.865979,
+    "ast_hash": "faa7f38e4987ef043836a3bf306ff320",
     "semantic_hash": ""
   },
   "public/favicon-16x16.png": {
-    "mtime": 1784284527.2985992,
-    "ast_hash": "ef92af61d503ef34b3095b7ac300b6fa",
+    "mtime": 1786270445.2619674,
+    "ast_hash": "b045db51118f004787a2da8435c7e889",
     "semantic_hash": ""
   },
   "public/favicon-32x32.png": {
-    "mtime": 1784284527.1576538,
-    "ast_hash": "96d3030857233864e6db52e46d787274",
+    "mtime": 1786270445.4259706,
+    "ast_hash": "8b62923975019e6af7f3452b950f13de",
     "semantic_hash": ""
   },
   "public/file.svg": {
@@ -352,6 +352,11 @@
   "src/components/sections/booking.tsx": {
     "mtime": 1786267780.9955306,
     "ast_hash": "6226f9b483069510e6661cfa21ec5582",
+    "semantic_hash": ""
+  },
+  "public/favicon-512.png": {
+    "mtime": 1786270446.6819944,
+    "ast_hash": "cd3b97a746298974aba4349b24166410",
     "semantic_hash": ""
   }
 }
