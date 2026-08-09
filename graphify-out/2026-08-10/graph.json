@@ -2303,7 +2303,7 @@
       "label": "JsonLd()",
       "file_type": "code",
       "source_file": "src/components/shared/json-ld.tsx",
-      "source_location": "L156",
+      "source_location": "L159",
       "_origin": "ast",
       "id": "src_components_shared_json_ld_jsonld",
       "community": 1,
@@ -5754,7 +5754,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/shared/json-ld.tsx",
-      "source_location": "L156",
+      "source_location": "L159",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_shared_json_ld",
@@ -6826,5 +6826,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0d1f6a51e26c8d540d51de497832bdf6ecde3ee0"
+  "built_at_commit": "17e7be1324a10f8f565729900fc20802b2399316"
 }

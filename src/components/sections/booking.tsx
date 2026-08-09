@@ -1,15 +1,41 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Script from "next/script";
+
+const CALENDLY_WIDGET_SRC = "https://assets.calendly.com/assets/external/widget.js";
 
 export default function Booking() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [requested, setRequested] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
+  // Only start loading the Calendly widget once the section is near the viewport
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setRequested(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!requested) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const script = document.createElement("script");
+    script.src = CALENDLY_WIDGET_SRC;
+    script.async = true;
+    document.head.appendChild(script);
 
     const checkIframe = () => {
       if (container.querySelector("iframe")) {
@@ -32,15 +58,10 @@ export default function Booking() {
       observer.disconnect();
       clearTimeout(fallback);
     };
-  }, []);
+  }, [requested]);
 
   return (
-    <>
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="afterInteractive"
-      />
-      <section className="relative py-24 lg:py-32">
+    <section className="relative py-24 lg:py-32">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="max-w-2xl mb-12">
             <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)]">
@@ -74,6 +95,5 @@ export default function Booking() {
           </div>
         </div>
       </section>
-    </>
   );
 }
