@@ -55,13 +55,13 @@
     "semantic_hash": "69f879d70a8054a861301f04c818e2b8"
   },
   "src/app/page.tsx": {
-    "mtime": 1784723805.096494,
-    "ast_hash": "cc426fad93398ea1a7170e5537e84fd3",
-    "semantic_hash": "cc426fad93398ea1a7170e5537e84fd3"
+    "mtime": 1786266958.7802076,
+    "ast_hash": "393c48014072195e40b384f4834bf708",
+    "semantic_hash": ""
   },
   "src/app/tools/roi-calculator/calculator-client.tsx": {
-    "mtime": 1786264969.1149397,
-    "ast_hash": "def89c3c008025782a341f7ec8d2d1a7",
+    "mtime": 1786266134.4539633,
+    "ast_hash": "0e29bbcf7ff6507c526bd22f308e6ddd",
     "semantic_hash": ""
   },
   "src/app/tools/roi-calculator/page.tsx": {
@@ -75,8 +75,8 @@
     "semantic_hash": "91ea0aba642fccf9256b3ebb80604b6d"
   },
   "src/components/sections/contact.tsx": {
-    "mtime": 1786264956.0944386,
-    "ast_hash": "50ab74ace91dbaa60335b11ef37791f1",
+    "mtime": 1786266989.5287101,
+    "ast_hash": "d787dcace26ab504af9b950610762e22",
     "semantic_hash": ""
   },
   "src/components/sections/faq.tsx": {
@@ -342,6 +342,16 @@
   "src/types/gtag.d.ts": {
     "mtime": 1786265331.3965237,
     "ast_hash": "c64becce110bd7ce9c2bf2953a0cf514",
+    "semantic_hash": ""
+  },
+  "src/app/thank-you/page.tsx": {
+    "mtime": 1786265858.0984976,
+    "ast_hash": "ef3c20e5839e4ec0f7e910800714cbb1",
+    "semantic_hash": ""
+  },
+  "src/components/sections/booking.tsx": {
+    "mtime": 1786266933.903809,
+    "ast_hash": "8af311878f0eebd697d1ae544a16e346",
     "semantic_hash": ""
   }
 }

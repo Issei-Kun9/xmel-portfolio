@@ -121,6 +121,8 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="preconnect" href="api.web3forms.com" />
+        <link rel="preconnect" href="assets.calendly.com" />
+        <link rel="preconnect" href="calendly.com" />
         <meta name="theme-color" content="#0A0A0B" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta

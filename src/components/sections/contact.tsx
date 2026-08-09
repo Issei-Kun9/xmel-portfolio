@@ -55,6 +55,15 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-24 lg:py-32 bg-[var(--bg-secondary)]">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+        {/* Divider between booking and message form */}
+        <div className="flex items-center gap-4 mb-16">
+          <div className="flex-1 h-px bg-[var(--border-subtle)]" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] whitespace-nowrap">
+            Prefer to message instead?
+          </span>
+          <div className="flex-1 h-px bg-[var(--border-subtle)]" />
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left */}
           <div>

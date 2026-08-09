@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 const Nav = dynamic(() => import("@/components/sections/nav"));
 const Hero = dynamic(() => import("@/components/sections/hero"));
 const Problem = dynamic(() => import("@/components/sections/problem"));
+const Booking = dynamic(() => import("@/components/sections/booking"));
 const System = dynamic(() => import("@/components/sections/system"));
 const VideoDemo = dynamic(() => import("@/components/sections/video-demo"));
 const ResultsBanner = dynamic(() => import("@/components/sections/results-banner"));
@@ -26,6 +27,7 @@ export default function Home() {
       <main>
         <Hero />
         <Problem />
+        <Booking />
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-8">
           <a
             href="#isa-system"

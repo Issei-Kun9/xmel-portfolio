@@ -1,16 +1,16 @@
 # Graph Report - my-portfolio  (2026-08-09)
 
 ## Corpus Check
-- 50 files · ~28,405 words
+- 51 files · ~28,682 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 307 nodes · 300 edges · 39 communities (21 shown, 18 thin omitted)
+- 310 nodes · 302 edges · 40 communities (22 shown, 18 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1b07f07e`
+- Built from commit: `0d1f6a51`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -78,7 +78,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (39 total, 18 thin omitted)
+## Communities (40 total, 18 thin omitted)
 
 ### Community 0 - "dependencies"
 Cohesion: 0.05
@@ -101,8 +101,8 @@ Cohesion: 0.08
 Nodes (25): eslint, eslint-config-next, devDependencies, eslint, eslint-config-next, tailwindcss, @tailwindcss/postcss, @types/node (+17 more)
 
 ### Community 5 - "app/page.tsx"
-Cohesion: 0.12
-Nodes (15): About, Contact, Faq, Footer, Guarantee, Hero, Nav, Problem (+7 more)
+Cohesion: 0.11
+Nodes (16): About, Booking, Contact, Faq, Footer, Guarantee, Hero, Nav (+8 more)
 
 ### Community 6 - "[slug]/page.tsx"
 Cohesion: 0.24
@@ -149,7 +149,7 @@ Cohesion: 0.40
 Nodes (4): Add more Skiper UI components, Dev, My Portfolio, Setup
 
 ## Knowledge Gaps
-- **159 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+154 more)
+- **160 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+155 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -161,7 +161,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `compilerOptions` connect `compilerOptions` to `include`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _159 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _160 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._
 - **Should `layout.tsx` be split into smaller, more focused modules?**
