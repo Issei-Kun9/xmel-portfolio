@@ -315,13 +315,13 @@
     "semantic_hash": ""
   },
   "public/og-image.png": {
-    "mtime": 1786219345.9951484,
-    "ast_hash": "3f9f25610ad25c7fa436c212460c59c9",
+    "mtime": 1786262478.5933034,
+    "ast_hash": "3208ce99da91b37862683b7f7f3da1bc",
     "semantic_hash": ""
   },
   "public/og-image.svg": {
-    "mtime": 1785258521.327143,
-    "ast_hash": "8a6a433898b38087afdaf0fbe4562caa",
+    "mtime": 1786262441.9633126,
+    "ast_hash": "ccf9337390c9e5e800a751d908ea01a4",
     "semantic_hash": ""
   },
   "public/vercel.svg": {
