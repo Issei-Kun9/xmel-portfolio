@@ -63,6 +63,18 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-6">
             <a
+              href="/blog"
+              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+            >
+              Blog
+            </a>
+            <a
+              href="/tools/roi-calculator"
+              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+            >
+              ROI Calculator
+            </a>
+            <a
               href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"
               target="_blank"
               rel="noopener noreferrer"

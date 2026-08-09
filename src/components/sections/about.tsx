@@ -34,7 +34,7 @@ export default function About() {
               transition={{ delay: 0.1 }}
               className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-8"
             >
-              I build systems, not slides.
+              I build AI automation systems, not slides.
             </motion.h2>
 
             <motion.div

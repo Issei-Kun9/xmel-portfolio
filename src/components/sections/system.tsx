@@ -150,7 +150,7 @@ export default function System() {
             THE SYSTEM
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
-            The AI Inside Sales Agent
+            AI Inside Sales Agent for Real Estate &amp; Home Services
           </h2>
         </motion.div>
 
@@ -204,6 +204,13 @@ export default function System() {
               <p className="text-[var(--text-secondary)] text-base leading-relaxed max-w-2xl mb-8">
                 {v.description}
               </p>
+
+              <a
+                href="/blog/n8n-workflow-automation-guide"
+                className="inline-block mb-8 font-mono text-xs uppercase tracking-[0.12em] text-[var(--accent)] hover:opacity-80 transition-opacity duration-200"
+              >
+                Read the n8n workflow build guide →
+              </a>
 
               <div className="grid grid-cols-3 gap-6">
                 {v.stats.map((stat) => (
@@ -284,6 +291,12 @@ export default function System() {
               <div className="font-mono text-[11px] text-[var(--text-tertiary)] mt-2">
                 Based on 34% conversion rate improvement
               </div>
+              <a
+                href="/tools/roi-calculator"
+                className="inline-block mt-6 font-mono text-xs uppercase tracking-[0.12em] text-[var(--accent)] hover:opacity-80 transition-opacity duration-200"
+              >
+                Open full ROI calculator →
+              </a>
             </div>
           </div>
         </motion.div>

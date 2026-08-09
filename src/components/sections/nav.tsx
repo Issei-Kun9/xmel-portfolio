@@ -93,7 +93,6 @@ export default function Nav() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[60] bg-[var(--bg-primary)] flex flex-col"
-            style={{ cursor: "auto" }}
           >
             <div className="h-[72px] px-6 flex items-center justify-between">
               <span className="font-mono text-sm font-medium text-[var(--text-primary)]">
