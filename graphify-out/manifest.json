@@ -350,13 +350,18 @@
     "semantic_hash": ""
   },
   "src/components/sections/booking.tsx": {
-    "mtime": 1786267780.9955306,
-    "ast_hash": "6226f9b483069510e6661cfa21ec5582",
+    "mtime": 1786272345.900062,
+    "ast_hash": "f4f28aadf983cb6daf4e5cdb473018aa",
     "semantic_hash": ""
   },
   "public/favicon-512.png": {
     "mtime": 1786270875.1863496,
     "ast_hash": "05b9a93cb6237a64079b2771d526bb8d",
+    "semantic_hash": ""
+  },
+  "public/logo-animated.gif": {
+    "mtime": 1786271221.6612732,
+    "ast_hash": "1dd1f3d651c640098eebb37ec558cb6d",
     "semantic_hash": ""
   }
 }

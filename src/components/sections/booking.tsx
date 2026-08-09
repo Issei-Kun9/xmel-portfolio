@@ -47,10 +47,10 @@ export default function Booking() {
               BOOK A CALL
             </span>
             <h2 className="font-display text-[clamp(28px,5vw,48px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-4">
-              See it in action. 15 minutes, no pitch.
+              See it in action. 30 minutes, no pitch.
             </h2>
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
-              Book a free 15-minute call and I&apos;ll show you exactly what an AI
+              Book a free 30-minute call and I&apos;ll show you exactly what an AI
               inside sales agent could recover for your business.
             </p>
           </div>
