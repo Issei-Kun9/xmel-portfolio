@@ -43,6 +43,18 @@ export default function BlogIndex() {
             services. Every post is written from real builds we ship to
             production — not theory.
           </p>
+
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl mt-4">
+            If you sell homes or home services, speed is the entire game. The
+            lead that gets a response in under a minute wins the job; the one
+            that waits an hour goes to whoever answered first. That&apos;s why we
+            build AI inside sales agents that pick up every call, qualify
+            inbound leads in seconds, and book appointments while you sleep.
+            These posts break down exactly how those systems are built — the
+            webhook chains, LLM prompts, voice pipelines, and n8n architecture
+            behind them — with the response-time and conversion numbers from
+            real deployments, not demos.
+          </p>
         </div>
 
         {/* What we cover */}
@@ -50,6 +62,12 @@ export default function BlogIndex() {
           <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--accent)] mb-4 block">
             WHAT WE COVER
           </span>
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6 max-w-3xl">
+            Two focus areas that decide whether a real estate or home services
+            business wins the lead: how fast you respond, and how well you
+            qualify. We document the automation behind both — and the n8n
+            workflows and voice AI agents that run them unattended.
+          </p>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-2">
