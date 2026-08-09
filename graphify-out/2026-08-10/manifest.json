@@ -75,8 +75,8 @@
     "semantic_hash": ""
   },
   "src/components/sections/contact.tsx": {
-    "mtime": 1786311278.1909194,
-    "ast_hash": "be621c70a75a85c2a6f147ddb9ba524e",
+    "mtime": 1786266989.5287101,
+    "ast_hash": "d787dcace26ab504af9b950610762e22",
     "semantic_hash": ""
   },
   "src/components/sections/faq.tsx": {
@@ -170,8 +170,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/json-ld.tsx": {
-    "mtime": 1786311255.5505953,
-    "ast_hash": "4787ac151e6a8683bfc13ba174dfe69d",
+    "mtime": 1786143946.168506,
+    "ast_hash": "47bb0bd705de28d2a01b22ceedd638a6",
     "semantic_hash": ""
   },
   "src/components/shared/scroll-reset.tsx": {

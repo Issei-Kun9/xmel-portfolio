@@ -24,7 +24,9 @@ const graph = schemaGraph([
     contactPoint: {
       "@type": "ContactPoint",
       email: "yashwwardhanai@gmail.com",
+      telephone: "+91-7905214791",
       contactType: "customer service",
+      areaServed: ["US", "IN"],
     },
   } as unknown as SchemaObject,
   person({
@@ -58,7 +60,7 @@ const graph = schemaGraph([
     description:
       "Autonomous AI systems that respond to leads in under 50 seconds via voice, SMS, and WhatsApp — eliminating the 5-minute lead death problem for real estate agents and home services contractors.",
     provider: { "@type": "Organization", name: "XMEL Automations" },
-    areaServed: "India",
+    areaServed: ["US", "IN"],
     serviceType: "AI Automation",
     offers: {
       "@type": "Offer",
@@ -71,7 +73,7 @@ const graph = schemaGraph([
     description:
       "Custom AI phone agents built on Vapi, Twilio, and ElevenLabs that answer calls, qualify leads, and book appointments 24/7 without human intervention.",
     provider: { "@type": "Organization", name: "XMEL Automations" },
-    areaServed: "India",
+    areaServed: ["US", "IN"],
     serviceType: "Voice AI",
   }),
   service({
@@ -79,7 +81,7 @@ const graph = schemaGraph([
     description:
       "Complex multi-step automation workflows using n8n — CRM sync, lead qualification, appointment booking, Slack notifications, and Google Sheets integration.",
     provider: { "@type": "Organization", name: "XMEL Automations" },
-    areaServed: "India",
+    areaServed: ["US", "IN"],
     serviceType: "Workflow Automation",
   }),
   service({
@@ -87,7 +89,7 @@ const graph = schemaGraph([
     description:
       "AI-powered WhatsApp chatbots that qualify leads, answer questions, and sync data to your CRM — built on WhatsApp Business API with GPT-4o-mini reasoning.",
     provider: { "@type": "Organization", name: "XMEL Automations" },
-    areaServed: "India",
+    areaServed: ["US", "IN"],
     serviceType: "Chatbot Development",
   }),
   faqPage([
@@ -139,6 +141,7 @@ const graph = schemaGraph([
     url: siteUrl,
     description:
       "AI automation agency specializing in lead response automation, voice AI agents, and n8n workflow automations for real estate and home services.",
+    telephone: "+91-7905214791",
     areaServed: [
       { "@type": "Country", name: "India" },
       { "@type": "Country", name: "United States" },

@@ -121,6 +121,22 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35 }}
+              className="mb-8"
+            >
+              <a
+                href="tel:+917905214791"
+                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
+              >
+                <span className="font-mono text-[11px] text-[var(--text-tertiary)] w-16">PHONE</span>
+                <span className="font-mono text-sm">+91 79052 14791</span>
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35 }}
               className="flex flex-wrap gap-3 mb-8"
             >
               <a
