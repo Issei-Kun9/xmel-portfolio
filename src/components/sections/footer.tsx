@@ -1,29 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import MailtoLink from "@/components/shared/mailto-link";
 
 function LiveClock() {
-  const [time, setTime] = useState("");
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const update = () => {
+      if (!ref.current) return;
       const now = new Date();
-      const ist = new Intl.DateTimeFormat("en-IN", {
+      ref.current.textContent = `${new Intl.DateTimeFormat("en-IN", {
         timeZone: "Asia/Kolkata",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
         hour12: false,
-      }).format(now);
-      setTime(ist);
+      }).format(now)} IST`;
     };
     update();
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  return <span>{time} IST</span>;
+  return <span ref={ref} />;
 }
 
 export default function Footer() {

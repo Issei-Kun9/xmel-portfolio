@@ -23,22 +23,26 @@ export default function CustomCursor() {
       cursorY.set(e.clientY);
     };
 
-    const addHoverListeners = () => {
-      document.querySelectorAll("a, button, [data-cursor='pointer']").forEach((el) => {
-        el.addEventListener("mouseenter", () => setIsHovering(true));
-        el.addEventListener("mouseleave", () => setIsHovering(false));
-      });
+    const isInteractive = (el: Element | null) =>
+      !!el?.closest("a, button, [data-cursor='pointer']");
+
+    const onOver = (e: MouseEvent) => {
+      if (isInteractive(e.target as Element)) setIsHovering(true);
+    };
+    const onOut = (e: MouseEvent) => {
+      const related = e.relatedTarget as Element | null;
+      if (!isInteractive(related)) setIsHovering(false);
     };
 
-    window.addEventListener("mousemove", move);
-    const observer = new MutationObserver(addHoverListeners);
-    observer.observe(document.body, { childList: true, subtree: true });
-    addHoverListeners();
+    window.addEventListener("mousemove", move, { passive: true });
+    window.addEventListener("mouseover", onOver, { passive: true });
+    window.addEventListener("mouseout", onOut, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", move);
+      window.removeEventListener("mouseover", onOver);
+      window.removeEventListener("mouseout", onOut);
       window.removeEventListener("resize", checkMobile);
-      observer.disconnect();
     };
   }, [cursorX, cursorY]);
 

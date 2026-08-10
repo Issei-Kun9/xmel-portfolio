@@ -39,42 +39,72 @@ function TerminalWidget() {
   const [lineIdx, setLineIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const scenario = terminalScenarios[scenarioIdx];
-    if (lineIdx >= scenario.length) {
-      const timer = setTimeout(() => {
-        setScenarioIdx((prev) => (prev + 1) % terminalScenarios.length);
-        setLineIdx(0);
+    let visible = true;
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+    });
+    if (rootRef.current) observer.observe(rootRef.current);
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const tick = () => {
+      if (!visible || document.hidden) return;
+      const scenario = terminalScenarios[scenarioIdx];
+      if (lineIdx >= scenario.length) {
+        timer = setTimeout(() => {
+          setScenarioIdx((prev) => (prev + 1) % terminalScenarios.length);
+          setLineIdx(0);
+          setCharIdx(0);
+          setDisplayedLines([]);
+        }, 3000);
+        return;
+      }
+
+      const currentLine = scenario[lineIdx];
+      if (charIdx < currentLine.length) {
+        timer = setTimeout(() => {
+          setDisplayedLines((prev) => {
+            const updated = [...prev];
+            updated[lineIdx] = currentLine.slice(0, charIdx + 1);
+            return updated;
+          });
+          setCharIdx(charIdx + 1);
+        }, 18);
+        return;
+      }
+
+      timer = setTimeout(() => {
+        setLineIdx(lineIdx + 1);
         setCharIdx(0);
-        setDisplayedLines([]);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
+      }, 200);
+    };
 
-    const currentLine = scenario[lineIdx];
-    if (charIdx < currentLine.length) {
-      const timer = setTimeout(() => {
-        setDisplayedLines((prev) => {
-          const updated = [...prev];
-          updated[lineIdx] = currentLine.slice(0, charIdx + 1);
-          return updated;
-        });
-        setCharIdx(charIdx + 1);
-      }, 18);
-      return () => clearTimeout(timer);
-    }
+    tick();
+    const onVisibility = () => {
+      if (document.hidden) {
+        clearTimeout(timer);
+      } else {
+        clearTimeout(timer);
+        tick();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
-    const timer = setTimeout(() => {
-      setLineIdx(lineIdx + 1);
-      setCharIdx(0);
-    }, 200);
-    return () => clearTimeout(timer);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+      clearTimeout(timer);
+    };
   }, [scenarioIdx, lineIdx, charIdx]);
 
   return (
-    <div className="w-full max-w-md bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-subtle)] overflow-hidden">
-      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--border-subtle)]">
+    <div
+      ref={rootRef}
+      className="w-full max-w-md bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-subtle)] overflow-hidden"
+    >      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--border-subtle)]">
         <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
