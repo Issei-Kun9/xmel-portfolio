@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: ".",
   },
+  experimental: {
+    inlineCss: true,
+  },
   async headers() {
     return [
       {
