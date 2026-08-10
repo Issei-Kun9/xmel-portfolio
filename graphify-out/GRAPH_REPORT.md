@@ -1,16 +1,16 @@
 # Graph Report - my-portfolio  (2026-08-10)
 
 ## Corpus Check
-- 51 files · ~30,736 words
+- 52 files · ~30,804 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 310 nodes · 302 edges · 40 communities (22 shown, 18 thin omitted)
+- 314 nodes · 305 edges · 41 communities (22 shown, 19 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `500cc54f`
+- Built from commit: `d848c326`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -50,6 +50,7 @@
 - ai-lead-response-real-estate.mdx
 - Reel 2 — "47 seconds vs 47 hours"
 - My Portfolio
+- sitemap-pages.xml/route.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 16 edges
@@ -78,7 +79,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (40 total, 18 thin omitted)
+## Communities (41 total, 19 thin omitted)
 
 ### Community 0 - "dependencies"
 Cohesion: 0.05
@@ -149,19 +150,19 @@ Cohesion: 0.40
 Nodes (4): Add more Skiper UI components, Dev, My Portfolio, Setup
 
 ## Knowledge Gaps
-- **160 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+155 more)
+- **162 isolated node(s):** `$schema`, `style`, `rsc`, `tsx`, `config` (+157 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `dependencies` to `devDependencies`?**
-  _High betweenness centrality (0.033) - this node is a cross-community bridge._
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **Why does `compilerOptions` connect `compilerOptions` to `include`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `$schema`, `style`, `rsc` to the rest of the system?**
-  _160 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _162 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._
 - **Should `layout.tsx` be split into smaller, more focused modules?**

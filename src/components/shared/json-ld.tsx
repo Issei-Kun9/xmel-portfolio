@@ -23,7 +23,7 @@ const graph = schemaGraph([
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      email: "yashwwardhanai@gmail.com",
+      email: "yashwardhan@xmelautomations.xyz",
       telephone: "+91-7905214791",
       contactType: "customer service",
       areaServed: ["US", "IN"],

@@ -91,7 +91,7 @@ export default function Footer() {
               Instagram
             </a>
             <MailtoLink
-              email="yashwwardhanai@gmail.com"
+              email="yashwardhan@xmelautomations.xyz"
               className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Email

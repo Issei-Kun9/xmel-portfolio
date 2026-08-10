@@ -10,9 +10,9 @@
     "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
   },
   "next.config.ts": {
-    "mtime": 1784727686.2899082,
-    "ast_hash": "9e27cace6dfb0c3c740638228d6d3766",
-    "semantic_hash": "9e27cace6dfb0c3c740638228d6d3766"
+    "mtime": 1786350309.7724588,
+    "ast_hash": "9bbfa273038c6ecebd57ef90871a8b3a",
+    "semantic_hash": ""
   },
   "package.json": {
     "mtime": 1785267098.0611916,
@@ -60,8 +60,8 @@
     "semantic_hash": ""
   },
   "src/app/tools/roi-calculator/calculator-client.tsx": {
-    "mtime": 1786266134.4539633,
-    "ast_hash": "0e29bbcf7ff6507c526bd22f308e6ddd",
+    "mtime": 1786321473.2886214,
+    "ast_hash": "a4aecb29147fbd8bccd859f49aae7241",
     "semantic_hash": ""
   },
   "src/app/tools/roi-calculator/page.tsx": {
@@ -75,8 +75,8 @@
     "semantic_hash": ""
   },
   "src/components/sections/contact.tsx": {
-    "mtime": 1786311278.1909194,
-    "ast_hash": "be621c70a75a85c2a6f147ddb9ba524e",
+    "mtime": 1786321391.3910923,
+    "ast_hash": "3e070b1d189053ab6b99949e4484a66f",
     "semantic_hash": ""
   },
   "src/components/sections/faq.tsx": {
@@ -130,8 +130,8 @@
     "semantic_hash": "705ad1ab62b3231e88fde9e66c6816bf"
   },
   "src/components/sections/system.tsx": {
-    "mtime": 1786310690.4469485,
-    "ast_hash": "e6d32544592cc30b5ee804ad069d6b5a",
+    "mtime": 1786321416.7875664,
+    "ast_hash": "3b15512ac258c733ca8c15270424a99a",
     "semantic_hash": ""
   },
   "src/components/sections/tech-stack.tsx": {
@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "public/robots.txt": {
-    "mtime": 1785258514.0150769,
-    "ast_hash": "282f8423816306adf8a88d8cdd107c4f",
+    "mtime": 1786351120.5036166,
+    "ast_hash": "d8072fafe0409e8c34cb5918f6706c7d",
     "semantic_hash": ""
   },
   "scripts/reel2-47-seconds.md": {
@@ -335,8 +335,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/mailto-link.tsx": {
-    "mtime": 1786141960.0057437,
-    "ast_hash": "2dcde0e5492013bb43bdfb98908d5a10",
+    "mtime": 1786321342.346177,
+    "ast_hash": "201835490ebb78e13658ec6fecb3db4f",
     "semantic_hash": ""
   },
   "src/types/gtag.d.ts": {
@@ -362,6 +362,11 @@
   "public/logo-animated.gif": {
     "mtime": 1786297373.7795587,
     "ast_hash": "f6231d587c7f01a4c8bdd68f2a0608b4",
+    "semantic_hash": ""
+  },
+  "src/app/sitemap-pages.xml/route.ts": {
+    "mtime": 1786351042.3294334,
+    "ast_hash": "0472cc0f55e439df4684e519cf6d50f6",
     "semantic_hash": ""
   }
 }

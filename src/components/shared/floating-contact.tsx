@@ -45,7 +45,7 @@ export default function FloatingContact() {
                 Send a message
               </a>
               <MailtoLink
-                email="yashwwardhanai@gmail.com"
+                email="yashwardhan@xmelautomations.xyz"
                 className="block py-2 px-4 border border-[var(--border-strong)] text-[var(--text-secondary)] font-mono text-[11px] text-center rounded hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
               >
                 Email directly

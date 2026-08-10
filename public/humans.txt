@@ -10,5 +10,5 @@ Located in India. Working globally.
 Stack: Next.js, TypeScript, n8n, GPT-4o-mini, Twilio, Vapi,
 ElevenLabs, PostgreSQL, Supabase, Google Workspace.
 
-Contact: yashwwardhanai@gmail.com
+Contact: yashwardhan@xmelautomations.xyz
 LinkedIn: https://www.linkedin.com/in/yashwardhan-chauhan-075684414/

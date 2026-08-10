@@ -108,11 +108,11 @@ export default function Contact() {
               className="mb-8"
             >
               <MailtoLink
-                email="yashwwardhanai@gmail.com"
+                email="yashwardhan@xmelautomations.xyz"
                 className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
               >
                 <span className="font-mono text-[11px] text-[var(--text-tertiary)] w-16">EMAIL</span>
-                <span className="font-mono text-sm">yashwwardhanai@gmail.com</span>
+                <span className="font-mono text-sm">yashwardhan@xmelautomations.xyz</span>
               </MailtoLink>
             </motion.div>
 

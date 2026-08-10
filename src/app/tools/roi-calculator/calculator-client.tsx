@@ -3,7 +3,6 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Calculator, Mail, ArrowRight, Check } from "lucide-react";
-import MailtoLink from "@/components/shared/mailto-link";
 
 const INDUSTRY_CLOSE_RATE = 0.08;
 const AI_IMPROVEMENT = 0.34;

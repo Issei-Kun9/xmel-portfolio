@@ -1013,7 +1013,7 @@
       "norm_label": "reel1.sh script"
     },
     {
-      "label": "route.ts",
+      "label": "roi-capture/route.ts",
       "file_type": "code",
       "source_file": "src/app/api/roi-capture/route.ts",
       "source_location": "L1",
@@ -1021,7 +1021,7 @@
       "id": "src_app_api_roi_capture_route",
       "community": 11,
       "community_name": "route.ts",
-      "norm_label": "route.ts"
+      "norm_label": "roi-capture/route.ts"
     },
     {
       "label": "RoiCapturePayload",
@@ -1451,6 +1451,50 @@
       "community": 5,
       "community_name": "app/page.tsx",
       "norm_label": "home()"
+    },
+    {
+      "label": "sitemap-pages.xml/route.ts",
+      "file_type": "code",
+      "source_file": "src/app/sitemap-pages.xml/route.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_sitemap_pages_xml_route",
+      "community": 40,
+      "community_name": "sitemap-pages.xml/route.ts",
+      "norm_label": "sitemap-pages.xml/route.ts"
+    },
+    {
+      "label": "dynamic",
+      "file_type": "code",
+      "source_file": "src/app/sitemap-pages.xml/route.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_app_sitemap_pages_xml_route_dynamic",
+      "community": 40,
+      "community_name": "sitemap-pages.xml/route.ts",
+      "norm_label": "dynamic"
+    },
+    {
+      "label": "SITEMAP_URLS",
+      "file_type": "code",
+      "source_file": "src/app/sitemap-pages.xml/route.ts",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "src_app_sitemap_pages_xml_route_sitemap_urls",
+      "community": 40,
+      "community_name": "sitemap-pages.xml/route.ts",
+      "norm_label": "sitemap_urls"
+    },
+    {
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "src/app/sitemap-pages.xml/route.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_app_sitemap_pages_xml_route_get",
+      "community": 40,
+      "community_name": "sitemap-pages.xml/route.ts",
+      "norm_label": "get()"
     },
     {
       "label": "thank-you/page.tsx",
@@ -5013,6 +5057,39 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/app/sitemap-pages.xml/route.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_sitemap_pages_xml_route",
+      "target": "src_app_sitemap_pages_xml_route_dynamic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/sitemap-pages.xml/route.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_sitemap_pages_xml_route",
+      "target": "src_app_sitemap_pages_xml_route_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/sitemap-pages.xml/route.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_sitemap_pages_xml_route",
+      "target": "src_app_sitemap_pages_xml_route_sitemap_urls",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/app/thank-you/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
@@ -6826,5 +6903,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "500cc54fb04a2d1c88eedc70e2ad525fe435bae0"
+  "built_at_commit": "d848c32665107d3b2e6b5c60b8b282bbcc58e9f9"
 }
