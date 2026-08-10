@@ -146,7 +146,7 @@ export default function System() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+          <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             THE SYSTEM
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
@@ -161,7 +161,7 @@ export default function System() {
           viewport={{ once: true }}
           className="mb-12 p-6 lg:p-8 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)]"
         >
-          <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
+          <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
             SYSTEM ARCHITECTURE — 67 NODES / 7 WEBHOOKS
           </div>
           <ArchitectureDiagram />
@@ -218,7 +218,7 @@ export default function System() {
                     <div className="font-mono text-xl lg:text-2xl font-bold text-[var(--accent)]">
                       {stat.value}
                     </div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-1">
+                    <div className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-1">
                       {stat.label}
                     </div>
                   </div>
@@ -235,7 +235,7 @@ export default function System() {
           viewport={{ once: true }}
           className="p-6 lg:p-8 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)]"
         >
-          <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-6">
+          <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-6">
             ROI CALCULATOR
           </div>
 
@@ -284,13 +284,13 @@ export default function System() {
             </div>
 
             <div className="text-center lg:text-right">
-              <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-2">
+              <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-2">
                 COMMISSION RECOVERED / YEAR
               </div>
               <div className="font-mono text-4xl lg:text-5xl font-bold text-[var(--accent)]">
                 ${annualRecovered.toLocaleString()}
               </div>
-              <div className="font-mono text-[11px] text-[var(--text-tertiary)] mt-2">
+              <div className="font-mono text-[12px] text-[var(--text-tertiary)] mt-2">
                 Based on 34% conversion rate improvement
               </div>
               <a

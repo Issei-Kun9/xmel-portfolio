@@ -27,7 +27,7 @@ export default function BlogIndex() {
         <div className="mb-16">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors mb-8"
+            className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors mb-8"
           >
             <span>←</span>
             <span>BACK TO HOME</span>
@@ -59,7 +59,7 @@ export default function BlogIndex() {
 
         {/* What we cover */}
         <div className="mb-16 p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-          <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--accent)] mb-4 block">
+          <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] mb-4 block">
             WHAT WE COVER
           </span>
           <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6 max-w-3xl">
@@ -103,17 +103,17 @@ export default function BlogIndex() {
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-4 mb-3">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
+                    <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
                       {new Date(post.date).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
                         year: "numeric",
                       })}
                     </span>
-                    <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
+                    <span className="font-mono text-[12px] text-[var(--text-tertiary)]">
                       ·
                     </span>
-                    <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
+                    <span className="font-mono text-[12px] text-[var(--text-tertiary)]">
                       {post.readTime}
                     </span>
                   </div>
@@ -127,7 +127,7 @@ export default function BlogIndex() {
                   </p>
                 </div>
 
-                <div className="flex-shrink-0 flex items-center gap-2 font-mono text-[11px] text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:mt-8">
+                <div className="flex-shrink-0 flex items-center gap-2 font-mono text-[12px] text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 lg:mt-8">
                   READ
                   <span>→</span>
                 </div>
@@ -137,7 +137,7 @@ export default function BlogIndex() {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-block px-3 py-1 rounded-full border border-[var(--border-subtle)] font-mono text-[10px] text-[var(--text-tertiary)]"
+                    className="inline-block px-3 py-1 rounded-full border border-[var(--border-subtle)] font-mono text-[12px] text-[var(--text-tertiary)]"
                   >
                     {tag}
                   </span>

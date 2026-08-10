@@ -35,7 +35,7 @@ export default function Footer() {
             <span className="font-mono text-sm font-medium text-[var(--text-primary)]">
               <span className="text-[var(--accent)]">&gt;</span> ISA.SYSTEMS
             </span>
-            <p className="font-mono text-[11px] text-[var(--text-tertiary)] mt-1">
+            <p className="font-mono text-[12px] text-[var(--text-tertiary)] mt-1">
               AI automation for real estate &amp; home services.
             </p>
           </div>
@@ -45,32 +45,32 @@ export default function Footer() {
               <a
                 key={link}
                 href={`#${link === "WORK" ? "work" : link === "ISA SYSTEM" ? "isa-system" : link === "PROCESS" ? "process" : link === "ABOUT" ? "about" : "contact"}`}
-                className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200 hidden md:block"
+                className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200 hidden md:block"
               >
                 {link}
               </a>
             ))}
           </div>
 
-          <div className="font-mono text-[11px] text-[var(--text-tertiary)]">
+          <div className="font-mono text-[12px] text-[var(--text-tertiary)]">
             <LiveClock />
           </div>
         </div>
 
         <div className="mt-8 pt-6 border-t border-[var(--border-subtle)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="font-mono text-[10px] text-[var(--text-tertiary)]">
+          <div className="font-mono text-[12px] text-[var(--text-tertiary)]">
             © 2026 ISA Systems. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             <a
               href="/blog"
-              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Blog
             </a>
             <a
               href="/tools/roi-calculator"
-              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               ROI Calculator
             </a>
@@ -78,7 +78,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               LinkedIn
             </a>
@@ -86,17 +86,17 @@ export default function Footer() {
               href="https://www.instagram.com/yashwardhan.ai/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Instagram
             </a>
             <MailtoLink
               email="yashwardhan@xmelautomations.xyz"
-              className="font-mono text-[10px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Email
             </MailtoLink>
-            <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
+            <span className="font-mono text-[12px] text-[var(--text-tertiary)]">
               Built with precision. No templates.
             </span>
           </div>

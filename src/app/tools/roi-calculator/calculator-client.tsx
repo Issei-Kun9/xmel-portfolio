@@ -142,7 +142,7 @@ export default function CalculatorClient() {
         />
 
         <div className="relative">
-          <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-2">
+          <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-2">
             LOST TO SLOW RESPONSE — EVERY MONTH
           </div>
 
@@ -163,7 +163,7 @@ export default function CalculatorClient() {
 
       {/* Sliders */}
       <div className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-        <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-6">
+        <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-6">
           <Calculator className="w-3 h-3 inline mr-1.5 -mt-0.5" />
           YOUR NUMBERS
         </div>
@@ -193,8 +193,8 @@ export default function CalculatorClient() {
                 [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(193,255,114,0.4)]"
             />
             <div className="flex justify-between mt-1.5">
-              <span className="font-mono text-[10px] text-[var(--text-tertiary)]">10</span>
-              <span className="font-mono text-[10px] text-[var(--text-tertiary)]">500</span>
+              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">10</span>
+              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">500</span>
             </div>
           </div>
 
@@ -222,15 +222,15 @@ export default function CalculatorClient() {
                 [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(193,255,114,0.4)]"
             />
             <div className="flex justify-between mt-1.5">
-              <span className="font-mono text-[10px] text-[var(--text-tertiary)]">$1,000</span>
-              <span className="font-mono text-[10px] text-[var(--text-tertiary)]">$100,000</span>
+              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">$1,000</span>
+              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">$100,000</span>
             </div>
           </div>
         </div>
 
         {/* Context line */}
         <div className="mt-6 pt-4 border-t border-[var(--border-subtle)]">
-          <p className="font-mono text-[10px] text-[var(--text-tertiary)] leading-relaxed">
+          <p className="font-mono text-[12px] text-[var(--text-tertiary)] leading-relaxed">
             METHODOLOGY — Industry avg close rate: 8%. AI response improves conversion by 34% (pilot data). Recovery = leads × 8% × 34% × commission.
           </p>
         </div>
@@ -242,7 +242,7 @@ export default function CalculatorClient() {
         animate={{ opacity: 1, y: 0 }}
         className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]"
       >
-            <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
+            <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
               <Mail className="w-3 h-3 inline mr-1.5 -mt-0.5" />
               GET YOUR FULL BREAKDOWN
             </div>
@@ -304,12 +304,12 @@ export default function CalculatorClient() {
             </form>
 
             {emailError && (
-              <p className="font-mono text-[11px] text-[var(--warning)] mt-2">
+              <p className="font-mono text-[12px] text-[var(--warning)] mt-2">
                 {emailError}
               </p>
             )}
 
-            <p className="font-mono text-[10px] text-[var(--text-tertiary)] mt-3">
+            <p className="font-mono text-[12px] text-[var(--text-tertiary)] mt-3">
               No spam. One email with your breakdown + one case study follow-up. Unsubscribe anytime.
             </p>
       </motion.div>

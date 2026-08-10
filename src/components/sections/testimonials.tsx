@@ -46,7 +46,7 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+          <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             CLIENT RESULTS
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
@@ -80,7 +80,7 @@ export default function Testimonials() {
               <div className="flex items-center justify-between pt-5 border-t border-[var(--border-subtle)]">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-[var(--bg-tertiary)] border border-[var(--border-subtle)] flex items-center justify-center">
-                    <span className="font-mono text-[10px] font-medium text-[var(--accent)]">
+                    <span className="font-mono text-[12px] font-medium text-[var(--accent)]">
                       {t.initials}
                     </span>
                   </div>
@@ -88,12 +88,12 @@ export default function Testimonials() {
                     <div className="font-mono text-xs font-medium text-[var(--text-primary)]">
                       {t.name}
                     </div>
-                    <div className="font-mono text-[10px] text-[var(--text-tertiary)]">
+                    <div className="font-mono text-[12px] text-[var(--text-tertiary)]">
                       {t.role}, {t.company}
                     </div>
                   </div>
                 </div>
-                <span className="font-mono text-[10px] uppercase tracking-[0.08em] px-2 py-1 rounded bg-[var(--accent-dim)] text-[var(--accent)] border border-[rgba(193,255,114,0.15)]">
+                <span className="font-mono text-[12px] uppercase tracking-[0.08em] px-2 py-1 rounded bg-[var(--accent-dim)] text-[var(--accent)] border border-[rgba(193,255,114,0.15)]">
                   {t.metric}
                 </span>
               </div>

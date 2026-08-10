@@ -64,7 +64,7 @@ export default function Booking() {
     <section className="relative py-24 lg:py-32">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="max-w-2xl mb-12">
-            <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)]">
+            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
               BOOK A CALL
             </span>
             <h2 className="font-display text-[clamp(28px,5vw,48px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-4">
@@ -86,7 +86,7 @@ export default function Booking() {
               {!loaded && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[var(--bg-secondary)] z-10">
                   <div className="w-8 h-8 rounded-full border-2 border-[var(--border-strong)] border-t-[var(--accent)] animate-spin" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
                     LOADING AVAILABILITY...
                   </span>
                 </div>

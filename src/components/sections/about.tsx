@@ -22,7 +22,7 @@ export default function About() {
               viewport={{ once: true }}
               className="mb-6"
             >
-              <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)]">
+              <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
                 ABOUT
               </span>
             </motion.div>
@@ -90,7 +90,7 @@ export default function About() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-                <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">terminal</span>
+                <span className="font-mono text-[12px] text-[var(--text-tertiary)] ml-2">terminal</span>
               </div>
               <div className="p-5 font-mono text-[13px] leading-relaxed">
                 <div className="text-[var(--text-tertiary)]">$ whoami</div>
@@ -111,13 +111,13 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ delay: 0.15 }}
             >
-              <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
+              <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
                 STACK & SKILLS
               </div>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => {
                   const rotation = (Math.random() * 4 - 2).toFixed(1);
-                  const size = skill.length > 10 ? "text-[11px]" : "text-[12px]";
+                  const size = skill.length > 10 ? "text-[12px]" : "text-[12px]";
                   return (
                     <span
                       key={skill}

@@ -58,7 +58,7 @@ export default function Nav() {
               <a
                 key={link.name}
                 href={link.href}
-                className="relative font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group py-1"
+                className="relative font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group py-1"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 h-px bg-[var(--accent)] w-0 group-hover:w-full transition-all duration-200" />
@@ -69,7 +69,7 @@ export default function Nav() {
           <div className="hidden md:flex items-center gap-6">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[var(--success)] status-pulse" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--success)]">
+              <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--success)]">
                 AVAILABLE
               </span>
             </div>

@@ -34,7 +34,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+          <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             SELECTED WORK
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
@@ -59,7 +59,7 @@ export default function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="font-mono text-[10px] uppercase tracking-[0.1em] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-tertiary)] border border-[var(--border-subtle)]"
+                      className="font-mono text-[12px] uppercase tracking-[0.1em] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-tertiary)] border border-[var(--border-subtle)]"
                     >
                       {tag}
                     </span>
@@ -71,7 +71,7 @@ export default function Projects() {
               <h3 className={`font-display font-semibold text-[var(--text-primary)] mb-1 ${i === 0 ? "text-2xl lg:text-3xl" : "text-xl"}`}>
                 {project.title}
               </h3>
-              <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mb-3">
+              <div className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mb-3">
                 {project.location}
               </div>
 

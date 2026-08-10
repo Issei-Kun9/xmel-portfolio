@@ -21,7 +21,7 @@ export default function TrustBadges() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+          <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             POWERED BY
           </span>
         </motion.div>
@@ -45,7 +45,7 @@ export default function TrustBadges() {
                 <div className="font-mono text-xs font-medium text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
                   {badge.name}
                 </div>
-                <div className="font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
+                <div className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
                   {badge.subtext}
                 </div>
               </div>

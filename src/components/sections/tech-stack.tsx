@@ -23,7 +23,7 @@ export default function TechStack() {
   return (
     <section className="relative py-16 border-y border-[var(--border-subtle)] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 mb-6">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+        <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
           TOOLS &amp; INFRASTRUCTURE
         </span>
       </div>

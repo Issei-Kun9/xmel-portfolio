@@ -35,7 +35,7 @@ export default function Process() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+          <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             HOW IT WORKS
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
@@ -58,7 +58,7 @@ export default function Process() {
               </span>
 
               <div className="relative z-10">
-                <div className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)] mb-3">
+                <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)] mb-3">
                   STEP {step.num}
                 </div>
                 <h3 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-3">

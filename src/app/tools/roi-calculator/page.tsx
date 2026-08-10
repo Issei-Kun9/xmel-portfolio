@@ -82,7 +82,7 @@ export default function RoiCalculatorPage() {
           {/* Back link */}
           <a
             href="/"
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors mb-12"
+            className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors mb-12"
           >
             <span>←</span>
             <span>BACK TO HOME</span>
@@ -90,7 +90,7 @@ export default function RoiCalculatorPage() {
 
           {/* Header */}
           <div className="mb-16">
-            <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)]">
+            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
               FREE TOOL
             </span>
             <h1 className="font-display text-[clamp(28px,5vw,44px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">

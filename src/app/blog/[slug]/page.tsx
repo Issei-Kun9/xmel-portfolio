@@ -80,7 +80,7 @@ export default async function BlogPost({ params }: Props) {
           {/* Back link */}
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors mb-12"
+            className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors mb-12"
           >
             <span>←</span>
             <span>ALL POSTS</span>
@@ -88,17 +88,17 @@ export default async function BlogPost({ params }: Props) {
 
           {/* Meta */}
           <div className="flex items-center gap-4 mb-6">
-            <time className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
+            <time className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
               {new Date(post.date).toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",
                 year: "numeric",
               })}
             </time>
-            <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
+            <span className="font-mono text-[12px] text-[var(--text-tertiary)]">
               ·
             </span>
-            <span className="font-mono text-[10px] text-[var(--text-tertiary)]">
+            <span className="font-mono text-[12px] text-[var(--text-tertiary)]">
               {post.readTime}
             </span>
           </div>
@@ -113,7 +113,7 @@ export default async function BlogPost({ params }: Props) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-block px-3 py-1 rounded-full border border-[var(--border-subtle)] font-mono text-[10px] text-[var(--text-tertiary)]"
+                className="inline-block px-3 py-1 rounded-full border border-[var(--border-subtle)] font-mono text-[12px] text-[var(--text-tertiary)]"
               >
                 {tag}
               </span>

@@ -34,7 +34,7 @@ export default function Guarantee() {
             </div>
 
             <div className="flex-shrink-0 flex flex-col items-start lg:items-end gap-3">
-              <p className="font-mono text-[11px] text-[var(--text-tertiary)] max-w-[280px] lg:text-right leading-relaxed">
+              <p className="font-mono text-[12px] text-[var(--text-tertiary)] max-w-[280px] lg:text-right leading-relaxed">
                 No contracts. No upfront fees. Pricing is scoped to your pilot results — most clients recover the cost from a single recovered deal.
               </p>
               <a

@@ -108,7 +108,7 @@ export default function Problem() {
               viewport={{ once: true }}
               className="mb-6"
             >
-              <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)]">
+              <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
                 The Problem
               </span>
             </motion.div>

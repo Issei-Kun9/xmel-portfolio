@@ -78,9 +78,9 @@ function TerminalWidget() {
         <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-        <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">isa-system</span>
+        <span className="font-mono text-[12px] text-[var(--text-tertiary)] ml-2">isa-system</span>
       </div>
-      <div className="p-4 font-mono text-[11px] sm:text-[13px] leading-relaxed min-h-[140px] sm:min-h-[180px]">
+      <div className="p-4 font-mono text-[12px] sm:text-[13px] leading-relaxed min-h-[140px] sm:min-h-[180px]">
         {displayedLines.map((line, i) => (
           <div key={i} className="flex">
             <span className="text-[var(--accent)] mr-2 select-none">$</span>
@@ -148,14 +148,14 @@ export default function Hero() {
 
       {/* Corner HUD metadata */}
       <div className="hidden sm:block absolute top-24 left-6 lg:left-12 z-10">
-        <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] leading-relaxed">
+        <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] leading-relaxed">
           <div>LOCATION: REMOTE / INDIA</div>
           <div>TIMEZONE: IST (UTC+5:30)</div>
         </div>
       </div>
 
       <div className="hidden sm:block absolute top-24 right-6 lg:right-12 z-10">
-        <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+        <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
           SYSTEMS SHIPPED: 04
         </div>
       </div>
@@ -170,7 +170,7 @@ export default function Hero() {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-[var(--border-strong)] bg-[rgba(193,255,114,0.06)] mb-6 sm:mb-8"
             >
-              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.1em] text-[var(--accent)]">
+              <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)]">
                 AI Automation Agency — Voice AI &amp; n8n Workflows
               </span>
             </motion.div>
@@ -229,7 +229,7 @@ export default function Hero() {
         <div className="w-px h-6 bg-[var(--border-strong)] relative overflow-hidden">
           <div className="w-full h-2 bg-[var(--accent)] scroll-line" />
         </div>
-        <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-tertiary)]">
+        <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-[var(--text-tertiary)]">
           SCROLL
         </span>
       </motion.div>

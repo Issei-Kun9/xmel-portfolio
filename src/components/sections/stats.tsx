@@ -53,7 +53,7 @@ export default function Stats() {
               <div className="text-3xl lg:text-4xl font-bold text-[var(--accent)] mb-2 tracking-tight">
                 <CountUp target={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
               </div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
+              <div className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
                 {stat.label}
               </div>
             </motion.div>

@@ -32,14 +32,14 @@ export default function ThankYouPage() {
 
       {/* Corner HUD metadata */}
       <div className="hidden sm:block absolute top-24 left-6 lg:left-12 z-10">
-        <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] leading-relaxed">
+        <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] leading-relaxed">
           <div>STATUS: RECEIVED</div>
           <div>RESPONSE: WITHIN 24H</div>
         </div>
       </div>
 
       <div className="hidden sm:block absolute top-24 right-6 lg:right-12 z-10">
-        <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+        <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
           XMEL AUTOMATIONS
         </div>
       </div>
@@ -71,7 +71,7 @@ export default function ThankYouPage() {
             <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-            <span className="font-mono text-[10px] text-[var(--text-tertiary)] ml-2">xmel-system</span>
+            <span className="font-mono text-[12px] text-[var(--text-tertiary)] ml-2">xmel-system</span>
           </div>
 
           <div className="font-mono text-[13px] leading-relaxed space-y-1.5">

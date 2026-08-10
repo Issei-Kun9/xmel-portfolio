@@ -46,7 +46,7 @@ export default function ResultsBanner() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+          <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             WHAT I&apos;VE BUILT
           </span>
           <h2 className="font-display text-[clamp(28px,4vw,44px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
@@ -67,10 +67,10 @@ export default function ResultsBanner() {
               <div className="text-3xl lg:text-4xl font-bold text-[var(--accent)] mb-2 tracking-tight">
                 <CountUp target={r.value} suffix={r.suffix} prefix={r.prefix} />
               </div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] mb-1">
+              <div className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] mb-1">
                 {r.label}
               </div>
-              <div className="font-mono text-[9px] text-[var(--text-tertiary)] opacity-60">
+              <div className="font-mono text-[12px] text-[var(--text-tertiary)] opacity-60">
                 {r.description}
               </div>
             </motion.div>
