@@ -173,7 +173,7 @@ export default function CalculatorClient() {
           {/* Leads slider */}
           <div>
             <div className="flex justify-between mb-3">
-              <label className="font-mono text-xs text-[var(--text-secondary)]">
+              <label htmlFor="calc-leads" className="font-mono text-xs text-[var(--text-secondary)]">
                 LEADS / MONTH
               </label>
               <span className="font-mono text-sm font-semibold text-[var(--accent)]">
@@ -181,6 +181,7 @@ export default function CalculatorClient() {
               </span>
             </div>
             <input
+              id="calc-leads"
               type="range"
               min={10}
               max={500}
@@ -201,7 +202,7 @@ export default function CalculatorClient() {
           {/* Commission slider */}
           <div>
             <div className="flex justify-between mb-3">
-              <label className="font-mono text-xs text-[var(--text-secondary)]">
+              <label htmlFor="calc-commission" className="font-mono text-xs text-[var(--text-secondary)]">
                 AVG COMMISSION ($)
               </label>
               <span className="font-mono text-sm font-semibold text-[var(--accent)]">
@@ -209,6 +210,7 @@ export default function CalculatorClient() {
               </span>
             </div>
             <input
+              id="calc-commission"
               type="range"
               min={1000}
               max={100000}
@@ -261,6 +263,8 @@ export default function CalculatorClient() {
             >
               <input
                 type="email"
+                name="email"
+                aria-label="Email address for the breakdown"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);

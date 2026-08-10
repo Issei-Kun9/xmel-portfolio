@@ -193,10 +193,14 @@ export default function Contact() {
                 <input type="hidden" name="botcheck" style={{ display: "none" }} />
 
                 <div className="input-line">
-                  <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1">
+                  <label
+                    htmlFor="contact-name"
+                    className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1"
+                  >
                     &gt; your_name:
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     name="name"
                     value={form.name}
@@ -208,10 +212,14 @@ export default function Contact() {
                 </div>
 
                 <div className="input-line">
-                  <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1">
+                  <label
+                    htmlFor="contact-email"
+                    className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1"
+                  >
                     &gt; your_email:
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     name="email"
                     value={form.email}
@@ -223,10 +231,14 @@ export default function Contact() {
                 </div>
 
                 <div className="input-line">
-                  <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1">
+                  <label
+                    htmlFor="contact-project"
+                    className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1"
+                  >
                     &gt; project_type:
                   </label>
                   <input
+                    id="contact-project"
                     type="text"
                     name="project_type"
                     value={form.project}
@@ -237,10 +249,14 @@ export default function Contact() {
                 </div>
 
                 <div className="input-line">
-                  <label className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1">
+                  <label
+                    htmlFor="contact-message"
+                    className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1"
+                  >
                     &gt; message:
                   </label>
                   <textarea
+                    id="contact-message"
                     name="message"
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}

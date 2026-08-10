@@ -95,8 +95,8 @@
     "semantic_hash": "e4959287df8a9337d819e652f2b04d18"
   },
   "src/components/sections/hero.tsx": {
-    "mtime": 1786319174.6659055,
-    "ast_hash": "c883ab9ae70dfa9ee03d66160f939ace",
+    "mtime": 1786320819.988463,
+    "ast_hash": "155567349c208f37a13938de380fdd9a",
     "semantic_hash": ""
   },
   "src/components/sections/nav.tsx": {

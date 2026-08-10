@@ -243,12 +243,13 @@ export default function System() {
             <div className="space-y-8">
               <div>
                 <div className="flex justify-between mb-2">
-                  <label className="font-mono text-xs text-[var(--text-secondary)]">
+                  <label htmlFor="roi-leads" className="font-mono text-xs text-[var(--text-secondary)]">
                     LEADS / MONTH
                   </label>
                   <span className="font-mono text-xs text-[var(--accent)]">{leads}</span>
                 </div>
                 <input
+                  id="roi-leads"
                   type="range"
                   min={10}
                   max={500}
@@ -262,12 +263,13 @@ export default function System() {
 
               <div>
                 <div className="flex justify-between mb-2">
-                  <label className="font-mono text-xs text-[var(--text-secondary)]">
+                  <label htmlFor="roi-commission" className="font-mono text-xs text-[var(--text-secondary)]">
                     AVG COMMISSION ($)
                   </label>
                   <span className="font-mono text-xs text-[var(--accent)]">${commission.toLocaleString()}</span>
                 </div>
                 <input
+                  id="roi-commission"
                   type="range"
                   min={1000}
                   max={50000}

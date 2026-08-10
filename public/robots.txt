@@ -20,4 +20,3 @@ User-agent: ClaudeBot
 Allow: /
 
 Sitemap: https://xmelautomations.xyz/sitemap.xml
-LLMs: https://xmelautomations.xyz/llms.txt

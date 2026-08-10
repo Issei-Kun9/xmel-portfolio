@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface MailtoLinkProps {
   email: string;
@@ -14,6 +14,10 @@ export default function MailtoLink({
   children,
 }: MailtoLinkProps) {
   const [href, setHref] = useState<string>("");
+
+  useEffect(() => {
+    setHref(`mailto:${email}`);
+  }, [email]);
 
   return (
     <a
