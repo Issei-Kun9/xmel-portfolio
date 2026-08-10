@@ -183,17 +183,12 @@ export default function Hero() {
               ))}
             </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.6 }}
-              className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-xl mb-8 sm:mb-10"
-            >
+            <p className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-xl mb-8 sm:mb-10">
               I design and deploy autonomous AI agents, voice systems, and n8n 
               workflow automations that eliminate slow lead response — so real estate 
               agents and home services contractors never lose a deal to a faster 
               competitor again.
-            </motion.p>
+            </p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
