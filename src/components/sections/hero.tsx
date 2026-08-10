@@ -218,14 +218,9 @@ export default function Hero() {
           </div>
 
           {/* Right column — terminal widget */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-            className="block"
-          >
+          <div className="block">
             <TerminalWidget />
-          </motion.div>
+          </div>
         </div>
       </motion.div>
 
