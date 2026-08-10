@@ -41,6 +41,18 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-8">
+            <a
+              href="/ai-automation-real-estate"
+              className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+            >
+              Real Estate
+            </a>
+            <a
+              href="/ai-automation-home-services"
+              className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+            >
+              Home Services
+            </a>
             {["WORK", "ISA SYSTEM", "PROCESS", "ABOUT", "CONTACT"].map((link) => (
               <a
                 key={link}

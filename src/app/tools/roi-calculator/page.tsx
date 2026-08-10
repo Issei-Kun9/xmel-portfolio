@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CalculatorClient from "./calculator-client";
+import Breadcrumbs from "@/components/shared/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Lead Response ROI Calculator | XMEL Automations",
@@ -79,14 +81,10 @@ export default function RoiCalculatorPage() {
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
         <div className="max-w-[900px] mx-auto px-6 lg:px-12 pt-32 pb-24">
-          {/* Back link */}
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors mb-12"
-          >
-            <span>←</span>
-            <span>BACK TO HOME</span>
-          </a>
+          {/* Breadcrumb */}
+          <div className="mb-10">
+            <Breadcrumbs items={[{ name: "Tools" }, { name: "ROI Calculator" }]} />
+          </div>
 
           {/* Header */}
           <div className="mb-16">
@@ -120,6 +118,37 @@ export default function RoiCalculatorPage() {
               Get in touch
               <span>→</span>
             </a>
+
+            <div className="mt-10 grid md:grid-cols-2 gap-4">
+              <a
+                href="/ai-automation-real-estate"
+                className="group block p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
+              >
+                <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] block mb-2">
+                  REAL ESTATE
+                </span>
+                <h2 className="font-display text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
+                  AI Automation for Real Estate Agents
+                </h2>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  See the AI inside sales agent behind these numbers.
+                </p>
+              </a>
+              <a
+                href="/ai-automation-home-services"
+                className="group block p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
+              >
+                <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] block mb-2">
+                  HOME SERVICES
+                </span>
+                <h2 className="font-display text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
+                  AI Automation for Home Services
+                </h2>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  The AI receptionist that stops missed calls from costing jobs.
+                </p>
+              </a>
+            </div>
           </div>
         </div>
       </main>

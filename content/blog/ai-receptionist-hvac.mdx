@@ -1,0 +1,76 @@
+---
+title: "AI Receptionist for HVAC & Plumbing Companies"
+seoTitle: "AI Receptionist for HVAC & Plumbing Companies"
+description: "What an AI receptionist actually handles for HVAC and plumbing companies — answering, qualifying, booking, and escalating, 24/7."
+date: "2026-07-22"
+readTime: "7 min read"
+tags: ["AI receptionist", "HVAC automation", "plumbing", "voice AI", "appointment booking"]
+category: "home-services"
+---
+
+Every HVAC and plumbing company has the same recurring cost: the phone. Not the bill — the *attention*. Someone has to be there to answer, qualify, and book, and when that someone is a human receptionist, the company pays for coverage it can't fully use and misses calls it can't afford to lose.
+
+An AI receptionist changes the cost structure. It answers every call, on the first ring, and it handles the full job — not just "taking a message." This post walks through what an AI receptionist for HVAC and plumbing actually does, based on the [home services automation system](/ai-automation-home-services) XMEL builds.
+
+## The receptionist's real job
+
+A receptionist does four things. Every one of them can be automated without losing quality:
+
+1. **Answer** — pick up, identify the business, be professional
+2. **Qualify** — figure out what the caller needs and how urgent it is
+3. **Book** — turn the conversation into a scheduled appointment
+4. **Route** — get the job to the right person, or escalate a real emergency
+
+The gap most companies feel isn't in any one of these — it's that a human can only do them during working hours, one call at a time. An AI receptionist does them concurrently, around the clock.
+
+## Answering: first ring, every ring
+
+The [AI voice receptionist](/ai-automation-home-services) runs on Vapi with ElevenLabs voice synthesis. It picks up on the first ring in a natural, human-sounding voice, and it handles the parts of phone conversations that break simple IVR systems:
+
+- **Interruptions** — the caller talks over it, and it recovers naturally
+- **Rephrasing** — it re-asks questions when an answer doesn't parse
+- **Background noise** — job-site calls and roadside emergencies don't derail it
+
+The caller experience is designed to be indistinguishable from a good human receptionist. That matters because homeowners call you in a state of mild panic — a robotic menu instantly tells them you're a company that routes calls, not a company that answers them.
+
+## Qualifying: the job, the location, the urgency
+
+This is where the AI differentiates itself from an old-school answering service. An answering service takes a message and promises a callback. The AI receptionist qualifies the job in the conversation:
+
+- **What's the problem** — it parses free-form descriptions ("water coming through the ceiling," "AC won't turn on")
+- **Where are you** — address and access details, captured for the crew
+- **How urgent is it** — the model classifies urgency from the description, not a menu prompt
+
+Qualification data flows into Google Sheets automatically, so the office has a structured record instead of a scribbled message.
+
+## Booking: real slots, not promises
+
+The booking step is what makes the system pay for itself. When the caller is ready, the AI:
+
+1. Checks Google Calendar for the next available slot matching the job type
+2. Books it in real time — no double-booking, because the calendar is the source of truth
+3. Sends a confirmation SMS with the appointment window and what to expect
+
+The caller hangs up with a booked job. No "we'll call you back." No phone tag. No lead that sits in a message log for three hours and goes to a competitor.
+
+## Escalating: emergencies reach a human instantly
+
+The hardest part of the receptionist job is knowing when to break out of the normal flow. The AI handles urgency classification during the conversation and has a defined escalation path:
+
+- **Detected emergency** → instant Twilio call to the on-call technician + Slack alert to the whole team
+- **High urgency but survivable** → earliest available slot, clearly flagged in the calendar and the notification
+- **Routine** → normal booking flow
+
+This is covered in more depth in the [missed call automation post](/blog/missed-call-automation-contractors), but the short version is: the crew learns to trust the escalation because it's grounded in the actual conversation, not a caller shouting "emergency" at a menu.
+
+## What it doesn't replace
+
+An AI receptionist is not the answer to every call situation. On-site dispatch coordination, complex multi-service quotes, and angry-customer de-escalation still warrant human involvement. The system is built to hand off cleanly — a caller can be transferred to a live agent at any point in the conversation.
+
+The realistic model is the one used in [voice AI vs human receptionist](/blog/voice-ai-agent-vs-human-isa): AI handles the volume — answering, qualifying, booking, escalating — and humans handle the judgment calls. Most companies find the AI ends up handling the majority of calls, precisely because most calls are routine.
+
+## The result
+
+For an HVAC or plumbing company, an AI receptionist means the phone is never the bottleneck. Calls get answered, jobs get qualified, appointments get booked, and emergencies reach a human instantly — without adding headcount or stretching a receptionist across two trades and three after-hours expectations.
+
+That's the system described in [AI automation for home services](/ai-automation-home-services). If you want to see what your current call handling is costing you, the [ROI calculator](/tools/roi-calculator) is the fastest way to quantify it.

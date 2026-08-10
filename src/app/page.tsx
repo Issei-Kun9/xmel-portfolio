@@ -27,6 +27,48 @@ export default function Home() {
       <main>
         <Hero />
         <Problem />
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-12">
+          <div className="grid md:grid-cols-2 gap-4">
+            <a
+              href="/ai-automation-real-estate"
+              className="group block p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
+            >
+              <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] block mb-3">
+                REAL ESTATE
+              </span>
+              <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
+                AI Automation for Real Estate Agents
+              </h2>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                An AI inside sales agent that qualifies portal leads in seconds,
+                responds in under 50 seconds, and books appointments.
+              </p>
+              <span className="inline-flex items-center gap-2 font-mono text-[12px] text-[var(--accent)] mt-4">
+                EXPLORE
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </a>
+            <a
+              href="/ai-automation-home-services"
+              className="group block p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
+            >
+              <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] block mb-3">
+                HOME SERVICES
+              </span>
+              <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
+                AI Automation for Home Services
+              </h2>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                An AI receptionist that answers every call, qualifies the job,
+                and books the slot — no more missed calls.
+              </p>
+              <span className="inline-flex items-center gap-2 font-mono text-[12px] text-[var(--accent)] mt-4">
+                EXPLORE
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </a>
+          </div>
+        </div>
         <Booking />
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-8">
           <a

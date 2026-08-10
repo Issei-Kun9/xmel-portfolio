@@ -1,0 +1,88 @@
+---
+title: "How an AI ISA Qualifies Real Estate Leads in Seconds"
+seoTitle: "How an AI ISA Qualifies Real Estate Leads in Seconds"
+description: "Inside the AI lead qualification layer — how GPT-4o-mini scores intent, the signals it reads, and how scores route leads to the right outreach."
+date: "2026-07-20"
+readTime: "6 min read"
+tags: ["AI ISA", "real estate automation", "lead qualification", "GPT-4o-mini"]
+category: "real-estate"
+---
+
+Every real estate lead response system has the same bottleneck: **qualification**. Anyone can send an instant "thanks, I'll get back to you" — but that does nothing to move a lead toward a booking. The part that actually matters is figuring out, in the first few seconds, who is ready to buy and who is just browsing.
+
+This post walks through the qualification layer of the AI ISA system described in our [AI automation for real estate](/ai-automation-real-estate) solution — how it scores leads, what signals it reads, and how the score decides what happens next.
+
+## Why qualification is the make-or-break step
+
+Raw lead volume is not the problem in real estate. The problem is that most agents respond to every lead the same way, which means hot buyers and cold browsers get the same treatment. A hot buyer calling about a specific property wants a live call. A cold browser asking a general question wants information, not a phone call at 9 AM.
+
+The AI qualification layer exists to make that split automatically. It runs in **under 3 seconds per lead** — fast enough that it never adds meaningful latency to the [under-50-second response](/blog/ai-lead-response-real-estate) the system is designed for.
+
+## The scoring model: 0 to 100
+
+The qualification layer returns a lead score from 0-100, and the system is designed around three bands:
+
+- **80-100 (hot):** Immediate Twilio voice call from an AI agent, plus a follow-up SMS with a booking link.
+- **50-79 (warm):** Personalized WhatsApp or SMS conversation with a booking link and relevant property info.
+- **Below 50 (cold):** Enter a scheduled nurture sequence — no intrusive outreach, just periodic re-engagement.
+
+The bands aren't arbitrary. They map to a simple decision: does this lead justify a live voice conversation, a written conversation, or time-based nurturing?
+
+## What signals the AI actually reads
+
+The qualification prompt is engineered to extract structured data from unstructured lead messages. The core signals:
+
+- **Budget range** — explicit mentions ("under ₹2 crore") or inferred from the properties being viewed
+- **Timeline** — when they want to move. This is the single strongest intent signal
+- **Location preferences** — specific areas vs. open-ended
+- **Motivation** — first-time buyer, upsizing, investment, relocation
+- **Specificity** — a lead asking about a specific project or unit is hotter than one asking "what's available?"
+- **Response style** — how much context they gave, whether they asked questions that suggest real intent
+
+These get combined into a score plus a short justification string, so you can always see *why* a lead was routed the way it was.
+
+## A real lead, end to end
+
+Here's how the layer processes a typical portal inquiry:
+
+1. The lead arrives from MagicBricks or 99acres via a [webhook trigger](/blog/n8n-workflow-automation-guide), normalized into the standard lead format.
+2. GPT-4o-mini extracts structured data and assigns the score in one pass.
+3. A hot lead triggers the voice call path immediately — no waiting for business hours.
+4. The same workflow logs the score, the key signals, and the chosen action to Google Sheets.
+5. A Slack notification tells the agent a hot lead is being called, so they can review the transcript when they're free.
+
+## The prompt architecture
+
+The qualification prompt is deliberately structured to return consistent JSON:
+
+```
+You are a lead qualification AI for a real estate agency.
+Analyze the following lead data and return a JSON response with:
+- lead_score: 0-100 (intent to purchase)
+- qualification: "hot" | "warm" | "cold"
+- key_signals: array of intent indicators
+- recommended_action: next step
+- response_draft: personalized message
+```
+
+Prompt design matters more than model choice here. GPT-4o-mini is fast and cheap enough to run on every lead, which is exactly why the architecture uses it — the qualification layer is stateless and runs hundreds of times a day without meaningful cost.
+
+## How score-based routing flows through the system
+
+The score isn't just a number on a dashboard — it drives the entire outreach graph:
+
+- **Hot → voice:** a live AI conversation, because high-intent leads convert through dialogue, not text
+- **Warm → WhatsApp/SMS:** written outreach that's personal but non-intrusive
+- **Cold → nurture:** scheduled re-engagement, so you stay top-of-mind without being annoying
+
+This routing is where the [67-node n8n architecture](/blog/n8n-workflow-automation-guide) earns its keep. Branching logic, retries, and fallbacks (voice call fails → SMS fallback) all live in the workflow layer, not in the prompt.
+
+## Getting the threshold right
+
+The hot/warm/cold thresholds are configurable per client. A new builder flooding the market with inventory might want a lower hot threshold because volume is high. A boutique agency handling few, high-value leads might raise it. The important design decision is that the score and the routing are separate — you can tune the bands without touching the prompt.
+
+## Where the human still comes in
+
+Qualification automation handles the *first* qualification: budget, timeline, motivation. What it deliberately does not do is negotiate, handle multi-round deal structuring, or build long-term relationships — those stay with human agents, as covered in [voice AI vs human ISA](/blog/voice-ai-agent-vs-human-isa).
+
+The result is a clean handoff: the AI finds and qualifies the serious buyers, books the appointment, and the human shows up to the conversation already knowing exactly where the buyer stands. That's the point of the whole [AI ISA system](/ai-automation-real-estate) — not replacing the agent, but making sure every minute of the agent's time is spent on someone ready to buy.

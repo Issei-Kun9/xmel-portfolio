@@ -9,6 +9,7 @@ const graph = schemaGraph([
     "@type": "Organization",
     name: "XMEL Automations",
     url: siteUrl,
+    foundingDate: "2026",
     description:
       "AI automation agency building autonomous lead response systems, voice AI agents, and n8n workflow automations for real estate agents and home services contractors.",
     founder: {

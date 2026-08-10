@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getPost, getAllPosts } from "@/lib/blog";
+import { getPost, getAllPosts, CATEGORY_LABELS } from "@/lib/blog";
+import Breadcrumbs from "@/components/shared/breadcrumbs";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -48,6 +49,10 @@ export default async function BlogPost({ params }: Props) {
   const post = getPost(slug);
   if (!post) notFound();
 
+  const related = getAllPosts()
+    .filter((p) => p.slug !== slug && p.category === post.category)
+    .slice(0, 3);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -66,6 +71,7 @@ export default async function BlogPost({ params }: Props) {
     },
     url: `https://xmelautomations.xyz/blog/${post.slug}`,
     keywords: post.tags.join(", "),
+    articleSection: CATEGORY_LABELS[post.category],
   };
 
   return (
@@ -77,14 +83,16 @@ export default async function BlogPost({ params }: Props) {
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
         <article className="max-w-[800px] mx-auto px-6 lg:px-12 pt-32 pb-24">
-          {/* Back link */}
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors mb-12"
-          >
-            <span>←</span>
-            <span>ALL POSTS</span>
-          </Link>
+          {/* Breadcrumb */}
+          <div className="mb-10">
+            <Breadcrumbs
+              items={[
+                { name: "Blog", href: "/blog" },
+                { name: CATEGORY_LABELS[post.category], href: "/blog" },
+                { name: post.title },
+              ]}
+            />
+          </div>
 
           {/* Meta */}
           <div className="flex items-center gap-4 mb-6">
@@ -100,6 +108,12 @@ export default async function BlogPost({ params }: Props) {
             </span>
             <span className="font-mono text-[12px] text-[var(--text-tertiary)]">
               {post.readTime}
+            </span>
+            <span className="font-mono text-[12px] text-[var(--text-tertiary)]">
+              ·
+            </span>
+            <span className="font-mono text-[12px] text-[var(--accent)]">
+              {CATEGORY_LABELS[post.category]}
             </span>
           </div>
 
@@ -141,6 +155,39 @@ export default async function BlogPost({ params }: Props) {
               <span>→</span>
             </Link>
           </div>
+
+          {/* Related articles */}
+          {related.length > 0 && (
+            <div className="mt-16">
+              <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+                RELATED READING
+              </span>
+              <div className="mt-6 grid gap-4">
+                {related.map((r) => (
+                  <Link
+                    key={r.slug}
+                    href={`/blog/${r.slug}`}
+                    className="group block p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
+                  >
+                    <div className="flex items-center gap-4 mb-3">
+                      <span className="font-mono text-[12px] text-[var(--text-tertiary)]">
+                        {r.readTime}
+                      </span>
+                      <span className="font-mono text-[12px] text-[var(--accent)]">
+                        {CATEGORY_LABELS[r.category]}
+                      </span>
+                    </div>
+                    <h2 className="font-display text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
+                      {r.title}
+                    </h2>
+                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                      {r.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </article>
       </main>
     </>

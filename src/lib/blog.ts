@@ -4,6 +4,14 @@ import matter from "gray-matter";
 
 const postsDir = path.join(process.cwd(), "content/blog");
 
+export type PostCategory = "real-estate" | "home-services" | "automation";
+
+export const CATEGORY_LABELS: Record<PostCategory, string> = {
+  "real-estate": "Real Estate",
+  "home-services": "Home Services",
+  automation: "Automation",
+};
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -12,6 +20,7 @@ export interface BlogPost {
   date: string;
   readTime: string;
   tags: string[];
+  category: PostCategory;
   content: string;
 }
 
@@ -31,6 +40,7 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
       date: data.date,
       readTime: data.readTime,
       tags: data.tags || [],
+      category: data.category || "automation",
     };
   });
 
@@ -52,6 +62,7 @@ export function getPost(slug: string): BlogPost | null {
     date: data.date,
     readTime: data.readTime,
     tags: data.tags || [],
+    category: data.category || "automation",
     content,
   };
 }
