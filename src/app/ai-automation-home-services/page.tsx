@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     "HVAC lead automation",
     "plumbing lead response automation",
     "emergency call escalation AI",
+    "AI receptionist Phoenix",
+    "missed call automation Houston",
+    "AI automation for home services Atlanta",
   ],
   openGraph: {
     title: "AI Automation for Home Services | AI Receptionist",
@@ -123,8 +126,7 @@ export default function AiAutomationHomeServicesPage() {
               WHAT THE SYSTEM DOES
             </span>
             <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              A receptionist that never misses a call — plus the parts a human
-              can&apos;t do
+              AI automation for home services: a receptionist that never misses a call
             </h2>
 
             <div className="grid md:grid-cols-2 gap-4">

@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
@@ -39,95 +35,49 @@ const faqs = [
   },
 ];
 
-function FaqItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.05 }}
-      className="border-b border-[var(--border-subtle)]"
-    >
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-5 text-left group"
-      >
-        <span className="font-mono text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-200 pr-4">
-          {faq.q}
-        </span>
-        <ChevronDown
-          className={`w-4 h-4 text-[var(--text-tertiary)] flex-shrink-0 transition-transform duration-200 ${
-            open ? "rotate-180 text-[var(--accent)]" : ""
-          }`}
-        />
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="overflow-hidden"
-          >
-            <p className="pb-5 text-[var(--text-secondary)] text-sm leading-relaxed">
-              {faq.a}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
 export default function Faq() {
   return (
     <section id="faq" className="relative py-24 lg:py-32">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-6"
-            >
+            <div className="mb-6">
               <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
                 FAQ
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-6"
-            >
+            <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-6">
               Questions about AI automation.
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-[var(--text-secondary)] text-base leading-relaxed max-w-md"
-            >
+            <p className="text-[var(--text-secondary)] text-base leading-relaxed max-w-md">
               Everything you need to know about AI lead response automation,
               voice AI agents, and n8n workflow systems. Can&apos;t find your
               question?{" "}
               <a href="#contact" className="text-[var(--accent)] hover:underline">
                 Ask me directly.
               </a>
-            </motion.p>
+            </p>
           </div>
 
           <div>
             {faqs.map((faq, i) => (
-              <FaqItem key={i} faq={faq} index={i} />
+              <details
+                key={i}
+                className="group border-b border-[var(--border-subtle)]"
+                {...(i === 0 ? { open: true } : {})}
+              >
+                <summary className="w-full flex items-center justify-between py-5 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <span className="font-mono text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-200 pr-4">
+                    {faq.q}
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-[var(--text-tertiary)] flex-shrink-0 transition-transform duration-200 group-open:rotate-180 group-open:text-[var(--accent)]" />
+                </summary>
+                <p className="pb-5 text-[var(--text-secondary)] text-sm leading-relaxed">
+                  {faq.a}
+                </p>
+              </details>
             ))}
           </div>
         </div>

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 const archNodes = [
   { id: "lead", label: "LEAD IN", tech: "Webhook / Form / Call", x: 0, y: 90 },
@@ -130,42 +129,30 @@ export default function System() {
   const [activeVertical, setActiveVertical] = useState<"realEstate" | "homeServices">("realEstate");
   const [leads, setLeads] = useState(50);
   const [commission, setCommission] = useState(15000);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
 
   const v = verticals[activeVertical];
   const annualRecovered = Math.round(leads * (commission / 100) * 0.34 * 12);
 
   return (
-    <section id="isa-system" ref={ref} className="relative py-24 lg:py-32 bg-[var(--bg-secondary)]">
+    <section id="isa-system" className="relative py-24 lg:py-32 bg-[var(--bg-secondary)]">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16">
           <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             THE SYSTEM
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
             AI Inside Sales Agent for Real Estate &amp; Home Services
           </h2>
-        </motion.div>
+        </div>
 
         {/* Architecture diagram */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 p-6 lg:p-8 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)]"
-        >
+        <div className="mb-12 p-6 lg:p-8 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)]">
           <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
             SYSTEM ARCHITECTURE — 67 NODES / 7 WEBHOOKS
           </div>
           <ArchitectureDiagram />
-        </motion.div>
+        </div>
 
         {/* Tabs */}
         <div className="mb-10">
@@ -182,59 +169,41 @@ export default function System() {
               >
                 {verticals[key].title}
                 {activeVertical === key && (
-                  <motion.div
-                    layoutId="tab-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-px bg-[var(--accent)]"
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                  />
+                  <span className="absolute bottom-0 left-0 right-0 h-px bg-[var(--accent)]" />
                 )}
               </button>
             ))}
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeVertical}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-              className="mt-8"
+          <div className="mt-8" style={{ animation: "fade-slide-up 0.25s ease both" }}>
+            <p className="text-[var(--text-secondary)] text-base leading-relaxed max-w-2xl mb-8">
+              {v.description}
+            </p>
+
+            <a
+              href="/blog/n8n-workflow-automation-guide"
+              className="inline-block mb-8 font-mono text-xs uppercase tracking-[0.12em] text-[var(--accent)] hover:opacity-80 transition-opacity duration-200"
             >
-              <p className="text-[var(--text-secondary)] text-base leading-relaxed max-w-2xl mb-8">
-                {v.description}
-              </p>
+              Read the n8n workflow build guide →
+            </a>
 
-              <a
-                href="/blog/n8n-workflow-automation-guide"
-                className="inline-block mb-8 font-mono text-xs uppercase tracking-[0.12em] text-[var(--accent)] hover:opacity-80 transition-opacity duration-200"
-              >
-                Read the n8n workflow build guide →
-              </a>
-
-              <div className="grid grid-cols-3 gap-6">
-                {v.stats.map((stat) => (
-                  <div key={stat.label}>
-                    <div className="font-mono text-xl lg:text-2xl font-bold text-[var(--accent)]">
-                      {stat.value}
-                    </div>
-                    <div className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-1">
-                      {stat.label}
-                    </div>
+            <div className="grid grid-cols-3 gap-6">
+              {v.stats.map((stat) => (
+                <div key={stat.label}>
+                  <div className="font-mono text-xl lg:text-2xl font-bold text-[var(--accent)]">
+                    {stat.value}
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                  <div className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-1">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* ROI Calculator */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="p-6 lg:p-8 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)]"
-        >
+        <div className="p-6 lg:p-8 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)]">
           <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-6">
             ROI CALCULATOR
           </div>
@@ -301,7 +270,7 @@ export default function System() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

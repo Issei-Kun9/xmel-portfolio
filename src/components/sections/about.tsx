@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const skills = [
   "n8n", "GPT-4o", "Twilio", "Vapi", "ElevenLabs", "Python", "Node.js",
   "TypeScript", "PostgreSQL", "Supabase", "Google Workspace", "Slack API",
@@ -16,34 +12,19 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left — bio */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-6"
-            >
+            <div className="mb-6">
               <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
                 ABOUT
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <h2
               className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-8"
             >
               I build AI automation systems, not slides.
-            </motion.h2>
+            </h2>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="space-y-4 text-[var(--text-secondary)] leading-relaxed"
-            >
+            <div className="space-y-4 text-[var(--text-secondary)] leading-relaxed">
               <p>
                 Solo AI automation engineer building autonomous lead response systems 
                 for real estate agents and home services contractors. Every system — 
@@ -74,18 +55,13 @@ export default function About() {
                   <span className="text-base">→</span>
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right — terminal + skill cloud */}
           <div className="space-y-8">
             {/* Terminal */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-subtle)] overflow-hidden"
-            >
+            <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-subtle)] overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--border-subtle)]">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
@@ -102,15 +78,10 @@ export default function About() {
                 <div className="text-[var(--text-secondary)]">and home services clients.</div>
                 <div className="text-[var(--accent)] mt-2 cursor-blink">$</div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Skill cloud */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 }}
-            >
+            <div>
               <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
                 STACK & SKILLS
               </div>
@@ -129,7 +100,7 @@ export default function About() {
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

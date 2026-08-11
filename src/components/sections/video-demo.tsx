@@ -1,21 +1,8 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-
 export default function VideoDemo() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section className="relative py-24 lg:py-32">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-10"
-        >
+        <div className="mb-10">
           <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             SEE THE DIFFERENCE
           </span>
@@ -25,15 +12,9 @@ export default function VideoDemo() {
           <p className="font-mono text-sm text-[var(--text-secondary)] mt-3">
             Real screen recordings — the system running live.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)] max-w-4xl mx-auto"
-        >
+        <div className="relative rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)] max-w-4xl mx-auto">
           <div className="flex items-center gap-2 px-4 py-3 bg-[var(--bg-tertiary)] border-b border-[var(--border-subtle)]">
             <span className="w-3 h-3 rounded-full bg-[rgba(255,95,86,0.8)]" />
             <span className="w-3 h-3 rounded-full bg-[rgba(255,189,46,0.8)]" />
@@ -56,7 +37,7 @@ export default function VideoDemo() {
               Same lead, same day — before ISA vs. after
             </span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,16 +1,8 @@
-"use client";
-
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { PhoneOff, Database, Clock } from "lucide-react";
 
 function DecayChart() {
-  const ref = useRef<SVGSVGElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <svg
-      ref={ref}
       viewBox="0 0 400 250"
       className="w-full h-auto"
       fill="none"
@@ -24,23 +16,17 @@ function DecayChart() {
       ))}
 
       {/* Decay curve */}
-      <motion.path
+      <path
         d="M 0 30 C 60 35, 100 80, 140 160 S 240 230, 400 240"
         stroke="var(--accent)"
         strokeWidth="2"
         strokeLinecap="round"
-        initial={{ pathLength: 0 }}
-        animate={isInView ? { pathLength: 1 } : {}}
-        transition={{ duration: 1.5, ease: "easeOut" }}
       />
 
       {/* Area fill */}
-      <motion.path
+      <path
         d="M 0 30 C 60 35, 100 80, 140 160 S 240 230, 400 240 L 400 250 L 0 250 Z"
         fill="url(#decay-gradient)"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ delay: 0.8, duration: 0.8 }}
       />
 
       <defs>
@@ -57,12 +43,7 @@ function DecayChart() {
         { x: 200, y: 190, label: "30 min", val: "10%" },
         { x: 320, y: 235, label: "60 min", val: "2%" },
       ].map((pt) => (
-        <motion.g
-          key={pt.label}
-          initial={{ opacity: 0, y: 10 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5 }}
-        >
+        <g key={pt.label}>
           <circle cx={pt.x} cy={pt.y} r="4" fill="var(--bg-primary)" stroke="var(--accent)" strokeWidth="2" />
           <text x={pt.x} y={pt.y - 12} textAnchor="middle" fill="var(--accent)" fontSize="11" fontFamily="monospace" fontWeight="600">
             {pt.val}
@@ -70,7 +51,7 @@ function DecayChart() {
           <text x={pt.x} y={248} textAnchor="middle" fill="var(--text-tertiary)" fontSize="9" fontFamily="monospace">
             {pt.label}
           </text>
-        </motion.g>
+        </g>
       ))}
 
       <text x="0" y="248" fill="var(--text-tertiary)" fontSize="9" fontFamily="monospace">LEAD VALUE</text>
@@ -102,50 +83,33 @@ export default function Problem() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-6"
-            >
+            <div className="mb-6">
               <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
                 The Problem
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <h2
               className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-6"
             >
               Your leads are dying in 5 minutes.
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <p
               className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-lg mb-12"
             >
               The average real estate agent takes 47 hours to respond to a lead. 
               In that time, 78% go with whoever answered first. Every missed call 
               is a commission check walking out the door.
-            </motion.p>
+            </p>
 
             <DecayChart />
           </div>
 
           <div className="space-y-6 lg:pt-12">
-            {painPoints.map((point, i) => (
-              <motion.div
+            {painPoints.map((point) => (
+              <div
                 key={point.title}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 * i }}
                 className="p-6 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-subtle)] border-l-2 border-l-[var(--warning)]"
               >
                 <div className="flex items-start gap-4">
@@ -161,7 +125,7 @@ export default function Problem() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

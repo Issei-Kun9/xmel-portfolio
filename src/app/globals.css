@@ -170,6 +170,24 @@ html {
   animation: blink 1s step-end infinite;
 }
 
+/* Nav slide-down entrance */
+@keyframes nav-drop {
+  0% { transform: translateY(-80px); }
+  100% { transform: translateY(0); }
+}
+
+/* Simple fade-in */
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Dropdown fade-in */
+@keyframes dropdown-in {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 /* Status pill pulse */
 @keyframes status-pulse {
   0%, 100% { opacity: 1; }
@@ -465,4 +483,10 @@ html {
 @keyframes pulse-ring {
   0% { opacity: 1; transform: scale(1); }
   100% { opacity: 0; transform: scale(1.08); }
+}
+
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
 }

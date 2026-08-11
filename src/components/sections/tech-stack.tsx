@@ -1,5 +1,3 @@
-"use client";
-
 const tools = [
   "n8n",
   "Twilio",

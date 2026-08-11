@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -40,28 +37,19 @@ export default function Testimonials() {
   return (
     <section className="relative py-24 lg:py-32 bg-[var(--bg-secondary)]">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16">
           <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
             CLIENT RESULTS
           </span>
           <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4">
             Don&apos;t take our word for it.
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-4">
-          {testimonials.map((t, i) => (
-            <motion.div
+          {testimonials.map((t) => (
+            <div
               key={t.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
               className="group relative p-6 lg:p-8 bg-[var(--bg-primary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all duration-300"
             >
               <div className="flex gap-0.5 mb-5">
@@ -97,7 +85,7 @@ export default function Testimonials() {
                   {t.metric}
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

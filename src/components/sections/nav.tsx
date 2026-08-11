@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -49,15 +48,13 @@ export default function Nav() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      <nav
         className={`fixed top-0 left-0 right-0 z-50 h-[72px] transition-all duration-300 ${
           scrolled
             ? "bg-[rgba(10,10,11,0.7)] backdrop-blur-[16px] border-b border-[rgba(255,255,255,0.08)]"
             : "bg-transparent"
         }`}
+        style={{ animation: "nav-drop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both" }}
       >
         <div className="max-w-[1400px] mx-auto h-full px-6 lg:px-12 flex items-center justify-between">
           <a href="#home" className="flex items-center gap-0">
@@ -105,34 +102,29 @@ export default function Nav() {
                 <span className="absolute bottom-0 left-0 h-px bg-[var(--accent)] w-0 group-hover:w-full transition-all duration-200" />
               </button>
 
-              <AnimatePresence>
-                {solutionsOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute right-0 top-full pt-3 w-[280px]"
-                  >
-                    <div className="bg-[var(--bg-secondary)] border border-[var(--border-subtle)] rounded-lg p-2 shadow-2xl">
-                      {solutionsLinks.map((s) => (
-                        <a
-                          key={s.href}
-                          href={s.href}
-                          className="block px-4 py-3 rounded-md hover:bg-[var(--bg-tertiary)] transition-colors duration-200"
-                        >
-                          <span className="block font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--accent)] mb-1">
-                            {s.name}
-                          </span>
-                          <span className="block text-xs text-[var(--text-secondary)] leading-snug">
-                            {s.desc}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {solutionsOpen && (
+                <div
+                  className="absolute right-0 top-full pt-3 w-[280px]"
+                  style={{ animation: "dropdown-in 0.15s ease both" }}
+                >
+                  <div className="bg-[var(--bg-secondary)] border border-[var(--border-subtle)] rounded-lg p-2 shadow-2xl">
+                    {solutionsLinks.map((s) => (
+                      <a
+                        key={s.href}
+                        href={s.href}
+                        className="block px-4 py-3 rounded-md hover:bg-[var(--bg-tertiary)] transition-colors duration-200"
+                      >
+                        <span className="block font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--accent)] mb-1">
+                          {s.name}
+                        </span>
+                        <span className="block text-xs text-[var(--text-secondary)] leading-snug">
+                          {s.desc}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -153,86 +145,73 @@ export default function Nav() {
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-[var(--bg-primary)] flex flex-col"
-          >
-            <div className="h-[72px] px-6 flex items-center justify-between">
-              <span className="font-mono text-sm font-medium text-[var(--text-primary)]">
-                <span className="text-[var(--accent)]">&gt;</span> MENU
-              </span>
-              <button
-                onClick={() => setMobileOpen(false)}
-                className="text-[var(--text-secondary)] p-2"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-[60] bg-[var(--bg-primary)] flex flex-col"
+          style={{ animation: "fade-in 0.3s ease both" }}
+        >
+          <div className="h-[72px] px-6 flex items-center justify-between">
+            <span className="font-mono text-sm font-medium text-[var(--text-primary)]">
+              <span className="text-[var(--accent)]">&gt;</span> MENU
+            </span>
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="text-[var(--text-secondary)] p-2"
+              aria-label="Close menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
 
-            <div className="flex-1 flex flex-col justify-center px-8 gap-2">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -30 }}
-                  transition={{ delay: i * 0.06, duration: 0.4 }}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-mono text-3xl font-light text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors py-3 border-b border-[var(--border-subtle)]"
-                >
-                  {link.name}
-                </motion.a>
-              ))}
-
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -30 }}
-                transition={{ delay: navLinks.length * 0.06, duration: 0.4 }}
-                className="pt-4"
-              >
-                <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-                  Solutions
-                </span>
-                <div className="mt-3 space-y-1">
-                  {solutionsLinks.map((s) => (
-                    <motion.a
-                      key={s.href}
-                      href={s.href}
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -30 }}
-                      transition={{ delay: (navLinks.length + 1) * 0.06, duration: 0.4 }}
-                      onClick={() => setMobileOpen(false)}
-                      className="block font-mono text-xl font-light text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-2"
-                    >
-                      {s.name}
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            <div className="px-8 pb-12">
+          <div className="flex-1 flex flex-col justify-center px-8 gap-2">
+            {navLinks.map((link, i) => (
               <a
-                href="#contact"
+                key={link.name}
+                href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block w-full py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-mono text-sm text-center font-medium rounded hover:opacity-90 transition-opacity"
+                className="font-mono text-3xl font-light text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors py-3 border-b border-[var(--border-subtle)]"
+                style={{ animation: `fade-slide-up 0.4s ease ${i * 0.06}s both` }}
               >
-                START A PROJECT
+                {link.name}
               </a>
+            ))}
+
+            <div
+              className="pt-4"
+              style={{ animation: `fade-slide-up 0.4s ease ${navLinks.length * 0.06}s both` }}
+            >
+              <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
+                Solutions
+              </span>
+              <div className="mt-3 space-y-1">
+                {solutionsLinks.map((s, i) => (
+                  <a
+                    key={s.href}
+                    href={s.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block font-mono text-xl font-light text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-2"
+                    style={{ animation: `fade-slide-up 0.4s ease ${(navLinks.length + 1 + i) * 0.06}s both` }}
+                  >
+                    {s.name}
+                  </a>
+                ))}
+              </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+
+          <div className="px-8 pb-12">
+            <a
+              href="#contact"
+              onClick={() => setMobileOpen(false)}
+              className="block w-full py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-mono text-sm text-center font-medium rounded hover:opacity-90 transition-opacity"
+            >
+              START A PROJECT
+            </a>
+          </div>
+        </div>
+      )}
     </>
   );
 }

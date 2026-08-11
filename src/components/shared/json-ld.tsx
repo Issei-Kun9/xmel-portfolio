@@ -3,6 +3,29 @@ import { person, faqPage, webSite, service, localBusiness, schemaGraph, toJsonLd
 
 const siteUrl = "https://xmelautomations.xyz";
 
+const US_CITIES = [
+  "Miami",
+  "Austin",
+  "Phoenix",
+  "Tampa",
+  "Orlando",
+  "Dallas",
+  "Houston",
+  "Atlanta",
+  "Charlotte",
+  "Denver",
+];
+
+const areaServedMetros = US_CITIES.map((name) => ({
+  "@type": "City",
+  name,
+}));
+
+const areaServed = [
+  ...areaServedMetros,
+  { "@type": "Country", name: "India" },
+];
+
 const graph = schemaGraph([
   {
     "@context": "https://schema.org",
@@ -24,7 +47,6 @@ const graph = schemaGraph([
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      email: "yashwardhan@xmelautomations.xyz",
       telephone: "+91-7905214791",
       contactType: "customer service",
       areaServed: ["US", "IN"],
@@ -143,10 +165,7 @@ const graph = schemaGraph([
     description:
       "AI automation agency specializing in lead response automation, voice AI agents, and n8n workflow automations for real estate and home services.",
     telephone: "+91-7905214791",
-    areaServed: [
-      { "@type": "Country", name: "India" },
-      { "@type": "Country", name: "United States" },
-    ],
+    areaServed,
     serviceType: [
       "AI Automation",
       "Voice AI Development",

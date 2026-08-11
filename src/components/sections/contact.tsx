@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import MailtoLink from "@/components/shared/mailto-link";
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
 
 const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
+
+const CONTACT_EMAIL = "yashwardhan@xmelautomations.xyz";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", project: "", message: "" });
@@ -67,62 +68,33 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-6"
-            >
+            <div className="mb-6">
               <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
                 CONTACT
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-6"
-            >
+            <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-6">
               Let&apos;s build your lead-response system.
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-lg mb-8"
-            >
+            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-lg mb-8">
               Whether you&apos;re a real estate agent losing leads to slow response
               times or a home services contractor missing calls — I can build the
               system that fixes it.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="mb-8"
-            >
+            <div className="mb-8">
               <MailtoLink
-                email="yashwardhan@xmelautomations.xyz"
+                email={CONTACT_EMAIL}
                 className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
               >
                 <span className="font-mono text-[12px] text-[var(--text-tertiary)] w-16">EMAIL</span>
-                <span className="font-mono text-sm">yashwardhan@xmelautomations.xyz</span>
+                <span className="font-mono text-sm">{CONTACT_EMAIL}</span>
               </MailtoLink>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35 }}
-              className="mb-8"
-            >
+            <div className="mb-8">
               <a
                 href="tel:+917905214791"
                 className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
@@ -130,15 +102,9 @@ export default function Contact() {
                 <span className="font-mono text-[12px] text-[var(--text-tertiary)] w-16">PHONE</span>
                 <span className="font-mono text-sm">+91 79052 14791</span>
               </a>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35 }}
-              className="flex flex-wrap gap-3 mb-8"
-            >
+            <div className="flex flex-wrap gap-3 mb-8">
               <a
                 href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"
                 target="_blank"
@@ -161,28 +127,18 @@ export default function Contact() {
                 </svg>
                 Instagram
               </a>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(74,222,128,0.3)] bg-[rgba(74,222,128,0.06)]"
-            >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(74,222,128,0.3)] bg-[rgba(74,222,128,0.06)]">
               <span className="w-2 h-2 rounded-full bg-[var(--success)] status-pulse" />
               <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--success)]">
                 AVAILABLE FOR PROJECTS
               </span>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right — terminal form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <div className="bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)] p-6 lg:p-8">
               <div className="flex items-center gap-2 mb-6">
                 <span className="font-mono text-[var(--accent)]">$</span>
@@ -190,7 +146,7 @@ export default function Contact() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <input type="hidden" name="botcheck" style={{ display: "none" }} />
+                <input type="hidden" name="botcheck" hidden />
 
                 <div className="input-line">
                   <label
@@ -302,7 +258,7 @@ export default function Contact() {
                 )}
               </form>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,160 +1,20 @@
-"use client";
-
-import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-
-const terminalScenarios = [
-  [
-    "> new_lead.trigger()",
-    "> qualifying via GPT-4o-mini...",
-    "> lead_score: 87/100",
-    "> booking_confirmed: Tue 3:00 PM",
-    "> slack.notify(agent) ✓",
-  ],
-  [
-    "> whatsapp.message_received",
-    "> bot.qualify(lead_info)",
-    "> score: 92 → HIGH INTENT",
-    "> calendar.book(thursday, 2pm)",
-    "> crm.sync() ✓",
-  ],
-  [
-    "> incoming_call → vapi.answer()",
-    "> ai.converse(qualify_script)",
-    "> sentiment: positive",
-    "> twilio.send_sms(booking_link)",
-    "> n8n.webhook() ✓",
-  ],
-  [
-    "> lead.form_submit()",
-    "> gpt.score(contextual_data)",
-    "> response_time: < 47s",
-    "> appointment_set ✓",
-    "> follow_up.scheduled(24h) ✓",
-  ],
+const terminalLines = [
+  "> new_lead.trigger()",
+  "> qualifying via GPT-4o-mini...",
+  "> lead_score: 87/100",
+  "> booking_confirmed: Tue 3:00 PM",
+  "> slack.notify(agent) ✓",
 ];
 
-function TerminalWidget() {
-  const [scenarioIdx, setScenarioIdx] = useState(0);
-  const [lineIdx, setLineIdx] = useState(0);
-  const [charIdx, setCharIdx] = useState(0);
-  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
-  const rootRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let visible = true;
-    const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-    });
-    if (rootRef.current) observer.observe(rootRef.current);
-
-    let timer: ReturnType<typeof setTimeout> | undefined;
-
-    const tick = () => {
-      if (!visible || document.hidden) return;
-      const scenario = terminalScenarios[scenarioIdx];
-      if (lineIdx >= scenario.length) {
-        timer = setTimeout(() => {
-          setScenarioIdx((prev) => (prev + 1) % terminalScenarios.length);
-          setLineIdx(0);
-          setCharIdx(0);
-          setDisplayedLines([]);
-        }, 3000);
-        return;
-      }
-
-      const currentLine = scenario[lineIdx];
-      if (charIdx < currentLine.length) {
-        timer = setTimeout(() => {
-          setDisplayedLines((prev) => {
-            const updated = [...prev];
-            updated[lineIdx] = currentLine.slice(0, charIdx + 1);
-            return updated;
-          });
-          setCharIdx(charIdx + 1);
-        }, 18);
-        return;
-      }
-
-      timer = setTimeout(() => {
-        setLineIdx(lineIdx + 1);
-        setCharIdx(0);
-      }, 200);
-    };
-
-    tick();
-    const onVisibility = () => {
-      if (document.hidden) {
-        clearTimeout(timer);
-      } else {
-        clearTimeout(timer);
-        tick();
-      }
-    };
-    document.addEventListener("visibilitychange", onVisibility);
-
-    return () => {
-      observer.disconnect();
-      document.removeEventListener("visibilitychange", onVisibility);
-      clearTimeout(timer);
-    };
-  }, [scenarioIdx, lineIdx, charIdx]);
-
-  return (
-    <div
-      ref={rootRef}
-      className="w-full max-w-md bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-subtle)] overflow-hidden"
-    >      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--border-subtle)]">
-        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-        <span className="font-mono text-[12px] text-[var(--text-tertiary)] ml-2">isa-system</span>
-      </div>
-      <div className="p-4 font-mono text-[12px] sm:text-[13px] leading-relaxed min-h-[140px] sm:min-h-[180px]">
-        {displayedLines.map((line, i) => (
-          <div key={i} className="flex">
-            <span className="text-[var(--accent)] mr-2 select-none">$</span>
-            <span className="text-[var(--text-secondary)]">
-              {line}
-              {i === lineIdx && charIdx >= line.length && i === terminalScenarios[scenarioIdx].length - 1 && (
-                <span className="text-[var(--accent)] cursor-blink ml-0.5">_</span>
-              )}
-            </span>
-          </div>
-        ))}
-        {lineIdx < terminalScenarios[scenarioIdx].length && (
-          <div className="flex">
-            <span className="text-[var(--accent)] mr-2 select-none">$</span>
-            <span className="text-[var(--text-secondary)]">
-              {terminalScenarios[scenarioIdx][lineIdx].slice(0, charIdx)}
-              <span className="text-[var(--accent)] cursor-blink">_</span>
-            </span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+const headlineLines = [
+  "I build AI systems that",
+  "answer leads before",
+  "your competitors wake up.",
+];
 
 export default function Hero() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const headlineLines = [
-    "I build AI systems that",
-    "answer leads before",
-    "your competitors wake up.",
-  ];
-
   return (
     <section
-      ref={ref}
       id="home"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
     >
@@ -190,20 +50,18 @@ export default function Hero() {
         </div>
       </div>
 
-      <motion.div style={{ y, opacity }} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-24 sm:pt-32 pb-20 w-full">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-24 sm:pt-32 pb-20 w-full">
         <div className="grid lg:grid-cols-[1fr_480px] gap-8 lg:gap-16 items-center">
           {/* Left column — asymmetric, confident */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+            <div
               className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-[var(--border-strong)] bg-[rgba(193,255,114,0.06)] mb-6 sm:mb-8"
+              style={{ animation: "fade-slide-up 0.6s ease 0.3s both" }}
             >
               <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)]">
                 AI Automation Agency — Voice AI &amp; n8n Workflows
               </span>
-            </motion.div>
+            </div>
 
             <h1 className="font-display text-[clamp(32px,7vw,80px)] font-semibold leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)] mb-6 sm:mb-8">
               {headlineLines.map((line, i) => (
@@ -220,11 +78,9 @@ export default function Hero() {
               competitor again.
             </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
+            <div
               className="flex flex-wrap gap-3 sm:gap-4"
+              style={{ animation: "fade-slide-up 0.6s ease 0.7s both" }}
             >
               <a
                 href="#isa-system"
@@ -239,22 +95,46 @@ export default function Hero() {
               >
                 View projects
               </a>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right column — terminal widget */}
           <div className="block">
-            <TerminalWidget />
+            <div className="w-full max-w-md bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-subtle)] overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--border-subtle)]">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                <span className="font-mono text-[12px] text-[var(--text-tertiary)] ml-2">isa-system</span>
+              </div>
+              <div className="p-4 font-mono text-[12px] sm:text-[13px] leading-relaxed min-h-[140px] sm:min-h-[180px]">
+                {terminalLines.map((line, i) => (
+                  <div
+                    key={i}
+                    className="flex"
+                    style={{ animation: `fade-slide-up 0.3s ease ${0.3 + i * 0.35}s both` }}
+                  >
+                    <span className="text-[var(--accent)] mr-2 select-none">$</span>
+                    <span className="text-[var(--text-secondary)]">{line}</span>
+                  </div>
+                ))}
+                <div
+                  className="flex"
+                  style={{ animation: "fade-slide-up 0.3s ease 2.1s both" }}
+                >
+                  <span className="text-[var(--accent)] mr-2 select-none">$</span>
+                  <span className="text-[var(--accent)] cursor-blink">_</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.0 }}
+      <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        style={{ animation: "fade-slide-up 0.6s ease 2s both" }}
       >
         <div className="w-px h-6 bg-[var(--border-strong)] relative overflow-hidden">
           <div className="w-full h-2 bg-[var(--accent)] scroll-line" />
@@ -262,7 +142,7 @@ export default function Hero() {
         <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-[var(--text-tertiary)]">
           SCROLL
         </span>
-      </motion.div>
+      </div>
     </section>
   );
 }

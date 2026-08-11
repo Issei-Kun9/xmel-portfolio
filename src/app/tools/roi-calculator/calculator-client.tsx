@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion } from "framer-motion";
 import { Calculator, Mail, ArrowRight, Check } from "lucide-react";
 
 const INDUSTRY_CLOSE_RATE = 0.08;
@@ -126,20 +125,9 @@ export default function CalculatorClient() {
   return (
     <div className="space-y-8">
       {/* Live result — always visible */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] overflow-hidden"
-      >
+      <div className="relative p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] overflow-hidden">
         {/* Subtle grid pattern background */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern" />
 
         <div className="relative">
           <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-2">
@@ -159,7 +147,7 @@ export default function CalculatorClient() {
             in recoverable commission.
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* Sliders */}
       <div className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
@@ -237,11 +225,7 @@ export default function CalculatorClient() {
       </div>
 
       {/* Gated deep-dive — email gate */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]"
-      >
+      <div className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
             <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
               <Mail className="w-3 h-3 inline mr-1.5 -mt-0.5" />
               GET YOUR FULL BREAKDOWN
@@ -312,7 +296,7 @@ export default function CalculatorClient() {
             <p className="font-mono text-[12px] text-[var(--text-tertiary)] mt-3">
               No spam. One email with your breakdown + one case study follow-up. Unsubscribe anytime.
             </p>
-      </motion.div>
+      </div>
     </div>
   );
 }

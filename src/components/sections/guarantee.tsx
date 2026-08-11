@@ -1,18 +1,10 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function Guarantee() {
   return (
     <section id="pilot" className="relative py-16 lg:py-20">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative p-8 lg:p-12 bg-[var(--bg-secondary)] rounded-2xl border border-[var(--accent)] overflow-hidden"
-        >
+        <div className="relative p-8 lg:p-12 bg-[var(--bg-secondary)] rounded-2xl border border-[var(--accent)] overflow-hidden">
           {/* Subtle glow */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--accent)] opacity-[0.03] rounded-full blur-[100px] pointer-events-none" />
 
@@ -46,7 +38,7 @@ export default function Guarantee() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     "99acres lead automation",
     "AI appointment booking real estate",
     "real estate automation India",
+    "AI inside sales agent Miami",
+    "AI lead response Austin",
+    "AI automation for real estate agents Phoenix",
   ],
   openGraph: {
     title: "AI Automation for Real Estate | AI Inside Sales Agent",
@@ -123,7 +126,7 @@ export default function AiAutomationRealEstatePage() {
               WHAT THE SYSTEM DOES
             </span>
             <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              The full job of an inside sales agent — running unattended
+              How AI automation for real estate agents does the full inside sales job
             </h2>
 
             <div className="grid md:grid-cols-2 gap-4">

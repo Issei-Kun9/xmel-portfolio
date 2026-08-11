@@ -1,22 +1,22 @@
 import dynamic from "next/dynamic";
 import { ArrowRight } from "lucide-react";
+import Problem from "@/components/sections/problem";
+import VideoDemo from "@/components/sections/video-demo";
+import Projects from "@/components/sections/projects";
+import Testimonials from "@/components/sections/testimonials";
+import Guarantee from "@/components/sections/guarantee";
+import Process from "@/components/sections/process";
+import TechStack from "@/components/sections/tech-stack";
+import About from "@/components/sections/about";
+import Faq from "@/components/sections/faq";
+import Footer from "@/components/sections/footer";
+import Hero from "@/components/sections/hero";
+import ResultsBanner from "@/components/sections/results-banner";
 
 const Nav = dynamic(() => import("@/components/sections/nav"));
-const Hero = dynamic(() => import("@/components/sections/hero"));
-const Problem = dynamic(() => import("@/components/sections/problem"));
 const Booking = dynamic(() => import("@/components/sections/booking"));
 const System = dynamic(() => import("@/components/sections/system"));
-const VideoDemo = dynamic(() => import("@/components/sections/video-demo"));
-const ResultsBanner = dynamic(() => import("@/components/sections/results-banner"));
-const Projects = dynamic(() => import("@/components/sections/projects"));
-const Testimonials = dynamic(() => import("@/components/sections/testimonials"));
-const Guarantee = dynamic(() => import("@/components/sections/guarantee"));
-const Process = dynamic(() => import("@/components/sections/process"));
-const TechStack = dynamic(() => import("@/components/sections/tech-stack"));
-const About = dynamic(() => import("@/components/sections/about"));
-const Faq = dynamic(() => import("@/components/sections/faq"));
 const Contact = dynamic(() => import("@/components/sections/contact"));
-const Footer = dynamic(() => import("@/components/sections/footer"));
 
 export default function Home() {
   return (

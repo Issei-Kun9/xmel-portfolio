@@ -1,30 +1,5 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import MailtoLink from "@/components/shared/mailto-link";
-
-function LiveClock() {
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const update = () => {
-      if (!ref.current) return;
-      const now = new Date();
-      ref.current.textContent = `${new Intl.DateTimeFormat("en-IN", {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      }).format(now)} IST`;
-    };
-    update();
-    const interval = setInterval(update, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return <span ref={ref} />;
-}
+import LiveClock from "@/components/shared/live-clock";
 
 export default function Footer() {
   return (
@@ -72,6 +47,10 @@ export default function Footer() {
         <div className="mt-8 pt-6 border-t border-[var(--border-subtle)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="font-mono text-[12px] text-[var(--text-tertiary)]">
             © 2026 ISA Systems. All rights reserved.
+          </div>
+          <div className="font-mono text-[12px] text-[var(--text-tertiary)]">
+            SERVING: Miami · Austin · Phoenix · Tampa · Orlando · Dallas ·
+            Houston · Atlanta · Charlotte · Denver · India
           </div>
           <div className="flex items-center gap-6">
             <a
