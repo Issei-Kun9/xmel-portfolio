@@ -1,5 +1,5 @@
-import type { SchemaObject, PersonSchema, LocalBusinessSchema } from "@power-seo/schema";
-import { person, faqPage, webSite, service, localBusiness, schemaGraph, toJsonLdString } from "@power-seo/schema";
+import type { SchemaObject, PersonSchema } from "@power-seo/schema";
+import { person, faqPage, webSite, service, schemaGraph, toJsonLdString } from "@power-seo/schema";
 
 const siteUrl = "https://xmelautomations.xyz";
 
@@ -47,10 +47,11 @@ const graph = schemaGraph([
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+91-7905214791",
+      telephone: "+91 7905214791",
       contactType: "customer service",
       areaServed: ["US", "IN"],
     },
+    areaServed,
   } as unknown as SchemaObject,
   person({
     name: "Yashwardhan Chauhan",
@@ -85,11 +86,6 @@ const graph = schemaGraph([
     provider: { "@type": "Organization", name: "XMEL Automations" },
     areaServed: ["US", "IN"],
     serviceType: "AI Automation",
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "INR",
-      price: "Contact for pricing",
-    },
   }),
   service({
     name: "Voice AI Agent Development",
@@ -159,12 +155,14 @@ const graph = schemaGraph([
       name: "XMEL Automations",
     },
   }),
-  localBusiness({
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
     name: "XMEL Automations",
     url: siteUrl,
     description:
       "AI automation agency specializing in lead response automation, voice AI agents, and n8n workflow automations for real estate and home services.",
-    telephone: "+91-7905214791",
+    telephone: "+91 7905214791",
     areaServed,
     serviceType: [
       "AI Automation",
@@ -173,7 +171,7 @@ const graph = schemaGraph([
       "Chatbot Development",
     ],
     priceRange: "$$",
-  } as unknown as Omit<LocalBusinessSchema, "@type">) as unknown as SchemaObject,
+  } as unknown as SchemaObject,
 ]);
 
 export default function JsonLd() {

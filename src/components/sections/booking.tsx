@@ -79,7 +79,7 @@ export default function Booking() {
           <div className="rounded-xl border border-[var(--border-subtle)] overflow-hidden bg-[var(--bg-secondary)] p-2">
             <div
               ref={containerRef}
-              className="calendly-inline-widget relative w-full min-w-[320px] h-[630px]"
+              className="calendly-inline-widget relative w-full min-w-0 h-[540px] sm:h-[630px]"
               data-url="https://calendly.com/yashwwardhanx/15-min-meeting"
             >
               {!loaded && (

@@ -69,7 +69,7 @@ export default function Nav() {
               <a
                 key={link.name}
                 href={link.href}
-                className="relative font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group py-1"
+                className="relative font-mono text-[13px] uppercase tracking-[0.12em] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group py-2"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 h-px bg-[var(--accent)] w-0 group-hover:w-full transition-all duration-200" />
@@ -85,7 +85,7 @@ export default function Nav() {
                 onClick={() => setSolutionsOpen(!solutionsOpen)}
                 aria-expanded={solutionsOpen}
                 aria-haspopup="true"
-                className={`relative font-mono text-[12px] uppercase tracking-[0.12em] py-1 flex items-center gap-1.5 transition-colors duration-200 group ${
+                className={`relative font-mono text-[13px] uppercase tracking-[0.12em] py-2 flex items-center gap-1.5 transition-colors duration-200 group ${
                   solutionsOpen
                     ? "text-[var(--accent)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--accent)]"

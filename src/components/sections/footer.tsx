@@ -18,13 +18,13 @@ export default function Footer() {
           <div className="flex items-center gap-8">
             <a
               href="/ai-automation-real-estate"
-              className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="inline-block py-1 font-mono text-[13px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Real Estate
             </a>
             <a
               href="/ai-automation-home-services"
-              className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="inline-block py-1 font-mono text-[13px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Home Services
             </a>
@@ -55,13 +55,13 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <a
               href="/blog"
-              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="inline-block py-1 font-mono text-[13px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Blog
             </a>
             <a
               href="/tools/roi-calculator"
-              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="inline-block py-1 font-mono text-[13px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               ROI Calculator
             </a>
@@ -69,7 +69,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="inline-block py-1 font-mono text-[13px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               LinkedIn
             </a>
@@ -77,13 +77,13 @@ export default function Footer() {
               href="https://www.instagram.com/yashwardhan.ai/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="inline-block py-1 font-mono text-[13px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Instagram
             </a>
             <MailtoLink
               email="yashwardhan@xmelautomations.xyz"
-              className="font-mono text-[12px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
+              className="inline-block py-1 font-mono text-[13px] text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors duration-200"
             >
               Email
             </MailtoLink>

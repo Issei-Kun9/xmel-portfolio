@@ -32,7 +32,7 @@ export default function ResultsBanner() {
               <div className="font-mono text-[12px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] mb-1">
                 {r.label}
               </div>
-              <div className="font-mono text-[12px] text-[var(--text-tertiary)] opacity-60">
+              <div className="font-mono text-[13px] text-[var(--text-tertiary)] opacity-80">
                 {r.description}
               </div>
             </div>

@@ -29,14 +29,14 @@ export default function StickyCta() {
         >
           <a
             href="#pilot"
-            className="group inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-mono text-xs font-medium hover:opacity-90 transition-opacity shadow-lg shadow-[rgba(0,0,0,0.4)]"
+            className="group inline-flex items-center gap-2 px-5 py-3 bg-[var(--accent)] text-[var(--bg-primary)] rounded-lg font-mono text-[13px] font-medium hover:opacity-90 transition-opacity shadow-lg shadow-[rgba(0,0,0,0.4)]"
           >
             Start Pilot
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </a>
           <button
             onClick={() => setDismissed(true)}
-            className="ml-1 p-1.5 rounded-md bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all duration-200"
+            className="ml-1 p-2 rounded-md bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all duration-200"
             aria-label="Dismiss"
           >
             <X className="w-3 h-3" />

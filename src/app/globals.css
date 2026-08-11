@@ -324,6 +324,19 @@ html {
   }
 }
 
+/* On touch devices the always-on decorative animations (blurred mesh drift,
+   SVG dash flow, pulse, marquee) burn main-thread paint/CPU with no hover to
+   justify them — keep the static visuals, drop the motion. */
+@media (hover: none) {
+  [style*="mesh-drift"],
+  .animate-dash-flow,
+  .scroll-line,
+  .status-pulse,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .cursor-blink,
