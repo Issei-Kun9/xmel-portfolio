@@ -48,6 +48,7 @@ export default function VideoDemo() {
             muted
             loop
             playsInline
+            preload="none"
             className="w-full h-auto"
           />
           <div className="px-4 py-3 border-t border-[var(--border-subtle)]">

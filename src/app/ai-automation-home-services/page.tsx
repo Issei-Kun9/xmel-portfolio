@@ -92,7 +92,7 @@ export default function AiAutomationHomeServicesPage() {
               SOLUTIONS — HOME SERVICES
             </span>
             <h1 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              AI automation for home services contractors
+              AI automation for home services
             </h1>
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
               An AI receptionist that answers every call while you&apos;re on a

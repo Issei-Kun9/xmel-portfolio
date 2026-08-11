@@ -16,6 +16,7 @@ export interface BlogPost {
   slug: string;
   title: string;
   seoTitle?: string;
+  primaryKeyword?: string;
   description: string;
   date: string;
   readTime: string;
@@ -36,6 +37,7 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
       slug,
       title: data.title,
       seoTitle: data.seoTitle,
+      primaryKeyword: data.primaryKeyword,
       description: data.description,
       date: data.date,
       readTime: data.readTime,
@@ -58,6 +60,7 @@ export function getPost(slug: string): BlogPost | null {
     slug,
     title: data.title,
     seoTitle: data.seoTitle,
+    primaryKeyword: data.primaryKeyword,
     description: data.description,
     date: data.date,
     readTime: data.readTime,
