@@ -28,7 +28,7 @@ export default function Contact() {
           project_type: form.project,
           message: form.message,
           subject: `New Project Inquiry — ${form.project || "General"}`,
-          from_name: "ISA Systems Portfolio",
+          from_name: "XMEL Automations Portfolio",
         }),
       });
 

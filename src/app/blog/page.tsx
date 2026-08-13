@@ -14,9 +14,31 @@ export const metadata: Metadata = {
     description:
       "AI automation insights — lead response, voice AI, n8n workflows.",
     url: "https://xmelautomations.xyz/blog",
+    siteName: "XMEL Automations",
+    type: "website",
+    images: [
+      {
+        url: "https://xmelautomations.xyz/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "XMEL Automations blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | XMEL Automations",
+    description:
+      "AI automation insights — lead response, voice AI, n8n workflows.",
+    images: ["https://xmelautomations.xyz/og-image.png"],
   },
   alternates: {
     canonical: "https://xmelautomations.xyz/blog",
+    languages: {
+      "en-US": "https://xmelautomations.xyz/blog",
+      "en-IN": "https://xmelautomations.xyz/blog",
+      "x-default": "https://xmelautomations.xyz/blog",
+    },
   },
 };
 

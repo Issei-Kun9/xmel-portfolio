@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "XMEL Automations",
-    locale: "en_IN",
+    locale: "en_US",
     images: [
       {
         url: "https://xmelautomations.xyz/og-image.png",
@@ -48,6 +48,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+    languages: {
+      "en-US": siteUrl,
+      "en-IN": siteUrl,
+      "x-default": siteUrl,
+    },
   },
 };
 
@@ -61,6 +66,7 @@ const jsonLd = {
     "An AI inside sales agent for real estate — qualifies leads from MagicBricks, 99acres, Zillow, and Realtor.com in seconds, responds in under 50 seconds via Twilio voice and SMS, and books appointments into Google Calendar.",
   provider: {
     "@type": "Organization",
+    "@id": "https://xmelautomations.xyz/#organization",
     name: "XMEL Automations",
     url: "https://xmelautomations.xyz",
   },
@@ -73,12 +79,49 @@ const jsonLd = {
   },
 };
 
+const faqs = [
+  {
+    q: "How fast does the AI respond to a new lead?",
+    a: "The end-to-end response is designed to stay under 50 seconds from lead entry to first touch — a live voice call for hot leads or a personalized WhatsApp/SMS for warm leads. The qualification step itself runs in under 3 seconds.",
+  },
+  {
+    q: "Which real estate lead sources are supported?",
+    a: "Anything that can call a webhook — MagicBricks, 99acres, Zillow, Realtor.com, website forms, WhatsApp Business messages, incoming calls via Twilio, manual CSV imports, and scheduled re-engagement tasks.",
+  },
+  {
+    q: "Does the AI replace my sales team?",
+    a: "It replaces the manual grunt work — answering, qualifying, and booking. Human agents stay in the loop for showings, negotiations, and relationship building. The AI handles first contact and follow-up so your team only talks to serious buyers.",
+  },
+  {
+    q: "How is this different from a chatbot on my website?",
+    a: "A website chatbot only handles visitors already on your page. This system works across portals, WhatsApp, and phone calls — and it takes action: it calls leads, books appointments, and syncs to your CRM automatically.",
+  },
+  {
+    q: "How long does deployment take?",
+    a: "Typically 2-3 weeks from a discovery call to production. Week one is mapping your lead flow and designing the workflow, week two is building the n8n workflows and voice agents, and week three is testing with real scenarios and deploying.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function AiAutomationRealEstatePage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
@@ -266,28 +309,7 @@ export default function AiAutomationRealEstatePage() {
             </h2>
 
             <div className="space-y-6">
-              {[
-                {
-                  q: "How fast does the AI respond to a new lead?",
-                  a: "The end-to-end response is designed to stay under 50 seconds from lead entry to first touch — a live voice call for hot leads or a personalized WhatsApp/SMS for warm leads. The qualification step itself runs in under 3 seconds.",
-                },
-                {
-                  q: "Which real estate lead sources are supported?",
-                  a: "Anything that can call a webhook — MagicBricks, 99acres, Zillow, Realtor.com, website forms, WhatsApp Business messages, incoming calls via Twilio, manual CSV imports, and scheduled re-engagement tasks.",
-                },
-                {
-                  q: "Does the AI replace my sales team?",
-                  a: "It replaces the manual grunt work — answering, qualifying, and booking. Human agents stay in the loop for showings, negotiations, and relationship building. The AI handles first contact and follow-up so your team only talks to serious buyers.",
-                },
-                {
-                  q: "How is this different from a chatbot on my website?",
-                  a: "A website chatbot only handles visitors already on your page. This system works across portals, WhatsApp, and phone calls — and it takes action: it calls leads, books appointments, and syncs to your CRM automatically.",
-                },
-                {
-                  q: "How long does deployment take?",
-                  a: "Typically 2-3 weeks from a discovery call to production. Week one is mapping your lead flow and designing the workflow, week two is building the n8n workflows and voice agents, and week three is testing with real scenarios and deploying.",
-                },
-              ].map((f) => (
+              {faqs.map((f) => (
                 <div
                   key={f.q}
                   className="p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]"
@@ -359,6 +381,16 @@ export default function AiAutomationRealEstatePage() {
               Start the conversation
               <span>→</span>
             </a>
+            <p className="text-[var(--text-tertiary)] text-sm mt-6">
+              Also exploring AI for field service businesses?{" "}
+              <Link
+                href="/ai-automation-home-services"
+                className="text-[var(--accent)] underline hover:no-underline"
+              >
+                See AI automation for home services
+              </Link>
+              .
+            </p>
           </section>
         </div>
       </main>

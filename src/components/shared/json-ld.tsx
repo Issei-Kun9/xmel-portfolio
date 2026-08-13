@@ -30,36 +30,46 @@ const graph = schemaGraph([
   {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     name: "XMEL Automations",
     url: siteUrl,
     foundingDate: "2026",
     description:
       "AI automation agency building autonomous lead response systems, voice AI agents, and n8n workflow automations for real estate agents and home services contractors.",
-    founder: {
-      "@type": "Person",
-      name: "Yashwardhan Chauhan",
-      url: "https://www.linkedin.com/in/yashwardhan-chauhan-075684414/",
-      jobTitle: "AI Automation Engineer",
-    },
+    founder: { "@id": `${siteUrl}/#founder` },
     sameAs: [
       "https://www.linkedin.com/in/yashwardhan-chauhan-075684414/",
       "https://www.instagram.com/yashwardhan.ai/",
     ],
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/logo-512.png`,
+    },
+    email: "yashwardhan@xmelautomations.xyz",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91 7905214791",
       contactType: "customer service",
       areaServed: ["US", "IN"],
     },
+    telephone: "+91 7905214791",
+    priceRange: "$$",
+    serviceType: [
+      "AI Automation",
+      "Voice AI Development",
+      "Workflow Automation",
+      "Chatbot Development",
+    ],
     areaServed,
   } as unknown as SchemaObject,
   person({
+    "@id": `${siteUrl}/#founder`,
     name: "Yashwardhan Chauhan",
     url: `${siteUrl}#about`,
     jobTitle: "AI Automation Engineer & Founder",
     worksFor: {
       "@type": "Organization",
-      name: "XMEL Automations",
+      "@id": `${siteUrl}/#organization`,
     },
     description:
       "Solo founder building AI automation systems — 67-node n8n workflows, GPT-4o-mini qualification, Twilio voice calling, and real-time lead response under 50 seconds.",
@@ -83,7 +93,7 @@ const graph = schemaGraph([
     name: "AI Lead Response Automation",
     description:
       "Autonomous AI systems that respond to leads in under 50 seconds via voice, SMS, and WhatsApp — eliminating the 5-minute lead death problem for real estate agents and home services contractors.",
-    provider: { "@type": "Organization", name: "XMEL Automations" },
+    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
     areaServed: ["US", "IN"],
     serviceType: "AI Automation",
   }),
@@ -91,7 +101,7 @@ const graph = schemaGraph([
     name: "Voice AI Agent Development",
     description:
       "Custom AI phone agents built on Vapi, Twilio, and ElevenLabs that answer calls, qualify leads, and book appointments 24/7 without human intervention.",
-    provider: { "@type": "Organization", name: "XMEL Automations" },
+    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
     areaServed: ["US", "IN"],
     serviceType: "Voice AI",
   }),
@@ -99,7 +109,7 @@ const graph = schemaGraph([
     name: "n8n Workflow Automation",
     description:
       "Complex multi-step automation workflows using n8n — CRM sync, lead qualification, appointment booking, Slack notifications, and Google Sheets integration.",
-    provider: { "@type": "Organization", name: "XMEL Automations" },
+    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
     areaServed: ["US", "IN"],
     serviceType: "Workflow Automation",
   }),
@@ -107,9 +117,25 @@ const graph = schemaGraph([
     name: "WhatsApp Automation Bot",
     description:
       "AI-powered WhatsApp chatbots that qualify leads, answer questions, and sync data to your CRM — built on WhatsApp Business API with GPT-4o-mini reasoning.",
-    provider: { "@type": "Organization", name: "XMEL Automations" },
+    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
     areaServed: ["US", "IN"],
     serviceType: "Chatbot Development",
+  }),
+  service({
+    name: "AI ISA System for PropertyPulse Realty",
+    description:
+      "Fully autonomous AI inside sales agent for a Mumbai brokerage — a 67-node n8n workflow handling inbound leads from MagicBricks and 99acres with GPT-4o-mini qualification, Twilio voice calling, appointment booking, and Sheets sync. Lead response under 50 seconds.",
+    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
+    areaServed: { "@type": "City", name: "Mumbai" } as unknown as string[],
+    serviceType: "AI Inside Sales Agent",
+  }),
+  service({
+    name: "Voice AI Receptionist for HomeServe India",
+    description:
+      "AI voice receptionist for a Bengaluru plumbing and HVAC company — every call answered via Vapi and Twilio, every job qualified, every slot booked into Google Calendar automatically. 43% more bookings in pilot.",
+    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
+    areaServed: { "@type": "City", name: "Bengaluru" } as unknown as string[],
+    serviceType: "Voice AI",
   }),
   faqPage([
     {
@@ -152,26 +178,9 @@ const graph = schemaGraph([
       "AI automation agency building autonomous lead response systems, voice AI agents, and n8n workflow automations.",
     publisher: {
       "@type": "Organization",
-      name: "XMEL Automations",
+      "@id": `${siteUrl}/#organization`,
     },
   }),
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "XMEL Automations",
-    url: siteUrl,
-    description:
-      "AI automation agency specializing in lead response automation, voice AI agents, and n8n workflow automations for real estate and home services.",
-    telephone: "+91 7905214791",
-    areaServed,
-    serviceType: [
-      "AI Automation",
-      "Voice AI Development",
-      "Workflow Automation",
-      "Chatbot Development",
-    ],
-    priceRange: "$$",
-  } as unknown as SchemaObject,
 ]);
 
 export default function JsonLd() {

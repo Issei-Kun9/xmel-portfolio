@@ -100,6 +100,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://xmelautomations.xyz",
+    languages: {
+      "en-US": "https://xmelautomations.xyz",
+      "en-IN": "https://xmelautomations.xyz",
+      "x-default": "https://xmelautomations.xyz",
+    },
   },
 };
 

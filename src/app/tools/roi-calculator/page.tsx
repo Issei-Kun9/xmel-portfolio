@@ -42,6 +42,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://xmelautomations.xyz/tools/roi-calculator",
+    languages: {
+      "en-US": "https://xmelautomations.xyz/tools/roi-calculator",
+      "en-IN": "https://xmelautomations.xyz/tools/roi-calculator",
+      "x-default": "https://xmelautomations.xyz/tools/roi-calculator",
+    },
   },
 };
 

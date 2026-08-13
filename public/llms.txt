@@ -1,6 +1,6 @@
 # XMEL Automations
 
-> AI automation agency building autonomous voice AI agents, n8n workflow automations, and intelligent lead response systems for businesses across real estate, home services, e-commerce, and healthcare.
+> AI automation agency building autonomous voice AI agents, n8n workflow automations, and intelligent lead response systems for businesses across real estate and home services.
 
 XMEL Automations designs, builds, and deploys AI-powered systems that eliminate manual bottlenecks in lead response, customer communication, and operational workflows. We use GPT-4o-mini, Twilio, Vapi, ElevenLabs, and n8n to create autonomous systems that respond instantly, 24/7.
 
@@ -8,6 +8,8 @@ Founded by Yashwardhan Chauhan, based in India, working with clients globally.
 
 ## Services
 
+- [AI Automation for Real Estate Agents](https://xmelautomations.xyz/ai-automation-real-estate): AI inside sales agents that respond to real estate leads in under 50 seconds — qualifying, booking, and syncing to CRM.
+- [AI Automation for Home Services](https://xmelautomations.xyz/ai-automation-home-services): AI receptionists and lead response systems for HVAC, plumbing, and electrical contractors that stop missed calls from costing jobs.
 - [AI Lead Response Automation](https://xmelautomations.xyz/#isa-system): Autonomous systems that qualify, respond to, and book appointments with inbound leads across voice, SMS, WhatsApp, and web forms.
 - [Voice AI Agent Development](https://xmelautomations.xyz/#isa-system): Custom AI phone agents built on Vapi, Twilio, and ElevenLabs that answer calls, qualify prospects, and book appointments 24/7.
 - [n8n Workflow Automation](https://xmelautomations.xyz/#isa-system): Complex multi-step automations connecting CRM, lead qualification, appointment booking, notifications, and data sync.
@@ -15,9 +17,28 @@ Founded by Yashwardhan Chauhan, based in India, working with clients globally.
 
 ## Blog
 
-- [How AI Lead Response Automation Works for Real Estate Agents](https://xmelautomations.xyz/blog/ai-lead-response-real-estate): Complete breakdown of AI lead qualification, response systems, and appointment booking for real estate.
+### Real Estate
+
+- [AI Lead Response Automation for Real Estate Agents: How It Works](https://xmelautomations.xyz/blog/ai-lead-response-real-estate): Complete breakdown of AI lead qualification, response systems, and appointment booking for real estate.
+- [AI Inside Sales Agent for Real Estate: How It Qualifies Leads in Seconds](https://xmelautomations.xyz/blog/ai-isa-real-estate): How an AI ISA scores, qualifies, and books real estate leads automatically.
+- [Real Estate Lead Qualification Automation: The First 50 Seconds Decide Everything](https://xmelautomations.xyz/blog/real-estate-lead-qualification): Lead scoring logic, intent signals, and the first 50 seconds of the real estate lead journey.
+- [Real Estate Lead Follow-Up Automation: What Happens After the First Contact](https://xmelautomations.xyz/blog/real-estate-lead-follow-up-automation): Timed follow-up sequences that recover deals that would otherwise go cold.
+
+### Home Services
+
+- [Missed Call Automation for Home Service Contractors](https://xmelautomations.xyz/blog/missed-call-automation-contractors): How contractors capture the jobs they were losing to missed calls.
+- [AI Receptionist for HVAC & Plumbing Companies](https://xmelautomations.xyz/blog/ai-receptionist-hvac): AI phone agents for HVAC and plumbing — answering, qualifying, and booking service calls.
+- [Home Service Lead Response Automation: From First Call to Booked Job](https://xmelautomations.xyz/blog/home-service-lead-response-automation): The full home service lead pipeline, from call to booked appointment.
+
+### Automation
+
 - [n8n Workflow Automation: Building a 67-Node Lead Qualification System](https://xmelautomations.xyz/blog/n8n-workflow-automation-guide): Technical deep-dive into n8n workflow architecture for lead qualification and multi-channel outreach.
 - [Voice AI Agent vs Human Inside Sales Agent: Cost and Speed Comparison](https://xmelautomations.xyz/blog/voice-ai-agent-vs-human-isa): Data-driven comparison of AI voice agents and human ISAs covering speed, accuracy, cost, and availability.
+
+## Case Studies
+
+- [AI ISA System — PropertyPulse Realty](https://xmelautomations.xyz/#work): Fully autonomous inside sales agent for a Mumbai brokerage. 67-node n8n workflow handling inbound leads from MagicBricks and 99acres — qualify, call, book, sync. Lead response under 50 seconds.
+- [Voice AI Receptionist — HomeServe India](https://xmelautomations.xyz/#work): AI voice receptionist for a Bengaluru plumbing and HVAC company. Every call answered via Vapi and Twilio, every job qualified, every slot booked into Google Calendar. 43% more bookings in pilot.
 
 ## Company
 
@@ -28,7 +49,7 @@ Founded by Yashwardhan Chauhan, based in India, working with clients globally.
 
 ## Key Facts
 
-- Specializes in AI automation for real estate, home services, e-commerce, and healthcare
+- Specializes in AI automation for real estate and home services
 - Core stack: n8n, GPT-4o-mini, Twilio, Vapi, ElevenLabs, Google Workspace
 - Systems respond to leads in under 50 seconds, 24/7
 - 67-node n8n workflows with 7 webhook triggers

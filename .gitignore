@@ -8,3 +8,6 @@ next-env.d.ts
 
 # Graphify output (generated)
 graphify-out/
+
+# Marketing / sales materials (not public)
+xmel-marketing/

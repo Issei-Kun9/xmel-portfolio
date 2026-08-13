@@ -7,7 +7,7 @@ const projects = [
     description:
       "ISA system for a Mumbai brokerage. 67-node n8n workflow handling inbound leads from MagicBricks and 99acres — qualify, call, book, sync. Fully autonomous.",
     tags: ["N8N", "GPT-4O-MINI", "TWILIO", "SHEETS"],
-    metrics: "contact rate: before vs after",
+    metrics: "lead response: <50s · fully autonomous",
     size: "large",
   },
   {
@@ -16,7 +16,7 @@ const projects = [
     description:
       "Voice AI for a Bengaluru plumbing and HVAC company. Every call answered, every job qualified, every slot booked — automatically.",
     tags: ["VAPI", "TWILIO", "GOOGLE-CALENDAR"],
-    metrics: "revenue recovered (pilot data)",
+    metrics: "every call answered · 43% more bookings (pilot)",
     size: "small",
   },
 ];

@@ -60,7 +60,7 @@ export default function Nav() {
           <a href="#home" className="flex items-center gap-0">
             <span className="font-mono text-sm text-[var(--accent)] select-none">&gt;</span>
             <span className="font-mono text-sm font-medium text-[var(--text-primary)] tracking-wider ml-1">
-              ISA.SYSTEMS
+              XMEL
             </span>
           </a>
 

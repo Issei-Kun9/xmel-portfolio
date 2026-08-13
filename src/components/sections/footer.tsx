@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <span className="font-mono text-sm font-medium text-[var(--text-primary)]">
-              <span className="text-[var(--accent)]">&gt;</span> ISA.SYSTEMS
+              <span className="text-[var(--accent)]">&gt;</span> XMEL AUTOMATIONS
             </span>
             <p className="font-mono text-[12px] text-[var(--text-tertiary)] mt-1">
               AI automation for real estate &amp; home services.
@@ -46,7 +46,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-6 border-t border-[var(--border-subtle)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="font-mono text-[12px] text-[var(--text-tertiary)]">
-            © 2026 ISA Systems. All rights reserved.
+            © 2026 XMEL Automations. All rights reserved.
           </div>
           <div className="font-mono text-[12px] text-[var(--text-tertiary)]">
             SERVING: Miami · Austin · Phoenix · Tampa · Orlando · Dallas ·

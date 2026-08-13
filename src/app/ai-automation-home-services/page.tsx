@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "XMEL Automations",
-    locale: "en_IN",
+    locale: "en_US",
     images: [
       {
         url: "https://xmelautomations.xyz/og-image.png",
@@ -48,6 +48,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+    languages: {
+      "en-US": siteUrl,
+      "en-IN": siteUrl,
+      "x-default": siteUrl,
+    },
   },
 };
 
@@ -61,6 +66,7 @@ const jsonLd = {
     "An AI voice receptionist for plumbing, HVAC, and electrical contractors — answers every call 24/7 via Vapi and ElevenLabs, qualifies the job type and urgency, books slots into Google Calendar, and escalates emergencies to the on-call technician via Twilio.",
   provider: {
     "@type": "Organization",
+    "@id": "https://xmelautomations.xyz/#organization",
     name: "XMEL Automations",
     url: "https://xmelautomations.xyz",
   },
@@ -73,12 +79,49 @@ const jsonLd = {
   },
 };
 
+const faqs = [
+  {
+    q: "Does the AI sound robotic on the phone?",
+    a: "The voice agent uses ElevenLabs voice synthesis on Vapi, which produces natural, human-sounding speech. It handles interruptions, background noise, and rephrases on the fly rather than reading a script.",
+  },
+  {
+    q: "What happens when a caller needs a human?",
+    a: "The AI can transfer the call to a live agent at any point. By default it handles what a human receptionist would — answering, qualifying, and booking — and escalates true emergencies to the on-call technician automatically.",
+  },
+  {
+    q: "Which home service businesses does this work for?",
+    a: "Plumbing, HVAC, electrical, roofing, and any trades business that takes inbound calls for jobs. If your schedule can be booked over the phone, the AI can book it.",
+  },
+  {
+    q: "How does emergency detection work?",
+    a: "During the conversation, GPT-4o-mini classifies urgency from the caller's description — burst pipe, no heat, gas smell, electrical hazard. Urgent cases immediately trigger a Twilio call to the on-call tech and a Slack alert.",
+  },
+  {
+    q: "How long does deployment take?",
+    a: "Typically 2-3 weeks. We map your call flow and scheduling rules first, build the voice agent and n8n workflow, then test with real call scenarios before going live on your number.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function AiAutomationHomeServicesPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
@@ -265,28 +308,7 @@ export default function AiAutomationHomeServicesPage() {
             </h2>
 
             <div className="space-y-6">
-              {[
-                {
-                  q: "Does the AI sound robotic on the phone?",
-                  a: "The voice agent uses ElevenLabs voice synthesis on Vapi, which produces natural, human-sounding speech. It handles interruptions, background noise, and rephrases on the fly rather than reading a script.",
-                },
-                {
-                  q: "What happens when a caller needs a human?",
-                  a: "The AI can transfer the call to a live agent at any point. By default it handles what a human receptionist would — answering, qualifying, and booking — and escalates true emergencies to the on-call technician automatically.",
-                },
-                {
-                  q: "Which home service businesses does this work for?",
-                  a: "Plumbing, HVAC, electrical, roofing, and any trades business that takes inbound calls for jobs. If your schedule can be booked over the phone, the AI can book it.",
-                },
-                {
-                  q: "How does emergency detection work?",
-                  a: "During the conversation, GPT-4o-mini classifies urgency from the caller's description — burst pipe, no heat, gas smell, electrical hazard. Urgent cases immediately trigger a Twilio call to the on-call tech and a Slack alert.",
-                },
-                {
-                  q: "How long does deployment take?",
-                  a: "Typically 2-3 weeks. We map your call flow and scheduling rules first, build the voice agent and n8n workflow, then test with real call scenarios before going live on your number.",
-                },
-              ].map((f) => (
+              {faqs.map((f) => (
                 <div
                   key={f.q}
                   className="p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]"
@@ -358,6 +380,16 @@ export default function AiAutomationHomeServicesPage() {
               Start the conversation
               <span>→</span>
             </a>
+            <p className="text-[var(--text-tertiary)] text-sm mt-6">
+              Selling on property portals instead?{" "}
+              <Link
+                href="/ai-automation-real-estate"
+                className="text-[var(--accent)] underline hover:no-underline"
+              >
+                See AI automation for real estate agents
+              </Link>
+              .
+            </p>
           </section>
         </div>
       </main>

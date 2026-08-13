@@ -26,10 +26,11 @@ export default function About() {
 
             <div className="space-y-4 text-[var(--text-secondary)] leading-relaxed">
               <p>
-                Solo AI automation engineer building autonomous lead response systems 
-                for real estate agents and home services contractors. Every system — 
-                from n8n workflow automation to voice AI agents — is designed, built, 
-                and deployed by me, from the first webhook trigger to the production 
+                I&apos;m Yashwardhan Chauhan — a solo AI automation engineer
+                building autonomous lead response systems for real estate agents
+                and home services contractors. Every system — from n8n workflow
+                automation to voice AI agents — is designed, built, and deployed
+                by me, from the first webhook trigger to the production
                 monitoring dashboard.
               </p>
               <p>
@@ -70,7 +71,8 @@ export default function About() {
               </div>
               <div className="p-5 font-mono text-[13px] leading-relaxed">
                 <div className="text-[var(--text-tertiary)]">$ whoami</div>
-                <div className="text-[var(--text-secondary)] mt-1">AI automation engineer &amp; founder.</div>
+                <div className="text-[var(--text-secondary)] mt-1">Yashwardhan Chauhan.</div>
+                <div className="text-[var(--text-secondary)]">AI automation engineer &amp; founder.</div>
                 <div className="text-[var(--text-secondary)]">Builder of the ISA system.</div>
                 <div className="text-[var(--text-secondary)]">67 n8n nodes, 7 webhooks, 0 babysitting.</div>
                 <div className="text-[var(--text-secondary)] mt-2">Specializing in voice AI, lead response</div>

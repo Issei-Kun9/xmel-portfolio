@@ -29,17 +29,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       type: "article",
       url: `https://xmelautomations.xyz/blog/${post.slug}`,
+      siteName: "XMEL Automations",
       publishedTime: post.date,
       authors: ["Yashwardhan Chauhan"],
       tags: post.tags,
+      images: [
+        {
+          url: "https://xmelautomations.xyz/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: metaTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: metaTitle,
       description: post.description,
+      images: ["https://xmelautomations.xyz/og-image.png"],
     },
     alternates: {
       canonical: `https://xmelautomations.xyz/blog/${post.slug}`,
+      languages: {
+        "en-US": `https://xmelautomations.xyz/blog/${post.slug}`,
+        "en-IN": `https://xmelautomations.xyz/blog/${post.slug}`,
+        "x-default": `https://xmelautomations.xyz/blog/${post.slug}`,
+      },
     },
   };
 }
@@ -52,6 +67,21 @@ export default async function BlogPost({ params }: Props) {
   const related = getAllPosts()
     .filter((p) => p.slug !== slug && p.category === post.category)
     .slice(0, 3);
+
+  const serviceLink =
+    post.category === "real-estate"
+      ? {
+          href: "/ai-automation-real-estate",
+          label: "AI automation for real estate agents",
+          desc: "An AI inside sales agent that picks up every portal lead, qualifies the buyer, and books the appointment.",
+        }
+      : post.category === "home-services"
+        ? {
+            href: "/ai-automation-home-services",
+            label: "AI automation for home services",
+            desc: "An AI receptionist that answers every call, qualifies the job, and books the slot — 24/7.",
+          }
+        : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -155,6 +185,26 @@ export default async function BlogPost({ params }: Props) {
               <span>→</span>
             </Link>
           </div>
+
+          {/* Related service */}
+          {serviceLink && (
+            <div className="mt-16">
+              <Link
+                href={serviceLink.href}
+                className="group block p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
+              >
+                <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)] block mb-3">
+                  OUR SOLUTION
+                </span>
+                <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
+                  {serviceLink.label}
+                </h2>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  {serviceLink.desc}
+                </p>
+              </Link>
+            </div>
+          )}
 
           {/* Related articles */}
           {related.length > 0 && (

@@ -55,7 +55,7 @@ export default function Faq() {
               Everything you need to know about AI lead response automation,
               voice AI agents, and n8n workflow systems. Can&apos;t find your
               question?{" "}
-              <a href="#contact" className="text-[var(--accent)] hover:underline">
+              <a href="#contact" className="text-[var(--accent)] underline underline-offset-2 hover:opacity-80 transition-opacity">
                 Ask me directly.
               </a>
             </p>
