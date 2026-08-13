@@ -58,25 +58,39 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  name: "AI Automation for Real Estate Agents",
-  serviceType: "AI Inside Sales Agent",
-  url: siteUrl,
-  description:
-    "An AI inside sales agent for real estate — qualifies leads from MagicBricks, 99acres, Zillow, and Realtor.com in seconds, responds in under 50 seconds via Twilio voice and SMS, and books appointments into Google Calendar.",
-  provider: {
-    "@type": "Organization",
-    "@id": "https://xmelautomations.xyz/#organization",
-    name: "XMEL Automations",
-    url: "https://xmelautomations.xyz",
-  },
-  areaServed: ["IN", "US"],
-  audience: { "@type": "BusinessAudience", audienceType: "Real estate agents and brokerages" },
-  offers: {
-    "@type": "Offer",
-    priceCurrency: "USD",
-    price: "Contact for pricing",
-  },
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}#webpage`,
+      url: siteUrl,
+      name: "AI Automation for Real Estate Agents",
+      isPartOf: { "@id": "https://xmelautomations.xyz/#website" },
+      about: { "@id": "https://xmelautomations.xyz/#organization" },
+      mainEntity: { "@id": `${siteUrl}#service` },
+    },
+    {
+      "@type": "Service",
+      "@id": `${siteUrl}#service`,
+      name: "AI Automation for Real Estate Agents",
+      serviceType: "AI Inside Sales Agent",
+      url: siteUrl,
+      description:
+        "An AI inside sales agent for real estate — qualifies leads from MagicBricks, 99acres, Zillow, and Realtor.com in seconds, responds in under 50 seconds via Twilio voice and SMS, and books appointments into Google Calendar.",
+      provider: {
+        "@type": "Organization",
+        "@id": "https://xmelautomations.xyz/#organization",
+        name: "XMEL Automations",
+        url: "https://xmelautomations.xyz",
+      },
+      areaServed: ["IN", "US"],
+      audience: { "@type": "BusinessAudience", audienceType: "Real estate agents and brokerages" },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "USD",
+        price: "Contact for pricing",
+      },
+    },
+  ],
 };
 
 const faqs = [

@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
 
-const faqs = [
+export const faqs = [
   {
     q: "How does AI lead response automation work?",
     a: "AI lead response automation uses GPT-4o-mini to instantly qualify incoming leads from web forms, phone calls, and WhatsApp messages. When a lead comes in, the AI scores their intent, sends a personalized response via SMS or voice call, and books appointments directly into your calendar — all within 50 seconds. The entire workflow runs on n8n with 67 interconnected nodes and 7 webhook triggers.",
@@ -36,8 +36,22 @@ const faqs = [
 ];
 
 export default function Faq() {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <section id="faq" className="relative py-24 lg:py-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16">
           <div>

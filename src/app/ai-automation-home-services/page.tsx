@@ -58,25 +58,39 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  name: "AI Automation for Home Services Contractors",
-  serviceType: "AI Receptionist",
-  url: siteUrl,
-  description:
-    "An AI voice receptionist for plumbing, HVAC, and electrical contractors — answers every call 24/7 via Vapi and ElevenLabs, qualifies the job type and urgency, books slots into Google Calendar, and escalates emergencies to the on-call technician via Twilio.",
-  provider: {
-    "@type": "Organization",
-    "@id": "https://xmelautomations.xyz/#organization",
-    name: "XMEL Automations",
-    url: "https://xmelautomations.xyz",
-  },
-  areaServed: ["IN", "US"],
-  audience: { "@type": "BusinessAudience", audienceType: "Home services contractors" },
-  offers: {
-    "@type": "Offer",
-    priceCurrency: "USD",
-    price: "Contact for pricing",
-  },
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}#webpage`,
+      url: siteUrl,
+      name: "AI Automation for Home Services Contractors",
+      isPartOf: { "@id": "https://xmelautomations.xyz/#website" },
+      about: { "@id": "https://xmelautomations.xyz/#organization" },
+      mainEntity: { "@id": `${siteUrl}#service` },
+    },
+    {
+      "@type": "Service",
+      "@id": `${siteUrl}#service`,
+      name: "AI Automation for Home Services Contractors",
+      serviceType: "AI Receptionist",
+      url: siteUrl,
+      description:
+        "An AI voice receptionist for plumbing, HVAC, and electrical contractors — answers every call 24/7 via Vapi and ElevenLabs, qualifies the job type and urgency, books slots into Google Calendar, and escalates emergencies to the on-call technician via Twilio.",
+      provider: {
+        "@type": "Organization",
+        "@id": "https://xmelautomations.xyz/#organization",
+        name: "XMEL Automations",
+        url: "https://xmelautomations.xyz",
+      },
+      areaServed: ["IN", "US"],
+      audience: { "@type": "BusinessAudience", audienceType: "Home services contractors" },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "USD",
+        price: "Contact for pricing",
+      },
+    },
+  ],
 };
 
 const faqs = [

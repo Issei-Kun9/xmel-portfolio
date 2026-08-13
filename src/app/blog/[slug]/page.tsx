@@ -91,11 +91,13 @@ export default async function BlogPost({ params }: Props) {
     datePublished: post.date,
     author: {
       "@type": "Person",
+      "@id": "https://xmelautomations.xyz/#founder",
       name: "Yashwardhan Chauhan",
       url: "https://www.linkedin.com/in/yashwardhan-chauhan-075684414/",
     },
     publisher: {
       "@type": "Organization",
+      "@id": "https://xmelautomations.xyz/#organization",
       name: "XMEL Automations",
       url: "https://xmelautomations.xyz",
     },
