@@ -42,8 +42,8 @@ Founded by Yashwardhan Chauhan, based in India, working with clients globally.
 
 ## Company
 
-- [About Yashwardhan Chauhan](https://xmelautomations.xyz/#about): AI automation engineer and founder of XMEL Automations.
-- [Contact](https://xmelautomations.xyz/#contact): Get in touch for AI automation projects.
+- [About](https://xmelautomations.xyz/about): About XMEL Automations and founder Yashwardhan Chauhan.
+- [Contact](https://xmelautomations.xyz/contact): Get in touch for AI automation projects.
 - [LinkedIn](https://www.linkedin.com/in/yashwardhan-chauhan-075684414/): Professional profile and updates.
 - [Instagram](https://www.instagram.com/yashwardhan.ai/): Behind-the-scenes and project updates.
 

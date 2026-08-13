@@ -9,8 +9,8 @@ const navLinks = [
   { name: "PROCESS", href: "#process" },
   { name: "ROI CALC", href: "/tools/roi-calculator" },
   { name: "BLOG", href: "/blog" },
-  { name: "ABOUT", href: "#about" },
-  { name: "CONTACT", href: "#contact" },
+  { name: "ABOUT", href: "/about" },
+  { name: "CONTACT", href: "/contact" },
 ];
 
 const solutionsLinks = [
@@ -203,7 +203,7 @@ export default function Nav() {
 
           <div className="px-8 pb-12">
             <a
-              href="#contact"
+              href="/#contact"
               onClick={() => setMobileOpen(false)}
               className="block w-full py-4 bg-[var(--accent)] text-[var(--bg-primary)] font-mono text-sm text-center font-medium rounded hover:opacity-90 transition-opacity"
             >

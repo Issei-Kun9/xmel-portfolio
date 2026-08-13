@@ -2,6 +2,8 @@ export const dynamic = "force-static";
 
 const SITEMAP_URLS = [
   { loc: "https://xmelautomations.xyz/", lastmod: "2026-07-17" },
+  { loc: "https://xmelautomations.xyz/about", lastmod: "2026-08-13" },
+  { loc: "https://xmelautomations.xyz/contact", lastmod: "2026-08-13" },
   { loc: "https://xmelautomations.xyz/tools/roi-calculator", lastmod: "2026-07-26" },
   { loc: "https://xmelautomations.xyz/blog", lastmod: "2026-07-17" },
   { loc: "https://xmelautomations.xyz/blog/ai-lead-response-real-estate", lastmod: "2026-07-16" },

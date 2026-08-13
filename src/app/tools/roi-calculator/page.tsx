@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://xmelautomations.xyz/tools/roi-calculator",
     siteName: "XMEL Automations",
-    locale: "en_IN",
+    locale: "en_US",
     images: [
       {
         url: "https://xmelautomations.xyz/og-image.png",

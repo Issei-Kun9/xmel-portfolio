@@ -172,6 +172,7 @@ const graph = schemaGraph([
     },
   ]),
   webSite({
+    "@id": `${siteUrl}/#website`,
     name: "XMEL Automations",
     url: siteUrl,
     description:

@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://xmelautomations.xyz",
     siteName: "XMEL Automations",
-    locale: "en_IN",
-    alternateLocale: "en_US",
+    locale: "en_US",
+    alternateLocale: "en_IN",
     images: [
       {
         url: "https://xmelautomations.xyz/og-image.png",
