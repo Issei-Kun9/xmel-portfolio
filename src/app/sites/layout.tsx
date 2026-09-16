@@ -26,8 +26,42 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Palette override, scoped to this route only.
+ *
+ * The main site is dark with a lime accent — right for the automation brand,
+ * wrong for a page asking a stranger for money. This page runs light: paper
+ * background, near-black ink, one deep blue accent. Blue and generous white
+ * space are what people read as "legitimate business" rather than "hype".
+ *
+ * Declared as CSS custom properties on the wrapper so the existing
+ * var(--token) classes inside the page pick them up without any change to the
+ * global stylesheet or the rest of the site.
+ */
+const PALETTE = {
+  "--bg-primary": "#FFFFFF",
+  "--bg-secondary": "#F6F7F4",
+  "--bg-tertiary": "#ECEEE8",
+  "--border-subtle": "rgba(16, 24, 40, 0.10)",
+  "--border-strong": "rgba(16, 24, 40, 0.22)",
+  "--text-primary": "#0E1520",
+  "--text-secondary": "#4A5567",
+  "--text-tertiary": "#6B7687",
+  "--accent": "#0F4C9C",
+  "--accent-soft": "rgba(15, 76, 156, 0.07)",
+  "--accent-line": "rgba(15, 76, 156, 0.30)",
+  colorScheme: "light",
+} as React.CSSProperties;
+
 export default function SitesLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <>{children}</>;
+  return (
+    <div
+      style={PALETTE}
+      className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]"
+    >
+      {children}
+    </div>
+  );
 }

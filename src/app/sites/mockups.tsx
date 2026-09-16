@@ -44,7 +44,7 @@ const PREVIEWS: Preview[] = [
     headline: "What you do, where you work",
     blurb:
       "Electrician, plumber, tutor, photographer — your work and your number in one place.",
-    accent: "#C1FF72",
+    accent: "#0F4C9C",
     nav: ["Work", "Areas", "Call"],
   },
 ];

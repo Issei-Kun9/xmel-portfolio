@@ -157,7 +157,7 @@ export default function SitesLanding() {
       >
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div
-            className="absolute top-[-35%] left-1/2 -translate-x-1/2 w-[85%] h-[70%] rounded-full opacity-[0.08] blur-[130px]"
+            className="absolute top-[-35%] left-1/2 -translate-x-1/2 w-[85%] h-[70%] rounded-full opacity-[0.10] blur-[110px]"
             style={{
               background:
                 "radial-gradient(circle, var(--accent) 0%, transparent 70%)",
@@ -509,7 +509,7 @@ export default function SitesLanding() {
                 {OFFER.total}
               </dd>
             </div>
-            <div className="p-6 rounded-xl border border-[var(--accent)] bg-[rgba(193,255,114,0.06)]">
+            <div className="p-6 rounded-xl border border-[var(--accent)] bg-[var(--accent-soft)]">
               <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--accent)] mb-2">
                 Today
               </dt>
