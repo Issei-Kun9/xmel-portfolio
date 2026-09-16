@@ -189,18 +189,27 @@ export default function SitesLanding() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
 
-      {/* ----------------------------------------------------------- Top bar */}
-      <div className="sticky top-0 z-40 bg-[var(--accent)] text-white">
-        <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-2.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
-          <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.1em] font-semibold">
-            Introductory batch — {OFFER.total} instead of {OFFER.regular}
+      {/* -------------------------------------------------------- Scarcity bar */}
+      <div className="sticky top-0 z-40 bg-[var(--accent)] text-white shadow-[0_2px_12px_-4px_rgba(15,76,156,0.5)]">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-8 py-2.5 flex items-center justify-center gap-2.5 text-center">
+          <span className="relative flex w-2 h-2 shrink-0" aria-hidden="true">
+            <span className="absolute inline-flex w-full h-full rounded-full bg-white status-pulse" />
+            <span className="relative inline-flex w-2 h-2 rounded-full bg-white" />
           </span>
-          <span className="hidden sm:inline opacity-50" aria-hidden="true">
-            ·
-          </span>
-          <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.1em] opacity-90">
-            Builds run one at a time
-          </span>
+
+          <p className="font-mono text-[11px] sm:text-[12.5px] uppercase tracking-[0.08em]">
+            <strong className="font-semibold">Introductory batch open</strong>
+            <span className="mx-1.5 opacity-60">·</span>
+            <span className="whitespace-nowrap">
+              {OFFER.total} not {OFFER.regular}
+            </span>
+            <span className="hidden sm:inline">
+              <span className="mx-1.5 opacity-60">·</span>
+              <span className="opacity-90">
+                Limited builds, reserved in order
+              </span>
+            </span>
+          </p>
         </div>
       </div>
 
