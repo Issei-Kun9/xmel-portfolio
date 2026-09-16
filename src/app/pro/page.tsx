@@ -8,151 +8,168 @@ import BusinessPreviews from "@/components/offer/business-previews";
 import CapacityBar from "./capacity";
 
 /**
- * Ad landing page for the ₹2,500 website offer.
- * Served at https://sites.xmelautomations.xyz (see src/middleware.ts).
+ * Ad landing page for the ₹4,000 multi-page website offer.
+ * Served at https://pro.xmelautomations.xyz (see src/middleware.ts).
  *
  * One conversion: visitor → WhatsApp → asks for the ₹500 link.
  *
- * Deliberately contains no client components, so the page ships no route
- * JavaScript. Keep it that way — most traffic arrives on mobile data.
+ * Sibling of /sites (the ₹2,500 single-page offer). Kept as a separate page
+ * rather than a shared template on purpose: the two will be tested and
+ * rewritten independently, and marketing copy that shares a template tends to
+ * get worse in both places at once.
+ *
+ * No client components — the page ships no route JavaScript.
  */
 const OFFER = {
-  total: "₹2,500",
+  total: "₹4,000",
   today: "₹500",
-  later: "₹2,000",
-  regular: "₹4,000",
-  deliveryDays: 7,
+  later: "₹3,500",
+  pages: 6,
+  deliveryDays: 12,
 };
 
 const INCLUDED = [
   {
-    title: "A professional website",
-    body: "Designed around your business, your services and the customers you want.",
+    title: `Up to ${OFFER.pages} pages`,
+    body: "Home, services, about, gallery, contact — each one written and designed for what it needs to do.",
+  },
+  {
+    title: "A page per service",
+    body: "So a customer looking for one specific thing lands on a page about that thing, not a paragraph buried on your home page.",
   },
   {
     title: "Built for phones first",
-    body: "Looks right on phones, tablets and desktops — most of your visitors are on a phone.",
+    body: "Every page reads properly on a phone. That's where nearly all of your visitors will be.",
   },
   {
-    title: "WhatsApp enquiries",
-    body: "A tap-to-message button on every screen, so customers reach you without a phone call.",
+    title: "WhatsApp on every page",
+    body: "A tap-to-message button wherever they are, so they never have to hunt for your number.",
   },
   {
     title: "Your own web address",
-    body: "Your business on its own domain, so you can put it on a card, a board or a bill.",
+    body: "Your business on its own domain — on your card, your board, your invoices.",
+  },
+  {
+    title: "Gallery of your work",
+    body: "Photos of what you actually do, laid out so they load fast and look deliberate.",
   },
   {
     title: "Your business content",
-    body: "Your services, prices, photos, timings, location and contact details — written for you.",
+    body: "Services, prices, timings, location, contact details. You send the facts, I write the words.",
   },
   {
     title: "Launch and setup",
-    body: "The technical side of getting the site live is handled. You don't touch any of it.",
+    body: "Domain connected, site live, technical side handled. You don't touch any of it.",
   },
 ];
 
 /**
- * Urgency on this page is structural, not theatrical: every claim below is a
- * consequence of how the offer actually works, so it stays true however long
- * the page is live. No countdowns, no spot counters, no invented statistics.
+ * Urgency here is structural, not theatrical: every claim is a consequence of
+ * how the offer actually works, so it holds however long the page is live.
+ * No countdowns, no invented statistics.
  */
 const COST_OF_WAITING = [
   {
-    title: "They search your name and find nothing",
-    body: "Someone hears about you, looks you up, and lands on an empty result or an old social page. They have no way to judge you, so they move on.",
+    title: "One page can't answer every question",
+    body: "A customer who wants to know if you handle their particular job shouldn't have to call to find out. A page that answers it wins the enquiry.",
   },
   {
-    title: "The enquiry goes to whoever looks established",
-    body: "When two businesses offer the same thing, the one with a proper website looks like the safer choice. That comparison is happening without you in it.",
+    title: "You look smaller than you are",
+    body: "A single page reads as a side project. A proper structure reads as an established business — often before anyone has read a word.",
   },
   {
-    title: "Nothing is working while you sleep",
-    body: "A website answers the same questions at 11pm on a Sunday that you answer on the phone all week. Until it exists, every enquiry costs you your own time.",
+    title: "Google has less to work with",
+    body: "One page gives search engines one thing to understand about you. A page per service gives them several, each about something specific.",
   },
 ];
 
 const WHY_NOW = [
   {
-    title: `${OFFER.total} is the introductory price`,
-    body: `This batch is priced to build up my portfolio of business websites. When it closes, this build goes back to ${OFFER.regular} — the same work, the ordinary price.`,
-  },
-  {
-    title: "I build these one at a time",
-    body: "This isn't a team or a template factory. One build gets my attention at a time, so the number I can take in a month is small and fixed by how long a good one takes.",
+    title: "Only a few run at a time",
+    body: `A ${OFFER.pages}-page build is real work — writing, structure, design, launch. I take a small number each month because each one takes real hours.`,
   },
   {
     title: "Builds start in the order they're reserved",
-    body: `Your ${OFFER.today} holds your place in that queue. Reserve later and you aren't turned away — you just start later.`,
+    body: `Your ${OFFER.today} holds your place in the queue. Reserve later and you aren't turned away — you just start later.`,
+  },
+  {
+    title: "Nothing is owed until it's live",
+    body: `The ${OFFER.later} is due when your website is live and you've seen it working. Until then you've risked ${OFFER.today}, refundable.`,
   },
 ];
 
 const STEPS = [
   {
     n: "01",
-    title: "Reserve your spot",
-    body: `Message me on WhatsApp. I send the ${OFFER.today} payment details, and your build is booked.`,
+    title: "Reserve your build",
+    body: `Message me on WhatsApp. I send the ${OFFER.today} payment details and your place in the queue is held.`,
   },
   {
     n: "02",
-    title: "We build your website",
-    body: "Send your business details, photos and anything you want on it. I write and design the rest.",
+    title: "We plan the pages",
+    body: `We work out what the ${OFFER.pages} pages should be for your business — not a fixed template. Then you send photos and details.`,
   },
   {
     n: "03",
-    title: "You see it, then you pay the rest",
-    body: `You review the finished website. The remaining ${OFFER.later} is due only after that.`,
+    title: "I build it",
+    body: `Around ${OFFER.deliveryDays} days. You get a preview link the whole way, so you're never waiting in the dark.`,
+  },
+  {
+    n: "04",
+    title: "It goes live, then you pay the rest",
+    body: `The ${OFFER.later} is due once the site is live on your domain and you've seen it working.`,
   },
 ];
 
 const FAQS = [
   {
-    q: `Why is it only ${OFFER.total}?`,
-    a: "I'm taking on an introductory batch of business websites to build up this side of my work, so the price is lower than what I'll charge once that batch is done. The work isn't smaller — the price is introductory.",
+    q: `What makes this ${OFFER.total} and not less?`,
+    a: `This is a ${OFFER.pages}-page build: separate pages for your services, your work, who you are and how to reach you. Each page is planned, written and designed. If a single page covers what you need, say so on WhatsApp and I'll tell you honestly — there's a smaller build for that.`,
   },
   {
     q: `Why do I only pay ${OFFER.today} first?`,
-    a: `Because you shouldn't have to hand over ${OFFER.total} to someone you've just met on the internet. The ${OFFER.today} reserves your build and lets me start. It's the smallest amount that makes the commitment real on both sides.`,
+    a: `Because you shouldn't hand ${OFFER.total} to someone you've just met online. The ${OFFER.today} reserves your build and lets me start. It's the smallest amount that makes the commitment real on both sides.`,
   },
   {
     q: `What if I change my mind after paying the ${OFFER.today}?`,
     a: `If I haven't started your build yet, message me and I'll refund the ${OFFER.today}. You're reserving a place, not signing a contract you can't get out of.`,
   },
   {
-    q: `When do I pay the remaining ${OFFER.later}?`,
-    a: "After the website is finished and you've seen it. Not before.",
+    q: `When exactly do I pay the ${OFFER.later}?`,
+    a: "When the website is live on your domain and you've seen it working. Not on a milestone, not halfway — live.",
   },
   {
-    q: "How long does the website take?",
-    a: `Around ${OFFER.deliveryDays} days from the day you send me your business details — not from the day you pay. If you take a week to send photos, the clock starts when they arrive.`,
+    q: "How long does it take?",
+    a: `Around ${OFFER.deliveryDays} days from the day you send your business details — not from the day you pay. More pages means more writing, so it's longer than a single-page build.`,
   },
   {
     q: "Do I have to pay every month?",
-    a: "Not to me. There's no monthly fee for the website itself. Domain renewal is paid once a year directly to the registrar, and hosting for a site this size is free or close to it — you pay those yourself, not through me.",
+    a: "Not to me. No monthly fee for the website itself. Domain renewal is paid once a year directly to the registrar, and hosting for a site this size is free or close to it — you pay those yourself, not through me.",
   },
   {
-    q: "What do you need from me?",
-    a: "Your business name, what you do, your contact details, and any photos you have. If you don't have photos, tell me and we work with what's available. I write the words.",
+    q: "What if I need more than the pages included?",
+    a: `${OFFER.pages} pages covers almost every local business. If yours genuinely needs more, tell me what and I'll quote it before we start — never after.`,
+  },
+  {
+    q: "Can I add or change things later?",
+    a: "Text and images are set up so you can edit them yourself, and I send a short walkthrough video at launch. For bigger changes, message me.",
   },
   {
     q: "Can I use my own domain?",
-    a: "Yes. If you already own one, I'll connect it. If you don't, I'll help you pick and register one — you own it, in your name.",
+    a: "Yes. If you own one I'll connect it. If not, I'll help you pick and register one — in your name, owned by you.",
   },
   {
     q: "What happens after I message you on WhatsApp?",
-    a: `I reply with a couple of questions about your business and the ${OFFER.today} payment details. No call unless you want one, and no pressure — if it isn't a fit, I'll say so.`,
-  },
-  {
-    q: "Can you build a website for my type of business?",
-    a: "If customers need to find you, see what you offer and contact you, then yes. Shops, restaurants, salons, clinics, tradespeople, agents, tutors, consultants. Message me what you do and I'll tell you straight if it's a fit.",
+    a: `I reply with a few questions about your business and the ${OFFER.today} payment details. No call unless you want one, and if it isn't a fit I'll say so.`,
   },
 ];
 
-export default function SitesLanding() {
+export default function ProLanding() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Website design and development",
-    name: "Business website launch",
+    name: "Multi-page business website",
     provider: {
       "@type": "Organization",
       name: "XMEL Automations",
@@ -160,11 +177,10 @@ export default function SitesLanding() {
       telephone: "+91 7905214791",
     },
     areaServed: "IN",
-    description:
-      "A professional, mobile-first website for a small business. ₹2,500 total — ₹500 to start, ₹2,000 after you see the finished site.",
+    description: `A ${OFFER.pages}-page mobile-first website for a business. ₹4,000 total — ₹500 to start, ₹3,500 when it goes live.`,
     offers: {
       "@type": "Offer",
-      price: "2500",
+      price: "4000",
       priceCurrency: "INR",
     },
   };
@@ -199,16 +215,16 @@ export default function SitesLanding() {
           </span>
 
           <p className="font-mono text-[11px] sm:text-[12.5px] uppercase tracking-[0.08em]">
-            <strong className="font-semibold">Introductory batch open</strong>
+            <strong className="font-semibold">
+              {OFFER.pages}-page build · {OFFER.total}
+            </strong>
             <span className="mx-1.5 opacity-60">·</span>
             <span className="whitespace-nowrap">
-              {OFFER.total} not {OFFER.regular}
+              {OFFER.today} to start
             </span>
             <span className="hidden sm:inline">
               <span className="mx-1.5 opacity-60">·</span>
-              <span className="opacity-90">
-                Limited builds, reserved in order
-              </span>
+              <span className="opacity-90">Limited builds, reserved in order</span>
             </span>
           </p>
         </div>
@@ -231,44 +247,40 @@ export default function SitesLanding() {
 
         <div className="relative z-10 max-w-[840px] mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-12">
           {/*
-            Everything that makes the decision — headline, price, scarcity,
-            button — is kept above the fold on a small phone. Supporting
-            detail (payment split, delivery terms) sits below the CTA, and the
-            section immediately after the hero covers it in full.
+            Decision-critical content only, above the fold: headline, price,
+            scarcity, button. Supporting detail sits below the CTA.
           */}
           <h1
             id="hero-heading"
             className="font-display text-[clamp(30px,7.2vw,56px)] font-semibold leading-[1.05] tracking-[-0.025em] text-[var(--text-primary)] mb-4"
           >
-            Your business deserves a proper website.
+            A proper website. Not just one page.
           </h1>
 
           <p className="text-[16px] sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-[520px] mb-5">
-            Built for your business, ready in {OFFER.deliveryDays} days.
+            Up to {OFFER.pages} pages — your services, your work, your business
+            — live in about {OFFER.deliveryDays} days.
           </p>
 
           <div className="flex items-baseline gap-3 mb-5">
             <span className="font-display text-[40px] sm:text-[52px] font-semibold leading-none text-[var(--text-primary)]">
               {OFFER.total}
             </span>
-            <span className="font-display text-[20px] sm:text-[26px] leading-none text-[var(--text-tertiary)] line-through decoration-2">
-              {OFFER.regular}
-            </span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
-              Introductory
+            <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+              total · {OFFER.today} to start
             </span>
           </div>
 
           <div className="max-w-[480px] mb-5">
-            <CapacityBar regularPrice={OFFER.regular} />
+            <CapacityBar />
           </div>
 
           <WhatsappCta className="w-full sm:w-auto">
             <WhatsappIcon />
-            WhatsApp — Reserve my spot for {OFFER.today}
+            WhatsApp — Reserve my build for {OFFER.today}
           </WhatsappCta>
 
-          <p className="inline-flex items-start gap-2 mt-3 max-w-[460px]">
+          <p className="inline-flex items-start gap-2 mt-3 max-w-[470px]">
             <ShieldCheck
               className="w-4 h-4 shrink-0 text-[var(--accent)] mt-0.5"
               aria-hidden="true"
@@ -277,8 +289,8 @@ export default function SitesLanding() {
               <strong className="text-[var(--text-primary)] font-semibold">
                 {OFFER.today} to start, refundable
               </strong>{" "}
-              before your build begins — the rest only after you see the
-              finished website.
+              before your build begins — the {OFFER.later} is due only once your
+              site is live.
             </span>
           </p>
 
@@ -294,14 +306,13 @@ export default function SitesLanding() {
               <p className="text-[15px] sm:text-base text-[var(--text-secondary)]">
                 Pay the remaining {OFFER.later}{" "}
                 <strong className="text-[var(--text-primary)] font-medium">
-                  only after you see the finished website.
+                  when your website is live.
                 </strong>
               </p>
             </div>
 
             <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-5">
-              {OFFER.deliveryDays}-day delivery · One-time payment · No monthly
-              website fee
+              {OFFER.pages} pages · One-time payment · No monthly website fee
             </p>
 
             <p className="text-sm text-[var(--text-tertiary)] mt-4">
@@ -322,12 +333,11 @@ export default function SitesLanding() {
             id="flow-heading"
             className="font-display text-[clamp(22px,4.5vw,32px)] font-semibold tracking-[-0.015em] text-[var(--text-primary)] mb-3"
           >
-            You are not paying {OFFER.total} upfront.
+            You pay the bulk of it only once it&apos;s live.
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-9">
             And the {OFFER.today} that starts it is refundable right up until I
-            begin your build — so the decision you&apos;re making today is
-            genuinely reversible.
+            begin your build — so today&apos;s decision is genuinely reversible.
           </p>
 
           <ol className="grid sm:grid-cols-4 gap-3">
@@ -335,19 +345,19 @@ export default function SitesLanding() {
               {
                 label: "You pay",
                 value: OFFER.today,
-                note: "Reserves your build",
+                note: "Holds your place",
                 strong: true,
               },
               {
                 label: "Then",
-                value: "I build it",
-                note: `About ${OFFER.deliveryDays} days`,
+                value: "We plan it",
+                note: `What the ${OFFER.pages} pages are`,
                 strong: false,
               },
               {
                 label: "Then",
-                value: "You see it",
-                note: "The finished website",
+                value: "It goes live",
+                note: "On your own domain",
                 strong: false,
               },
               {
@@ -396,7 +406,7 @@ export default function SitesLanding() {
             id="included-heading"
             className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-10 max-w-[620px]"
           >
-            Everything you need to get your business online.
+            What {OFFER.pages} pages actually gets you.
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -421,7 +431,7 @@ export default function SitesLanding() {
 
           <div className="mt-10">
             <WhatsappCtaGhost>
-              Reserve my spot for {OFFER.today}
+              Reserve my build for {OFFER.today}
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
           </div>
@@ -431,25 +441,25 @@ export default function SitesLanding() {
       {/* ==================================================== Cost of waiting */}
       <section
         aria-labelledby="waiting-heading"
-        className="border-t border-[var(--border-subtle)]"
+        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
       >
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
           <h2
             id="waiting-heading"
             className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-3"
           >
-            What another month without one costs you.
+            Why one page usually isn&apos;t enough.
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-10">
-            Not having a website isn&apos;t neutral. It quietly costs you
-            customers you never hear about.
+            A single page is better than nothing. It just runs out of room
+            faster than most business owners expect.
           </p>
 
           <div className="space-y-3">
             {COST_OF_WAITING.map((item) => (
               <div
                 key={item.title}
-                className="flex gap-4 p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+                className="flex gap-4 p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)]"
               >
                 <span
                   className="shrink-0 w-1 rounded-full bg-[var(--accent-line)]"
@@ -466,18 +476,13 @@ export default function SitesLanding() {
               </div>
             ))}
           </div>
-
-          <p className="text-[15px] text-[var(--text-primary)] mt-8 max-w-[520px]">
-            None of this is urgent in the way an emergency is. It&apos;s worse —
-            it&apos;s the kind of loss you never get told about.
-          </p>
         </div>
       </section>
 
       {/* ========================================================== Previews */}
       <section
         aria-labelledby="previews-heading"
-        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+        className="border-t border-[var(--border-subtle)]"
       >
         <div className="max-w-[1000px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
           <h2
@@ -487,8 +492,8 @@ export default function SitesLanding() {
             Imagine your business here.
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-10">
-            Every business needs slightly different things on its website. Here
-            is the shape it usually takes.
+            Every business needs slightly different pages. Here is the shape it
+            usually takes.
           </p>
 
           <BusinessPreviews />
@@ -509,7 +514,7 @@ export default function SitesLanding() {
       {/* ============================================================ Hermont */}
       <section
         aria-labelledby="built-heading"
-        className="border-t border-[var(--border-subtle)]"
+        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
       >
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
           <h2
@@ -523,7 +528,7 @@ export default function SitesLanding() {
             href="https://hermont.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="group block rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-colors duration-300"
+            className="group block rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-primary)] hover:border-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-colors duration-300"
           >
             <div
               className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
@@ -534,7 +539,7 @@ export default function SitesLanding() {
                 <span className="w-2.5 h-2.5 rounded-full bg-[var(--border-strong)]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[var(--border-strong)]" />
               </span>
-              <span className="flex-1 mx-2 px-3 py-1 rounded bg-[var(--bg-primary)] font-mono text-[11px] text-[var(--text-tertiary)] truncate">
+              <span className="flex-1 mx-2 px-3 py-1 rounded bg-[var(--bg-secondary)] font-mono text-[11px] text-[var(--text-tertiary)] truncate">
                 hermont.in
               </span>
             </div>
@@ -581,7 +586,7 @@ export default function SitesLanding() {
       {/* ======================================================= How it works */}
       <section
         aria-labelledby="how-heading"
-        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+        className="border-t border-[var(--border-subtle)]"
       >
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
           <h2
@@ -595,7 +600,7 @@ export default function SitesLanding() {
             {STEPS.map((s) => (
               <li
                 key={s.n}
-                className="flex gap-5 p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)]"
+                className="flex gap-5 p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
               >
                 <span
                   className="font-mono text-[13px] text-[var(--accent)] shrink-0 pt-0.5"
@@ -615,10 +620,6 @@ export default function SitesLanding() {
             ))}
           </ol>
 
-          <p className="text-[var(--text-secondary)] mt-7">
-            That&apos;s it. No complicated process.
-          </p>
-
           <div className="mt-8">
             <WhatsappCtaGhost>
               Start with {OFFER.today}
@@ -631,7 +632,7 @@ export default function SitesLanding() {
       {/* ========================================================= Why now */}
       <section
         aria-labelledby="whynow-heading"
-        className="border-t border-[var(--border-subtle)]"
+        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
       >
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
           <h2
@@ -642,14 +643,14 @@ export default function SitesLanding() {
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-10">
             No countdown on this page, and no invented shortage. Three plain
-            reasons, all of them true whenever you happen to read this.
+            reasons, all true whenever you happen to read this.
           </p>
 
           <ol className="grid sm:grid-cols-3 gap-4">
             {WHY_NOW.map((item, i) => (
               <li
                 key={item.title}
-                className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+                className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)]"
               >
                 <span
                   className="font-mono text-[12px] text-[var(--accent)] block mb-3"
@@ -689,8 +690,8 @@ export default function SitesLanding() {
             One price. Split in two.
           </h2>
           <p className="text-[var(--text-secondary)] mb-10">
-            Introductory price while this batch lasts — my regular price for
-            this build is {OFFER.regular}.
+            Agreed before I start. No hourly billing, no invoice at the end you
+            didn&apos;t expect.
           </p>
 
           <dl className="grid sm:grid-cols-3 gap-3 mb-4">
@@ -712,7 +713,7 @@ export default function SitesLanding() {
             </div>
             <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
               <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] mb-2">
-                After you see it
+                When it&apos;s live
               </dt>
               <dd className="font-display text-[40px] font-semibold text-[var(--text-primary)] leading-none">
                 {OFFER.later}
@@ -725,7 +726,7 @@ export default function SitesLanding() {
           </p>
 
           <div className="max-w-[520px]">
-            <CapacityBar regularPrice={OFFER.regular} />
+            <CapacityBar />
           </div>
         </div>
       </section>
@@ -774,11 +775,9 @@ export default function SitesLanding() {
       </section>
 
       {/*
-        Sticky mobile CTA.
-
-        position:sticky (not fixed) so it rides the viewport bottom while
-        scrolling and then simply lands in the flow just above the final CTA —
-        no duplicate CTAs on screen, and no JavaScript to make that happen.
+        Sticky mobile CTA — position:sticky, not fixed, so it rides the bottom
+        of the viewport and then lands in the flow just above the final CTA.
+        No duplicate buttons on screen, and no JavaScript to arrange it.
       */}
       <div
         className="sm:hidden sticky bottom-0 z-40 px-3 pt-3 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)] to-transparent"
@@ -803,27 +802,23 @@ export default function SitesLanding() {
             id="final-heading"
             className="font-display text-[clamp(26px,6vw,42px)] font-semibold tracking-[-0.025em] text-[var(--text-primary)] mb-5"
           >
-            Ready to get your business online?
+            Ready to give your business a real website?
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed mb-4 max-w-[460px] mx-auto">
-            Reserve your website build for {OFFER.today}. I&apos;ll send the
-            payment details on WhatsApp.
+            Reserve your build for {OFFER.today}. I&apos;ll send the payment
+            details on WhatsApp.
           </p>
           <p className="text-[15px] text-[var(--text-primary)] mb-9 max-w-[460px] mx-auto">
-            {OFFER.total} while this batch is open, {OFFER.regular} after it
-            closes — and builds start in the order they&apos;re reserved.
+            {OFFER.pages} pages, {OFFER.total} total — and the {OFFER.later} is
+            due only once your site is live.
           </p>
 
           <WhatsappCta className="w-full sm:w-auto">
             <WhatsappIcon />
-            WhatsApp — Reserve my spot for {OFFER.today}
+            WhatsApp — Reserve my build for {OFFER.today}
           </WhatsappCta>
 
-          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-6">
-            {OFFER.total} total · {OFFER.today} to start · {OFFER.later} after
-            you see it
-          </p>
-          <p className="text-[13px] text-[var(--accent)] mt-3 font-medium">
+          <p className="text-[13px] text-[var(--accent)] mt-4 font-medium">
             {OFFER.today} refundable before your build starts
           </p>
 

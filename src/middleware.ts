@@ -1,7 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const SITES_HOST = "sites.xmelautomations.xyz";
+const APEX = "xmelautomations.xyz";
+
+/**
+ * Offer subdomains, each served from a route of this same app.
+ * Add a row here and the rewrite, the canonical redirect and the security
+ * headers all follow — there is nothing else to wire up.
+ */
+const OFFER_HOSTS: Record<string, string> = {
+  sites: "/sites", // ₹2,500 single-page build
+  pro: "/pro", // ₹4,000 multi-page build
+};
 
 function withSecurityHeaders(response: NextResponse) {
   response.headers.set("X-Frame-Options", "DENY");
@@ -11,19 +21,29 @@ function withSecurityHeaders(response: NextResponse) {
 export function middleware(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
   const { pathname } = request.nextUrl;
+  const subdomain = host.split(".")[0];
+  const route = OFFER_HOSTS[subdomain];
 
-  // sites.xmelautomations.xyz is served from the /sites route of this app.
-  if (host.startsWith("sites.")) {
-    if (!pathname.startsWith("/sites") && !pathname.startsWith("/api")) {
+  // On an offer subdomain: serve that offer's route from the site root.
+  if (route) {
+    if (!pathname.startsWith(route) && !pathname.startsWith("/api")) {
       const url = request.nextUrl.clone();
-      url.pathname = pathname === "/" ? "/sites" : `/sites${pathname}`;
+      url.pathname = pathname === "/" ? route : `${route}${pathname}`;
       return withSecurityHeaders(NextResponse.rewrite(url));
     }
-  } else if (pathname === "/sites" && host.endsWith("xmelautomations.xyz")) {
-    // One canonical URL for the offer — never the apex path.
-    return withSecurityHeaders(
-      NextResponse.redirect(`https://${SITES_HOST}`, 308)
-    );
+    return withSecurityHeaders(NextResponse.next());
+  }
+
+  // On the apex: send the bare offer paths to their subdomain, so each offer
+  // has exactly one canonical URL. Localhost is left alone for development.
+  if (host.endsWith(APEX)) {
+    for (const [sub, offerRoute] of Object.entries(OFFER_HOSTS)) {
+      if (pathname === offerRoute) {
+        return withSecurityHeaders(
+          NextResponse.redirect(`https://${sub}.${APEX}`, 308)
+        );
+      }
+    }
   }
 
   return withSecurityHeaders(NextResponse.next());
