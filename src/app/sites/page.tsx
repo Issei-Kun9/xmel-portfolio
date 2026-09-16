@@ -11,7 +11,7 @@ const OFFER = {
   price: "₹2,500",
   booking: "₹500",
   balance: "₹2,000",
-  priceAfter: "₹7,500",
+  priceAfter: "₹4,000",
   spotsTotal: 10,
   deliveryDays: 7,
 };
