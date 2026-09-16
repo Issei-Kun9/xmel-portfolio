@@ -1,4 +1,4 @@
-import { ArrowRight, Check, ExternalLink } from "lucide-react";
+import { ArrowRight, Check, ExternalLink, ShieldCheck } from "lucide-react";
 import WhatsappCta, {
   WhatsappCtaGhost,
   WhatsappIcon,
@@ -50,6 +50,41 @@ const INCLUDED = [
   },
 ];
 
+/**
+ * Urgency on this page is structural, not theatrical: every claim below is a
+ * consequence of how the offer actually works, so it stays true however long
+ * the page is live. No countdowns, no spot counters, no invented statistics.
+ */
+const COST_OF_WAITING = [
+  {
+    title: "They search your name and find nothing",
+    body: "Someone hears about you, looks you up, and lands on an empty result or an old social page. They have no way to judge you, so they move on.",
+  },
+  {
+    title: "The enquiry goes to whoever looks established",
+    body: "When two businesses offer the same thing, the one with a proper website looks like the safer choice. That comparison is happening without you in it.",
+  },
+  {
+    title: "Nothing is working while you sleep",
+    body: "A website answers the same questions at 11pm on a Sunday that you answer on the phone all week. Until it exists, every enquiry costs you your own time.",
+  },
+];
+
+const WHY_NOW = [
+  {
+    title: `${OFFER.total} is the introductory price`,
+    body: `This batch is priced to build up my portfolio of business websites. When it closes, this build goes back to ${OFFER.regular} — the same work, the ordinary price.`,
+  },
+  {
+    title: "I build these one at a time",
+    body: "This isn't a team or a template factory. One build gets my attention at a time, so the number I can take in a month is small and fixed by how long a good one takes.",
+  },
+  {
+    title: "Builds start in the order they're reserved",
+    body: `Your ${OFFER.today} holds your place in that queue. Reserve later and you aren't turned away — you just start later.`,
+  },
+];
+
 const STEPS = [
   {
     n: "01",
@@ -76,6 +111,10 @@ const FAQS = [
   {
     q: `Why do I only pay ${OFFER.today} first?`,
     a: `Because you shouldn't have to hand over ${OFFER.total} to someone you've just met on the internet. The ${OFFER.today} reserves your build and lets me start. It's the smallest amount that makes the commitment real on both sides.`,
+  },
+  {
+    q: `What if I change my mind after paying the ${OFFER.today}?`,
+    a: `If I haven't started your build yet, message me and I'll refund the ${OFFER.today}. You're reserving a place, not signing a contract you can't get out of.`,
   },
   {
     q: `When do I pay the remaining ${OFFER.later}?`,
@@ -150,6 +189,21 @@ export default function SitesLanding() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
 
+      {/* ----------------------------------------------------------- Top bar */}
+      <div className="sticky top-0 z-40 bg-[var(--accent)] text-white">
+        <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-2.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
+          <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.1em] font-semibold">
+            Introductory batch — {OFFER.total} instead of {OFFER.regular}
+          </span>
+          <span className="hidden sm:inline opacity-50" aria-hidden="true">
+            ·
+          </span>
+          <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.1em] opacity-90">
+            Builds run one at a time
+          </span>
+        </div>
+      </div>
+
       {/* ============================================================== Hero */}
       <section
         aria-labelledby="hero-heading"
@@ -177,13 +231,22 @@ export default function SitesLanding() {
             Your business deserves a proper website.
           </h1>
 
-          <p className="text-[17px] sm:text-xl text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-7">
-            A professional, mobile-first website built for your business —{" "}
-            <strong className="text-[var(--text-primary)] font-semibold">
-              {OFFER.total} in total
-            </strong>
-            .
+          <p className="text-[17px] sm:text-xl text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-6">
+            A professional, mobile-first website built for your business.
           </p>
+
+          {/* The anchor sits in the first screen: the saving reads instantly. */}
+          <div className="flex items-baseline gap-3 mb-6">
+            <span className="font-display text-[44px] sm:text-[52px] font-semibold leading-none text-[var(--text-primary)]">
+              {OFFER.total}
+            </span>
+            <span className="font-display text-[22px] sm:text-[26px] leading-none text-[var(--text-tertiary)] line-through decoration-2">
+              {OFFER.regular}
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
+              Introductory
+            </span>
+          </div>
 
           {/* payment structure, stated before the ask */}
           <div className="inline-flex flex-col gap-2 p-5 mb-7 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-secondary)]">
@@ -201,9 +264,24 @@ export default function SitesLanding() {
             </p>
           </div>
 
-          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mb-8">
+          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mb-6">
             {OFFER.deliveryDays}-day delivery · One-time payment · No monthly
             website fee
+          </p>
+
+          {/* The single biggest objection-killer: make it impossible to miss. */}
+          <p className="inline-flex items-start gap-2.5 p-4 mb-7 rounded-xl border border-[var(--accent-line)] bg-[var(--accent-soft)] max-w-[480px]">
+            <ShieldCheck
+              className="w-5 h-5 shrink-0 text-[var(--accent)] mt-0.5"
+              aria-hidden="true"
+            />
+            <span className="text-[15px] text-[var(--text-primary)] leading-relaxed">
+              <strong className="font-semibold">
+                Your {OFFER.today} is refundable
+              </strong>{" "}
+              any time before I start your build. Change your mind and you get
+              it back.
+            </span>
           </p>
 
           <WhatsappCta className="w-full sm:w-auto">
@@ -211,9 +289,9 @@ export default function SitesLanding() {
             WhatsApp — Reserve my spot for {OFFER.today}
           </WhatsappCta>
 
-          <p className="text-sm text-[var(--text-tertiary)] mt-4 max-w-[420px]">
+          <p className="text-sm text-[var(--text-tertiary)] mt-4 max-w-[440px]">
             Takes about 30 seconds. I&apos;ll send the {OFFER.today} payment
-            details on WhatsApp.
+            details on WhatsApp — it holds your place in the build queue.
           </p>
         </div>
       </section>
@@ -226,10 +304,15 @@ export default function SitesLanding() {
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-16">
           <h2
             id="flow-heading"
-            className="font-display text-[clamp(22px,4.5vw,32px)] font-semibold tracking-[-0.015em] text-[var(--text-primary)] mb-9"
+            className="font-display text-[clamp(22px,4.5vw,32px)] font-semibold tracking-[-0.015em] text-[var(--text-primary)] mb-3"
           >
             You are not paying {OFFER.total} upfront.
           </h2>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-9">
+            And the {OFFER.today} that starts it is refundable right up until I
+            begin your build — so the decision you&apos;re making today is
+            genuinely reversible.
+          </p>
 
           <ol className="grid sm:grid-cols-4 gap-3">
             {[
@@ -326,6 +409,52 @@ export default function SitesLanding() {
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
           </div>
+        </div>
+      </section>
+
+      {/* ==================================================== Cost of waiting */}
+      <section
+        aria-labelledby="waiting-heading"
+        className="border-t border-[var(--border-subtle)]"
+      >
+        <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
+          <h2
+            id="waiting-heading"
+            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-3"
+          >
+            What another month without one costs you.
+          </h2>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-10">
+            Not having a website isn&apos;t neutral. It quietly costs you
+            customers you never hear about.
+          </p>
+
+          <div className="space-y-3">
+            {COST_OF_WAITING.map((item) => (
+              <div
+                key={item.title}
+                className="flex gap-4 p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+              >
+                <span
+                  className="shrink-0 w-1 rounded-full bg-[var(--accent-line)]"
+                  aria-hidden="true"
+                />
+                <div>
+                  <h3 className="font-display text-[16px] font-semibold text-[var(--text-primary)] mb-1.5">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-[15px] text-[var(--text-primary)] mt-8 max-w-[520px]">
+            None of this is urgent in the way an emergency is. It&apos;s worse —
+            it&apos;s the kind of loss you never get told about.
+          </p>
         </div>
       </section>
 
@@ -483,6 +612,54 @@ export default function SitesLanding() {
         </div>
       </section>
 
+      {/* ========================================================= Why now */}
+      <section
+        aria-labelledby="whynow-heading"
+        className="border-t border-[var(--border-subtle)]"
+      >
+        <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
+          <h2
+            id="whynow-heading"
+            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-3"
+          >
+            Why reserve now rather than later.
+          </h2>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-10">
+            No countdown on this page, and no invented shortage. Three plain
+            reasons, all of them true whenever you happen to read this.
+          </p>
+
+          <ol className="grid sm:grid-cols-3 gap-4">
+            {WHY_NOW.map((item, i) => (
+              <li
+                key={item.title}
+                className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+              >
+                <span
+                  className="font-mono text-[12px] text-[var(--accent)] block mb-3"
+                  aria-hidden="true"
+                >
+                  0{i + 1}
+                </span>
+                <h3 className="font-display text-[16px] font-semibold text-[var(--text-primary)] mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  {item.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-9">
+            <WhatsappCtaGhost>
+              Hold my place for {OFFER.today}
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </WhatsappCtaGhost>
+          </div>
+        </div>
+      </section>
+
       {/* ========================================================= Pricing */}
       <section
         aria-labelledby="pricing-heading"
@@ -591,6 +768,9 @@ export default function SitesLanding() {
           <WhatsappIcon className="w-[18px] h-[18px]" />
           WhatsApp — Start for {OFFER.today}
         </WhatsappCta>
+        <p className="text-center text-[11px] text-[var(--text-tertiary)] mt-1.5">
+          Refundable before your build starts
+        </p>
       </div>
 
       {/* ===================================================== Final CTA */}
@@ -605,9 +785,13 @@ export default function SitesLanding() {
           >
             Ready to get your business online?
           </h2>
-          <p className="text-[var(--text-secondary)] leading-relaxed mb-9 max-w-[460px] mx-auto">
+          <p className="text-[var(--text-secondary)] leading-relaxed mb-4 max-w-[460px] mx-auto">
             Reserve your website build for {OFFER.today}. I&apos;ll send the
             payment details on WhatsApp.
+          </p>
+          <p className="text-[15px] text-[var(--text-primary)] mb-9 max-w-[460px] mx-auto">
+            {OFFER.total} while this batch is open, {OFFER.regular} after it
+            closes — and builds start in the order they&apos;re reserved.
           </p>
 
           <WhatsappCta className="w-full sm:w-auto">
@@ -618,6 +802,9 @@ export default function SitesLanding() {
           <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-6">
             {OFFER.total} total · {OFFER.today} to start · {OFFER.later} after
             you see it
+          </p>
+          <p className="text-[13px] text-[var(--accent)] mt-3 font-medium">
+            {OFFER.today} refundable before your build starts
           </p>
 
           <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-10">
