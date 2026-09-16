@@ -229,28 +229,29 @@ export default function SitesLanding() {
           />
         </div>
 
-        <div className="relative z-10 max-w-[840px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-12">
-          <p className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[var(--accent)] mb-6">
-            Introductory batch · Limited builds at this price
-          </p>
-
+        <div className="relative z-10 max-w-[840px] mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-12">
+          {/*
+            Everything that makes the decision — headline, price, scarcity,
+            button — is kept above the fold on a small phone. Supporting
+            detail (payment split, delivery terms) sits below the CTA, and the
+            section immediately after the hero covers it in full.
+          */}
           <h1
             id="hero-heading"
-            className="font-display text-[clamp(34px,8vw,62px)] font-semibold leading-[1.06] tracking-[-0.025em] text-[var(--text-primary)] mb-6"
+            className="font-display text-[clamp(30px,7.2vw,56px)] font-semibold leading-[1.05] tracking-[-0.025em] text-[var(--text-primary)] mb-4"
           >
             Your business deserves a proper website.
           </h1>
 
-          <p className="text-[17px] sm:text-xl text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-6">
-            A professional, mobile-first website built for your business.
+          <p className="text-[16px] sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-[520px] mb-5">
+            Built for your business, ready in {OFFER.deliveryDays} days.
           </p>
 
-          {/* The anchor sits in the first screen: the saving reads instantly. */}
-          <div className="flex items-baseline gap-3 mb-6">
-            <span className="font-display text-[44px] sm:text-[52px] font-semibold leading-none text-[var(--text-primary)]">
+          <div className="flex items-baseline gap-3 mb-5">
+            <span className="font-display text-[40px] sm:text-[52px] font-semibold leading-none text-[var(--text-primary)]">
               {OFFER.total}
             </span>
-            <span className="font-display text-[22px] sm:text-[26px] leading-none text-[var(--text-tertiary)] line-through decoration-2">
+            <span className="font-display text-[20px] sm:text-[26px] leading-none text-[var(--text-tertiary)] line-through decoration-2">
               {OFFER.regular}
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
@@ -258,43 +259,7 @@ export default function SitesLanding() {
             </span>
           </div>
 
-          {/* payment structure, stated before the ask */}
-          <div className="inline-flex flex-col gap-2 p-5 mb-7 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-secondary)]">
-            <p className="text-[15px] sm:text-base text-[var(--text-primary)]">
-              Pay{" "}
-              <strong className="text-[var(--accent)] font-semibold">
-                {OFFER.today} to start.
-              </strong>
-            </p>
-            <p className="text-[15px] sm:text-base text-[var(--text-secondary)]">
-              Pay the remaining {OFFER.later}{" "}
-              <strong className="text-[var(--text-primary)] font-medium">
-                only after you see the finished website.
-              </strong>
-            </p>
-          </div>
-
-          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mb-6">
-            {OFFER.deliveryDays}-day delivery · One-time payment · No monthly
-            website fee
-          </p>
-
-          {/* The single biggest objection-killer: make it impossible to miss. */}
-          <p className="inline-flex items-start gap-2.5 p-4 mb-7 rounded-xl border border-[var(--accent-line)] bg-[var(--accent-soft)] max-w-[480px]">
-            <ShieldCheck
-              className="w-5 h-5 shrink-0 text-[var(--accent)] mt-0.5"
-              aria-hidden="true"
-            />
-            <span className="text-[15px] text-[var(--text-primary)] leading-relaxed">
-              <strong className="font-semibold">
-                Your {OFFER.today} is refundable
-              </strong>{" "}
-              any time before I start your build. Change your mind and you get
-              it back.
-            </span>
-          </p>
-
-          <div className="max-w-[480px] mb-7">
+          <div className="max-w-[480px] mb-5">
             <CapacityBar regularPrice={OFFER.regular} />
           </div>
 
@@ -303,10 +268,47 @@ export default function SitesLanding() {
             WhatsApp — Reserve my spot for {OFFER.today}
           </WhatsappCta>
 
-          <p className="text-sm text-[var(--text-tertiary)] mt-4 max-w-[440px]">
-            Takes about 30 seconds. I&apos;ll send the {OFFER.today} payment
-            details on WhatsApp — it holds your place in the build queue.
+          <p className="inline-flex items-start gap-2 mt-3 max-w-[460px]">
+            <ShieldCheck
+              className="w-4 h-4 shrink-0 text-[var(--accent)] mt-0.5"
+              aria-hidden="true"
+            />
+            <span className="text-[13.5px] text-[var(--text-secondary)] leading-relaxed">
+              <strong className="text-[var(--text-primary)] font-semibold">
+                {OFFER.today} to start, refundable
+              </strong>{" "}
+              before your build begins — the rest only after you see the
+              finished website.
+            </span>
           </p>
+
+          {/* ---- below the fold on a phone: the supporting detail ---- */}
+          <div className="mt-9 pt-8 border-t border-[var(--border-subtle)] max-w-[520px]">
+            <div className="flex flex-col gap-2 p-5 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-secondary)]">
+              <p className="text-[15px] sm:text-base text-[var(--text-primary)]">
+                Pay{" "}
+                <strong className="text-[var(--accent)] font-semibold">
+                  {OFFER.today} to start.
+                </strong>
+              </p>
+              <p className="text-[15px] sm:text-base text-[var(--text-secondary)]">
+                Pay the remaining {OFFER.later}{" "}
+                <strong className="text-[var(--text-primary)] font-medium">
+                  only after you see the finished website.
+                </strong>
+              </p>
+            </div>
+
+            <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-5">
+              {OFFER.deliveryDays}-day delivery · One-time payment · No monthly
+              website fee
+            </p>
+
+            <p className="text-sm text-[var(--text-tertiary)] mt-4">
+              Takes about 30 seconds. I&apos;ll send the {OFFER.today} payment
+              details on WhatsApp — it holds your place in the build queue.
+            </p>
+          </div>
         </div>
       </section>
 
