@@ -1,11 +1,12 @@
 const WHATSAPP_NUMBER = "917905214791";
-const PREFILL = "Hello! I want to book my spot for the ₹2,500 website.";
+const PREFILL =
+  "Hi! I'd like to reserve one of the ₹2,500 website spots. Please send me the ₹500 payment link.";
 
 export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   PREFILL
 )}`;
 
-export const PHONE_HREF = `tel:+${WHATSAPP_NUMBER}`;
+export const PHONE_DISPLAY = "+91 79052 14791";
 
 type Props = {
   children: React.ReactNode;
@@ -14,8 +15,11 @@ type Props = {
 };
 
 /**
- * Big WhatsApp button — a plain <a>, deliberately NOT a client component.
- * No onClick, no hydration, so this page ships zero route JavaScript.
+ * The single conversion action on this page.
+ *
+ * Deliberately NOT a client component: a plain <a> means the page ships no
+ * route JavaScript at all. Every CTA on the page renders through this, so the
+ * destination and prefilled message can never drift apart.
  */
 export default function WhatsappCta({
   children,
@@ -24,22 +28,42 @@ export default function WhatsappCta({
 }: Props) {
   const sizing =
     size === "lg"
-      ? "min-h-[64px] px-8 text-base gap-3"
-      : "min-h-[54px] px-7 text-sm gap-2.5";
+      ? "min-h-[60px] px-7 text-[15px] sm:text-base gap-3"
+      : "min-h-[52px] px-6 text-[14px] gap-2.5";
 
   return (
     <a
       href={WHATSAPP_HREF}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center rounded-xl bg-[#25D366] text-[#07300F] font-semibold tracking-[-0.01em] shadow-[0_0_40px_-8px_rgba(37,211,102,0.6)] hover:brightness-105 active:scale-[0.99] transition-all duration-200 ${sizing} ${className}`}
+      className={`inline-flex items-center justify-center rounded-xl bg-[#25D366] text-[#06300E] font-semibold tracking-[-0.01em] shadow-[0_0_36px_-10px_rgba(37,211,102,0.65)] hover:brightness-105 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-[filter,transform] duration-200 ${sizing} ${className}`}
     >
       {children}
     </a>
   );
 }
 
-/** WhatsApp glyph — inline SVG, no icon dependency. */
+/** Secondary, quieter CTA for mid-page placements. */
+export function WhatsappCtaGhost({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <a
+      href={WHATSAPP_HREF}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center justify-center gap-2.5 min-h-[52px] px-6 rounded-xl border border-[var(--border-strong)] text-[var(--text-primary)] font-mono text-[13px] hover:border-[#25D366] hover:text-[#25D366] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-colors duration-200 ${className}`}
+    >
+      {children}
+    </a>
+  );
+}
+
+/** WhatsApp glyph — inline SVG, no icon dependency, no network request. */
 export function WhatsappIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
