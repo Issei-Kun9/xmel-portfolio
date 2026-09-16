@@ -5,6 +5,7 @@ import WhatsappCta, {
   PHONE_DISPLAY,
 } from "./whatsapp-cta";
 import BusinessPreviews from "./mockups";
+import CapacityBar from "./capacity";
 
 /**
  * Ad landing page for the ₹2,500 website offer.
@@ -292,6 +293,10 @@ export default function SitesLanding() {
               it back.
             </span>
           </p>
+
+          <div className="max-w-[480px] mb-7">
+            <CapacityBar regularPrice={OFFER.regular} />
+          </div>
 
           <WhatsappCta className="w-full sm:w-auto">
             <WhatsappIcon />
@@ -713,9 +718,13 @@ export default function SitesLanding() {
             </div>
           </dl>
 
-          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)]">
+          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] mb-8">
             No monthly website fee
           </p>
+
+          <div className="max-w-[520px]">
+            <CapacityBar regularPrice={OFFER.regular} />
+          </div>
         </div>
       </section>
 
