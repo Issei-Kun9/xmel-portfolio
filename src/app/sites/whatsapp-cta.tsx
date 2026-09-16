@@ -1,5 +1,3 @@
-"use client";
-
 const WHATSAPP_NUMBER = "917905214791";
 const PREFILL = "Hello! I want to book my spot for the ₹2,500 website.";
 
@@ -11,23 +9,19 @@ export const PHONE_HREF = `tel:+${WHATSAPP_NUMBER}`;
 
 type Props = {
   children: React.ReactNode;
-  location: string;
   size?: "lg" | "md";
   className?: string;
 };
 
-/** Big WhatsApp button. Logs a GA event so you can see which one gets tapped. */
+/**
+ * Big WhatsApp button — a plain <a>, deliberately NOT a client component.
+ * No onClick, no hydration, so this page ships zero route JavaScript.
+ */
 export default function WhatsappCta({
   children,
-  location,
   size = "lg",
   className = "",
 }: Props) {
-  const track = () => {
-    if (typeof window === "undefined") return;
-    window.gtag?.("event", "whatsapp_click", { cta_location: location });
-  };
-
   const sizing =
     size === "lg"
       ? "min-h-[64px] px-8 text-base gap-3"
@@ -38,7 +32,6 @@ export default function WhatsappCta({
       href={WHATSAPP_HREF}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={track}
       className={`inline-flex items-center justify-center rounded-xl bg-[#25D366] text-[#07300F] font-semibold tracking-[-0.01em] shadow-[0_0_40px_-8px_rgba(37,211,102,0.6)] hover:brightness-105 active:scale-[0.99] transition-all duration-200 ${sizing} ${className}`}
     >
       {children}
@@ -46,7 +39,7 @@ export default function WhatsappCta({
   );
 }
 
-/** WhatsApp glyph — avoids pulling in a brand icon dependency. */
+/** WhatsApp glyph — inline SVG, no icon dependency. */
 export function WhatsappIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">

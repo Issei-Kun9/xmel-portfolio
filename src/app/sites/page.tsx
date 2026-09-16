@@ -1,4 +1,4 @@
-import { Check, Clock, Zap } from "lucide-react";
+import { Check, Clock, ExternalLink, Zap } from "lucide-react";
 import WhatsappCta, { WhatsappIcon } from "./whatsapp-cta";
 
 /**
@@ -45,6 +45,14 @@ function spotsLeftToday(): number {
 
 // Re-render hourly so the counter follows the schedule without a redeploy.
 export const revalidate = 3600;
+
+const EXAMPLE = {
+  name: "Hermont",
+  domain: "hermont.in",
+  url: "https://hermont.in",
+  blurb:
+    "A multidisciplinary advisory group with offices in Surat, Jaipur, Delhi and Dubai. Clean, fast, and built to be read on a phone.",
+};
 
 const INCLUDED = [
   "A complete website, designed for your business",
@@ -179,7 +187,17 @@ export default function SitesLanding() {
             Live in {OFFER.deliveryDays} days · No monthly fees
           </p>
 
-          <WhatsappCta location="hero" className="w-full sm:w-auto mb-4">
+          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 mb-5 rounded-full bg-[rgba(193,255,114,0.12)] border border-[var(--accent)] shadow-[0_0_30px_-8px_rgba(193,255,114,0.55)]">
+            <span className="relative flex w-2.5 h-2.5">
+              <span className="absolute inline-flex w-full h-full rounded-full bg-[var(--accent)] status-pulse" />
+              <span className="relative inline-flex w-2.5 h-2.5 rounded-full bg-[var(--accent)]" />
+            </span>
+            <span className="font-mono text-[12px] sm:text-[13px] uppercase tracking-[0.06em] font-semibold text-[var(--accent)]">
+              Only {spotsLeft} of {OFFER.spotsTotal} spots left
+            </span>
+          </div>
+
+          <WhatsappCta className="w-full sm:w-auto mb-4">
             <WhatsappIcon />
             Book my spot on WhatsApp
           </WhatsappCta>
@@ -187,6 +205,49 @@ export default function SitesLanding() {
           <p className="text-sm text-[var(--text-tertiary)]">
             Tap the button — the message is already typed for you.
           </p>
+
+          {/* -------------------------------------------------- Example site */}
+          <div className="mt-12 text-left">
+            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] text-center mb-4">
+              An example of my work
+            </p>
+
+            <a
+              href={EXAMPLE.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--accent)] transition-colors duration-300"
+            >
+              {/* Browser chrome */}
+              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--border-subtle)] bg-[var(--bg-tertiary)]">
+                <span className="flex gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[var(--border-strong)]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[var(--border-strong)]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[var(--border-strong)]" />
+                </span>
+                <span className="flex-1 mx-2 px-3 py-1 rounded bg-[var(--bg-primary)] font-mono text-[11px] text-[var(--text-tertiary)] truncate">
+                  {EXAMPLE.domain}
+                </span>
+              </div>
+
+              <div className="p-5 sm:p-6">
+                <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-1.5">
+                  {EXAMPLE.name}
+                </h3>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                  {EXAMPLE.blurb}
+                </p>
+                <span className="inline-flex items-center gap-2 font-mono text-[12px] text-[var(--accent)]">
+                  Open the live site
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </a>
+
+            <p className="text-sm text-[var(--text-tertiary)] text-center mt-4">
+              Yours will be built the same way — for your business.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -243,7 +304,7 @@ export default function SitesLanding() {
           </div>
 
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-[480px] mx-auto">
-            {spotsLeft} spots remain. Once they&apos;re taken, the next
+            {spotsLeft}&nbsp;spots remain. Once they&apos;re taken, the next
             website is {OFFER.priceAfter} — and this page comes down.
           </p>
         </div>
@@ -308,14 +369,24 @@ export default function SitesLanding() {
       <section className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
         <div className="max-w-[700px] mx-auto px-5 sm:px-8 py-16 text-center">
           <h2 className="font-display text-[clamp(25px,6vw,40px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-4">
-            {spotsLeft} spots left at {OFFER.price}
+            Ready to book your spot?
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed mb-8 max-w-[440px] mx-auto">
             Send one message on WhatsApp. I&apos;ll reply with the {OFFER.booking}{" "}
             payment link and we start today.
           </p>
 
-          <WhatsappCta location="footer" className="w-full sm:w-auto">
+          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 mb-5 rounded-full bg-[rgba(193,255,114,0.12)] border border-[var(--accent)] shadow-[0_0_30px_-8px_rgba(193,255,114,0.55)]">
+            <span className="relative flex w-2.5 h-2.5">
+              <span className="absolute inline-flex w-full h-full rounded-full bg-[var(--accent)] status-pulse" />
+              <span className="relative inline-flex w-2.5 h-2.5 rounded-full bg-[var(--accent)]" />
+            </span>
+            <span className="font-mono text-[12px] sm:text-[13px] uppercase tracking-[0.06em] font-semibold text-[var(--accent)]">
+              Only {spotsLeft} of {OFFER.spotsTotal} spots left
+            </span>
+          </div>
+
+          <WhatsappCta className="w-full sm:w-auto">
             <WhatsappIcon />
             Book my spot — {OFFER.booking}
           </WhatsappCta>
@@ -328,7 +399,7 @@ export default function SitesLanding() {
 
       {/* ------------------------------------------- Sticky mobile WhatsApp bar */}
       <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-[var(--bg-primary)]/95 backdrop-blur border-t border-[var(--border-subtle)]">
-        <WhatsappCta location="sticky_mobile" size="md" className="w-full">
+        <WhatsappCta size="md" className="w-full">
           <WhatsappIcon className="w-[18px] h-[18px]" />
           Book my spot — {OFFER.booking}
         </WhatsappCta>
