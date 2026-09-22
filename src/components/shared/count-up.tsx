@@ -14,10 +14,21 @@ export default function CountUp({
   duration?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [count, setCount] = useState(0);
+  // Start at the real value so the server HTML (what search engines, link
+  // previews and slow phones see) shows the number, not a zero.
+  const [count, setCount] = useState(target);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    // Only animate when the number is still off-screen, so nobody sees it
+    // drop back to zero. Reduced-motion users keep the static value.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || el.getBoundingClientRect().top < window.innerHeight) return;
+    setCount(0);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -27,9 +38,9 @@ export default function CountUp({
       },
       { threshold: 0.3 }
     );
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [target]);
 
   useEffect(() => {
     if (!started) return;
