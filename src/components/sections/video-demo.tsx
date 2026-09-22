@@ -30,6 +30,9 @@ export default function VideoDemo() {
             loop
             playsInline
             preload="none"
+            poster="/media/xmel-demo-poster.jpg"
+            width={640}
+            height={360}
             className="w-full h-auto"
           />
           <div className="px-4 py-3 border-t border-[var(--border-subtle)]">

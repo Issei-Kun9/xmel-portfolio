@@ -6,11 +6,7 @@ const terminalLines = [
   "> slack.notify(agent) ✓",
 ];
 
-const headlineLines = [
-  "I build AI systems that",
-  "answer leads before",
-  "your competitors wake up.",
-];
+const headline = "I build AI systems that answer leads before your competitors wake up.";
 
 export default function Hero() {
   return (
@@ -50,7 +46,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-24 sm:pt-32 pb-20 w-full">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-24 sm:pt-36 pb-20 w-full">
         <div className="grid lg:grid-cols-[1fr_480px] gap-8 lg:gap-16 items-center">
           {/* Left column — asymmetric, confident */}
           <div>
@@ -63,12 +59,8 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="font-display text-[clamp(32px,7vw,80px)] font-semibold leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)] mb-6 sm:mb-8">
-              {headlineLines.map((line, i) => (
-                <span key={i} className="block">
-                  {line}
-                </span>
-              ))}
+            <h1 className="font-display text-[clamp(32px,6vw,72px)] font-semibold leading-[1.05] tracking-[-0.02em] text-balance text-[var(--text-primary)] mb-6 sm:mb-8">
+              {headline}
             </h1>
 
             <p className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-xl mb-8 sm:mb-10">

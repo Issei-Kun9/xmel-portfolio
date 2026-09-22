@@ -21,7 +21,7 @@ export default function ScrollToTop() {
       {visible && (
         <button
           onClick={scrollUp}
-          className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex items-center justify-center w-10 h-10 bg-[rgba(10,10,11,0.6)] backdrop-blur-sm border border-[rgba(255,255,255,0.08)] rounded-full text-[var(--text-tertiary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors duration-200"
+          className="hidden min-[1440px]:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 items-center justify-center w-10 h-10 bg-[rgba(10,10,11,0.6)] backdrop-blur-sm border border-[rgba(255,255,255,0.08)] rounded-full text-[var(--text-tertiary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors duration-200"
           style={{ animation: "fade-in 0.2s ease both" }}
           aria-label="Scroll to top"
         >
