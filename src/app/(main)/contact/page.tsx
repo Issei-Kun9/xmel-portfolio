@@ -1,46 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Contact from "@/components/sections/contact";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 
-const siteUrl = "https://xmelautomations.xyz/contact";
 
-export const metadata: Metadata = {
-  title: "Contact | XMEL Automations",
+export const metadata: Metadata = pageMetadata({
+  path: "/contact",
+  title: "Contact XMEL Automations — Book a Demo or Send a Message",
   description:
-    "Contact XMEL Automations — AI automation for real estate and home services. Email yashwardhan@xmelautomations.xyz or send a project inquiry for AI lead response, voice AI agents, and n8n workflows.",
-  openGraph: {
-    title: "Contact | XMEL Automations",
-    description:
-      "Start a project with XMEL Automations — AI lead response systems, voice AI agents, and n8n workflow automation for real estate and home services.",
-    type: "website",
-    url: siteUrl,
-    siteName: "XMEL Automations",
-    locale: "en_US",
-    images: [
-      {
-        url: "https://xmelautomations.xyz/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Contact XMEL Automations",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact | XMEL Automations",
-    description:
-      "Start a project with XMEL Automations — AI lead response, voice AI agents, and n8n workflows.",
-    images: ["https://xmelautomations.xyz/og-image.png"],
-  },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      "en-US": siteUrl,
-      "en-IN": siteUrl,
-      "x-default": siteUrl,
-    },
-  },
-};
+    "Talk to XMEL Automations about an AI lead responder for your business. Book a 15-minute demo, message on WhatsApp or email. Replies within 24 hours.",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

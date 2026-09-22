@@ -1,60 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
+import RelatedGuides from "@/components/site/related-guides";
 
 const siteUrl = "https://xmelautomations.xyz/ai-automation-home-services";
 
-export const metadata: Metadata = {
-  title: "AI Automation for Home Services | AI Receptionist for HVAC & Plumbing | XMEL",
+export const metadata: Metadata = pageMetadata({
+  path: "/ai-automation-home-services",
+  title: "AI Receptionist for HVAC, Plumbing & Home Services | XMEL",
   description:
-    "AI automation for home services contractors — an AI receptionist that answers every call, qualifies the job, books the slot, and escalates emergencies. No more missed calls.",
-  keywords: [
-    "AI automation for home services",
-    "AI receptionist HVAC",
-    "AI phone answering plumbing",
-    "missed call automation contractors",
-    "AI appointment booking home services",
-    "after hours answering service",
-    "HVAC lead automation",
-    "plumbing lead response automation",
-    "emergency call escalation AI",
-    "AI receptionist Phoenix",
-    "missed call automation Houston",
-    "AI automation for home services Atlanta",
-  ],
-  openGraph: {
-    title: "AI Automation for Home Services | AI Receptionist",
-    description:
-      "An AI receptionist that answers every call, qualifies the job, books the slot, and escalates emergencies — 24/7.",
-    type: "website",
-    url: siteUrl,
-    siteName: "XMEL Automations",
-    locale: "en_US",
-    images: [
-      {
-        url: "https://xmelautomations.xyz/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "AI Automation for Home Services — XMEL Automations",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Automation for Home Services | AI Receptionist",
-    description:
-      "An AI receptionist that answers every call, qualifies the job, books the slot, and escalates emergencies — 24/7.",
-    images: ["https://xmelautomations.xyz/og-image.png"],
-  },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      "en-US": siteUrl,
-      "en-IN": siteUrl,
-      "x-default": siteUrl,
-    },
-  },
-};
+    "An AI receptionist that answers every call and missed call, qualifies the job, books the slot and escalates emergencies to you, 24/7.",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -275,7 +232,7 @@ export default function AiAutomationHomeServicesPage() {
           </section>
 
           {/* Architecture note */}
-          <section className="mb-16 p-6 lg:p-8 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)]">
+          <section className="mb-16 p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
             <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
               SYSTEM ARCHITECTURE
             </div>
@@ -338,44 +295,22 @@ export default function AiAutomationHomeServicesPage() {
             </div>
           </section>
 
-          {/* Related reading */}
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              RELATED READING
-            </span>
-            <div className="mt-6 grid gap-4">
-              {[
-                {
-                  href: "/blog/missed-call-automation-contractors",
-                  title: "Missed Call Automation for Home Service Contractors",
-                  desc: "How to turn the calls you miss on a job site into booked jobs — automatically.",
-                },
-                {
-                  href: "/blog/ai-receptionist-hvac",
-                  title: "AI Receptionist for HVAC & Plumbing Companies",
-                  desc: "What an AI receptionist actually handles — answering, qualifying, booking, escalating.",
-                },
-                {
-                  href: "/blog/home-service-lead-response-automation",
-                  title: "Home Service Lead Response Automation",
-                  desc: "The end-to-end lead flow for contractors — from first call to booked appointment.",
-                },
-              ].map((r) => (
-                <Link
-                  key={r.href}
-                  href={r.href}
-                  className="group block p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
-                >
-                  <h3 className="font-display text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
-                    {r.title}
-                  </h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    {r.desc}
-                  </p>
-                </Link>
-              ))}
+          {/* Pricing */}
+          <section className="mb-16 rounded-2xl border border-[var(--accent-line)] bg-[var(--accent-dim)] p-6 lg:p-8">
+            <h2 className="font-display text-xl font-semibold text-[var(--text-primary)]">What it costs</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-[var(--text-secondary)]">
+              Starter from <strong className="text-[var(--text-primary)]">$997</strong> setup + $197/month in the US, or 
+              <strong className="text-[var(--text-primary)]">₹24,999</strong> setup + ₹4,999/month in India — with a 14-day pilot
+              on your real leads. If it doesn&apos;t outperform your current process, you owe nothing.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[15px] font-semibold">
+              <a href="/#pricing" className="text-[var(--accent)] underline underline-offset-4">US pricing</a>
+              <a href="/in#pricing" className="text-[var(--accent)] underline underline-offset-4">India pricing</a>
+              <Link href="/blog/ai-lead-response-cost" className="text-[var(--accent)] underline underline-offset-4">How pricing compares</Link>
             </div>
           </section>
+
+          <RelatedGuides slugs={["missed-call-automation-contractors", "ai-receptionist-hvac", "home-service-lead-response-automation", "ai-lead-response-cost", "voice-ai-agent-vs-human-isa", "n8n-workflow-automation-guide"]} limit={6} title="Home services guides" className="mb-16" />
 
           {/* CTA */}
           <section className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">

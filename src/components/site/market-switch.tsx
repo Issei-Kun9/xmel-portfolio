@@ -1,11 +1,11 @@
 "use client";
 
-import { MARKETS, MARKET_CONFIG, MARKET_COOKIE, MARKET_COOKIE_MAX_AGE, type Market } from "@/lib/market";
+import { MARKETS, MARKET_CONFIG, MARKET_COOKIE, MARKET_COOKIE_MAX_AGE, MARKET_PATH, type Market } from "@/lib/market";
 
 /**
- * Saves the choice in the cookie the middleware reads, then reloads the
- * homepage so the visitor sees prices in their currency. The ?market= param
- * covers browsers that block the cookie.
+ * Saves the choice in the cookie the middleware reads, then opens that
+ * market's homepage at the pricing section. The ?market= param also sets the
+ * cookie server-side, for browsers that block script-written cookies.
  */
 function chooseMarket(market: Market) {
   try {
@@ -13,7 +13,7 @@ function chooseMarket(market: Market) {
   } catch {
     // Cookie blocked: the query parameter still switches this visit.
   }
-  window.location.assign(`/?market=${market}`);
+  window.location.assign(`${MARKET_PATH[market]}?market=${market}#pricing`);
 }
 
 /** Lets a visitor override the geo guess. */

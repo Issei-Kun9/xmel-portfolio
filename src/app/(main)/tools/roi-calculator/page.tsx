@@ -1,54 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import CalculatorClient from "./calculator-client";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 
-export const metadata: Metadata = {
-  title: "Lead Response ROI Calculator | XMEL Automations",
+export const metadata: Metadata = pageMetadata({
+  path: "/tools/roi-calculator",
+  title: "Lead Response ROI Calculator (USD & INR) | XMEL Automations",
   description:
-    "See how much revenue slow lead response is costing you. Free ROI calculator for real estate agents and home services contractors.",
-  keywords: [
-    "lead response ROI calculator",
-    "real estate lead response time calculator",
-    "AI lead response ROI",
-    "how much do slow leads cost",
-    "lead response time revenue impact",
-    "real estate automation ROI",
-    "home services lead calculator",
-  ],
-  openGraph: {
-    title: "Lead Response ROI Calculator | XMEL Automations",
-    description:
-      "See how much revenue you're losing to slow lead response. Free calculator — takes 30 seconds.",
-    type: "website",
-    url: "https://xmelautomations.xyz/tools/roi-calculator",
-    siteName: "XMEL Automations",
-    locale: "en_US",
-    images: [
-      {
-        url: "https://xmelautomations.xyz/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Lead Response ROI Calculator — XMEL Automations",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Lead Response ROI Calculator | XMEL Automations",
-    description:
-      "How much revenue are slow leads costing you? Free calculator — takes 30 seconds.",
-    images: ["https://xmelautomations.xyz/og-image.png"],
-  },
-  alternates: {
-    canonical: "https://xmelautomations.xyz/tools/roi-calculator",
-    languages: {
-      "en-US": "https://xmelautomations.xyz/tools/roi-calculator",
-      "en-IN": "https://xmelautomations.xyz/tools/roi-calculator",
-      "x-default": "https://xmelautomations.xyz/tools/roi-calculator",
-    },
-  },
-};
+    "Free calculator: see how much revenue slow lead response costs you each month, in dollars or rupees. For real estate agents and home-service businesses.",
+});
 
 export default function RoiCalculatorPage() {
   const jsonLd = {

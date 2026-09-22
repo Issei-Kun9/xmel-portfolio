@@ -19,6 +19,8 @@ export interface BlogPost {
   primaryKeyword?: string;
   description: string;
   date: string;
+  /** Last meaningful edit (YYYY-MM-DD); drives dateModified and the sitemap. */
+  updated?: string;
   readTime: string;
   tags: string[];
   category: PostCategory;
@@ -40,6 +42,7 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
       primaryKeyword: data.primaryKeyword,
       description: data.description,
       date: data.date,
+      updated: data.updated,
       readTime: data.readTime,
       tags: data.tags || [],
       category: data.category || "automation",
@@ -63,6 +66,7 @@ export function getPost(slug: string): BlogPost | null {
     primaryKeyword: data.primaryKeyword,
     description: data.description,
     date: data.date,
+    updated: data.updated,
     readTime: data.readTime,
     tags: data.tags || [],
     category: data.category || "automation",

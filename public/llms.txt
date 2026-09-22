@@ -4,7 +4,19 @@
 
 XMEL Automations designs, builds, and deploys AI-powered systems that eliminate manual bottlenecks in lead response, customer communication, and operational workflows. We use GPT-4o-mini, Twilio, Vapi, ElevenLabs, and n8n to create autonomous systems that respond instantly, 24/7.
 
-Founded by Yashwardhan Chauhan, based in India, working with clients globally.
+Founded by Yashwardhan Chauhan, based in India, serving real estate and home-service businesses in the United States and India.
+
+## Pricing
+
+Every build starts with a 14-day pilot on the client's real leads; if it does not outperform their current process, they owe nothing.
+
+- United States (https://xmelautomations.xyz/#pricing): Starter (AI lead responder) from $997 setup + $197/month; Growth (AI inside sales agent with voice calls and booking) from $2,497 setup + $497/month; Custom for teams and multi-location businesses. Call and text usage billed at cost.
+- India (https://xmelautomations.xyz/in#pricing): Starter from ₹24,999 setup + ₹4,999/month; Growth from ₹59,999 setup + ₹9,999/month; Custom on request. WhatsApp and call usage billed at cost; GST extra where applicable.
+
+## Homepages
+
+- [United States](https://xmelautomations.xyz/): AI that texts and calls new leads from Zillow, Realtor.com, Facebook ads and websites in under 60 seconds.
+- [India](https://xmelautomations.xyz/in): AI that replies on WhatsApp to MagicBricks, 99acres and Housing.com leads in under 60 seconds and books site visits.
 
 ## Services
 
@@ -46,6 +58,8 @@ Founded by Yashwardhan Chauhan, based in India, working with clients globally.
 
 - Specializes in AI automation for real estate and home services
 - Core stack: n8n, GPT-4o-mini, Twilio, Vapi, ElevenLabs, Google Workspace
-- Systems respond to leads in under 50 seconds, 24/7
+- Systems respond to new leads in under 60 seconds, 24/7
+- Serves the United States (USD pricing) and India (INR pricing)
+- Book a 15-minute demo: https://calendly.com/yashwwardhanx/15-min-meeting
 - 67-node n8n workflows with 7 webhook triggers
 - Based in India, working globally

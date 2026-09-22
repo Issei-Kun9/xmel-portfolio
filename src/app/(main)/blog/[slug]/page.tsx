@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { getPost, getAllPosts, CATEGORY_LABELS } from "@/lib/blog";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 
@@ -20,41 +21,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
 
   const metaTitle = post.seoTitle ?? post.title;
+  const url = `https://xmelautomations.xyz/blog/${post.slug}`;
 
+  // The social image comes from ./opengraph-image.tsx (one per post).
   return {
     title: `${metaTitle} | XMEL`,
     description: post.description,
+    authors: [{ name: "Yashwardhan Chauhan", url: "https://xmelautomations.xyz/about" }],
+    alternates: { canonical: url },
     openGraph: {
       title: metaTitle,
       description: post.description,
       type: "article",
-      url: `https://xmelautomations.xyz/blog/${post.slug}`,
+      url,
       siteName: "XMEL Automations",
+      locale: "en_US",
       publishedTime: post.date,
-      authors: ["Yashwardhan Chauhan"],
+      modifiedTime: post.updated ?? post.date,
+      authors: ["https://xmelautomations.xyz/about"],
+      section: CATEGORY_LABELS[post.category],
       tags: post.tags,
-      images: [
-        {
-          url: "https://xmelautomations.xyz/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: metaTitle,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: metaTitle,
       description: post.description,
-      images: ["https://xmelautomations.xyz/og-image.png"],
-    },
-    alternates: {
-      canonical: `https://xmelautomations.xyz/blog/${post.slug}`,
-      languages: {
-        "en-US": `https://xmelautomations.xyz/blog/${post.slug}`,
-        "en-IN": `https://xmelautomations.xyz/blog/${post.slug}`,
-        "x-default": `https://xmelautomations.xyz/blog/${post.slug}`,
-      },
     },
   };
 }
@@ -83,27 +74,36 @@ export default async function BlogPost({ params }: Props) {
           }
         : null;
 
+  const url = `https://xmelautomations.xyz/blog/${post.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    inLanguage: "en",
+    image: "https://xmelautomations.xyz/og.png",
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
     author: {
       "@type": "Person",
       "@id": "https://xmelautomations.xyz/#founder",
       name: "Yashwardhan Chauhan",
-      url: "https://www.linkedin.com/in/yashwardhan-chauhan-075684414/",
+      url: "https://xmelautomations.xyz/about",
+      sameAs: ["https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"],
     },
     publisher: {
       "@type": "Organization",
       "@id": "https://xmelautomations.xyz/#organization",
       name: "XMEL Automations",
       url: "https://xmelautomations.xyz",
+      logo: { "@type": "ImageObject", url: "https://xmelautomations.xyz/logo-512.png" },
     },
-    url: `https://xmelautomations.xyz/blog/${post.slug}`,
+    url,
     keywords: post.tags.join(", "),
     articleSection: CATEGORY_LABELS[post.category],
+    about: post.primaryKeyword,
   };
 
   return (
@@ -128,7 +128,7 @@ export default async function BlogPost({ params }: Props) {
 
           {/* Meta */}
           <div className="flex items-center gap-4 mb-6">
-            <time className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
+            <time dateTime={post.date} className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
               {new Date(post.date).toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",
@@ -154,6 +154,29 @@ export default async function BlogPost({ params }: Props) {
             {post.title}
           </h1>
 
+          {/* Byline — who wrote it and when it was last checked */}
+          <div className="flex items-center gap-3 mb-8">
+            <span className="w-10 h-10 rounded-full bg-[var(--text-primary)] text-[var(--accent-bright)] font-display font-bold flex items-center justify-center" aria-hidden="true">
+              YC
+            </span>
+            <div className="text-[14px] leading-tight">
+              <a href="/about" rel="author" className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent)]">
+                Yashwardhan Chauhan
+              </a>
+              <div className="text-[var(--text-tertiary)]">
+                Founder, XMEL Automations
+                {post.updated && post.updated !== post.date && (
+                  <>
+                    {" · Updated "}
+                    <time dateTime={post.updated}>
+                      {new Date(post.updated).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                    </time>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-12">
             {post.tags.map((tag) => (
@@ -171,7 +194,7 @@ export default async function BlogPost({ params }: Props) {
 
           {/* MDX Content */}
           <div className="prose-custom">
-            <MDXRemote source={post.content} />
+            <MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
           </div>
 
           {/* Bottom CTA */}

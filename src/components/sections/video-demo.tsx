@@ -1,3 +1,5 @@
+import LazyVideo from "./lazy-video";
+
 export default function VideoDemo() {
   return (
     <section id="demo" className="scroll-mt-20 py-16 sm:py-24 bg-[var(--bg-secondary)]">
@@ -13,18 +15,12 @@ export default function VideoDemo() {
         </div>
 
         <div className="mt-10 rounded-2xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-[var(--shadow-card)] max-w-4xl mx-auto">
-          <video
+          <LazyVideo
             src="/media/xmel-demo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
             poster="/media/xmel-demo-poster.jpg"
             width={640}
             height={360}
-            className="w-full h-auto"
-            aria-label="Two phones receive the same lead at 2:14 AM; one gets an instant AI reply."
+            label="Two phones receive the same lead at 2:14 AM; one gets an instant AI reply."
           />
         </div>
       </div>
