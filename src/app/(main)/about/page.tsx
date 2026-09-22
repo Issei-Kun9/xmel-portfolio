@@ -1,47 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import About from "@/components/sections/about";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 
-const siteUrl = "https://xmelautomations.xyz/about";
 
-export const metadata: Metadata = {
-  title: "About | XMEL Automations",
+export const metadata: Metadata = pageMetadata({
+  path: "/about",
+  title: "About XMEL Automations — Founder Yashwardhan Chauhan",
   description:
-    "XMEL Automations is an AI automation company founded by Yashwardhan Chauhan — building AI sales agents, voice AI agents, lead qualification, and n8n workflow automation for real estate and home services.",
-  openGraph: {
-    title: "About | XMEL Automations",
-    description:
-      "The team and systems behind XMEL Automations — AI sales agents, voice AI, and n8n workflow automation for real estate and home services.",
-    type: "website",
-    url: siteUrl,
-    siteName: "XMEL Automations",
-    locale: "en_US",
-    images: [
-      {
-        url: "https://xmelautomations.xyz/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "About XMEL Automations",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About | XMEL Automations",
-    description:
-      "The team and systems behind XMEL Automations — AI sales agents, voice AI, and n8n workflow automation.",
-    images: ["https://xmelautomations.xyz/og-image.png"],
-  },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      "en-US": siteUrl,
-      "en-IN": siteUrl,
-      "x-default": siteUrl,
-    },
-  },
-};
+    "Meet Yashwardhan Chauhan, the engineer behind XMEL Automations, building AI lead-response systems for real estate and home services in the US and India.",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

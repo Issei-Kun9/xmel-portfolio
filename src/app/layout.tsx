@@ -3,12 +3,15 @@ import Script from "next/script";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import ScrollReset from "@/components/shared/scroll-reset";
 import JsonLd from "@/components/shared/json-ld";
+import { OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "swap",
+  // "optional": body text paints immediately in the size-matched fallback
+  // and never re-flows late, which was delaying Largest Contentful Paint.
+  display: "optional",
   preload: true,
 });
 
@@ -23,66 +26,34 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
-  preload: true,
+  preload: false, // only small labels use it; don't compete with body fonts
 });
 
+/**
+ * Defaults only. Every main-site page sets its own title, description,
+ * canonical and social cards (see src/lib/seo.ts); nothing here may carry a
+ * page-specific URL, or pages that forget to override would inherit it.
+ */
 export const metadata: Metadata = {
-  title:
-    "AI Automation Agency for Real Estate & Home Services | XMEL",
+  metadataBase: new URL("https://xmelautomations.xyz"),
+  title: "XMEL Automations — AI Lead Response for Real Estate & Home Services",
   description:
-    "AI automation agency for real estate and home services — voice AI agents, n8n workflows, and lead response in under 50 seconds.",
-  keywords: [
-    "AI automation agency",
-    "AI automation for real estate",
-    "lead response automation",
-    "AI inside sales agent",
-    "n8n automation",
-    "n8n workflow automation",
-    "voice AI agents",
-    "AI voice calling",
-    "WhatsApp automation bot",
-    "Twilio voice AI",
-    "GPT-4o-mini automation",
-    "home services automation",
-    "real estate lead automation",
-    "AI phone agent",
-    "autonomous lead qualification",
-    "AI chatbot India",
-    "n8n CRM integration",
-    "AI appointment booking",
-    "voice bot for real estate",
-    "AI sales automation",
-  ],
-  authors: [{ name: "Yashwardhan Chauhan" }],
+    "AI that replies to every new lead in under 60 seconds, qualifies it and books the appointment, 24/7 — for real estate and home-service businesses in the US and India.",
+  applicationName: "XMEL Automations",
+  authors: [{ name: "Yashwardhan Chauhan", url: "https://xmelautomations.xyz/about" }],
   creator: "Yashwardhan Chauhan",
+  publisher: "XMEL Automations",
+  formatDetection: { telephone: false, email: false, address: false },
   openGraph: {
-    title:
-      "XMEL Automations | AI Automation for Real Estate & Home Services",
-    description:
-      "Autonomous AI agents and n8n workflow automations that respond to leads in under 50 seconds. Voice AI, WhatsApp bots, and lead qualification — built for real estate and home services.",
-    type: "website",
-    url: "https://xmelautomations.xyz",
     siteName: "XMEL Automations",
+    type: "website",
     locale: "en_US",
-    alternateLocale: "en_IN",
-    images: [
-      {
-        url: "https://xmelautomations.xyz/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "XMEL Automations — AI Automation Agency",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "XMEL Automations | AI Automation for Real Estate & Home Services",
-    description:
-      "Autonomous AI agents that respond to leads in under 50 seconds. Voice AI, n8n workflows, and WhatsApp bots for real estate and home services.",
-    images: ["https://xmelautomations.xyz/og-image.png"],
+    images: [OG_IMAGE.url],
   },
-  metadataBase: new URL("https://xmelautomations.xyz"),
   robots: {
     index: true,
     follow: true,
@@ -92,14 +63,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: "https://xmelautomations.xyz",
-    languages: {
-      "en-US": "https://xmelautomations.xyz",
-      "en-IN": "https://xmelautomations.xyz",
-      "x-default": "https://xmelautomations.xyz",
     },
   },
 };
@@ -115,15 +78,6 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="preconnect" href="api.web3forms.com" />
-        <link rel="preconnect" href="assets.calendly.com" />
-        <link rel="preconnect" href="calendly.com" />
         <meta name="theme-color" content="#FFFFFF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta

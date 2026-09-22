@@ -1,46 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { getAllPosts, CATEGORY_LABELS, type PostCategory } from "@/lib/blog";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 
 const CATEGORY_ORDER: PostCategory[] = ["real-estate", "home-services", "automation"];
 
-export const metadata: Metadata = {
-  title: "Blog | XMEL Automations — AI Automation Insights",
+export const metadata: Metadata = pageMetadata({
+  path: "/blog",
+  title: "AI Lead Response & Automation Blog | XMEL Automations",
   description:
-    "Deep-dives on AI lead response automation, n8n workflows, voice AI agents, and lead qualification for real estate and home services.",
-  openGraph: {
-    title: "Blog | XMEL Automations",
-    description:
-      "AI automation insights — lead response, voice AI, n8n workflows.",
-    url: "https://xmelautomations.xyz/blog",
-    siteName: "XMEL Automations",
-    type: "website",
-    images: [
-      {
-        url: "https://xmelautomations.xyz/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "XMEL Automations blog",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blog | XMEL Automations",
-    description:
-      "AI automation insights — lead response, voice AI, n8n workflows.",
-    images: ["https://xmelautomations.xyz/og-image.png"],
-  },
-  alternates: {
-    canonical: "https://xmelautomations.xyz/blog",
-    languages: {
-      "en-US": "https://xmelautomations.xyz/blog",
-      "en-IN": "https://xmelautomations.xyz/blog",
-      "x-default": "https://xmelautomations.xyz/blog",
-    },
-  },
-};
+    "Practical guides on speed-to-lead, AI receptionists, WhatsApp lead follow-up and n8n automation for real estate and home-service businesses.",
+});
 
 export default function BlogIndex() {
   const posts = getAllPosts();

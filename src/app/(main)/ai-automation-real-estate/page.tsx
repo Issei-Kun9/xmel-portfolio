@@ -1,60 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
+import RelatedGuides from "@/components/site/related-guides";
 
 const siteUrl = "https://xmelautomations.xyz/ai-automation-real-estate";
 
-export const metadata: Metadata = {
-  title: "AI Automation for Real Estate Agents | AI Inside Sales Agent | XMEL",
+export const metadata: Metadata = pageMetadata({
+  path: "/ai-automation-real-estate",
+  title: "AI Inside Sales Agent for Real Estate Agents | XMEL",
   description:
-    "AI automation for real estate agents — an AI inside sales agent that qualifies portal leads in seconds, responds in under 50 seconds, books appointments, and follows up automatically.",
-  keywords: [
-    "AI automation for real estate",
-    "AI inside sales agent real estate",
-    "real estate lead response automation",
-    "AI lead qualification real estate",
-    "real estate AI ISA",
-    "MagicBricks lead automation",
-    "99acres lead automation",
-    "AI appointment booking real estate",
-    "real estate automation India",
-    "AI inside sales agent Miami",
-    "AI lead response Austin",
-    "AI automation for real estate agents Phoenix",
-  ],
-  openGraph: {
-    title: "AI Automation for Real Estate | AI Inside Sales Agent",
-    description:
-      "An AI ISA that qualifies portal leads in seconds, responds in under 50 seconds, and books appointments while you show homes.",
-    type: "website",
-    url: siteUrl,
-    siteName: "XMEL Automations",
-    locale: "en_US",
-    images: [
-      {
-        url: "https://xmelautomations.xyz/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "AI Automation for Real Estate Agents — XMEL Automations",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Automation for Real Estate | AI Inside Sales Agent",
-    description:
-      "An AI ISA that qualifies portal leads in seconds, responds in under 50 seconds, and books appointments automatically.",
-    images: ["https://xmelautomations.xyz/og-image.png"],
-  },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      "en-US": siteUrl,
-      "en-IN": siteUrl,
-      "x-default": siteUrl,
-    },
-  },
-};
+    "An AI ISA that replies to Zillow, Realtor.com, MagicBricks and 99acres leads in under 60 seconds, qualifies buyers and books showings, 24/7.",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -275,7 +232,7 @@ export default function AiAutomationRealEstatePage() {
           </section>
 
           {/* Architecture note */}
-          <section className="mb-16 p-6 lg:p-8 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)]">
+          <section className="mb-16 p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
             <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
               SYSTEM ARCHITECTURE — 67 NODES / 7 WEBHOOKS
             </div>
@@ -339,44 +296,22 @@ export default function AiAutomationRealEstatePage() {
             </div>
           </section>
 
-          {/* Related reading */}
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              RELATED READING
-            </span>
-            <div className="mt-6 grid gap-4">
-              {[
-                {
-                  href: "/blog/ai-lead-response-real-estate",
-                  title: "How AI Lead Response Automation Works for Real Estate Agents",
-                  desc: "The architecture of a real-world AI lead response system — capture, qualify, call, book.",
-                },
-                {
-                  href: "/blog/voice-ai-agent-vs-human-isa",
-                  title: "Voice AI Agent vs Human Inside Sales Agent",
-                  desc: "Response speed, qualification accuracy, availability, and cost — head to head.",
-                },
-                {
-                  href: "/blog/n8n-workflow-automation-guide",
-                  title: "n8n Workflow Automation: 67-Node Lead Qualification System",
-                  desc: "The full build breakdown — webhook layer, AI qualification, outreach, and monitoring.",
-                },
-              ].map((r) => (
-                <Link
-                  key={r.href}
-                  href={r.href}
-                  className="group block p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
-                >
-                  <h3 className="font-display text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
-                    {r.title}
-                  </h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    {r.desc}
-                  </p>
-                </Link>
-              ))}
+          {/* Pricing */}
+          <section className="mb-16 rounded-2xl border border-[var(--accent-line)] bg-[var(--accent-dim)] p-6 lg:p-8">
+            <h2 className="font-display text-xl font-semibold text-[var(--text-primary)]">What it costs</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-[var(--text-secondary)]">
+              Starter from <strong className="text-[var(--text-primary)]">$997</strong> setup + $197/month in the US, or 
+              <strong className="text-[var(--text-primary)]">₹24,999</strong> setup + ₹4,999/month in India — with a 14-day pilot
+              on your real leads. If it doesn&apos;t outperform your current process, you owe nothing.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[15px] font-semibold">
+              <a href="/#pricing" className="text-[var(--accent)] underline underline-offset-4">US pricing</a>
+              <a href="/in#pricing" className="text-[var(--accent)] underline underline-offset-4">India pricing</a>
+              <Link href="/blog/ai-lead-response-cost" className="text-[var(--accent)] underline underline-offset-4">How pricing compares</Link>
             </div>
           </section>
+
+          <RelatedGuides slugs={["zillow-lead-response-time", "whatsapp-auto-reply-99acres-magicbricks-leads", "ai-isa-real-estate", "real-estate-lead-follow-up-automation", "ai-lead-response-cost", "real-estate-lead-qualification"]} limit={6} title="Real estate guides" className="mb-16" />
 
           {/* CTA */}
           <section className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">

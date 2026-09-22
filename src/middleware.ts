@@ -3,8 +3,10 @@ import type { NextRequest } from "next/server";
 import {
   MARKET_COOKIE,
   MARKET_COOKIE_MAX_AGE,
+  MARKET_PATH,
   isMarket,
   marketFromCountry,
+  type Market,
 } from "@/lib/market";
 
 const APEX = "xmelautomations.xyz";
@@ -18,6 +20,10 @@ const OFFER_HOSTS: Record<string, string> = {
   sites: "/sites", // ₹2,500 single-page build
   pro: "/pro", // ₹4,000 multi-page build
 };
+
+/** Search-engine and link-preview crawlers: never geo-redirected. */
+const BOT_UA =
+  /bot|crawl|spider|slurp|bingpreview|facebookexternalhit|whatsapp|linkedinbot|twitterbot|embedly|google-inspectiontool|lighthouse/i;
 
 function withSecurityHeaders(response: NextResponse) {
   response.headers.set("X-Frame-Options", "DENY");
@@ -40,21 +46,40 @@ export function middleware(request: NextRequest) {
     return withSecurityHeaders(NextResponse.next());
   }
 
-  // Homepage: serve the US or India version from the same URL. Both are
-  // prerendered at /m/us and /m/in; the visitor never sees those paths.
-  if (pathname === "/") {
+  // Homepage. Each market has its own indexable URL — "/" (US, x-default)
+  // and "/in" (India) — linked by hreflang. Both are prerendered at /m/us and
+  // /m/in. A visitor who belongs on the India page (by ?market=, cookie or
+  // country) is sent there with a temporary redirect; crawlers never are, so
+  // "/" always shows search engines the same page.
+  if (pathname === "/" || pathname === MARKET_PATH.in) {
     const fromQuery = request.nextUrl.searchParams.get("market");
     const fromCookie = request.cookies.get(MARKET_COOKIE)?.value;
-    const market = isMarket(fromQuery)
-      ? fromQuery
-      : isMarket(fromCookie)
-        ? fromCookie
-        : marketFromCountry(request.headers.get("x-vercel-ip-country"));
+
+    let market: Market;
+    if (pathname === MARKET_PATH.in) {
+      market = "in"; // an explicit URL always wins
+    } else if (isMarket(fromQuery)) {
+      market = fromQuery;
+    } else if (isMarket(fromCookie)) {
+      market = fromCookie;
+    } else if (BOT_UA.test(request.headers.get("user-agent") ?? "")) {
+      market = "us";
+    } else {
+      market = marketFromCountry(request.headers.get("x-vercel-ip-country"));
+    }
 
     const url = request.nextUrl.clone();
-    url.pathname = `/m/${market}`;
     url.searchParams.delete("market");
-    const response = NextResponse.rewrite(url);
+
+    let response: NextResponse;
+    if (pathname === "/" && market === "in") {
+      url.pathname = MARKET_PATH.in;
+      response = NextResponse.redirect(url, 302);
+    } else {
+      url.pathname = `/m/${market}`;
+      response = NextResponse.rewrite(url);
+    }
+
     if (isMarket(fromQuery) && fromQuery !== fromCookie) {
       response.cookies.set(MARKET_COOKIE, fromQuery, {
         path: "/",
@@ -65,13 +90,12 @@ export function middleware(request: NextRequest) {
     return withSecurityHeaders(response);
   }
 
-  // The per-market paths are an implementation detail: keep one public URL.
+  // The prerendered paths are an implementation detail: point to the public URL.
   if (pathname === "/m" || pathname.startsWith("/m/")) {
     const url = request.nextUrl.clone();
     const requested = pathname.split("/")[2];
-    url.pathname = "/";
-    if (isMarket(requested)) url.searchParams.set("market", requested);
-    return withSecurityHeaders(NextResponse.redirect(url, 307));
+    url.pathname = isMarket(requested) ? MARKET_PATH[requested] : "/";
+    return withSecurityHeaders(NextResponse.redirect(url, 308));
   }
 
   // On the apex: send the bare offer paths to their subdomain, so each offer

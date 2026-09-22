@@ -1,5 +1,6 @@
 import type { SchemaObject, PersonSchema } from "@power-seo/schema";
 import { person, webSite, service, schemaGraph, toJsonLdString } from "@power-seo/schema";
+import { MARKETS, MARKET_CONFIG, MARKET_PATH } from "@/lib/market";
 
 const siteUrl = "https://xmelautomations.xyz";
 
@@ -22,9 +23,49 @@ const areaServedMetros = US_CITIES.map((name) => ({
 }));
 
 const areaServed = [
-  ...areaServedMetros,
+  { "@type": "Country", name: "United States" },
   { "@type": "Country", name: "India" },
+  ...areaServedMetros,
 ];
+
+/**
+ * Published prices as schema.org Offers — one per plan per market — so
+ * search engines can show real "from" prices. Built from src/lib/market.ts.
+ */
+const offers = MARKETS.flatMap((m) => {
+  const cfg = MARKET_CONFIG[m];
+  return cfg.tiers
+    .filter((t) => t.setupAmount)
+    .map((t) => ({
+      "@type": "Offer",
+      name: `${t.name} — ${t.tagline} (${cfg.label})`,
+      url: `${siteUrl}${MARKET_PATH[m] === "/" ? "" : MARKET_PATH[m]}#pricing`,
+      priceCurrency: cfg.currency,
+      price: t.setupAmount,
+      eligibleRegion: { "@type": "Country", name: cfg.label },
+      availability: "https://schema.org/InStock",
+      priceSpecification: [
+        {
+          "@type": "UnitPriceSpecification",
+          name: "One-time setup",
+          price: t.setupAmount,
+          priceCurrency: cfg.currency,
+        },
+        ...(t.monthlyAmount
+          ? [
+              {
+                "@type": "UnitPriceSpecification",
+                name: "Monthly",
+                price: t.monthlyAmount,
+                priceCurrency: cfg.currency,
+                referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+              },
+            ]
+          : []),
+      ],
+      itemOffered: { "@id": `${siteUrl}/#lead-response-service` },
+    }));
+});
 
 const graph = schemaGraph([
   {
@@ -53,6 +94,12 @@ const graph = schemaGraph([
       areaServed: ["US", "IN"],
     },
     telephone: "+91 7905214791",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "AI lead response plans",
+      itemListElement: offers,
+    },
+    knowsLanguage: ["en"],
     serviceType: [
       "AI Automation",
       "Voice AI Development",
@@ -89,6 +136,7 @@ const graph = schemaGraph([
     ],
   } as unknown as Omit<PersonSchema, "@type">),
   service({
+    "@id": `${siteUrl}/#lead-response-service`,
     name: "AI Lead Response Automation",
     description:
       "Autonomous AI systems that respond to leads in under 50 seconds via voice, SMS, and WhatsApp — eliminating the 5-minute lead death problem for real estate agents and home services contractors.",
