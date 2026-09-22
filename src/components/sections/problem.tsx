@@ -54,10 +54,10 @@ function DecayChart() {
     >
       {/* Grid lines */}
       {[0.25, 0.5, 0.75, 1].map((f) => (
-        <line key={f} x1={CHART.left} y1={CHART.top + f * PLOT_H} x2={right} y2={CHART.top + f * PLOT_H} stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+        <line key={f} x1={CHART.left} y1={CHART.top + f * PLOT_H} x2={right} y2={CHART.top + f * PLOT_H} stroke="var(--border-subtle)" strokeWidth="1" />
       ))}
       {decayPoints.slice(1).map((p) => (
-        <line key={p.label} x1={p.x} y1={CHART.top} x2={p.x} y2={baseline} stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+        <line key={p.label} x1={p.x} y1={CHART.top} x2={p.x} y2={baseline} stroke="var(--border-subtle)" strokeWidth="1" />
       ))}
 
       {/* Area fill */}
@@ -109,64 +109,63 @@ const painPoints = [
   {
     icon: PhoneOff,
     title: "Missed calls, lost deals",
-    desc: "85% of leads never get a callback. By hour one, your competitor already closed them.",
+    desc: "Leads that call after hours or while you're busy rarely call twice. By morning, a competitor has them.",
   },
   {
     icon: Database,
-    title: "No CRM sync",
-    desc: "Manual data entry means leads fall through the cracks. No follow-up, no pipeline visibility.",
+    title: "Leads scattered everywhere",
+    desc: "Leads sit in inboxes, portals and WhatsApp chats. Nobody follows up, and nobody can see what was missed.",
   },
   {
     icon: Clock,
     title: "Slow follow-up kills conversion",
-    desc: "Every minute of delay reduces your close rate by 40%. Speed-to-lead is everything.",
+    desc: "The chance of reaching a lead drops fast within minutes. The first to reply usually wins.",
   },
 ];
 
 export default function Problem() {
   return (
-    <section className="relative py-24 lg:py-32">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <section className="relative py-16 sm:py-24">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div>
-            <div className="mb-6">
-              <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-                The Problem
-              </span>
-            </div>
+            <p className="text-[14px] font-semibold text-[var(--warning)] mb-2">The problem</p>
 
             <h2
-              className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-6"
+              className="font-display text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-5"
             >
-              Your leads are dying in 5 minutes.
+              A lead loses most of its value in the first 5 minutes.
             </h2>
 
             <p
-              className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-lg mb-12"
+              className="text-[var(--text-secondary)] text-[17px] leading-relaxed max-w-lg mb-10"
             >
-              The average real estate agent takes 47 hours to respond to a lead. 
-              In that time, 78% go with whoever answered first. Every missed call 
-              is a commission check walking out the door.
+              Most businesses take hours to reply to a new enquiry — yet most
+              buyers go with the first business that responds. Every slow reply
+              or missed call is a deal handed to a competitor.
             </p>
 
             <DecayChart />
+            <p className="mt-3 text-[13px] text-[var(--text-tertiary)]">
+              Illustrative: how fast a new lead cools off without a reply.
+            </p>
           </div>
 
           <div className="space-y-6 lg:pt-12">
             {painPoints.map((point) => (
               <div
                 key={point.title}
-                className="p-6 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-subtle)] border-l-2 border-l-[var(--warning)]"
+                className="p-6 bg-[var(--bg-primary)] rounded-2xl border border-[var(--border-subtle)] shadow-[var(--shadow-card)]"
               >
                 <div className="flex items-start gap-4">
                   <div className="mt-1">
                     <point.icon className="w-5 h-5 text-[var(--warning)]" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-mono text-sm font-medium text-[var(--text-primary)] mb-1">
+                    <h3 className="text-[16px] font-semibold text-[var(--text-primary)] mb-1">
                       {point.title}
                     </h3>
-                    <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                    <p className="text-[var(--text-secondary)] text-[15px] leading-relaxed">
                       {point.desc}
                     </p>
                   </div>

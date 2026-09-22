@@ -51,20 +51,11 @@ export default function Contact() {
   };
 
   const inputClasses =
-    "w-full bg-transparent border-b border-[var(--border-subtle)] focus:border-[var(--accent)] outline-none py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-colors duration-200";
+    "w-full bg-transparent border-b border-[var(--border-subtle)] focus:border-[var(--accent)] outline-none py-3 text-[15px] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-colors duration-200";
 
   return (
-    <section id="contact" className="relative py-24 lg:py-32 bg-[var(--bg-secondary)]">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        {/* Divider between booking and message form */}
-        <div className="flex items-center gap-4 mb-16">
-          <div className="flex-1 h-px bg-[var(--border-subtle)]" />
-          <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] whitespace-nowrap">
-            Prefer to message instead?
-          </span>
-          <div className="flex-1 h-px bg-[var(--border-subtle)]" />
-        </div>
-
+    <section id="contact" className="relative py-12 sm:py-16 bg-[var(--bg-secondary)]">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left */}
           <div>
@@ -129,7 +120,7 @@ export default function Contact() {
               </a>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(74,222,128,0.3)] bg-[rgba(74,222,128,0.06)]">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(21,128,61,0.3)] bg-[rgba(21,128,61,0.06)]">
               <span className="w-2 h-2 rounded-full bg-[var(--success)] status-pulse" />
               <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--success)]">
                 AVAILABLE FOR PROJECTS
@@ -140,10 +131,6 @@ export default function Contact() {
           {/* Right — terminal form */}
           <div>
             <div className="bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)] p-6 lg:p-8">
-              <div className="flex items-center gap-2 mb-6">
-                <span className="font-mono text-[var(--accent)]">$</span>
-                <span className="font-mono text-[12px] text-[var(--text-tertiary)]">new_project_request</span>
-              </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <input type="hidden" name="botcheck" hidden />
@@ -151,9 +138,9 @@ export default function Contact() {
                 <div className="input-line">
                   <label
                     htmlFor="contact-name"
-                    className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1"
+                    className="text-[14px] font-medium text-[var(--text-primary)] block mb-1"
                   >
-                    &gt; your_name:
+                    Your name
                   </label>
                   <input
                     id="contact-name"
@@ -161,7 +148,7 @@ export default function Contact() {
                     name="name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="John Doe"
+                    placeholder="Your name"
                     className={inputClasses}
                     required
                   />
@@ -170,9 +157,9 @@ export default function Contact() {
                 <div className="input-line">
                   <label
                     htmlFor="contact-email"
-                    className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1"
+                    className="text-[14px] font-medium text-[var(--text-primary)] block mb-1"
                   >
-                    &gt; your_email:
+                    Email
                   </label>
                   <input
                     id="contact-email"
@@ -180,7 +167,7 @@ export default function Contact() {
                     name="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder="john@company.com"
+                    placeholder="you@company.com"
                     className={inputClasses}
                     required
                   />
@@ -189,9 +176,9 @@ export default function Contact() {
                 <div className="input-line">
                   <label
                     htmlFor="contact-project"
-                    className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1"
+                    className="text-[14px] font-medium text-[var(--text-primary)] block mb-1"
                   >
-                    &gt; project_type:
+                    Your business
                   </label>
                   <input
                     id="contact-project"
@@ -199,7 +186,7 @@ export default function Contact() {
                     name="project_type"
                     value={form.project}
                     onChange={(e) => setForm({ ...form, project: e.target.value })}
-                    placeholder="real-estate / home-services / custom"
+                    placeholder="Real estate, home services, other"
                     className={inputClasses}
                   />
                 </div>
@@ -207,9 +194,9 @@ export default function Contact() {
                 <div className="input-line">
                   <label
                     htmlFor="contact-message"
-                    className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] block mb-1"
+                    className="text-[14px] font-medium text-[var(--text-primary)] block mb-1"
                   >
-                    &gt; message:
+                    Message
                   </label>
                   <textarea
                     id="contact-message"
@@ -217,7 +204,7 @@ export default function Contact() {
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     rows={3}
-                    placeholder="Tell me about your lead flow and what's broken..."
+                    placeholder="Where do your leads come from, and what happens to them today?"
                     className={`${inputClasses} resize-none`}
                     required
                   />
@@ -226,17 +213,17 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={state !== "idle"}
-                  className={`w-full py-3.5 rounded font-mono text-sm font-medium transition-all duration-300 ${
+                  className={`w-full py-3.5 rounded-xl text-[15px] font-semibold transition-all duration-300 ${
                     state === "sent"
                       ? "bg-[var(--success)] text-[var(--bg-primary)]"
                       : state === "error"
                         ? "bg-[var(--warning)] text-[var(--bg-primary)]"
                         : state === "sending"
                           ? "bg-[var(--accent)] text-[var(--bg-primary)] opacity-70"
-                          : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(193,255,114,0.2)]"
+                          : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(58,125,14,0.2)]"
                   }`}
                 >
-                  {state === "idle" && "> send_message"}
+                  {state === "idle" && "Send message"}
                   {state === "sending" && "> sending..."}
                   {state === "sent" && "> message_sent ✓"}
                   {state === "error" && "> error — try again"}

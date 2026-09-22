@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CursorWrapper from "@/components/shared/cursor-wrapper";
 
 const SITE_URL = "https://pro.xmelautomations.xyz";
 const TITLE =
@@ -54,8 +55,9 @@ export default function ProLayout({
   return (
     <div
       style={PALETTE}
-      className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]"
+      className="grain custom-cursor min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]"
     >
+      <CursorWrapper />
       {children}
     </div>
   );

@@ -5,52 +5,59 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --bg-primary: #0A0A0B;
-  --bg-secondary: #111113;
-  --bg-tertiary: #17171A;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.16);
-  --text-primary: #F2F2F0;
-  --text-secondary: #A3A3A8;
-  --text-tertiary: #85858B;
-  --accent: #C1FF72;
-  --accent-dim: rgba(193, 255, 114, 0.12);
-  --success: #4ADE80;
-  --warning: #FBBF24;
+  /* Main site: light, clean, one deep-green brand accent.
+     The sites./pro. offer pages override these on their own wrapper. */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F6F7F4;
+  --bg-tertiary: #ECEFE8;
+  --border-subtle: rgba(14, 21, 18, 0.10);
+  --border-strong: rgba(14, 21, 18, 0.20);
+  --text-primary: #0E1512;
+  --text-secondary: #46514B;
+  --text-tertiary: #66706A;
+  /* Deep green: 5:1 on white, so it works for text, icons and button fills. */
+  --accent: #3A7D0E;
+  --accent-hover: #2F6A0A;
+  --accent-bright: #C1FF72;
+  --accent-dim: rgba(58, 125, 14, 0.08);
+  --accent-line: rgba(58, 125, 14, 0.28);
+  --success: #15803D;
+  --warning: #B45309;
+  --whatsapp: #25D366;
+  --shadow-card: 0 1px 2px rgba(14, 21, 18, 0.04), 0 8px 24px -12px rgba(14, 21, 18, 0.12);
 
-  --background: oklch(0.08 0.005 260);
-  --foreground: oklch(0.95 0.005 90);
-  --card: oklch(0.10 0.005 260);
-  --card-foreground: oklch(0.95 0.005 90);
-  --popover: oklch(0.10 0.005 260);
-  --popover-foreground: oklch(0.95 0.005 90);
-  --primary: oklch(0.87 0.20 135);
-  --primary-foreground: oklch(0.10 0.01 135);
-  --secondary: oklch(0.10 0.005 260);
-  --secondary-foreground: oklch(0.95 0.005 90);
-  --muted: oklch(0.12 0.005 260);
-  --muted-foreground: oklch(0.67 0.005 260);
-  --accent: oklch(0.87 0.20 135);
-  --accent-foreground: oklch(0.10 0.01 135);
+  --background: #FFFFFF;
+  --foreground: #0E1512;
+  --card: #FFFFFF;
+  --card-foreground: #0E1512;
+  --popover: #FFFFFF;
+  --popover-foreground: #0E1512;
+  --primary: #3A7D0E;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F6F7F4;
+  --secondary-foreground: #0E1512;
+  --muted: #F6F7F4;
+  --muted-foreground: #46514B;
+  --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.18 0.005 260);
-  --input: oklch(0.12 0.005 260);
-  --ring: oklch(0.87 0.20 135);
-  --chart-1: oklch(0.87 0.20 135);
+  --border: rgba(14, 21, 18, 0.10);
+  --input: rgba(14, 21, 18, 0.20);
+  --ring: #3A7D0E;
+  --chart-1: #3A7D0E;
   --chart-2: oklch(0.45 0.1 100);
   --chart-3: oklch(0.55 0.15 110);
   --chart-4: oklch(0.7 0.05 80);
   --chart-5: oklch(0.6 0.1 90);
   --radius: 0.5rem;
-  --sidebar: oklch(0.10 0.005 260);
-  --sidebar-foreground: oklch(0.95 0.005 90);
-  --sidebar-primary: oklch(0.87 0.20 135);
-  --sidebar-primary-foreground: oklch(0.10 0.01 135);
-  --sidebar-accent: oklch(0.12 0.005 260);
-  --sidebar-accent-foreground: oklch(0.95 0.005 90);
-  --sidebar-border: oklch(0.18 0.005 260);
-  --sidebar-ring: oklch(0.87 0.20 135);
+  --sidebar: #F6F7F4;
+  --sidebar-foreground: #0E1512;
+  --sidebar-primary: #3A7D0E;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #ECEFE8;
+  --sidebar-accent-foreground: #0E1512;
+  --sidebar-border: rgba(14, 21, 18, 0.10);
+  --sidebar-ring: #3A7D0E;
 }
 
 @theme inline {
@@ -106,12 +113,11 @@
     @apply bg-background text-text;
     font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
-    cursor: none;
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--bg-primary);
+    background: var(--accent-bright);
+    color: #0E1512;
   }
 }
 
@@ -136,6 +142,11 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+/* Custom cursor: only the offer pages (sites./pro.) opt in via this class. */
+.custom-cursor {
+  cursor: none;
 }
 
 /* Grain texture overlay */
@@ -319,7 +330,7 @@ html {
 }
 
 @media (max-width: 768px) {
-  body {
+  .custom-cursor {
     cursor: auto;
   }
 }
@@ -499,7 +510,7 @@ html {
 }
 
 .bg-grid-pattern {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
   background-size: 40px 40px;
 }

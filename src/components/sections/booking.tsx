@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { CALENDLY_URL } from "@/lib/market";
 
 const CALENDLY_WIDGET_SRC = "https://assets.calendly.com/assets/external/widget.js";
 
-export default function Booking() {
+export default function Booking({ children }: { children?: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [requested, setRequested] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -61,38 +62,39 @@ export default function Booking() {
   }, [requested]);
 
   return (
-    <section className="relative py-24 lg:py-32">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="max-w-2xl mb-12">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-              BOOK A CALL
-            </span>
-            <h2 className="font-display text-[clamp(28px,5vw,48px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-4">
-              See it in action. 30 minutes, no pitch.
-            </h2>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
-              Book a free 30-minute call and I&apos;ll show you exactly what an AI
-              inside sales agent could recover for your business.
-            </p>
-          </div>
+    <section id="book" className="scroll-mt-20 py-16 sm:py-24">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-14">
+        <div>
+          <p className="text-[14px] font-semibold text-[var(--accent)]">Book a demo</p>
+          <h2 className="mt-2 font-display text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)]">
+            See it answer your leads. 15 minutes, no hard sell.
+          </h2>
+          <p className="mt-4 text-[16px] leading-relaxed text-[var(--text-secondary)]">
+            Pick a time that suits you — the calendar shows slots in your own
+            timezone. I&apos;ll walk through how the AI would handle leads from your
+            sources and what it would cost for your volume.
+          </p>
+          {children}
+        </div>
 
-          <div className="rounded-xl border border-[var(--border-subtle)] overflow-hidden bg-[var(--bg-secondary)] p-2">
-            <div
-              ref={containerRef}
-              className="calendly-inline-widget relative w-full min-w-0 h-[540px] sm:h-[630px]"
-              data-url="https://calendly.com/yashwwardhanx/15-min-meeting"
-            >
-              {!loaded && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[var(--bg-secondary)] z-10">
-                  <div className="w-8 h-8 rounded-full border-2 border-[var(--border-strong)] border-t-[var(--accent)] animate-spin" />
-                  <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-                    LOADING AVAILABILITY...
-                  </span>
-                </div>
-              )}
-            </div>
+        <div className="rounded-2xl border border-[var(--border-subtle)] overflow-hidden bg-[var(--bg-primary)] shadow-[var(--shadow-card)]">
+          <div
+            ref={containerRef}
+            className="calendly-inline-widget relative w-full min-w-0 h-[640px] sm:h-[700px]"
+            data-url={CALENDLY_URL}
+          >
+            {!loaded && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[var(--bg-primary)] z-10">
+                <div className="w-8 h-8 rounded-full border-2 border-[var(--border-strong)] border-t-[var(--accent)] animate-spin" />
+                <span className="text-[14px] text-[var(--text-tertiary)]">Loading available times…</span>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="text-[14px] font-semibold text-[var(--accent)] underline underline-offset-4">
+                  Open the calendar in a new tab
+                </a>
+              </div>
+            )}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
   );
 }
