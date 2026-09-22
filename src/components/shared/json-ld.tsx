@@ -64,7 +64,7 @@ const graph = schemaGraph([
   person({
     "@id": `${siteUrl}/#founder`,
     name: "Yashwardhan Chauhan",
-    url: `${siteUrl}/#about`,
+    url: `${siteUrl}/about`,
     jobTitle: "AI Automation Engineer & Founder",
     worksFor: {
       "@type": "Organization",
@@ -119,22 +119,6 @@ const graph = schemaGraph([
     provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
     areaServed: ["US", "IN"],
     serviceType: "Chatbot Development",
-  }),
-  service({
-    name: "AI ISA System for PropertyPulse Realty",
-    description:
-      "Fully autonomous AI inside sales agent for a Mumbai brokerage — a 67-node n8n workflow handling inbound leads from MagicBricks and 99acres with GPT-4o-mini qualification, Twilio voice calling, appointment booking, and Sheets sync. Lead response under 50 seconds.",
-    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
-    areaServed: { "@type": "City", name: "Mumbai" } as unknown as string[],
-    serviceType: "AI Inside Sales Agent",
-  }),
-  service({
-    name: "Voice AI Receptionist for HomeServe India",
-    description:
-      "AI voice receptionist for a Bengaluru plumbing and HVAC company — every call answered via Vapi and Twilio, every job qualified, every slot booked into Google Calendar automatically. 43% more bookings in pilot.",
-    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
-    areaServed: { "@type": "City", name: "Bengaluru" } as unknown as string[],
-    serviceType: "Voice AI",
   }),
   webSite({
     "@id": `${siteUrl}/#website`,

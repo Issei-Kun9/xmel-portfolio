@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CursorWrapper from "@/components/shared/cursor-wrapper";
 
 const SITE_URL = "https://sites.xmelautomations.xyz";
 const TITLE = "Business Website for ₹2,500 — ₹500 to Start | XMEL Automations";
@@ -59,8 +60,9 @@ export default function SitesLayout({
   return (
     <div
       style={PALETTE}
-      className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]"
+      className="grain custom-cursor min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]"
     >
+      <CursorWrapper />
       {children}
     </div>
   );

@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import {
+  MARKET_COOKIE,
+  MARKET_COOKIE_MAX_AGE,
+  isMarket,
+  marketFromCountry,
+} from "@/lib/market";
 
 const APEX = "xmelautomations.xyz";
 
@@ -32,6 +38,40 @@ export function middleware(request: NextRequest) {
       return withSecurityHeaders(NextResponse.rewrite(url));
     }
     return withSecurityHeaders(NextResponse.next());
+  }
+
+  // Homepage: serve the US or India version from the same URL. Both are
+  // prerendered at /m/us and /m/in; the visitor never sees those paths.
+  if (pathname === "/") {
+    const fromQuery = request.nextUrl.searchParams.get("market");
+    const fromCookie = request.cookies.get(MARKET_COOKIE)?.value;
+    const market = isMarket(fromQuery)
+      ? fromQuery
+      : isMarket(fromCookie)
+        ? fromCookie
+        : marketFromCountry(request.headers.get("x-vercel-ip-country"));
+
+    const url = request.nextUrl.clone();
+    url.pathname = `/m/${market}`;
+    url.searchParams.delete("market");
+    const response = NextResponse.rewrite(url);
+    if (isMarket(fromQuery) && fromQuery !== fromCookie) {
+      response.cookies.set(MARKET_COOKIE, fromQuery, {
+        path: "/",
+        maxAge: MARKET_COOKIE_MAX_AGE,
+        sameSite: "lax",
+      });
+    }
+    return withSecurityHeaders(response);
+  }
+
+  // The per-market paths are an implementation detail: keep one public URL.
+  if (pathname === "/m" || pathname.startsWith("/m/")) {
+    const url = request.nextUrl.clone();
+    const requested = pathname.split("/")[2];
+    url.pathname = "/";
+    if (isMarket(requested)) url.searchParams.set("market", requested);
+    return withSecurityHeaders(NextResponse.redirect(url, 307));
   }
 
   // On the apex: send the bare offer paths to their subdomain, so each offer

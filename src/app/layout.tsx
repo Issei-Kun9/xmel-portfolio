@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import CursorWrapper from "@/components/shared/cursor-wrapper";
-import FloatingContact from "@/components/shared/floating-contact";
-import ScrollToTop from "@/components/shared/scroll-to-top";
 import ScrollReset from "@/components/shared/scroll-reset";
-import StickyCta from "@/components/shared/sticky-cta";
 import JsonLd from "@/components/shared/json-ld";
 import "./globals.css";
 
@@ -128,11 +124,11 @@ export default function RootLayout({
         <link rel="preconnect" href="api.web3forms.com" />
         <link rel="preconnect" href="assets.calendly.com" />
         <link rel="preconnect" href="calendly.com" />
-        <meta name="theme-color" content="#0A0A0B" />
+        <meta name="theme-color" content="#FFFFFF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
+          content="default"
         />
         <meta name="msvalidate.01" content="E9481E7B32B8AF471E3115827525D3C9" />
         <link rel="icon" type="image/svg+xml" href="/icon.svg" />
@@ -141,7 +137,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </head>
-      <body className="grain">
+      <body>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-E4SKKVBHM1"
           strategy="lazyOnload"
@@ -154,13 +150,9 @@ export default function RootLayout({
             gtag('config', 'G-E4SKKVBHM1');
           `}
         </Script>
-        <CursorWrapper />
         <ScrollReset />
         <JsonLd />
         {children}
-        <FloatingContact />
-        <StickyCta />
-        <ScrollToTop />
       </body>
     </html>
   );

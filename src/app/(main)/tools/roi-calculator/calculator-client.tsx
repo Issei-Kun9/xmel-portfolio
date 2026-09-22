@@ -1,0 +1,329 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { Calculator, Mail, ArrowRight, Check } from "lucide-react";
+
+const INDUSTRY_CLOSE_RATE = 0.08;
+// Assumed lift from replying in under a minute instead of hours. An estimate
+// for the calculator, not a measured client result.
+const AI_IMPROVEMENT = 0.34;
+
+type Currency = "USD" | "INR";
+
+const CURRENCY: Record<Currency, { symbol: string; locale: string; min: number; max: number; step: number; start: number }> = {
+  USD: { symbol: "$", locale: "en-US", min: 1000, max: 100000, step: 1000, start: 10000 },
+  INR: { symbol: "₹", locale: "en-IN", min: 25000, max: 2500000, step: 25000, start: 200000 },
+};
+
+const DISPOSABLE_DOMAINS = new Set([
+  "mailinator.com", "guerrillamail.com", "guerrillamail.net", "tempmail.com",
+  "throwaway.email", "temp-mail.org", "fakeinbox.com", "sharklasers.com",
+  "guerrillamailblock.com", "grr.la", "dispostable.com", "yopmail.com",
+  "yopmail.fr", "maildrop.cc", "trashmail.com", "trashmail.me",
+  "trashmail.net", "trashmail.org", "mailnator.com", "mailsac.com",
+  "mailscrap.com", "harakirimail.com", "jetable.org", "nospam.ze.tc",
+  "nomail.xl.cx", "nomail2me.com", "tmpmail.net", "tmpmail.org",
+  "10minutemail.com", "20minutemail.com", "mintemail.com", "mohmal.com",
+  "burnermail.io", "getnada.com", "emailondeck.com", "33mail.com",
+  "mytemp.email", "tempinbox.com", "discard.email", "discardmail.com",
+  "discardmail.org", "spamgourmet.com", "spam4.me", "bccto.me",
+  "chacuo.net", "sogetthis.com", "soodonims.com", "spamfree24.org",
+  "mysamp.de", "tmpmail.net", "tmpmail.org", "tempr.email",
+  "tempestrami.com", "mailforspam.com", "spamavert.com", "spamfree.eu",
+  "spamhole.com", "spamify.com", "spaminator.de", "spamoff.de",
+  "guerrillamail.com",
+]);
+
+const FAKE_LOCAL_PARTS = /^(test|fake|sample|example|noone|null|none|undefined|asdf|qwer(ty)?|aaa+|123+)$/i;
+
+function formatMoney(value: number, currency: Currency): string {
+  const { symbol, locale } = CURRENCY[currency];
+  return `${symbol}${value.toLocaleString(locale)}`;
+}
+
+function isValidEmail(email: string): { valid: boolean; reason?: string } {
+  const trimmed = email.trim().toLowerCase();
+  if (!trimmed) return { valid: false };
+  if (trimmed.length > 254) return { valid: false, reason: "Email too long" };
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(trimmed)) return { valid: false, reason: "Invalid email format" };
+
+  const domain = trimmed.split("@")[1];
+  if (DISPOSABLE_DOMAINS.has(domain)) {
+    return { valid: false, reason: "Please use your work email, not a temporary one" };
+  }
+
+  const localPart = trimmed.split("@")[0];
+  if (FAKE_LOCAL_PARTS.test(localPart)) {
+    return { valid: false, reason: "Please enter your real email" };
+  }
+
+  if (localPart.length < 3) {
+    return { valid: false, reason: "Email seems too short" };
+  }
+
+  return { valid: true };
+}
+
+export default function CalculatorClient() {
+  const [currency, setCurrency] = useState<Currency>("USD");
+  const [leads, setLeads] = useState(100);
+  const [commission, setCommission] = useState(CURRENCY.USD.start);
+  const range = CURRENCY[currency];
+
+  const switchCurrency = (next: Currency) => {
+    setCurrency(next);
+    setCommission(CURRENCY[next].start);
+  };
+  const [email, setEmail] = useState("");
+  const [submitState, setSubmitState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  const monthlyLost = Math.round(leads * INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT * commission);
+  const monthlyBaseline = Math.round(leads * INDUSTRY_CLOSE_RATE * commission);
+  const monthlyWithAI = Math.round(leads * (INDUSTRY_CLOSE_RATE + INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT) * commission);
+  const annualLost = monthlyLost * 12;
+
+  const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
+
+  const handleUnlock = useCallback(async () => {
+    const validation = isValidEmail(email);
+    if (!validation.valid) {
+      setEmailError(validation.reason || "Please enter a valid email");
+      return;
+    }
+    setEmailError(null);
+    setSubmitState("sending");
+    try {
+      const monthlyLost = Math.round(leads * INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT * commission);
+      const annualLost = monthlyLost * 12;
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          email,
+          leads_per_month: leads,
+          avg_commission: commission,
+          monthly_revenue_lost: monthlyLost,
+          annual_revenue_lost: annualLost,
+          currency,
+          subject: `ROI Calculator — New Lead Capture (${leads} leads/mo × ${formatMoney(commission, currency)})`,
+          from_name: "ROI Calculator",
+          message: `${email} used the ROI Calculator (${currency}). Leads/mo: ${leads}, Avg deal value: ${formatMoney(commission, currency)}, Monthly lost: ${formatMoney(monthlyLost, currency)}, Annual lost: ${formatMoney(annualLost, currency)}.`,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitState("sent");
+        window.gtag?.("event", "generate_lead", {
+          event_category: "roi_calculator",
+          calculator_currency: currency,
+          leads_per_month: leads,
+        });
+        window.location.href = "/thank-you";
+      } else {
+        setSubmitState("error");
+      }
+    } catch {
+      setSubmitState("error");
+    }
+  }, [email, leads, commission, currency]);
+
+  return (
+    <div className="space-y-8">
+      <div className="inline-flex items-center gap-1 p-1 rounded-lg border border-[var(--border-subtle)]" role="group" aria-label="Currency">
+        {(Object.keys(CURRENCY) as Currency[]).map((c) => (
+          <button
+            key={c}
+            type="button"
+            onClick={() => switchCurrency(c)}
+            aria-pressed={currency === c}
+            className={`h-8 px-3 rounded-md text-[13px] font-medium transition-colors ${
+              currency === c
+                ? "bg-[var(--text-primary)] text-white"
+                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+            }`}
+          >
+            {c === "USD" ? "🇺🇸 USD $" : "🇮🇳 INR ₹"}
+          </button>
+        ))}
+      </div>
+
+      {/* Live result — always visible */}
+      <div className="relative p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] overflow-hidden">
+        {/* Subtle grid pattern background */}
+        <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern" />
+
+        <div className="relative">
+          <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-2">
+            LOST TO SLOW RESPONSE — EVERY MONTH
+          </div>
+
+          <div className="font-mono text-[clamp(36px,8vw,64px)] font-bold text-[var(--accent)] leading-none mb-4">
+            {formatMoney(monthlyLost, currency)}
+          </div>
+
+          <p className="text-[var(--text-secondary)] text-sm leading-relaxed max-w-lg">
+            At your volume ({leads} leads/mo × {formatMoney(commission, currency)} average
+            deal value), slow lead response could be costing you roughly{" "}
+            <strong className="text-[var(--text-primary)]">
+              {formatMoney(monthlyLost, currency)} per month
+            </strong>{" "}
+            in deals you could win back.
+          </p>
+        </div>
+      </div>
+
+      {/* Sliders */}
+      <div className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
+        <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-6">
+          <Calculator className="w-3 h-3 inline mr-1.5 -mt-0.5" />
+          YOUR NUMBERS
+        </div>
+
+        <div className="space-y-8">
+          {/* Leads slider */}
+          <div>
+            <div className="flex justify-between mb-3">
+              <label htmlFor="calc-leads" className="font-mono text-xs text-[var(--text-secondary)]">
+                LEADS / MONTH
+              </label>
+              <span className="font-mono text-sm font-semibold text-[var(--accent)]">
+                {leads}
+              </span>
+            </div>
+            <input
+              id="calc-leads"
+              type="range"
+              min={10}
+              max={500}
+              step={5}
+              value={leads}
+              onChange={(e) => setLeads(Number(e.target.value))}
+              className="w-full h-1 rounded-full appearance-none bg-[var(--border-subtle)] cursor-pointer
+                [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
+                [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--accent)]
+                [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(58,125,14,0.35)]"
+            />
+            <div className="flex justify-between mt-1.5">
+              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">10</span>
+              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">500</span>
+            </div>
+          </div>
+
+          {/* Commission slider */}
+          <div>
+            <div className="flex justify-between mb-3">
+              <label htmlFor="calc-commission" className="font-mono text-xs text-[var(--text-secondary)]">
+                AVG COMMISSION / DEAL VALUE ({range.symbol})
+              </label>
+              <span className="font-mono text-sm font-semibold text-[var(--accent)]">
+                {formatMoney(commission, currency)}
+              </span>
+            </div>
+            <input
+              id="calc-commission"
+              type="range"
+              min={range.min}
+              max={range.max}
+              step={range.step}
+              value={commission}
+              onChange={(e) => setCommission(Number(e.target.value))}
+              className="w-full h-1 rounded-full appearance-none bg-[var(--border-subtle)] cursor-pointer
+                [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
+                [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--accent)]
+                [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(58,125,14,0.35)]"
+            />
+            <div className="flex justify-between mt-1.5">
+              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">{formatMoney(range.min, currency)}</span>
+              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">{formatMoney(range.max, currency)}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Context line */}
+        <div className="mt-6 pt-4 border-t border-[var(--border-subtle)]">
+          <p className="font-mono text-[12px] text-[var(--text-tertiary)] leading-relaxed">
+            METHODOLOGY — An estimate, not a guarantee. Assumes an 8% baseline close rate and a 34% lift from replying within a minute instead of hours. Recovery = leads × 8% × 34% × deal value.
+          </p>
+        </div>
+      </div>
+
+      {/* Gated deep-dive — email gate */}
+      <div className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
+            <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
+              <Mail className="w-3 h-3 inline mr-1.5 -mt-0.5" />
+              GET YOUR FULL BREAKDOWN
+            </div>
+
+            <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6 max-w-lg">
+              Enter your email to see your monthly, quarterly, and annual
+              recovery projection, plus a short note on how an AI lead responder
+              would fit your lead sources.
+            </p>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleUnlock();
+              }}
+              className="flex flex-col sm:flex-row gap-3"
+            >
+              <input
+                type="email"
+                name="email"
+                aria-label="Email address for the breakdown"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (emailError) setEmailError(null);
+                }}
+                placeholder="you@company.com"
+                required
+                className={`flex-1 bg-transparent border-b ${emailError ? "border-[var(--warning)]" : "border-[var(--border-subtle)] focus:border-[var(--accent)]"} outline-none py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-colors`}
+              />
+              <button
+                type="submit"
+                disabled={!email || submitState === "sending"}
+                className={`inline-flex items-center justify-center gap-2 px-6 py-3 font-mono text-sm font-medium rounded transition-all duration-300 whitespace-nowrap ${
+                  submitState === "sent"
+                    ? "bg-[var(--success)] text-white"
+                    : submitState === "error"
+                      ? "bg-[var(--warning)] text-white"
+                      : !email
+                        ? "bg-[var(--accent)] text-white opacity-40 cursor-not-allowed"
+                        : "bg-[var(--accent)] text-white hover:shadow-[0_0_30px_rgba(58,125,14,0.2)]"
+                }`}
+              >
+                {submitState === "idle" && (
+                  <>
+                    Unlock breakdown
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
+                {submitState === "sending" && "Sending..."}
+                {submitState === "sent" && (
+                  <>
+                    <Check className="w-4 h-4" />
+                    Sent
+                  </>
+                )}
+                {submitState === "error" && "Try again"}
+              </button>
+            </form>
+
+            {emailError && (
+              <p className="font-mono text-[12px] text-[var(--warning)] mt-2">
+                {emailError}
+              </p>
+            )}
+
+            <p className="font-mono text-[12px] text-[var(--text-tertiary)] mt-3">
+              No spam. One email with your breakdown. Unsubscribe anytime.
+            </p>
+      </div>
+    </div>
+  );
+}
