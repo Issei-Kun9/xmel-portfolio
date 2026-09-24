@@ -24,6 +24,15 @@ export default function SiteHeader() {
   }, []);
 
   useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -31,6 +40,7 @@ export default function SiteHeader() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`sticky top-0 z-50 bg-[rgba(255,255,255,0.88)] backdrop-blur-md transition-[border-color,box-shadow] duration-200 border-b ${
         scrolled ? "border-[var(--border-subtle)] shadow-[0_1px_12px_rgba(14,21,18,0.06)]" : "border-transparent"
@@ -78,10 +88,15 @@ export default function SiteHeader() {
         </div>
       </div>
 
+    </header>
+
+    {/* Rendered outside <header>: the header's backdrop-filter makes it the
+        containing block for fixed children, which squeezed this full-screen
+        panel into the header's 64px. */}
       {open && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-x-0 top-16 bottom-0 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] px-4 sm:px-6 py-6 overflow-y-auto"
+          className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-50 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] px-4 sm:px-6 py-6 overflow-y-auto"
         >
           <nav className="flex flex-col" aria-label="Mobile">
             {links.map((l) => (
@@ -107,6 +122,6 @@ export default function SiteHeader() {
           </a>
         </div>
       )}
-    </header>
+    </>
   );
 }
