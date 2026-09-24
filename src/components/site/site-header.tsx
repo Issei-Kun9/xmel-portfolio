@@ -48,7 +48,7 @@ export default function SiteHeader() {
     >
       <div className="max-w-[1200px] mx-auto h-16 px-4 sm:px-6 flex items-center justify-between gap-6">
         <a href="/" className="flex items-center gap-2 shrink-0" aria-label="XMEL Automations home">
-          <span className="w-7 h-7 rounded-md bg-[var(--text-primary)] text-[var(--accent-bright)] font-display font-bold text-[15px] flex items-center justify-center">
+          <span className="font-display font-bold text-[24px] leading-none text-[var(--accent)]" aria-hidden="true">
             X
           </span>
           <span className="font-display font-semibold text-[17px] tracking-[-0.01em] text-[var(--text-primary)]">

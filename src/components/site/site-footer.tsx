@@ -28,7 +28,7 @@ export default function SiteFooter() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12 grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1.2fr]">
         <div>
           <a href="/" className="flex items-center gap-2">
-            <span className="w-7 h-7 rounded-md bg-[var(--text-primary)] text-[var(--accent-bright)] font-display font-bold text-[15px] flex items-center justify-center">
+            <span className="font-display font-bold text-[24px] leading-none text-[var(--accent)]" aria-hidden="true">
               X
             </span>
             <span className="font-display font-semibold text-[17px] text-[var(--text-primary)]">
