@@ -24,22 +24,7 @@ export function renderOg({ eyebrow, title, footer }: { eyebrow: string; title: s
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: 12,
-              background: "#0E1512",
-              color: "#C1FF72",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 30,
-              fontWeight: 700,
-            }}
-          >
-            X
-          </div>
+          <div style={{ display: "flex", fontSize: 44, fontWeight: 700, lineHeight: 1, color: "#3A7D0E" }}>X</div>
           <div style={{ display: "flex", fontSize: 30, fontWeight: 600 }}>
             XMEL<span style={{ color: "#66706A", marginLeft: 10 }}>Automations</span>
           </div>
