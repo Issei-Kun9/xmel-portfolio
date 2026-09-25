@@ -1,5 +1,6 @@
 import MailtoLink from "@/components/shared/mailto-link";
 import { CONTACT_EMAIL } from "@/lib/market";
+import LogoMark from "./logo-mark";
 
 const columns = [
   {
@@ -7,17 +8,18 @@ const columns = [
     links: [
       { name: "AI for real estate", href: "/ai-automation-real-estate" },
       { name: "AI for home services", href: "/ai-automation-home-services" },
-      { name: "Pricing", href: "/#pricing" },
-      { name: "ROI calculator", href: "/tools/roi-calculator" },
+      { name: "Website development", href: "/website-development" },
+      { name: "SEO", href: "/seo" },
     ],
   },
   {
     title: "Company",
     links: [
+      { name: "Pricing", href: "/#pricing" },
+      { name: "ROI calculator", href: "/tools/roi-calculator" },
       { name: "About", href: "/about" },
       { name: "Blog", href: "/blog" },
       { name: "Contact", href: "/contact" },
-      { name: "Book a demo", href: "/#book" },
     ],
   },
 ];
@@ -28,9 +30,7 @@ export default function SiteFooter() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12 grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1.2fr]">
         <div>
           <a href="/" className="flex items-center gap-2">
-            <span className="font-display font-bold text-[24px] leading-none text-[var(--accent)]" aria-hidden="true">
-              X
-            </span>
+            <LogoMark size={28} />
             <span className="font-display font-semibold text-[17px] text-[var(--text-primary)]">
               XMEL Automations
             </span>

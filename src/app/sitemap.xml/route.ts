@@ -14,6 +14,8 @@ const PAGES: { path: string; lastmod: string; homepage?: boolean }[] = [
   { path: MARKET_PATH.in, lastmod: "2026-09-22", homepage: true },
   { path: "/ai-automation-real-estate", lastmod: "2026-09-22" },
   { path: "/ai-automation-home-services", lastmod: "2026-09-22" },
+  { path: "/website-development", lastmod: "2026-09-25" },
+  { path: "/seo", lastmod: "2026-09-25" },
   { path: "/tools/roi-calculator", lastmod: "2026-09-22" },
   { path: "/blog", lastmod: "2026-09-22" },
   { path: "/about", lastmod: "2026-09-22" },

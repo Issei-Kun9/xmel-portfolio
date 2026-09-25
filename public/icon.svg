@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <style>
-    path { fill: #3A7D0E; }
-    @media (prefers-color-scheme: dark) { path { fill: #C1FF72; } }
-  </style>
-  <!-- Two slanted strokes with flat top and bottom cuts, like the X in the wordmark. -->
-  <path d="M5 5h7.5l14.5 22h-7.5zM19.5 5H27L12.5 27H5z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" width="32" height="32">
+  <defs>
+    <clipPath id="xmel-band"><rect x="-100" y="-61.8" width="200" height="123.6"/></clipPath>
+  </defs>
+  <circle r="100" fill="#0F0F12"/>
+  <g transform="scale(.764)">
+    <g clip-path="url(#xmel-band)" stroke-width="19.1" fill="none">
+      <line x1="-47.4" y1="-99.6" x2="71" y2="99.6" stroke="#C9A86A"/>
+      <line x1="47.4" y1="-99.6" x2="-71" y2="99.6" stroke="#0F0F12" stroke-width="33.7"/>
+      <line x1="47.4" y1="-99.6" x2="-71" y2="99.6" stroke="#F5F0E6"/>
+    </g>
+  </g>
 </svg>
