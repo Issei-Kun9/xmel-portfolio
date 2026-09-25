@@ -1,8 +1,8 @@
 # XMEL Automations
 
-> AI automation agency building autonomous voice AI agents, n8n workflow automations, and intelligent lead response systems for businesses across real estate and home services.
+> AI automation, website development, and SEO for real estate agents and home-service businesses — autonomous voice AI agents, n8n workflow automations, intelligent lead response systems, mobile-first websites, and search optimization.
 
-XMEL Automations designs, builds, and deploys AI-powered systems that eliminate manual bottlenecks in lead response, customer communication, and operational workflows. We use GPT-4o-mini, Twilio, Vapi, ElevenLabs, and n8n to create autonomous systems that respond instantly, 24/7.
+XMEL Automations designs, builds, and deploys AI-powered systems that eliminate manual bottlenecks in lead response, customer communication, and operational workflows. We use GPT-4o-mini, Twilio, Vapi, ElevenLabs, and n8n to create autonomous systems that respond instantly, 24/7. We also build websites and run SEO for the same small and local businesses.
 
 Founded by Yashwardhan Chauhan, based in India, serving real estate and home-service businesses in the United States and India.
 
@@ -10,8 +10,12 @@ Founded by Yashwardhan Chauhan, based in India, serving real estate and home-ser
 
 Every build starts with a 14-day pilot on the client's real leads; if it does not outperform their current process, they owe nothing.
 
-- United States (https://xmelautomations.xyz/#pricing): Starter (AI lead responder) from $997 setup + $197/month; Growth (AI inside sales agent with voice calls and booking) from $2,497 setup + $497/month; Custom for teams and multi-location businesses. Call and text usage billed at cost.
-- India (https://xmelautomations.xyz/in#pricing): Starter from ₹24,999 setup + ₹4,999/month; Growth from ₹59,999 setup + ₹9,999/month; Custom on request. WhatsApp and call usage billed at cost; GST extra where applicable.
+- AI lead response, United States (https://xmelautomations.xyz/#pricing): Starter (AI lead responder) from $997 setup + $197/month; Growth (AI inside sales agent with voice calls and booking) from $2,497 setup + $497/month; Custom for teams and multi-location businesses. Call and text usage billed at cost.
+- AI lead response, India (https://xmelautomations.xyz/in#pricing): Starter from ₹24,999 setup + ₹4,999/month; Growth from ₹59,999 setup + ₹9,999/month; Custom on request. WhatsApp and call usage billed at cost; GST extra where applicable.
+- Website development, United States (https://xmelautomations.xyz/website-development#pricing): Starter (one page) from $499 one-time; Business (up to 5 pages) from $1,499 one-time; Custom for online stores and booking systems.
+- Website development, India (https://xmelautomations.xyz/website-development#pricing): Starter (one page) from ₹2,500; Business (multi-page) from ₹4,000 — the same offers running on sites.xmelautomations.xyz and pro.xmelautomations.xyz.
+- SEO, United States (https://xmelautomations.xyz/seo#pricing): Starter from $397/month; Growth from $797/month; Custom for multi-location or competitive markets. Monthly retainer, no setup fee, cancel any time.
+- SEO, India (https://xmelautomations.xyz/seo#pricing): Starter from ₹7,999/month; Growth from ₹15,999/month; Custom on request. GST extra where applicable.
 
 ## Homepages
 
@@ -26,6 +30,8 @@ Every build starts with a 14-day pilot on the client's real leads; if it does no
 - [Voice AI Agent Development](https://xmelautomations.xyz/#how-it-works): Custom AI phone agents built on Vapi, Twilio, and ElevenLabs that answer calls, qualify prospects, and book appointments 24/7.
 - [n8n Workflow Automation](https://xmelautomations.xyz/#how-it-works): Complex multi-step automations connecting CRM, lead qualification, appointment booking, notifications, and data sync.
 - [WhatsApp Automation Bot](https://xmelautomations.xyz/#how-it-works): AI-powered WhatsApp chatbots that qualify leads, answer questions, and sync data to CRM in real time.
+- [Website Development](https://xmelautomations.xyz/website-development): Mobile-first websites for small businesses, written and designed around the business, live in about a week.
+- [SEO](https://xmelautomations.xyz/seo): Technical SEO fixes, local search presence, and content built around real search queries, reported on monthly.
 
 ## Blog
 

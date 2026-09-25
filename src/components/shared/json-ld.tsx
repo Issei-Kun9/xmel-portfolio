@@ -76,7 +76,7 @@ const graph = schemaGraph([
     url: siteUrl,
     foundingDate: "2026",
     description:
-      "AI automation agency building autonomous lead response systems, voice AI agents, and n8n workflow automations for real estate agents and home services contractors.",
+      "AI automation, website development and SEO for real estate agents and home services contractors — autonomous lead response systems, voice AI agents, n8n workflow automations, mobile-first websites, and search optimization.",
     founder: { "@id": `${siteUrl}/#founder` },
     sameAs: [
       "https://www.linkedin.com/in/yashwardhan-chauhan-075684414/",
@@ -105,6 +105,8 @@ const graph = schemaGraph([
       "Voice AI Development",
       "Workflow Automation",
       "Chatbot Development",
+      "Web Design",
+      "Search Engine Optimization",
     ],
     areaServed,
   } as unknown as SchemaObject,
@@ -167,6 +169,24 @@ const graph = schemaGraph([
     provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
     areaServed: ["US", "IN"],
     serviceType: "Chatbot Development",
+  }),
+  service({
+    "@id": `${siteUrl}/website-development#service`,
+    name: "Website Development",
+    description:
+      "Mobile-first websites for small businesses — written and designed around the business, not a page-builder template, live in about a week.",
+    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
+    areaServed: ["US", "IN"],
+    serviceType: "Web Design",
+  }),
+  service({
+    "@id": `${siteUrl}/seo#service`,
+    name: "SEO",
+    description:
+      "Technical SEO fixes, local search presence and content built around real search queries, reported on monthly.",
+    provider: { "@type": "Organization", "@id": `${siteUrl}/#organization` },
+    areaServed: ["US", "IN"],
+    serviceType: "Search Engine Optimization",
   }),
   webSite({
     "@id": `${siteUrl}/#website`,
