@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Check } from "lucide-react";
 import type { MarketConfig } from "@/lib/market";
 import CtaButton from "./cta-button";
@@ -30,8 +31,26 @@ const CONVERSATION: Record<MarketConfig["market"], { source: string; messages: M
   },
 };
 
+/** Seconds between beats of the hero conversation; AI replies get a typing beat first. */
+const BEAT = 0.7;
+const TYPING = 0.9;
+
+/** Start time of each message, plus when the "booked" card lands. */
+function timeline(messages: Message[]) {
+  let t = 0.4;
+  const at = messages.map((m) => {
+    const typingAt = t;
+    if (m.from === "ai") t += TYPING;
+    const showAt = t;
+    t += BEAT;
+    return { typingAt, showAt };
+  });
+  return { at, bookedAt: t };
+}
+
 function PhoneMock({ cfg }: { cfg: MarketConfig }) {
   const convo = CONVERSATION[cfg.market];
+  const { at, bookedAt } = timeline(convo.messages);
   return (
     <figure className="relative mx-auto w-full max-w-[340px]">
       <div className="absolute -inset-6 rounded-[48px] bg-[radial-gradient(closest-side,var(--accent-dim),transparent)]" aria-hidden="true" />
@@ -43,16 +62,28 @@ function PhoneMock({ cfg }: { cfg: MarketConfig }) {
               <div className="text-[11px] text-[var(--text-tertiary)]">2:14 AM · via {cfg.replyChannel}</div>
             </div>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--accent-dim)] px-2.5 py-1 text-[11px] font-semibold text-[var(--accent)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true" />
+              <span className="live-dot w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true" />
               Replied in 42s
             </span>
           </div>
 
           <ol className="px-3 py-4 space-y-2.5 text-[13px] leading-snug">
             {convo.messages.map((m, i) => (
-              <li key={i} className={`flex ${m.from === "ai" ? "justify-end" : "justify-start"}`}>
+              <li key={i} className={`relative flex ${m.from === "ai" ? "justify-end" : "justify-start"}`}>
+                {m.from === "ai" && (
+                  <span
+                    className="chat-typing absolute right-0 top-0 inline-flex gap-1 rounded-2xl rounded-br-md bg-[var(--accent-dim)] px-3 py-3 opacity-0"
+                    style={{ "--d": `${at[i].typingAt}s` } as CSSProperties}
+                    aria-hidden="true"
+                  >
+                    <i className="block w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+                    <i className="block w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+                    <i className="block w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+                  </span>
+                )}
                 <span
-                  className={`max-w-[82%] rounded-2xl px-3 py-2 ${
+                  style={{ "--d": `${at[i].showAt}s` } as CSSProperties}
+                  className={`chat-in max-w-[82%] rounded-2xl px-3 py-2 ${
                     m.from === "ai"
                       ? "bg-[var(--accent)] text-white rounded-br-md"
                       : "bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-subtle)] rounded-bl-md"
@@ -65,9 +96,16 @@ function PhoneMock({ cfg }: { cfg: MarketConfig }) {
             ))}
           </ol>
 
-          <div className="mx-3 mb-4 flex items-center gap-2.5 rounded-xl border border-[var(--accent-line)] bg-[var(--bg-primary)] px-3 py-2.5">
+          <div
+            style={{ "--d": `${bookedAt}s` } as CSSProperties}
+            className="chat-in mx-3 mb-4 flex items-center gap-2.5 rounded-xl border border-[var(--accent-line)] bg-[var(--bg-primary)] px-3 py-2.5">
             <span className="w-6 h-6 rounded-full bg-[var(--accent)] text-white flex items-center justify-center shrink-0">
-              <Check className="w-3.5 h-3.5" strokeWidth={3} aria-hidden="true" />
+              <Check
+                className="check-draw w-3.5 h-3.5"
+                strokeWidth={3}
+                style={{ "--d": `${bookedAt + 0.3}s` } as CSSProperties}
+                aria-hidden="true"
+              />
             </span>
             <div className="text-[12px] leading-tight">
               <div className="font-semibold text-[var(--text-primary)]">{convo.booked}</div>

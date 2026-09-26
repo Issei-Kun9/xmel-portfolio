@@ -514,3 +514,65 @@ html {
     linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
   background-size: 40px 40px;
 }
+
+/* ---------------------------------------------------------------
+   Motion — pure CSS, zero JS. Everything is progressive: without
+   support (or with reduced motion) the content is simply static.
+   --------------------------------------------------------------- */
+
+/* Hero phone: the conversation plays out message by message. */
+@keyframes chat-pop {
+  0% { opacity: 0; transform: translateY(10px) scale(0.96); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes typing-life {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+}
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+@keyframes check-draw {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes live-ring {
+  0% { box-shadow: 0 0 0 0 var(--accent-line); }
+  100% { box-shadow: 0 0 0 8px transparent; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chat-in {
+    opacity: 0;
+    animation: chat-pop 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+    animation-delay: var(--d, 0s);
+  }
+  .chat-typing {
+    animation: typing-life 0.9s ease both;
+    animation-delay: var(--d, 0s);
+  }
+  .chat-typing i {
+    animation: typing-dot 0.9s ease-in-out infinite;
+  }
+  .chat-typing i:nth-child(2) { animation-delay: 0.15s; }
+  .chat-typing i:nth-child(3) { animation-delay: 0.3s; }
+  .check-draw path {
+    stroke-dasharray: 24;
+    animation: check-draw 0.5s ease-out both;
+    animation-delay: var(--d, 0s);
+  }
+  .live-dot {
+    animation: live-ring 1.6s ease-out infinite;
+  }
+
+  /* Sections rise in as they scroll into view (Chrome/Edge/Safari 26+;
+     other browsers just show them). */
+  @supports (animation-timeline: view()) {
+    .reveal > :not(:first-child) {
+      animation: fade-slide-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
