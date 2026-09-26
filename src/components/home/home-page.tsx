@@ -6,6 +6,9 @@ import HomeFaq from "./faq";
 import ServicesShowcase from "./services-showcase";
 import Bundle from "./bundle";
 import HowWeWork from "./how-we-work";
+import BeforeAfter from "./before-after";
+import ShowcaseVisuals from "./showcase-visuals";
+import NumbersBand from "./numbers-band";
 import StickyCta from "./sticky-cta";
 import CtaTracker from "./cta-tracker";
 import CtaButton from "./cta-button";
@@ -16,8 +19,12 @@ export default function HomePage({ market }: { market: Market }) {
     <>
       <main>
         <Hero cfg={cfg} />
+        <BeforeAfter />
         <ServicesShowcase market={market} />
+        <ShowcaseVisuals market={market} />
+        <NumbersBand />
         <Bundle market={market} />
+        <div className="gold-rule" aria-hidden="true" />
         <HowWeWork />
         <HomeFaq cfg={cfg} />
         <Booking>

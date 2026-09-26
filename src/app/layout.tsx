@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import ScrollReset from "@/components/shared/scroll-reset";
 import MotionLayer from "@/components/motion/motion-layer";
 import JsonLd from "@/components/shared/json-ld";
@@ -16,8 +16,9 @@ const inter = Inter({
   preload: true,
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const displayFont = Fraunces({
+  axes: ["opsz", "SOFT"],
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
   preload: true,
@@ -76,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${displayFont.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <meta name="theme-color" content="#FAF7F0" />
