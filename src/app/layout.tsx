@@ -5,7 +5,10 @@ import ScrollReset from "@/components/shared/scroll-reset";
 import MotionLayer from "@/components/motion/motion-layer";
 import JsonLd from "@/components/shared/json-ld";
 import { OG_IMAGE } from "@/lib/seo";
+import "./layers.css";
+import "@astryxdesign/core/astryx.css";
 import "./globals.css";
+import "./astryx-theme.css";
 
 const inter = Inter({
   variable: "--font-inter",

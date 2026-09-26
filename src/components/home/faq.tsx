@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { Collapsible, CollapsibleGroup } from "@astryxdesign/core/Collapsible";
 import type { MarketConfig } from "@/lib/market";
 import { BUNDLE, SEO_SERVICE, WEBSITE_DEV } from "@/lib/services";
 
@@ -61,16 +61,18 @@ export default function HomeFaq({ cfg }: { cfg: MarketConfig }) {
             </a>
           </p>
         </div>
-        <div className="divide-y divide-[var(--border-subtle)] rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)]">
-          {faqs.map((f, i) => (
-            <details key={f.q} className="group px-6" {...(i === 0 ? { open: true } : {})}>
-              <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                <span className="text-[16px] font-semibold text-[var(--text-primary)]">{f.q}</span>
-                <ChevronDown className="w-5 h-5 shrink-0 text-[var(--text-tertiary)] transition-transform group-open:rotate-180" aria-hidden="true" />
-              </summary>
-              <p className="pb-5 -mt-1 text-[15px] leading-relaxed text-[var(--text-secondary)]">{f.a}</p>
-            </details>
-          ))}
+        <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-2 sm:px-4">
+          <CollapsibleGroup type="single" defaultValue="faq-0" hasDividers chevronPosition="end">
+            {faqs.map((f, i) => (
+              <Collapsible
+                key={f.q}
+                value={`faq-${i}`}
+                trigger={<span className="block py-2 text-[16px] font-semibold text-[var(--text-primary)]">{f.q}</span>}
+              >
+                <p className="pb-4 text-[15px] leading-relaxed text-[var(--text-secondary)]">{f.a}</p>
+              </Collapsible>
+            ))}
+          </CollapsibleGroup>
         </div>
       </div>
     </section>

@@ -1,0 +1,4 @@
+/* Cascade layer order, declared before any stylesheet loads: Astryx components
+   sit above the Tailwind reset (so its button reset cannot flatten them) but
+   below utilities (so className overrides still win). */
+@layer theme, base, astryx-base, components, utilities;

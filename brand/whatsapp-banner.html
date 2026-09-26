@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:F;src:url(fonts/fraunces.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:I;src:url(fonts/inter.woff2) format("woff2");font-weight:100 900}
+*{margin:0;box-sizing:border-box}
+body{width:1830px;height:1029px;overflow:hidden}
+.b{position:relative;width:1830px;height:1029px;background:#0F0F12;color:#F5F0E6;font-family:I,sans-serif;overflow:hidden}
+.glow{position:absolute;inset:0;background:
+ radial-gradient(50% 60% at 50% 18%,rgba(201,168,106,.22),transparent 70%),
+ radial-gradient(30% 45% at 0% 100%,rgba(201,168,106,.10),transparent 70%),
+ radial-gradient(30% 45% at 100% 100%,rgba(201,168,106,.10),transparent 70%)}
+.lines{position:absolute;inset:0;opacity:.06;background-image:linear-gradient(#C9A86A 1px,transparent 1px),linear-gradient(90deg,#C9A86A 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(50% 60% at 50% 30%,#000,transparent)}
+.grain{position:absolute;inset:0;opacity:.08;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.content{position:absolute;left:0;right:0;top:58px;text-align:center}
+.brand{display:inline-flex;align-items:center;gap:16px;font-size:19px;letter-spacing:.32em;text-transform:uppercase;color:#C9A86A;font-weight:600}
+.brand i{display:block;width:48px;height:1px;background:linear-gradient(90deg,transparent,#C9A86A)}
+.brand i:last-child{transform:scaleX(-1)}
+h1{margin-top:22px;font-family:F,serif;font-weight:500;font-size:112px;line-height:1;letter-spacing:-.035em}
+h1 em{font-weight:400;color:#C9A86A}
+.svc{margin-top:30px;display:flex;justify-content:center;gap:12px}
+.svc span{border:1px solid rgba(201,168,106,.45);border-radius:999px;padding:10px 22px;font-size:19px;background:rgba(245,240,230,.03)}
+.chip{position:absolute;display:flex;align-items:center;gap:12px;border-radius:18px;padding:14px 22px;font-size:20px;background:rgba(245,240,230,.05);border:1px solid rgba(201,168,106,.35);box-shadow:0 20px 40px -20px rgba(0,0,0,.9)}
+.chip .d{width:36px;height:36px;border-radius:50%;background:#C9A86A;color:#0F0F12;display:grid;place-items:center;font-weight:800;font-size:14px}
+.chip small{display:block;font-size:15px;color:rgba(245,240,230,.55)}
+.c1{left:150px;top:330px;transform:rotate(-4deg)}
+.c2{right:150px;top:320px;transform:rotate(4deg)}
+.c3{left:300px;top:500px;transform:rotate(2deg)}
+.c4{right:300px;top:490px;transform:rotate(-2deg)}
+.corner{position:absolute;bottom:70px;font-size:19px;letter-spacing:.06em;color:rgba(245,240,230,.62)}
+.corner.l{left:150px}.corner.r{right:150px;color:#C9A86A}
+.rule{position:absolute;bottom:120px;height:1px;width:420px;background:linear-gradient(90deg,transparent,rgba(201,168,106,.8))}
+.rule.l{left:150px}.rule.r{right:150px;transform:scaleX(-1)}
+.ring{position:absolute;left:50%;top:432px;width:620px;height:620px;margin-left:-310px;border-radius:50%;border:1.5px solid rgba(201,168,106,.6)}
+.ring2{position:absolute;left:50%;top:392px;width:700px;height:700px;margin-left:-350px;border-radius:50%;border:1px dashed rgba(201,168,106,.25)}
+.inner{position:absolute;left:0;right:0;top:114px;height:800px}
+</style></head><body><div class="b">
+<div class="glow"></div><div class="lines"></div><div class="grain"></div>
+<div class="inner"><div class="content">
+ <div class="brand"><i></i>XMEL Automations<i></i></div>
+ <h1>More customers. <em>Less chasing.</em></h1>
+ <div class="svc"><span>AI Infrastructure</span><span>Websites</span><span>SEO</span></div>
+</div>
+<div class="chip c1"><span class="d">42s</span><div>New lead replied<small>2:14 AM, automatically</small></div></div>
+<div class="chip c2"><span class="d">#1</span><div>Top of Google<small>for the searches that sell</small></div></div>
+<div class="chip c3"><span class="d">✓</span><div>Call booked<small>Sat · 11:00 AM</small></div></div>
+<div class="chip c4"><span class="d">7d</span><div>Website live<small>in about a week</small></div></div>
+<div class="ring2"></div><div class="ring"></div>
+<div class="rule l"></div><div class="rule r"></div>
+<div class="corner l">US &nbsp;·&nbsp; India</div>
+<div class="corner r">xmelautomations.xyz</div>
+</div>
+</div></body></html>

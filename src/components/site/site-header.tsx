@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import LogoMark from "./logo-mark";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { TopNavMenu } from "@astryxdesign/core/TopNav";
+import Lottie from "@/components/motion/lottie";
 
 const primaryLinks = [
   { name: "How it works", href: "/#how-it-works" },
@@ -10,10 +12,10 @@ const primaryLinks = [
 ];
 
 const services = [
-  { name: "AI for real estate", href: "/ai-automation-real-estate", desc: "AI inside sales agent for agents & brokerages" },
-  { name: "AI for home services", href: "/ai-automation-home-services", desc: "AI receptionist for HVAC, plumbing & electrical" },
-  { name: "Website development", href: "/website-development", desc: "Mobile-first sites, live in about a week" },
-  { name: "SEO", href: "/seo", desc: "Technical fixes, content and local search" },
+  { name: "AI for real estate", href: "/ai-automation-real-estate", desc: "AI inside sales agent for agents & brokerages", icon: "house" },
+  { name: "AI for home services", href: "/ai-automation-home-services", desc: "AI receptionist for HVAC, plumbing & electrical", icon: "tools" },
+  { name: "Website development", href: "/website-development", desc: "Mobile-first sites, live in about a week", icon: "laptop" },
+  { name: "SEO", href: "/seo", desc: "Technical fixes, content and local search", icon: "growth-chart" },
 ];
 
 const tailLinks = [
@@ -24,8 +26,6 @@ const tailLinks = [
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const servicesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -49,22 +49,6 @@ export default function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [open]);
-
-  useEffect(() => {
-    if (!servicesOpen) return;
-    const onClick = (e: MouseEvent) => {
-      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) setServicesOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setServicesOpen(false);
-    };
-    document.addEventListener("click", onClick);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("click", onClick);
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [servicesOpen]);
 
   return (
     <>
@@ -92,35 +76,11 @@ export default function SiteHeader() {
             </a>
           ))}
 
-          <div className="relative" ref={servicesRef}>
-            <button
-              type="button"
-              onClick={() => setServicesOpen((v) => !v)}
-              aria-expanded={servicesOpen}
-              aria-haspopup="true"
-              className="flex items-center gap-1 text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors"
-            >
-              Services
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`} aria-hidden="true" />
-            </button>
-            {servicesOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[300px] z-50">
-                <div className="ink rounded-xl border border-[var(--border-subtle)] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.6)] p-2">
-                  {services.map((s) => (
-                    <a
-                      key={s.href}
-                      href={s.href}
-                      onClick={() => setServicesOpen(false)}
-                      className="block px-3 py-2.5 rounded-lg hover:bg-[var(--bg-secondary)] transition-colors"
-                    >
-                      <span className="block text-[14px] font-semibold text-[var(--text-primary)]">{s.name}</span>
-                      <span className="block text-[13px] text-[var(--text-tertiary)] mt-0.5">{s.desc}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+          <TopNavMenu
+            label="Services"
+            className="astryx-nav-trigger"
+            items={services.map((x) => ({ title: x.name, description: x.desc, href: x.href, icon: <Lottie name={x.icon} className="w-7 h-7" /> }))}
+          />
 
           {tailLinks.map((l) => (
             <a

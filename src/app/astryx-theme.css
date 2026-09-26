@@ -1,0 +1,41 @@
+/*
+ * XMEL brand theme for Astryx (trial). Astryx themes are plain CSS custom
+ * properties; this maps its tokens onto the site's ink / ivory / gold palette.
+ * Loaded after astryx.css so these win. Note --color-accent and --color-border
+ * are also Tailwind theme names; both now resolve to the brand values.
+ */
+:root {
+  color-scheme: light;
+  --color-accent: #8A6A2F;
+  --color-accent-muted: rgba(201, 168, 106, 0.18);
+  --color-on-accent: #FFFFFF;
+  --color-text-accent: #8A6A2F;
+  --color-icon-accent: #8A6A2F;
+  --color-background-body: #FAF7F0;
+  --color-background-surface: #FAF7F0;
+  --color-background-card: #FFFFFF;
+  --color-background-popover: #FFFDF8;
+  --color-background-muted: #F2EDE2;
+  --color-background-inverted: #0F0F12;
+  --color-text-primary: #0F0F12;
+  --color-text-secondary: #4A463F;
+  --color-icon-primary: #0F0F12;
+  --color-icon-secondary: #6A6358;
+  --color-border: rgba(15, 15, 18, 0.10);
+  --color-border-emphasized: rgba(138, 106, 47, 0.45);
+  --color-overlay-hover: rgba(138, 106, 47, 0.07);
+  --color-overlay-pressed: rgba(138, 106, 47, 0.14);
+  --color-neutral: rgba(15, 15, 18, 0.06);
+  --font-family-body: var(--font-inter), system-ui, sans-serif;
+  --font-family-heading: var(--font-display), Georgia, serif;
+  --radius-element: 12px;
+  --radius-container: 16px;
+}
+
+/* The header is ink: flip the trigger's text tokens there only (the menu itself portals out and stays light). */
+.astryx-nav-trigger {
+  --color-text-primary: rgba(245, 240, 230, 0.76);
+  --color-icon-primary: rgba(245, 240, 230, 0.76);
+  --color-overlay-hover: rgba(245, 240, 230, 0.08);
+  font-size: 14px;
+}
