@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/blog";
 import { MARKETS, MARKET_CONFIG, MARKET_PATH } from "@/lib/market";
 import { absoluteUrl } from "@/lib/seo";
+import { INDUSTRIES } from "@/lib/industries";
 
 export const dynamic = "force-static";
 
@@ -20,6 +21,7 @@ const PAGES: { path: string; lastmod: string; homepage?: boolean }[] = [
   { path: "/blog", lastmod: "2026-09-22" },
   { path: "/about", lastmod: "2026-09-22" },
   { path: "/contact", lastmod: "2026-09-22" },
+  ...INDUSTRIES.map((i) => ({ path: `/for/${i.slug}`, lastmod: "2026-09-26" })),
 ];
 
 const homepageAlternates = [

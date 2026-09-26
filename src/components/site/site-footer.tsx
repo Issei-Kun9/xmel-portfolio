@@ -1,6 +1,7 @@
 import MailtoLink from "@/components/shared/mailto-link";
 import { CONTACT_EMAIL } from "@/lib/market";
 import LogoMark from "./logo-mark";
+import { INDUSTRIES } from "@/lib/industries";
 
 const columns = [
   {
@@ -11,6 +12,10 @@ const columns = [
       { name: "Website development", href: "/website-development" },
       { name: "SEO", href: "/seo" },
     ],
+  },
+  {
+    title: "Industries",
+    links: INDUSTRIES.map((i) => ({ name: i.name, href: `/for/${i.slug}` })),
   },
   {
     title: "Company",
@@ -27,7 +32,7 @@ const columns = [
 export default function SiteFooter() {
   return (
     <footer className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12 grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1.2fr]">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-12 grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_0.8fr_0.8fr_1.2fr]">
         <div>
           <a href="/" className="flex items-center gap-2">
             <LogoMark size={28} />

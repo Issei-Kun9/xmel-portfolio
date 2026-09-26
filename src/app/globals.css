@@ -747,6 +747,21 @@ html {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
+/* Serif italic accent inside display headings. */
+.gold-italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+/* Deliberate hover: gold underline that grows from the left. */
+.link-grow {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .35s ease;
+}
+.link-grow:hover { background-size: 100% 1px; }
+
+@layer components {
 /* Ink sections: fine grain plus a faint gold glow, so dark reads as rich, not flat. */
 .ink {
   position: relative;
@@ -766,16 +781,28 @@ html {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
 }
 
-/* Serif italic accent inside display headings. */
-.gold-italic {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--gold);
 }
 
-/* Deliberate hover: gold underline that grows from the left. */
-.link-grow {
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
-  transition: background-size .35s ease;
+/* Inside ink bands the light-theme tokens flip, so shared components adapt. */
+.ink {
+  --text-primary: var(--ivory);
+  --text-secondary: rgba(245,240,230,.76);
+  --text-tertiary: rgba(245,240,230,.55);
+  --bg-secondary: rgba(245,240,230,.06);
+  --border-subtle: rgba(245,240,230,.14);
+  --border-strong: rgba(245,240,230,.28);
 }
-.link-grow:hover { background-size: 100% 1px; }
+
+/* Hero emblem: a slow turn plus orbiting rings. */
+@keyframes gx-turn { 0%,100% { transform: rotateY(-28deg) rotateX(8deg); } 50% { transform: rotateY(28deg) rotateX(-6deg); } }
+.gx-spin { animation: gx-turn 9s ease-in-out infinite; }
+@keyframes gx-orbit { to { transform: rotate(360deg); } }
+.gx-orbit { animation: gx-orbit 40s linear infinite; }
+.gx-orbit::after {
+  content: ""; position: absolute; top: -4px; left: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 16px 4px rgba(201,168,106,.6);
+}
+.gx-orbit-2 { animation-duration: 26s; animation-direction: reverse; }
+.gx-orbit-2::after { width: 5px; height: 5px; top: -2.5px; }
+@media (prefers-reduced-motion: reduce) { .gx-spin, .gx-orbit { animation: none; } }
