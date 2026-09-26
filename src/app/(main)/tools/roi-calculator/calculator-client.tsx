@@ -205,7 +205,7 @@ export default function CalculatorClient() {
               className="w-full h-1 rounded-full appearance-none bg-[var(--border-subtle)] cursor-pointer
                 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
                 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--accent)]
-                [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(58,125,14,0.35)]"
+                [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(138,106,47,0.35)]"
             />
             <div className="flex justify-between mt-1.5">
               <span className="font-mono text-[12px] text-[var(--text-tertiary)]">10</span>
@@ -234,7 +234,7 @@ export default function CalculatorClient() {
               className="w-full h-1 rounded-full appearance-none bg-[var(--border-subtle)] cursor-pointer
                 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
                 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--accent)]
-                [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(58,125,14,0.35)]"
+                [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(138,106,47,0.35)]"
             />
             <div className="flex justify-between mt-1.5">
               <span className="font-mono text-[12px] text-[var(--text-tertiary)]">{formatMoney(range.min, currency)}</span>
@@ -294,7 +294,7 @@ export default function CalculatorClient() {
                       ? "bg-[var(--warning)] text-white"
                       : !email
                         ? "bg-[var(--accent)] text-white opacity-40 cursor-not-allowed"
-                        : "bg-[var(--accent)] text-white hover:shadow-[0_0_30px_rgba(58,125,14,0.2)]"
+                        : "bg-[var(--accent)] text-white hover:shadow-[0_0_30px_rgba(138,106,47,0.2)]"
                 }`}
               >
                 {submitState === "idle" && (

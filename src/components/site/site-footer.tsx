@@ -36,8 +36,8 @@ export default function SiteFooter() {
             </span>
           </a>
           <p className="mt-3 text-[14px] leading-relaxed text-[var(--text-secondary)] max-w-xs">
-            AI that answers, qualifies and books your leads in under a minute — for
-            real estate and home-service businesses in the US and India.
+            AI lead response, websites and SEO that bring you more customers — for
+            businesses in the US and India.
           </p>
         </div>
 

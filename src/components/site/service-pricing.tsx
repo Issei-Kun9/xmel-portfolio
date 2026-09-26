@@ -47,7 +47,7 @@ export default function ServicePricing({
             key={`${idPrefix}-${tier.name}`}
             className={`relative flex flex-col rounded-2xl p-6 ${
               tier.featured
-                ? "border-2 border-[var(--accent)] bg-[var(--bg-primary)] shadow-[0_20px_50px_-24px_rgba(58,125,14,0.45)]"
+                ? "border-2 border-[var(--accent)] bg-[var(--bg-primary)] shadow-[0_20px_50px_-24px_rgba(138,106,47,0.45)]"
                 : "border border-[var(--border-subtle)] bg-[var(--bg-primary)]"
             }`}
           >

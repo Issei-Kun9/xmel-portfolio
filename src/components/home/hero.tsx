@@ -61,7 +61,7 @@ function PhoneMock({ cfg }: { cfg: MarketConfig }) {
         <Lottie name="whatsapp" className="float-slow absolute -left-10 bottom-24 w-16 h-16 z-10 pointer-events-none [animation-delay:-3s]" />
       )}
       <div className="absolute -inset-6 rounded-[48px] bg-[radial-gradient(closest-side,var(--accent-dim),transparent)]" aria-hidden="true" />
-      <div className="relative rounded-[36px] border border-[var(--border-strong)] bg-[var(--bg-primary)] p-3 shadow-[0_30px_60px_-30px_rgba(14,21,18,0.35)]">
+      <div className="relative rounded-[36px] border border-[var(--border-strong)] bg-[var(--bg-primary)] p-3 shadow-[0_30px_60px_-30px_rgba(15,15,18,0.35)]">
         <div className="rounded-[26px] overflow-hidden bg-[var(--bg-secondary)]">
           <div className="flex items-center justify-between px-4 py-3 bg-[var(--bg-primary)] border-b border-[var(--border-subtle)]">
             <div>
@@ -128,35 +128,35 @@ function PhoneMock({ cfg }: { cfg: MarketConfig }) {
   );
 }
 
-const TRUST = ["Live in 2–3 weeks", "14-day pilot on your real leads", "No long-term contract"];
+const TRUST = ["AI replies in under 60 seconds", "Websites live in about a week", "No long-term contracts"];
 
 export default function Hero({ cfg }: { cfg: MarketConfig }) {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(180deg,var(--bg-secondary),transparent)]" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-32 right-[-10%] w-[560px] h-[560px] rounded-full bg-[radial-gradient(closest-side,rgba(193,255,114,0.45),transparent)] blur-2xl" style={{ animation: "mesh-drift 18s ease-in-out infinite" }} />
-        <div className="absolute top-40 -left-40 w-[420px] h-[420px] rounded-full bg-[radial-gradient(closest-side,rgba(58,125,14,0.18),transparent)] blur-2xl" style={{ animation: "mesh-drift 22s ease-in-out infinite reverse" }} />
+        <div className="absolute -top-32 right-[-10%] w-[560px] h-[560px] rounded-full bg-[radial-gradient(closest-side,rgba(201,168,106,0.45),transparent)] blur-2xl" style={{ animation: "mesh-drift 18s ease-in-out infinite" }} />
+        <div className="absolute top-40 -left-40 w-[420px] h-[420px] rounded-full bg-[radial-gradient(closest-side,rgba(138,106,47,0.18),transparent)] blur-2xl" style={{ animation: "mesh-drift 22s ease-in-out infinite reverse" }} />
         <div className="absolute inset-0 bg-grid-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_top,#000_20%,transparent_70%)]" />
       </div>
       <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-8 sm:pb-12 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-1.5 text-[13px] font-medium text-[var(--text-secondary)]">
             <span className="w-2 h-2 rounded-full bg-[var(--accent)]" aria-hidden="true" />
-            AI lead response for real estate &amp; home services
+            AI automation · Websites · SEO
           </p>
 
           <h1 className="mt-5 font-display text-[clamp(36px,5.6vw,60px)] font-semibold leading-[1.04] tracking-[-0.025em] text-balance text-[var(--text-primary)]">
-            <Words text="Every lead answered in under 60 seconds." />
+            <Words text="More customers." />
             <span className="text-[var(--accent)]">
-              <Words text="Even at 2 AM." start={7} />
+              <Words text="Less chasing." start={2} />
             </span>
           </h1>
 
           <p className="mt-5 text-[17px] sm:text-[19px] leading-relaxed text-[var(--text-secondary)] max-w-[560px]">
-            AI that replies to new leads from {cfg.leadSources} by {cfg.replyChannel},
-            asks the right questions and books the appointment — so you stop losing
-            deals to whoever answered first.
+            AI that answers every new lead from {cfg.leadSources} in under a
+            minute, a website that turns visitors into enquiries, and SEO that
+            gets you found — built and run by one team.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">

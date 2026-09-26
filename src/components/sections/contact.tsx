@@ -220,7 +220,7 @@ export default function Contact() {
                         ? "bg-[var(--warning)] text-[var(--bg-primary)]"
                         : state === "sending"
                           ? "bg-[var(--accent)] text-[var(--bg-primary)] opacity-70"
-                          : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(58,125,14,0.2)]"
+                          : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(138,106,47,0.2)]"
                   }`}
                 >
                   {state === "idle" && "Send message"}

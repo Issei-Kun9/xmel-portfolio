@@ -65,14 +65,14 @@ export default function Booking({ children }: { children?: React.ReactNode }) {
     <section id="book" className="scroll-mt-20 py-16 sm:py-24">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-14">
         <div>
-          <p className="text-[14px] font-semibold text-[var(--accent)]">Book a demo</p>
+          <p className="text-[14px] font-semibold text-[var(--accent)]">Book a call</p>
           <h2 className="mt-2 font-display text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)]">
-            See it answer your leads. 15 minutes, no hard sell.
+            Tell us what you need. 15 minutes, no hard sell.
           </h2>
           <p className="mt-4 text-[16px] leading-relaxed text-[var(--text-secondary)]">
             Pick a time that suits you — the calendar shows slots in your own
-            timezone. I&apos;ll walk through how the AI would handle leads from your
-            sources and what it would cost for your volume.
+            timezone. Tell us about your business and we&apos;ll tell you exactly what
+            we&apos;d build — website, SEO, AI or all three — and what it costs.
           </p>
           {children}
         </div>

@@ -26,7 +26,7 @@ export default function StickyCta({ cfg }: { cfg: MarketConfig }) {
 
   return (
     <div
-      className={`md:hidden fixed inset-x-0 bottom-0 z-40 border-t border-[var(--border-subtle)] bg-[rgba(255,255,255,0.95)] backdrop-blur px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] transition-transform duration-200 ${
+      className={`md:hidden fixed inset-x-0 bottom-0 z-40 border-t border-[var(--border-subtle)] bg-[rgba(250,247,240,0.95)] backdrop-blur px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] transition-transform duration-200 ${
         visible ? "translate-y-0" : "translate-y-full"
       }`}
       inert={!visible}
