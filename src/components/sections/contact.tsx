@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MailtoLink from "@/components/shared/mailto-link";
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
@@ -12,6 +12,12 @@ const CONTACT_EMAIL = "yashwardhan@xmelautomations.xyz";
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", project: "", message: "" });
   const [state, setState] = useState<SubmitState>("idle");
+
+  // Arriving from the homepage plan builder: start the message with the plan.
+  useEffect(() => {
+    const plan = new URLSearchParams(window.location.search).get("plan");
+    if (plan) setForm((f) => (f.message ? f : { ...f, message: `I'm interested in: ${plan}.\n\n` }));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

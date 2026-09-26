@@ -80,7 +80,7 @@ export default function RootLayout({
       className={`${inter.variable} ${displayFont.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        <meta name="theme-color" content="#FAF7F0" />
+        <meta name="theme-color" content="#0F0F12" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"

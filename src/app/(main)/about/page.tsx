@@ -36,18 +36,19 @@ export default function AboutPage() {
       />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-24">
+        <div className="ink overflow-hidden">
+          <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-16 sm:pb-20">
           <div className="mb-10">
             <Breadcrumbs items={[{ name: "About" }]} />
           </div>
 
           {/* Header */}
-          <div className="relative mb-16">
+          <div className="relative">
             <Lottie name="rocket" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
             <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
               ABOUT
             </span>
-            <h1 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
+            <h1 className="font-display text-[clamp(36px,6vw,64px)] font-medium leading-[1.02] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
               <Words text="About XMEL Automations" />
             </h1>
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
@@ -58,6 +59,9 @@ export default function AboutPage() {
               leads, respond in under 50 seconds, and book appointments 24/7.
             </p>
           </div>
+          </div>
+        </div>
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-16 pb-24">
 
           {/* Founder / company section */}
           <About />

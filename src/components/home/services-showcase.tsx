@@ -2,6 +2,7 @@ import { ArrowRight, Check } from "lucide-react";
 import Lottie from "@/components/motion/lottie";
 import { MARKET_CONFIG, type Market } from "@/lib/market";
 import { SEO_SERVICE, WEBSITE_DEV } from "@/lib/services";
+import { INDUSTRIES } from "@/lib/industries";
 import MarketSwitch from "@/components/site/market-switch";
 
 /**
@@ -91,6 +92,15 @@ export default function ServicesShowcase({ market }: { market: Market }) {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                 </span>
               </div>
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center gap-2">
+          <span className="mr-2 text-[14px] text-[var(--text-tertiary)]">Built for</span>
+          {INDUSTRIES.map((i) => (
+            <a key={i.slug} href={`/for/${i.slug}`} className="rounded-full border border-[var(--border-subtle)] px-3.5 py-1.5 text-[13px] text-[var(--text-secondary)] hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors">
+              {i.name}
             </a>
           ))}
         </div>

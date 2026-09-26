@@ -7,7 +7,8 @@ import ServicesShowcase from "./services-showcase";
 import Bundle from "./bundle";
 import HowWeWork from "./how-we-work";
 import BeforeAfter from "./before-after";
-import ShowcaseVisuals from "./showcase-visuals";
+import ScrollStory from "./scroll-story";
+import QuoteBuilder from "./quote-builder";
 import NumbersBand from "./numbers-band";
 import StickyCta from "./sticky-cta";
 import CtaTracker from "./cta-tracker";
@@ -21,8 +22,9 @@ export default function HomePage({ market }: { market: Market }) {
         <Hero cfg={cfg} />
         <BeforeAfter />
         <ServicesShowcase market={market} />
-        <ShowcaseVisuals market={market} />
+        <ScrollStory cfg={cfg} />
         <NumbersBand />
+        <QuoteBuilder market={market} />
         <Bundle market={market} />
         <div className="gold-rule" aria-hidden="true" />
         <HowWeWork />

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { WEBSITE_DEV } from "@/lib/services";
 import { MARKETS } from "@/lib/market";
+import { SiteMockup } from "@/components/visuals/mockups";
+import { DEFAULT_SAMPLES } from "@/lib/industries";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 import ServicePricing from "@/components/site/service-pricing";
 import Lottie from "@/components/motion/lottie";
@@ -122,17 +124,18 @@ export default function WebsiteDevelopmentPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-24">
+        <div className="ink overflow-hidden">
+          <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-16 sm:pb-20">
           <div className="mb-10">
             <Breadcrumbs items={[{ name: "Website Development" }]} />
           </div>
 
-          <div className="relative mb-16">
+          <div className="relative">
             <Lottie name="laptop" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
             <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
               SOLUTIONS — WEBSITE DEVELOPMENT
             </span>
-            <h1 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
+            <h1 className="font-display text-[clamp(36px,6vw,64px)] font-medium leading-[1.02] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
               <Words text="A website built around your business, live in about a week" />
             </h1>
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
@@ -156,6 +159,13 @@ export default function WebsiteDevelopmentPage() {
               </a>
             </div>
           </div>
+          </div>
+        </div>
+        <div className="bg-[var(--bg-secondary)] py-14 sm:py-20 px-4 sm:px-6">
+          <SiteMockup s={DEFAULT_SAMPLES.us} />
+          <p className="mt-6 text-center text-[12px] text-[var(--text-tertiary)]">Illustration with a sample business, not a client.</p>
+        </div>
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-16 pb-24">
 
           <section className="mb-16">
             <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">

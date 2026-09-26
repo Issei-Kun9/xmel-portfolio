@@ -69,15 +69,15 @@ export default function SiteHeader() {
   return (
     <>
     <header
-      className={`sticky top-0 z-50 bg-[rgba(250,247,240,0.88)] backdrop-blur-md transition-[border-color,box-shadow] duration-200 border-b ${
-        scrolled ? "border-[var(--border-subtle)] shadow-[0_1px_12px_rgba(15,15,18,0.06)]" : "border-transparent"
+      className={`ink sticky top-0 z-50 !bg-[rgba(15,15,18,0.9)] backdrop-blur-md transition-[border-color,box-shadow] duration-200 border-b ${
+        scrolled ? "border-[var(--border-subtle)] shadow-[0_1px_20px_rgba(0,0,0,0.35)]" : "border-transparent"
       }`}
     >
       <div className="max-w-[1200px] mx-auto h-16 px-4 sm:px-6 flex items-center justify-between gap-6">
         <a href="/" className="flex items-center gap-2 shrink-0" aria-label="XMEL Automations home">
           <LogoMark size={30} />
           <span className="font-display font-semibold text-[17px] tracking-[-0.01em] text-[var(--text-primary)]">
-            XMEL <span className="text-[var(--text-tertiary)] font-medium">Automations</span>
+            XMEL <span className="text-[var(--gold)] font-normal italic">Automations</span>
           </span>
         </a>
 
@@ -86,7 +86,7 @@ export default function SiteHeader() {
             <a
               key={l.href}
               href={l.href}
-              className="text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              className="text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors"
             >
               {l.name}
             </a>
@@ -98,14 +98,14 @@ export default function SiteHeader() {
               onClick={() => setServicesOpen((v) => !v)}
               aria-expanded={servicesOpen}
               aria-haspopup="true"
-              className="flex items-center gap-1 text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              className="flex items-center gap-1 text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors"
             >
               Services
               <ChevronDown className={`w-3.5 h-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`} aria-hidden="true" />
             </button>
             {servicesOpen && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[300px] z-50">
-                <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-[0_20px_40px_-16px_rgba(15,15,18,0.25)] p-2">
+                <div className="ink rounded-xl border border-[var(--border-subtle)] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.6)] p-2">
                   {services.map((s) => (
                     <a
                       key={s.href}
@@ -126,7 +126,7 @@ export default function SiteHeader() {
             <a
               key={l.href}
               href={l.href}
-              className="text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              className="text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors"
             >
               {l.name}
             </a>
@@ -136,7 +136,7 @@ export default function SiteHeader() {
         <div className="flex items-center gap-2">
           <a
             href="/#book"
-            className="hidden sm:inline-flex items-center h-10 px-4 rounded-lg bg-[var(--accent)] text-white text-[14px] font-semibold hover:bg-[var(--accent-hover)] transition-colors"
+            className="hidden sm:inline-flex items-center h-10 px-4 rounded-lg bg-[var(--gold)] text-[var(--ink)] text-[14px] font-semibold hover:brightness-110 transition-colors"
           >
             Book a call
           </a>
@@ -161,7 +161,7 @@ export default function SiteHeader() {
       {open && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-50 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] px-4 sm:px-6 py-6 overflow-y-auto"
+          className="ink lg:hidden fixed inset-x-0 top-16 bottom-0 z-50 border-t border-[var(--border-subtle)] px-4 sm:px-6 py-6 overflow-y-auto"
         >
           <nav className="flex flex-col" aria-label="Mobile">
             {primaryLinks.map((l) => (
