@@ -86,6 +86,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
           </h2>
           <p className="mt-3 mb-10 text-[16px] text-[var(--text-secondary)]">Sample businesses, to show the style, not clients.</p>
           <MarketMockups samples={ind.samples} />
+          <a href={`/inspiration?industry=${ind.slug}`} className="link-grow mt-10 inline-block text-[15px] font-semibold text-[var(--accent)]">See real {ind.plural} websites we admire →</a>
         </div>
       </section>
 

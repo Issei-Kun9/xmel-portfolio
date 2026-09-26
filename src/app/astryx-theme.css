@@ -35,7 +35,9 @@
 /* The header is ink: flip the trigger's text tokens there only (the menu itself portals out and stays light). */
 .astryx-nav-trigger {
   --color-text-primary: rgba(245, 240, 230, 0.76);
+  --color-text-secondary: rgba(245, 240, 230, 0.76);
   --color-icon-primary: rgba(245, 240, 230, 0.76);
+  --color-icon-secondary: rgba(245, 240, 230, 0.76);
   --color-overlay-hover: rgba(245, 240, 230, 0.08);
   font-size: 14px;
 }

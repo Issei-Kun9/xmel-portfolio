@@ -21,6 +21,7 @@ const PAGES: { path: string; lastmod: string; homepage?: boolean }[] = [
   { path: "/blog", lastmod: "2026-09-22" },
   { path: "/about", lastmod: "2026-09-22" },
   { path: "/contact", lastmod: "2026-09-22" },
+  { path: "/inspiration", lastmod: "2026-09-26" },
   ...INDUSTRIES.map((i) => ({ path: `/for/${i.slug}`, lastmod: "2026-09-26" })),
 ];
 

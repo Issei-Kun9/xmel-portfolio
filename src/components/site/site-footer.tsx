@@ -21,6 +21,7 @@ const columns = [
     title: "Company",
     links: [
       { name: "Pricing", href: "/#pricing" },
+      { name: "Style inspiration", href: "/inspiration" },
       { name: "ROI calculator", href: "/tools/roi-calculator" },
       { name: "About", href: "/about" },
       { name: "Blog", href: "/blog" },

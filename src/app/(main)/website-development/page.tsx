@@ -164,6 +164,7 @@ export default function WebsiteDevelopmentPage() {
         <div className="bg-[var(--bg-secondary)] py-14 sm:py-20 px-4 sm:px-6">
           <SiteMockup s={DEFAULT_SAMPLES.us} />
           <p className="mt-6 text-center text-[12px] text-[var(--text-tertiary)]">Illustration with a sample business, not a client.</p>
+          <p className="mt-4 text-center"><a href="/inspiration" className="link-grow text-[15px] font-semibold text-[var(--accent)]">Browse style inspiration by industry →</a></p>
         </div>
         <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-16 pb-24">
 
