@@ -1,38 +1,61 @@
 <!doctype html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
 <style>
+@font-face{font-family:F;src:url(fonts/fraunces.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:I;src:url(fonts/inter.woff2) format("woff2");font-weight:100 900}
 *{margin:0;box-sizing:border-box}
-body{width:1500px;height:800px;overflow:hidden;background:#0F0F12}
-.b{position:relative;width:1500px;height:800px;background:#0F0F12;color:#F5F0E6;font-family:Inter,sans-serif;overflow:hidden}
-.b:before{content:"";position:absolute;inset:0;background:
- radial-gradient(55% 60% at 50% 0%,rgba(201,168,106,.20),transparent 70%),
- radial-gradient(35% 45% at 0% 100%,rgba(201,168,106,.10),transparent 70%),
- radial-gradient(35% 45% at 100% 100%,rgba(201,168,106,.10),transparent 70%)}
-.grain{position:absolute;inset:0;opacity:.09;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.x{position:absolute;top:50%;transform:translateY(-50%);opacity:.07}
-.content{position:absolute;left:0;right:0;top:110px;text-align:center}
-.eyebrow{font-size:20px;letter-spacing:.32em;text-transform:uppercase;color:#C9A86A;font-weight:600}
-h1{margin-top:26px;font-family:Fraunces,serif;font-weight:500;font-size:112px;line-height:.98;letter-spacing:-.03em}
+body{width:1500px;height:800px;overflow:hidden}
+.b{position:relative;width:1500px;height:800px;background:#0F0F12;color:#F5F0E6;font-family:I,sans-serif;overflow:hidden}
+.glow{position:absolute;inset:0;background:
+ radial-gradient(38% 55% at 78% 40%,rgba(201,168,106,.22),transparent 70%),
+ radial-gradient(40% 50% at 0% 0%,rgba(201,168,106,.10),transparent 70%)}
+.grain{position:absolute;inset:0;opacity:.08;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.lines{position:absolute;inset:0;opacity:.07;background-image:linear-gradient(#C9A86A 1px,transparent 1px),linear-gradient(90deg,#C9A86A 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(45% 60% at 78% 40%,#000,transparent)}
+.left{position:absolute;left:84px;top:92px;width:640px}
+.brand{display:flex;align-items:center;gap:14px;font-size:19px;letter-spacing:.3em;text-transform:uppercase;color:#C9A86A;font-weight:600}
+.brand i{display:block;width:44px;height:1px;background:#C9A86A}
+h1{margin-top:30px;font-family:F,serif;font-weight:500;font-size:104px;line-height:.96;letter-spacing:-.035em}
 h1 em{font-weight:400;color:#C9A86A}
-.svc{margin-top:34px;font-size:24px;color:rgba(245,240,230,.72);letter-spacing:.02em}
-.svc b{color:#C9A86A;font-weight:400;margin:0 14px}
-.corner{position:absolute;bottom:56px;font-size:21px;color:rgba(245,240,230,.7);letter-spacing:.06em}
-.corner.l{left:70px}.corner.r{right:70px;color:#C9A86A}
-.rule{position:absolute;bottom:130px;height:1px;width:360px;background:linear-gradient(90deg,transparent,#C9A86A)}
-.rule.l{left:70px}.rule.r{right:70px;transform:scaleX(-1)}
-.ring{position:absolute;left:50%;bottom:-190px;width:380px;height:380px;margin-left:-190px;border-radius:50%;border:1.5px solid rgba(201,168,106,.55)}
-.ring2{position:absolute;left:50%;bottom:-230px;width:460px;height:460px;margin-left:-230px;border-radius:50%;border:1px dashed rgba(201,168,106,.22)}
+.svc{margin-top:34px;display:flex;gap:12px}
+.svc span{border:1px solid rgba(201,168,106,.45);border-radius:999px;padding:10px 20px;font-size:19px;color:#F5F0E6;letter-spacing:.01em}
+.foot{position:absolute;left:84px;bottom:64px;font-size:19px;color:rgba(245,240,230,.6);letter-spacing:.05em}
+.foot b{color:#C9A86A;font-weight:500}
+.right{position:absolute;right:70px;top:70px;width:560px;height:520px}
+.card{position:absolute;background:#F5F0E6;color:#0F0F12;border-radius:22px;box-shadow:0 40px 70px -30px rgba(0,0,0,.8),0 0 0 1px rgba(201,168,106,.35)}
+.serp{left:20px;top:20px;width:420px;padding:22px 24px;transform:rotate(-3deg)}
+.q{display:flex;align-items:center;gap:10px;border:1px solid #DDD6C8;border-radius:999px;padding:9px 16px;font-size:16px;color:#4A463F}
+.r1{margin-top:16px;position:relative;border:1px solid rgba(138,106,47,.4);background:rgba(201,168,106,.12);border-radius:14px;padding:14px 16px}
+.r1 small{font-size:13px;color:#6A6358}.r1 p{font-size:19px;color:#1A0DAB;margin-top:2px}
+.badge{position:absolute;right:12px;top:-13px;background:#0F0F12;color:#C9A86A;font-weight:700;font-size:14px;border-radius:999px;padding:4px 11px}
+.stars{color:#E0A800;font-size:14px;margin-top:4px}
+.dim{margin-top:14px;opacity:.4}.dim div{height:9px;border-radius:5px;background:#CFC6B4;margin-top:8px}
+.chat{right:0;top:215px;width:360px;padding:18px 18px 20px;transform:rotate(2.5deg)}
+.hd{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600}
+.pill{background:rgba(201,168,106,.2);color:#8A6A2F;border-radius:999px;padding:4px 10px;font-size:12px}
+.m{margin-top:12px;font-size:15px;line-height:1.35;border-radius:16px;padding:10px 13px;max-width:85%}
+.m.lead{background:#fff;border:1px solid #E3DCCD}
+.m.ai{margin-left:auto;background:#8A6A2F;color:#fff}
+.book{left:70px;top:420px;display:flex;align-items:center;gap:14px;padding:14px 20px 14px 14px;transform:rotate(-1.5deg);background:#0F0F12;color:#F5F0E6;box-shadow:0 30px 60px -25px rgba(0,0,0,.9),0 0 0 1px rgba(201,168,106,.6)}
+.ck{width:36px;height:36px;border-radius:50%;background:#C9A86A;color:#0F0F12;display:grid;place-items:center;font-weight:800}
+.book b{display:block;font-size:17px}.book span{font-size:13px;color:rgba(245,240,230,.6)}
 </style></head><body><div class="b">
-<div class="grain"></div>
-<svg class="x" style="left:-120px" width="520" height="520" viewBox="-100 -100 200 200"><defs><clipPath id="c1"><rect x="-100" y="-61.8" width="200" height="123.6"/></clipPath></defs><g transform="scale(.764)" clip-path="url(#c1)" stroke-width="19.1" fill="none"><line x1="-47.4" y1="-99.6" x2="71" y2="99.6" stroke="#C9A86A"/><line x1="47.4" y1="-99.6" x2="-71" y2="99.6" stroke="#F5F0E6"/></g></svg>
-<svg class="x" style="right:-120px" width="520" height="520" viewBox="-100 -100 200 200"><defs><clipPath id="c2"><rect x="-100" y="-61.8" width="200" height="123.6"/></clipPath></defs><g transform="scale(.764)" clip-path="url(#c2)" stroke-width="19.1" fill="none"><line x1="-47.4" y1="-99.6" x2="71" y2="99.6" stroke="#C9A86A"/><line x1="47.4" y1="-99.6" x2="-71" y2="99.6" stroke="#F5F0E6"/></g></svg>
-<div class="content">
- <div class="eyebrow">XMEL Automations</div>
+<div class="glow"></div><div class="lines"></div><div class="grain"></div>
+<div class="left">
+ <div class="brand"><i></i>XMEL Automations</div>
  <h1>More customers.<br><em>Less chasing.</em></h1>
- <div class="svc">AI Infrastructure<b>◆</b>Websites<b>◆</b>SEO</div>
+ <div class="svc"><span>AI Infrastructure</span><span>Websites</span><span>SEO</span></div>
 </div>
-<div class="ring2"></div><div class="ring"></div>
-<div class="rule l"></div><div class="rule r"></div>
-<div class="corner l">US &nbsp;·&nbsp; India</div>
-<div class="corner r">xmelautomations.xyz</div>
+<div class="foot">US · India &nbsp;&nbsp;<b>xmelautomations.xyz</b></div>
+<div class="right">
+ <div class="card serp">
+  <div class="q">⌕&nbsp; best agency near me</div>
+  <div class="r1"><span class="badge">#1</span><small>yourbusiness.com</small><p>Your Business — Top rated</p><div class="stars">★★★★★ <span style="color:#6A6358">4.9 · Open now</span></div></div>
+  <div class="dim"><div style="width:60%"></div><div style="width:80%"></div></div>
+ </div>
+ <div class="card chat">
+  <div class="hd">New lead · 2:14 AM<span class="pill">● Replied in 42s</span></div>
+  <div class="m lead">Hi, are you free this week?</div>
+  <div class="m ai">Yes! Saturday 11 AM or Sunday 4 PM?</div>
+ </div>
+ <div class="card book"><div class="ck">✓</div><div><b>Booked · Sat 11:00 AM</b><span>Added to your calendar</span></div></div>
+</div>
 </div></body></html>
