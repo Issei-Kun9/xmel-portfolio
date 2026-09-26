@@ -50,14 +50,14 @@ export default function ServicesShowcase({ market }: { market: Market }) {
   ];
 
   return (
-    <section id="services" className="scroll-mt-20 bg-[var(--ink)] text-[var(--ivory)] py-16 sm:py-24">
+    <section id="services" className="ink scroll-mt-20 py-16 sm:py-24">
       <span id="pricing" className="block -mt-20 pt-20" aria-hidden="true" />
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div>
-            <p className="text-[14px] font-semibold text-[var(--gold)]">What we do</p>
-            <h2 className="mt-2 font-display text-[clamp(30px,4.4vw,48px)] font-semibold leading-[1.08] tracking-[-0.02em] max-w-3xl">
-              Four ways to win more customers. Pick one, or let us run all of it.
+            <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--gold)]">What we do</p>
+            <h2 className="mt-2 font-display text-[clamp(32px,4.8vw,56px)] font-medium leading-[1.04] tracking-[-0.02em] max-w-3xl">
+              Four ways to win more customers. <span className="gold-italic">Pick one, or all.</span>
             </h2>
           </div>
           <MarketSwitch current={market} />
@@ -68,7 +68,7 @@ export default function ServicesShowcase({ market }: { market: Market }) {
             <a
               key={s.href}
               href={s.href}
-              className="spotlight lift group relative flex flex-col overflow-hidden rounded-2xl border border-[rgba(245,240,230,0.12)] bg-[rgba(245,240,230,0.04)] p-7 hover:border-[var(--gold)] transition-colors"
+              className="spotlight lift group relative flex flex-col overflow-hidden rounded-2xl border border-[rgba(245,240,230,0.12)] bg-[rgba(245,240,230,0.04)] p-7 hover:border-[var(--gold)] hover:bg-[rgba(201,168,106,0.07)] transition-colors duration-300"
             >
               <Lottie name={s.lottie} className="absolute right-5 top-5 w-16 h-16 opacity-90" />
               <span className="text-[13px] font-semibold uppercase tracking-[0.08em] text-[var(--gold)]">{s.label}</span>
@@ -84,7 +84,7 @@ export default function ServicesShowcase({ market }: { market: Market }) {
               <div className="mt-6 flex items-end justify-between gap-4 border-t border-[rgba(245,240,230,0.12)] pt-5">
                 <div>
                   <p className="text-[12px] text-[rgba(245,240,230,0.6)]">From</p>
-                  <p className="text-[18px] font-semibold">{s.price}</p>
+                  <p className="font-display text-[22px] font-medium text-[var(--gold)]">{s.price}</p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[var(--gold)]">
                   See details

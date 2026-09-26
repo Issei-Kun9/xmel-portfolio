@@ -38,7 +38,7 @@ export default function Bundle({ market }: { market: Market }) {
             </ul>
           </div>
 
-          <div className="rounded-2xl bg-[var(--ink)] text-[var(--ivory)] p-7">
+          <div className="ink rounded-2xl overflow-hidden p-7">
             <p className="text-[13px] text-[rgba(245,240,230,0.6)]">Setup</p>
             <p className="font-display text-[44px] leading-none font-semibold">
               {b.setup} <span className="text-[18px] font-normal text-[rgba(245,240,230,0.5)] line-through">{b.setupWas}</span>

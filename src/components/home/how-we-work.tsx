@@ -28,10 +28,10 @@ export default function HowWeWork() {
         </h2>
         <ol className="step-line relative mt-10 grid md:grid-cols-3 gap-4">
           {steps.map((s, i) => (
-            <li key={s.title} className="spotlight lift relative rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-6 shadow-[var(--shadow-card)]">
+            <li key={s.title} className="group spotlight lift relative rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-6 shadow-[var(--shadow-card)]">
               <div className="flex items-center gap-3">
-                <span className="w-14 h-14 rounded-2xl bg-[var(--accent-dim)] flex items-center justify-center">
-                  <Lottie name={s.lottie} className="w-12 h-12" />
+                <span className="w-14 h-14 rounded-2xl bg-[var(--ink)] flex items-center justify-center">
+                  <Lottie name={s.lottie} className="w-9 h-9" />
                 </span>
                 <span className="text-[13px] font-semibold text-[var(--text-tertiary)]">Step {i + 1}</span>
               </div>
