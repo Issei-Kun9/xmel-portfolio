@@ -79,7 +79,7 @@ export default function RoiCalculatorPage() {
             </p>
             <a
               href="/#book"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--bg-primary)] font-mono text-sm font-medium rounded hover:shadow-[0_0_30px_rgba(58,125,14,0.2)] transition-shadow duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
             >
               Get in touch
               <span>→</span>

@@ -69,8 +69,8 @@ export default function SiteHeader() {
   return (
     <>
     <header
-      className={`sticky top-0 z-50 bg-[rgba(255,255,255,0.88)] backdrop-blur-md transition-[border-color,box-shadow] duration-200 border-b ${
-        scrolled ? "border-[var(--border-subtle)] shadow-[0_1px_12px_rgba(14,21,18,0.06)]" : "border-transparent"
+      className={`sticky top-0 z-50 bg-[rgba(250,247,240,0.88)] backdrop-blur-md transition-[border-color,box-shadow] duration-200 border-b ${
+        scrolled ? "border-[var(--border-subtle)] shadow-[0_1px_12px_rgba(15,15,18,0.06)]" : "border-transparent"
       }`}
     >
       <div className="max-w-[1200px] mx-auto h-16 px-4 sm:px-6 flex items-center justify-between gap-6">
@@ -105,7 +105,7 @@ export default function SiteHeader() {
             </button>
             {servicesOpen && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[300px] z-50">
-                <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-[0_20px_40px_-16px_rgba(14,21,18,0.25)] p-2">
+                <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-[0_20px_40px_-16px_rgba(15,15,18,0.25)] p-2">
                   {services.map((s) => (
                     <a
                       key={s.href}
@@ -138,7 +138,7 @@ export default function SiteHeader() {
             href="/#book"
             className="hidden sm:inline-flex items-center h-10 px-4 rounded-lg bg-[var(--accent)] text-white text-[14px] font-semibold hover:bg-[var(--accent-hover)] transition-colors"
           >
-            Book a demo
+            Book a call
           </a>
           <button
             type="button"

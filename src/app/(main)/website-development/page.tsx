@@ -143,14 +143,14 @@ export default function WebsiteDevelopmentPage() {
             <div className="flex flex-wrap gap-4 mt-8">
               <a
                 href="#pricing"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white font-mono text-sm font-medium rounded hover:shadow-[0_0_30px_rgba(58,125,14,0.2)] transition-shadow duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
               >
                 See pricing
                 <span>→</span>
               </a>
               <a
                 href="/#book"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--bg-secondary)] text-[var(--text-primary)] font-mono text-sm font-medium rounded border border-[var(--border-subtle)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--bg-secondary)] text-[var(--text-primary)] text-[15px] font-semibold rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300"
               >
                 Book a 15-min call
               </a>
@@ -231,7 +231,7 @@ export default function WebsiteDevelopmentPage() {
             </p>
             <a
               href="/#book"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white font-mono text-sm font-medium rounded hover:shadow-[0_0_30px_rgba(58,125,14,0.2)] transition-shadow duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
             >
               Start the conversation
               <span>→</span>

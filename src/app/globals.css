@@ -7,35 +7,39 @@
 :root {
   /* Main site: light, clean, one deep-green brand accent.
      The sites./pro. offer pages override these on their own wrapper. */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F6F7F4;
-  --bg-tertiary: #ECEFE8;
-  --border-subtle: rgba(14, 21, 18, 0.10);
-  --border-strong: rgba(14, 21, 18, 0.20);
-  --text-primary: #0E1512;
-  --text-secondary: #46514B;
-  --text-tertiary: #59625D;
+  --bg-primary: #FAF7F0;
+  --bg-secondary: #F2EDE2;
+  --bg-tertiary: #E8E1D2;
+  --border-subtle: rgba(15, 15, 18, 0.10);
+  --border-strong: rgba(15, 15, 18, 0.22);
+  --text-primary: #0F0F12;
+  --text-secondary: #4A463F;
+  --text-tertiary: #6A6358;
   /* Deep green: 5:1 on white, so it works for text, icons and button fills. */
-  --accent: #3A7D0E;
-  --accent-hover: #2F6A0A;
-  --accent-bright: #C1FF72;
-  --accent-dim: rgba(58, 125, 14, 0.08);
-  --accent-line: rgba(58, 125, 14, 0.28);
+  --accent: #8A6A2F;
+  --accent-hover: #6F5424;
+  --accent-bright: #C9A86A;
+  --accent-dim: rgba(138, 106, 47, 0.10);
+  --accent-line: rgba(138, 106, 47, 0.32);
   --success: #15803D;
   --warning: #B45309;
   --whatsapp: #25D366;
-  --shadow-card: 0 1px 2px rgba(14, 21, 18, 0.04), 0 8px 24px -12px rgba(14, 21, 18, 0.12);
+  /* Brand from the logo: ink, ivory, gold — used for dark bands. */
+  --ink: #0F0F12;
+  --ivory: #F5F0E6;
+  --gold: #C9A86A;
+  --shadow-card: 0 1px 2px rgba(15, 15, 18, 0.04), 0 8px 24px -12px rgba(15, 15, 18, 0.14);
 
-  --background: #FFFFFF;
-  --foreground: #0E1512;
-  --card: #FFFFFF;
-  --card-foreground: #0E1512;
-  --popover: #FFFFFF;
-  --popover-foreground: #0E1512;
-  --primary: #3A7D0E;
+  --background: #FAF7F0;
+  --foreground: #0F0F12;
+  --card: #FAF7F0;
+  --card-foreground: #0F0F12;
+  --popover: #FAF7F0;
+  --popover-foreground: #0F0F12;
+  --primary: #8A6A2F;
   --primary-foreground: #FFFFFF;
   --secondary: #F6F7F4;
-  --secondary-foreground: #0E1512;
+  --secondary-foreground: #0F0F12;
   --muted: #F6F7F4;
   --muted-foreground: #46514B;
   --accent-foreground: #FFFFFF;
@@ -43,21 +47,21 @@
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: rgba(14, 21, 18, 0.10);
   --input: rgba(14, 21, 18, 0.20);
-  --ring: #3A7D0E;
-  --chart-1: #3A7D0E;
+  --ring: #8A6A2F;
+  --chart-1: #8A6A2F;
   --chart-2: oklch(0.45 0.1 100);
   --chart-3: oklch(0.55 0.15 110);
   --chart-4: oklch(0.7 0.05 80);
   --chart-5: oklch(0.6 0.1 90);
   --radius: 0.5rem;
   --sidebar: #F6F7F4;
-  --sidebar-foreground: #0E1512;
-  --sidebar-primary: #3A7D0E;
+  --sidebar-foreground: #0F0F12;
+  --sidebar-primary: #8A6A2F;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #ECEFE8;
-  --sidebar-accent-foreground: #0E1512;
+  --sidebar-accent-foreground: #0F0F12;
   --sidebar-border: rgba(14, 21, 18, 0.10);
-  --sidebar-ring: #3A7D0E;
+  --sidebar-ring: #8A6A2F;
 }
 
 @theme inline {
@@ -117,7 +121,7 @@
 
   ::selection {
     background: var(--accent-bright);
-    color: #0E1512;
+    color: #0F0F12;
   }
 }
 
@@ -598,7 +602,7 @@ html {
   border-radius: inherit;
   opacity: 0;
   transition: opacity 0.3s ease;
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(58, 125, 14, 0.10), transparent 60%);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(138, 106, 47, 0.10), transparent 60%);
   pointer-events: none;
 }
 .spotlight:hover::before {
@@ -609,7 +613,7 @@ html {
 }
 .lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 2px 4px rgba(14, 21, 18, 0.04), 0 24px 48px -20px rgba(58, 125, 14, 0.28);
+  box-shadow: 0 2px 4px rgba(14, 21, 18, 0.04), 0 24px 48px -20px rgba(138, 106, 47, 0.28);
 }
 
 /* Magnetic CTAs ease back into place. */

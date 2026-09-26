@@ -242,3 +242,15 @@ export const SEO_SERVICE: Record<Market, ServiceMarketConfig> = {
     note: "Monthly retainer, no setup fee, cancel any time — most clients start seeing movement in 8–12 weeks. GST extra where applicable.",
   },
 };
+
+/**
+ * The all-in bundle shown on the homepage: Business website + Starter AI lead
+ * responder + Starter SEO, at roughly 20% off buying them separately.
+ * New numbers, not yet confirmed by the owner — edit here.
+ *   US:    setup $1,499 + $997 = $2,496 → $1,997;  monthly $197 + $397 = $594 → $497
+ *   India: setup ₹4,000 + ₹24,999 = ₹28,999 → ₹22,999;  monthly ₹4,999 + ₹7,999 = ₹12,998 → ₹9,999
+ */
+export const BUNDLE: Record<Market, { setup: string; setupWas: string; monthly: string; monthlyWas: string }> = {
+  us: { setup: "$1,997", setupWas: "$2,496", monthly: "$497", monthlyWas: "$594" },
+  in: { setup: "₹22,999", setupWas: "₹28,999", monthly: "₹9,999", monthlyWas: "₹12,998" },
+};

@@ -31,7 +31,7 @@ export function renderOg({ eyebrow, title, footer }: { eyebrow: string; title: s
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "64px 72px",
-          background: "linear-gradient(160deg, #F6F7F4 0%, #FFFFFF 55%)",
+          background: "linear-gradient(160deg, #F2EDE2 0%, #FAF7F0 55%)",
           color: "#0E1512",
           fontFamily: "sans-serif",
         }}
@@ -45,20 +45,20 @@ export function renderOg({ eyebrow, title, footer }: { eyebrow: string; title: s
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ display: "flex", fontSize: 26, fontWeight: 600, color: "#3A7D0E" }}>{eyebrow}</div>
+          <div style={{ display: "flex", fontSize: 26, fontWeight: 600, color: "#8A6A2F" }}>{eyebrow}</div>
           <div style={{ display: "flex", fontSize: size, fontWeight: 700, lineHeight: 1.08, letterSpacing: -1.5, maxWidth: 1040 }}>
             {title}
           </div>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 24, color: "#46514B" }}>
-          <div style={{ display: "flex" }}>{footer ?? "AI lead response · Real estate & home services · US & India"}</div>
+          <div style={{ display: "flex" }}>{footer ?? "AI lead response · Websites · SEO · US & India"}</div>
           <div
             style={{
               display: "flex",
               padding: "10px 20px",
               borderRadius: 999,
-              background: "#3A7D0E",
+              background: "#8A6A2F",
               color: "#FFFFFF",
               fontWeight: 600,
             }}
