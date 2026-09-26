@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import LogoMark from "./logo-mark";
 import { Menu, X } from "lucide-react";
 import { TopNavMenu } from "@astryxdesign/core/TopNav";
@@ -26,8 +26,6 @@ const tailLinks = [
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const servicesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -51,22 +49,6 @@ export default function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [open]);
-
-  useEffect(() => {
-    if (!servicesOpen) return;
-    const onClick = (e: MouseEvent) => {
-      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) setServicesOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setServicesOpen(false);
-    };
-    document.addEventListener("click", onClick);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("click", onClick);
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [servicesOpen]);
 
   return (
     <>
@@ -97,7 +79,7 @@ export default function SiteHeader() {
           <TopNavMenu
             label="Services"
             className="astryx-nav-trigger"
-            items={services.map((x) => ({ title: x.name, description: x.desc, href: x.href, icon: <Lottie name={x.icon} className="w-6 h-6" /> }))}
+            items={services.map((x) => ({ title: x.name, description: x.desc, href: x.href, icon: <Lottie name={x.icon} className="w-7 h-7" /> }))}
           />
 
           {tailLinks.map((l) => (

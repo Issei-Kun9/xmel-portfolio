@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Check, X } from "lucide-react";
-import { SegmentedControl, SegmentedControlItem } from "@astryxdesign/core/SegmentedControl";
 
 const ROWS = [
   { without: "A lead messages at 11 PM. You reply at 9 AM. They've already booked someone else.", with: "The AI replies in under a minute, qualifies them and books the call — while you sleep." },
@@ -24,10 +23,19 @@ export default function BeforeAfter() {
           <h2 className="font-display text-[clamp(30px,4.6vw,52px)] font-medium leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)] max-w-2xl">
             Same business. <span className="italic text-[var(--accent)]">Very different week.</span>
           </h2>
-          <SegmentedControl label="Compare" value={on ? "with" : "without"} onChange={(v) => setOn(v === "with")} className="self-start md:self-auto">
-            <SegmentedControlItem value="without" label="Without us" />
-            <SegmentedControlItem value="with" label="With XMEL" />
-          </SegmentedControl>
+          <div role="group" aria-label="Compare" className="inline-flex self-start md:self-auto rounded-full border border-[var(--border-strong)] bg-[var(--bg-secondary)] p-1 text-[14px] font-semibold">
+            {[false, true].map((v) => (
+              <button
+                key={String(v)}
+                type="button"
+                aria-pressed={on === v}
+                onClick={() => setOn(v)}
+                className={`rounded-full px-5 py-2 transition-colors ${on === v ? (v ? "bg-[var(--ink)] text-[var(--gold)]" : "bg-[var(--bg-primary)] text-[var(--text-primary)] shadow-sm") : "text-[var(--text-tertiary)] hover:text-[var(--text-primary)]"}`}
+              >
+                {v ? "With XMEL" : "Without us"}
+              </button>
+            ))}
+          </div>
         </div>
 
         <ul className="mt-10 grid md:grid-cols-2 gap-4">
