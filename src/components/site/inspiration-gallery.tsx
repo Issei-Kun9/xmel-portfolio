@@ -2,10 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { INSPIRATION, INSPO_CATEGORIES, INDUSTRY_TO_CATEGORY, shotUrl, type InspoMarket } from "@/lib/inspiration";
+import { INSPIRATION, INSPO_CATEGORIES, INDUSTRY_TO_CATEGORY, type InspoMarket } from "@/lib/inspiration";
+import LivePreview from "./live-preview";
 
-/** Filterable grid of real sites we admire, India first. Every card links to the original. */
-export default function InspirationGallery() {
+/**
+ * Filterable grid of real sites we admire, India first. Sites that allow
+ * framing show a live preview; the rest show a branded card. Every card
+ * links to the original.
+ */
+export default function InspirationGallery({ embeddable }: { embeddable: Record<string, boolean> }) {
   const [market, setMarket] = useState<InspoMarket>("in");
   const [cat, setCat] = useState<string>("all");
 
@@ -57,14 +62,11 @@ export default function InspirationGallery() {
             <li key={s.url} className="group flex flex-col overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]">
               <a href={s.url} target="_blank" rel="noopener noreferrer nofollow" className="block" aria-label={`Open ${s.name} (opens in a new tab)`}>
                 <div className="relative aspect-[16/10] overflow-hidden bg-[var(--bg-secondary)]">
-                  <span className="absolute inset-0 flex items-center justify-center font-display text-[22px] text-[var(--text-tertiary)]" aria-hidden="true">{host}</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element -- remote live screenshot */}
-                  <img
-                    src={shotUrl(s.url)}
-                    alt={`Homepage of ${s.name}`}
-                    loading="lazy"
-                    className="relative h-full w-full object-cover object-top text-transparent transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
+                  <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-[radial-gradient(60%_60%_at_50%_40%,rgba(201,168,106,0.16),transparent)]" aria-hidden="true">
+                    <span className="font-display text-[26px] text-[var(--text-primary)]">{s.name}</span>
+                    <span className="text-[13px] text-[var(--text-tertiary)]">{host} ↗</span>
+                  </span>
+                  {embeddable[s.url] && <LivePreview url={s.url} title={s.name} />}
                   <span className="absolute left-3 top-3 rounded-full bg-[rgba(15,15,18,0.85)] px-2.5 py-1 text-[11px] font-semibold text-[var(--gold)]">{label}</span>
                 </div>
               </a>
@@ -76,7 +78,7 @@ export default function InspirationGallery() {
                 <p className="mt-2 flex-1 text-[14px] leading-relaxed text-[var(--text-secondary)]">{s.why}</p>
                 <div className="mt-4 flex items-center justify-between gap-3 border-t border-[var(--border-subtle)] pt-4 text-[14px] font-semibold">
                   <a href={s.url} target="_blank" rel="noopener noreferrer nofollow" className="inline-flex items-center gap-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                    Visit site <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                    Open site <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                   </a>
                   <a href={`/contact?plan=${encodeURIComponent(`A website in the style of ${s.name} (${host})`)}`} className="text-[var(--accent)] link-grow">
                     I want this style →
