@@ -13,6 +13,7 @@ export const INSPO_CATEGORIES = [
   { slug: "salons", name: "Salons & spas" },
   { slug: "jewellers", name: "Jewellers" },
   { slug: "fitness", name: "Gyms & fitness" },
+  { slug: "cafes", name: "Cafés & restaurants" },
   { slug: "home-services", name: "Home services" },
   { slug: "roofers", name: "Roofers" },
   { slug: "plumbers", name: "Plumbers" },
@@ -32,16 +33,20 @@ export type Inspo = {
 export const INSPIRATION: Inspo[] = [
   // India
   { market: "in", category: "real-estate", name: "Godrej Properties", url: "https://www.godrejproperties.com/", why: "Project-first browsing by city, with an enquiry form on every listing." },
+  { market: "in", category: "real-estate", name: "Prestige Group", url: "https://www.prestigeconstructions.com/", why: "City-by-city project browsing for a big Bangalore developer." },
   { market: "in", category: "real-estate", name: "Lodha", url: "https://www.lodhagroup.com/", why: "Luxury developer look: full-bleed imagery and very little text." },
   { market: "in", category: "interiors", name: "Livspace", url: "https://www.livspace.com/in", why: "Design ideas gallery that turns browsing into a free consultation booking." },
   { market: "in", category: "interiors", name: "DesignCafe", url: "https://www.designcafe.com/", why: "Warranty, homes delivered and experience centres: trust in one screen." },
   { market: "in", category: "dental", name: "Clove Dental", url: "https://clovedental.in/", why: "Clinic finder and toll-free booking for a multi-city practice." },
+  { market: "in", category: "dental", name: "Sabka Dentist", url: "https://sabkadentist.com/", why: "Treatment-led pages (aligners, braces) with an appointment form always close." },
   { market: "in", category: "skin", name: "Kaya Clinic", url: "https://www.kaya.in/", why: "Treatment-led navigation with consultation booking everywhere." },
   { market: "in", category: "salons", name: "Lakmé Salon", url: "https://www.lakmesalon.in/", why: "Premium beauty brand feel with a clear Book Appointment path." },
   { market: "in", category: "salons", name: "Enrich", url: "https://www.enrichbeauty.com/", why: "Salon locator, services and memberships, plus WhatsApp booking." },
+  { market: "in", category: "salons", name: "Naturals", url: "https://naturals.in/", why: "Salon locator front and centre for an 800+ outlet chain." },
   { market: "in", category: "jewellers", name: "Tanishq", url: "https://www.tanishq.co.in/", why: "Rich collection pages that feel like walking into the store." },
   { market: "in", category: "jewellers", name: "CaratLane", url: "https://www.caratlane.com/", why: "Modern, light jewellery store with try-at-home style offers." },
   { market: "in", category: "fitness", name: "cult.fit", url: "https://www.cult.fit/", why: "Bold, energetic brand with memberships and classes one tap away." },
+  { market: "in", category: "cafes", name: "Third Wave Coffee", url: "https://www.thirdwavecoffeeroasters.com/", why: "Warm, product-led café brand with a store locator." },
   { market: "in", category: "home-services", name: "Urban Company", url: "https://www.urbancompany.com/", why: "Plumber, electrician and AC repair booked like ordering food." },
   // United States
   { market: "us", category: "roofers", name: "Baker Roofing", url: "https://bakerroofing.com/", why: "A century of trust up front, with one confident estimate form." },
@@ -74,8 +79,3 @@ export const INDUSTRY_TO_CATEGORY: Record<string, Inspo["category"]> = {
   hvac: "hvac",
   electricians: "electricians",
 };
-
-/** Live screenshot, rendered by WordPress.com's public mShots service in the visitor's browser. */
-export function shotUrl(url: string, w = 1200) {
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${w}&h=${Math.round(w * 0.625)}`;
-}
