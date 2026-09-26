@@ -2,6 +2,9 @@ import type { CSSProperties } from "react";
 import { Check } from "lucide-react";
 import type { MarketConfig } from "@/lib/market";
 import CtaButton from "./cta-button";
+import Lottie from "@/components/motion/lottie";
+import Tilt from "@/components/motion/tilt";
+import Words from "@/components/motion/words";
 
 type Message = { from: "lead" | "ai"; text: string };
 
@@ -53,6 +56,10 @@ function PhoneMock({ cfg }: { cfg: MarketConfig }) {
   const { at, bookedAt } = timeline(convo.messages);
   return (
     <figure className="relative mx-auto w-full max-w-[340px]">
+      <Lottie name="moon" className="float-slow absolute -top-16 -right-16 w-24 h-24 sm:w-28 sm:h-28 z-10 pointer-events-none" />
+      {cfg.market === "in" && (
+        <Lottie name="whatsapp" className="float-slow absolute -left-10 bottom-24 w-16 h-16 z-10 pointer-events-none [animation-delay:-3s]" />
+      )}
       <div className="absolute -inset-6 rounded-[48px] bg-[radial-gradient(closest-side,var(--accent-dim),transparent)]" aria-hidden="true" />
       <div className="relative rounded-[36px] border border-[var(--border-strong)] bg-[var(--bg-primary)] p-3 shadow-[0_30px_60px_-30px_rgba(14,21,18,0.35)]">
         <div className="rounded-[26px] overflow-hidden bg-[var(--bg-secondary)]">
@@ -127,6 +134,11 @@ export default function Hero({ cfg }: { cfg: MarketConfig }) {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(180deg,var(--bg-secondary),transparent)]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute -top-32 right-[-10%] w-[560px] h-[560px] rounded-full bg-[radial-gradient(closest-side,rgba(193,255,114,0.45),transparent)] blur-2xl" style={{ animation: "mesh-drift 18s ease-in-out infinite" }} />
+        <div className="absolute top-40 -left-40 w-[420px] h-[420px] rounded-full bg-[radial-gradient(closest-side,rgba(58,125,14,0.18),transparent)] blur-2xl" style={{ animation: "mesh-drift 22s ease-in-out infinite reverse" }} />
+        <div className="absolute inset-0 bg-grid-pattern opacity-40 [mask-image:radial-gradient(ellipse_at_top,#000_20%,transparent_70%)]" />
+      </div>
       <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-8 sm:pb-12 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-1.5 text-[13px] font-medium text-[var(--text-secondary)]">
@@ -135,8 +147,10 @@ export default function Hero({ cfg }: { cfg: MarketConfig }) {
           </p>
 
           <h1 className="mt-5 font-display text-[clamp(36px,5.6vw,60px)] font-semibold leading-[1.04] tracking-[-0.025em] text-balance text-[var(--text-primary)]">
-            Every lead answered in under 60 seconds.{" "}
-            <span className="text-[var(--accent)]">Even at 2 AM.</span>
+            <Words text="Every lead answered in under 60 seconds." />
+            <span className="text-[var(--accent)]">
+              <Words text="Even at 2 AM." start={7} />
+            </span>
           </h1>
 
           <p className="mt-5 text-[17px] sm:text-[19px] leading-relaxed text-[var(--text-secondary)] max-w-[560px]">
@@ -160,7 +174,9 @@ export default function Hero({ cfg }: { cfg: MarketConfig }) {
           </ul>
         </div>
 
-        <PhoneMock cfg={cfg} />
+        <Tilt>
+          <PhoneMock cfg={cfg} />
+        </Tilt>
       </div>
     </section>
   );

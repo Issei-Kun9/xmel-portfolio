@@ -1,4 +1,4 @@
-import { Inbox, MessageSquareText, CalendarCheck } from "lucide-react";
+import Lottie from "@/components/motion/lottie";
 import type { MarketConfig } from "@/lib/market";
 
 const SOURCES: Record<MarketConfig["market"], string[]> = {
@@ -11,17 +11,17 @@ const TOOLS = ["Google Calendar", "Google Sheets", "WhatsApp Business", "SMS", "
 export default function HowItWorks({ cfg }: { cfg: MarketConfig }) {
   const steps = [
     {
-      icon: Inbox,
+      lottie: "phone-ring",
       title: "A lead comes in",
       body: `From ${cfg.leadSources} — day or night, weekday or holiday.`,
     },
     {
-      icon: MessageSquareText,
+      lottie: cfg.market === "in" ? "whatsapp" : "speedometer",
       title: "AI replies in under 60 seconds",
       body: `It messages the lead by ${cfg.replyChannel} (or calls them), answers questions and qualifies budget, timeline and location.`,
     },
     {
-      icon: CalendarCheck,
+      lottie: "calendar",
       title: "The appointment is booked",
       body: "Serious leads get a slot in your calendar. You get a summary, so you only spend time on people ready to move.",
     },
@@ -37,12 +37,12 @@ export default function HowItWorks({ cfg }: { cfg: MarketConfig }) {
           </h2>
         </div>
 
-        <ol className="mt-10 grid md:grid-cols-3 gap-4">
+        <ol className="step-line relative mt-10 grid md:grid-cols-3 gap-4">
           {steps.map((s, i) => (
-            <li key={s.title} className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-6 shadow-[var(--shadow-card)]">
+            <li key={s.title} className="spotlight lift relative rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-6 shadow-[var(--shadow-card)]">
               <div className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-xl bg-[var(--accent-dim)] text-[var(--accent)] flex items-center justify-center">
-                  <s.icon className="w-5 h-5" aria-hidden="true" />
+                <span className="w-14 h-14 rounded-2xl bg-[var(--accent-dim)] flex items-center justify-center">
+                  <Lottie name={s.lottie} className="w-12 h-12" />
                 </span>
                 <span className="text-[13px] font-semibold text-[var(--text-tertiary)]">Step {i + 1}</span>
               </div>

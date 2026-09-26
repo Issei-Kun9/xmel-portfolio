@@ -4,6 +4,8 @@ import { SEO_SERVICE } from "@/lib/services";
 import { MARKETS } from "@/lib/market";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 import ServicePricing from "@/components/site/service-pricing";
+import Lottie from "@/components/motion/lottie";
+import Words from "@/components/motion/words";
 
 const siteUrl = "https://xmelautomations.xyz/seo";
 
@@ -126,12 +128,13 @@ export default function SeoPage() {
             <Breadcrumbs items={[{ name: "SEO" }]} />
           </div>
 
-          <div className="mb-16">
+          <div className="relative mb-16">
+            <Lottie name="growth-chart" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
             <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
               SOLUTIONS — SEO
             </span>
             <h1 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              Get found on Google for the searches that bring you customers
+              <Words text="Get found on Google for the searches that bring you customers" />
             </h1>
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
               Technical fixes, local search presence and content built around

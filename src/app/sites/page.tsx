@@ -6,15 +6,14 @@ import WhatsappCta, {
 } from "./whatsapp-cta";
 import BusinessPreviews from "@/components/offer/business-previews";
 import CapacityBar from "./capacity";
+import Lottie from "@/components/motion/lottie";
+import Words from "@/components/motion/words";
 
 /**
  * Ad landing page for the ₹2,500 website offer.
  * Served at https://sites.xmelautomations.xyz (see src/middleware.ts).
  *
  * One conversion: visitor → WhatsApp → asks for the ₹500 link.
- *
- * Deliberately contains no client components, so the page ships no route
- * JavaScript. Keep it that way — most traffic arrives on mobile data.
  */
 const OFFER = {
   total: "₹2,500",
@@ -229,6 +228,8 @@ export default function SitesLanding() {
           />
         </div>
 
+        <Lottie name="rocket" className="float-slow absolute right-[4%] top-10 hidden md:block w-40 h-40 lg:w-52 lg:h-52 z-0 pointer-events-none" />
+        <Lottie name="laptop" className="float-slow absolute right-[18%] bottom-16 hidden lg:block w-32 h-32 z-0 pointer-events-none [animation-delay:-3.5s]" />
         <div className="relative z-10 max-w-[840px] mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-12">
           {/*
             Everything that makes the decision — headline, price, scarcity,
@@ -240,7 +241,7 @@ export default function SitesLanding() {
             id="hero-heading"
             className="font-display text-[clamp(30px,7.2vw,56px)] font-semibold leading-[1.05] tracking-[-0.025em] text-[var(--text-primary)] mb-4"
           >
-            Your business deserves a proper website.
+            <Words text="Your business deserves a proper website." />
           </h1>
 
           <p className="text-[16px] sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-[520px] mb-5">

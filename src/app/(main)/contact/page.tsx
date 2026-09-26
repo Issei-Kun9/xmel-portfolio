@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Contact from "@/components/sections/contact";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
+import Lottie from "@/components/motion/lottie";
+import Words from "@/components/motion/words";
 
 
 export const metadata: Metadata = pageMetadata({
@@ -39,12 +41,13 @@ export default function ContactPage() {
           </div>
 
           {/* Header */}
-          <div className="mb-12">
+          <div className="relative mb-12">
+            <Lottie name="phone-ring" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
             <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
               CONTACT
             </span>
             <h1 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              Contact XMEL Automations
+              <Words text="Contact XMEL Automations" />
             </h1>
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
               Tell me about your lead flow and what&apos;s broken — I&apos;ll

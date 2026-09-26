@@ -3,6 +3,8 @@ import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import About from "@/components/sections/about";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
+import Lottie from "@/components/motion/lottie";
+import Words from "@/components/motion/words";
 
 
 export const metadata: Metadata = pageMetadata({
@@ -40,12 +42,13 @@ export default function AboutPage() {
           </div>
 
           {/* Header */}
-          <div className="mb-16">
+          <div className="relative mb-16">
+            <Lottie name="rocket" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
             <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
               ABOUT
             </span>
             <h1 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              About XMEL Automations
+              <Words text="About XMEL Automations" />
             </h1>
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
               XMEL Automations is an AI automation company founded by

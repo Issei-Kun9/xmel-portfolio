@@ -17,8 +17,7 @@ type Props = {
 /**
  * The single conversion action on this page.
  *
- * Deliberately NOT a client component: a plain <a> means the page ships no
- * route JavaScript at all. Every CTA on the page renders through this, so the
+ * Every CTA on the page renders through this, so the
  * destination and prefilled message can never drift apart.
  */
 export default function WhatsappCta({
@@ -33,10 +32,11 @@ export default function WhatsappCta({
 
   return (
     <a
+      data-magnetic
       href={WHATSAPP_HREF}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center rounded-xl bg-[#25D366] text-[#06300E] font-semibold tracking-[-0.01em] shadow-[0_6px_20px_-6px_rgba(37,211,102,0.55)] hover:brightness-105 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-[filter,transform] duration-200 ${sizing} ${className}`}
+      className={`inline-flex items-center justify-center shine-sweep rounded-xl bg-[#25D366] text-[#06300E] font-semibold tracking-[-0.01em] shadow-[0_6px_20px_-6px_rgba(37,211,102,0.55)] hover:brightness-105 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-[filter,transform] duration-200 ${sizing} ${className}`}
     >
       {children}
     </a>

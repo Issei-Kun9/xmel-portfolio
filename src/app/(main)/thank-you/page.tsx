@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Lottie from "@/components/motion/lottie";
+import Words from "@/components/motion/words";
 
 export const metadata: Metadata = {
   title: "Message Received | XMEL Automations",
@@ -94,8 +96,9 @@ export default function ThankYouPage() {
           </div>
         </div>
 
+        <Lottie name="success" loop={false} className="w-28 h-28 mb-2 -ml-3" />
         <h1 className="font-display text-[clamp(28px,6vw,48px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-4">
-          Message delivered.
+          <Words text="Message delivered." />
         </h1>
 
         <p className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-lg mx-auto mb-10">

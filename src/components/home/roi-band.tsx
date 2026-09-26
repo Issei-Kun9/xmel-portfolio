@@ -1,4 +1,5 @@
-import { ArrowRight, Calculator } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Lottie from "@/components/motion/lottie";
 
 export default function RoiBand() {
   return (
@@ -6,10 +7,10 @@ export default function RoiBand() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <a
           href="/tools/roi-calculator"
-          className="group flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl bg-[var(--text-primary)] px-6 sm:px-8 py-6 text-white"
+          className="spotlight lift group relative overflow-hidden flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl bg-[var(--text-primary)] px-6 sm:px-8 py-6 text-white"
         >
-          <span className="w-11 h-11 rounded-xl bg-[rgba(255,255,255,0.1)] text-[var(--accent-bright)] flex items-center justify-center shrink-0">
-            <Calculator className="w-5 h-5" aria-hidden="true" />
+          <span className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.92)] flex items-center justify-center shrink-0">
+            <Lottie name="money" className="w-14 h-14" />
           </span>
           <span className="flex-1">
             <span className="block text-[18px] font-semibold">How much are slow replies costing you?</span>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import ScrollReset from "@/components/shared/scroll-reset";
+import MotionLayer from "@/components/motion/motion-layer";
 import JsonLd from "@/components/shared/json-ld";
 import { OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
@@ -105,6 +106,7 @@ export default function RootLayout({
           `}
         </Script>
         <ScrollReset />
+        <MotionLayer />
         <JsonLd />
         {children}
       </body>

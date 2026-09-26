@@ -1,8 +1,10 @@
 import { ArrowRight, Building2, Wrench, Globe, Search } from "lucide-react";
+import Lottie from "@/components/motion/lottie";
 
 const services = [
   {
     icon: Building2,
+    lottie: "house",
     label: "Real estate",
     title: "An AI inside sales agent for agents and brokerages",
     body: "Qualifies portal and ad leads in seconds, follows up until they reply, and books showings and site visits.",
@@ -10,6 +12,7 @@ const services = [
   },
   {
     icon: Wrench,
+    lottie: "tools",
     label: "Home services",
     title: "An AI receptionist for HVAC, plumbing and electrical",
     body: "Answers every call and message, captures the job details and books the slot — including after hours.",
@@ -17,6 +20,7 @@ const services = [
   },
   {
     icon: Globe,
+    lottie: "laptop",
     label: "Website development",
     title: "A website built around your business, live in about a week",
     body: "Mobile-first, fast, written for what you actually do — not a template you have to wrestle into shape.",
@@ -24,6 +28,7 @@ const services = [
   },
   {
     icon: Search,
+    lottie: "growth-chart",
     label: "SEO",
     title: "Get found on Google for the searches that bring customers",
     body: "Technical fixes, local presence and content built around real search queries, reported on every month.",
@@ -44,13 +49,14 @@ export default function Industries() {
             <a
               key={s.href}
               href={s.href}
-              className="group rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-7 shadow-[var(--shadow-card)] hover:border-[var(--accent-line)] transition-colors"
+              className="spotlight lift group relative overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-7 shadow-[var(--shadow-card)] hover:border-[var(--accent-line)]"
             >
+              <Lottie name={s.lottie} className="absolute right-5 top-5 w-20 h-20 opacity-90 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3" />
               <span className="inline-flex items-center gap-2 text-[13px] font-semibold text-[var(--accent)]">
                 <s.icon className="w-4 h-4" aria-hidden="true" />
                 {s.label}
               </span>
-              <h3 className="mt-3 text-[20px] font-semibold leading-snug text-[var(--text-primary)]">{s.title}</h3>
+              <h3 className="mt-3 pr-20 text-[20px] font-semibold leading-snug text-[var(--text-primary)]">{s.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-[var(--text-secondary)]">{s.body}</p>
               <span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
                 See how it works

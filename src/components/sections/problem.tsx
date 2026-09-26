@@ -1,4 +1,5 @@
-import { PhoneOff, Database, Clock } from "lucide-react";
+import { Database } from "lucide-react";
+import Lottie from "@/components/motion/lottie";
 
 // Chart geometry. The plot sits inside padding so no label is clipped by
 // the SVG edge, and every marker is placed on the curve it labels.
@@ -67,7 +68,7 @@ function DecayChart() {
       />
 
       {/* Decay curve */}
-      <path d={path} stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" />
+      <path d={path} pathLength={1} className="draw-path" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
 
       <defs>
         <linearGradient id="decay-gradient" x1="0" y1="0" x2="0" y2="1">
@@ -107,17 +108,17 @@ function DecayChart() {
 
 const painPoints = [
   {
-    icon: PhoneOff,
+    lottie: "phone-ring",
     title: "Missed calls, lost deals",
     desc: "Leads that call after hours or while you're busy rarely call twice. By morning, a competitor has them.",
   },
   {
-    icon: Database,
+    lottie: null,
     title: "Leads scattered everywhere",
     desc: "Leads sit in inboxes, portals and WhatsApp chats. Nobody follows up, and nobody can see what was missed.",
   },
   {
-    icon: Clock,
+    lottie: "clock",
     title: "Slow follow-up kills conversion",
     desc: "The chance of reaching a lead drops fast within minutes. The first to reply usually wins.",
   },
@@ -155,11 +156,15 @@ export default function Problem() {
             {painPoints.map((point) => (
               <div
                 key={point.title}
-                className="p-6 bg-[var(--bg-primary)] rounded-2xl border border-[var(--border-subtle)] shadow-[var(--shadow-card)]"
+                className="spotlight lift p-6 bg-[var(--bg-primary)] rounded-2xl border border-[var(--border-subtle)] shadow-[var(--shadow-card)]"
               >
                 <div className="flex items-start gap-4">
-                  <div className="mt-1">
-                    <point.icon className="w-5 h-5 text-[var(--warning)]" strokeWidth={1.5} />
+                  <div className="shrink-0 w-12 h-12 rounded-xl bg-[var(--bg-secondary)] flex items-center justify-center">
+                    {point.lottie ? (
+                      <Lottie name={point.lottie} className="w-11 h-11" />
+                    ) : (
+                      <Database className="w-5 h-5 text-[var(--warning)] animate-pulse" strokeWidth={1.5} aria-hidden="true" />
+                    )}
                   </div>
                   <div>
                     <h3 className="text-[16px] font-semibold text-[var(--text-primary)] mb-1">

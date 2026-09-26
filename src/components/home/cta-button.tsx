@@ -29,7 +29,7 @@ export default function CtaButton({
 }) {
   const whatsapp = cta.kind === "whatsapp";
   const base =
-    "inline-flex items-center justify-center gap-2.5 h-12 px-6 rounded-xl text-[15px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
+    "inline-flex items-center justify-center gap-2.5 h-12 px-6 rounded-xl text-[15px] font-semibold shine-sweep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
   const look =
     variant === "primary"
       ? whatsapp
@@ -41,6 +41,7 @@ export default function CtaButton({
     <a
       href={cta.href}
       {...(cta.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      data-magnetic
       data-cta={cta.kind}
       data-cta-location={location}
       className={`${base} ${look} ${className}`}

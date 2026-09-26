@@ -6,6 +6,8 @@ import WhatsappCta, {
 } from "./whatsapp-cta";
 import BusinessPreviews from "@/components/offer/business-previews";
 import CapacityBar from "./capacity";
+import Lottie from "@/components/motion/lottie";
+import Words from "@/components/motion/words";
 
 /**
  * Ad landing page for the ₹4,000 multi-page website offer.
@@ -17,8 +19,6 @@ import CapacityBar from "./capacity";
  * rather than a shared template on purpose: the two will be tested and
  * rewritten independently, and marketing copy that shares a template tends to
  * get worse in both places at once.
- *
- * No client components — the page ships no route JavaScript.
  */
 const OFFER = {
   total: "₹4,000",
@@ -245,6 +245,8 @@ export default function ProLanding() {
           />
         </div>
 
+        <Lottie name="rocket" className="float-slow absolute right-[4%] top-10 hidden md:block w-40 h-40 lg:w-52 lg:h-52 z-0 pointer-events-none" />
+        <Lottie name="laptop" className="float-slow absolute right-[18%] bottom-16 hidden lg:block w-32 h-32 z-0 pointer-events-none [animation-delay:-3.5s]" />
         <div className="relative z-10 max-w-[840px] mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-12">
           {/*
             Decision-critical content only, above the fold: headline, price,
@@ -254,7 +256,7 @@ export default function ProLanding() {
             id="hero-heading"
             className="font-display text-[clamp(30px,7.2vw,56px)] font-semibold leading-[1.05] tracking-[-0.025em] text-[var(--text-primary)] mb-4"
           >
-            A proper website. Not just one page.
+            <Words text="A proper website. Not just one page." />
           </h1>
 
           <p className="text-[16px] sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-[520px] mb-5">

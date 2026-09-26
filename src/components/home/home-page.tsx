@@ -23,7 +23,7 @@ export default function HomePage({ market }: { market: Market }) {
   const cfg = MARKET_CONFIG[market];
   return (
     <>
-      <main className="reveal">
+      <main>
         <Hero cfg={cfg} />
         <Problem />
         <HowItWorks cfg={cfg} />

@@ -1,7 +1,8 @@
-import { Check, ShieldCheck } from "lucide-react";
+import { Check } from "lucide-react";
 import type { MarketConfig } from "@/lib/market";
 import MarketSwitch from "@/components/site/market-switch";
 import CtaButton from "./cta-button";
+import Lottie from "@/components/motion/lottie";
 
 export default function Pricing({ cfg }: { cfg: MarketConfig }) {
   return (
@@ -23,8 +24,8 @@ export default function Pricing({ cfg }: { cfg: MarketConfig }) {
               key={tier.name}
               className={`relative flex flex-col rounded-2xl p-7 ${
                 tier.featured
-                  ? "border-2 border-[var(--accent)] bg-[var(--bg-primary)] shadow-[0_20px_50px_-24px_rgba(58,125,14,0.45)]"
-                  : "border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-[var(--shadow-card)]"
+                  ? "ring-glow lift shadow-[0_20px_50px_-24px_rgba(58,125,14,0.45)] lg:-translate-y-3"
+                  : "spotlight lift border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-[var(--shadow-card)]"
               }`}
             >
               {tier.featured && (
@@ -80,8 +81,8 @@ export default function Pricing({ cfg }: { cfg: MarketConfig }) {
         <p className="mt-5 text-[13px] text-[var(--text-tertiary)]">{cfg.pricingNote}</p>
 
         <div className="mt-10 rounded-2xl border border-[var(--accent-line)] bg-[var(--accent-dim)] p-6 sm:p-8 flex flex-col md:flex-row md:items-center gap-5">
-          <span className="w-12 h-12 rounded-xl bg-[var(--bg-primary)] text-[var(--accent)] flex items-center justify-center shrink-0">
-            <ShieldCheck className="w-6 h-6" aria-hidden="true" />
+          <span className="w-16 h-16 rounded-2xl bg-[var(--bg-primary)] flex items-center justify-center shrink-0">
+            <Lottie name="success" className="w-14 h-14" />
           </span>
           <div className="flex-1">
             <h3 className="text-[18px] font-semibold text-[var(--text-primary)]">
