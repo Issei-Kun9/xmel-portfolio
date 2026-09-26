@@ -43,31 +43,55 @@ function useSmoothScroll() {
 function useScrollReveal(pathname: string) {
   useEffect(() => {
     if (reducedMotion()) return;
-    const fold = window.innerHeight;
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (!e.isIntersecting) continue;
-          e.target.classList.add("rv-in");
-          io.unobserve(e.target);
-        }
-      },
-      { rootMargin: "0px 0px -8% 0px" },
-    );
+
+    let io: IntersectionObserver | undefined;
     const seen = new Set<Element>();
-    document.querySelectorAll(REVEAL_SELECTOR).forEach((el) => {
-      // Skip nested matches (a <p> inside an already-revealed grid cell) and
-      // anything already on screen, so nothing visible ever blinks out.
-      if (el.closest(".rv") || el.getBoundingClientRect().top < fold) return;
-      const siblings = el.parentElement ? Array.from(el.parentElement.children) : [];
-      const i = Math.min(siblings.indexOf(el), 6);
-      (el as HTMLElement).style.setProperty("--rv-i", String(Math.max(i, 0)));
-      el.classList.add("rv");
-      seen.add(el);
-      io.observe(el);
-    });
+
+    const setup = () => {
+      const fold = window.innerHeight;
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            e.target.classList.add("rv-in");
+            io!.unobserve(e.target);
+          }
+        },
+        { rootMargin: "0px 0px -8% 0px" },
+      );
+      // Two passes — read every layout value first, then write every class
+      // and style change — so the browser isn't forced to recompute layout
+      // once per element. Interleaving read (getBoundingClientRect) and
+      // write (classList.add) in one loop was the single biggest
+      // main-thread cost on this page: each write invalidated layout right
+      // before the next element's read needed it.
+      const candidates = Array.from(document.querySelectorAll(REVEAL_SELECTOR)).filter(
+        (el) => !el.closest(".rv")
+      );
+      const toReveal = candidates
+        .map((el) => ({ el, top: el.getBoundingClientRect().top }))
+        .filter(({ top }) => top >= fold);
+      toReveal.forEach(({ el }) => {
+        const siblings = el.parentElement ? Array.from(el.parentElement.children) : [];
+        const i = Math.min(siblings.indexOf(el), 6);
+        (el as HTMLElement).style.setProperty("--rv-i", String(Math.max(i, 0)));
+        el.classList.add("rv");
+        seen.add(el);
+        io!.observe(el);
+      });
+    };
+
+    // Scanning and tagging every below-the-fold heading/paragraph on the
+    // page is real work; running it in the browser's idle time instead of
+    // synchronously on mount keeps it from competing with the initial
+    // paint for the largest-contentful-paint element.
+    const ric = window.requestIdleCallback ?? ((cb: IdleRequestCallback) => window.setTimeout(() => cb({ didTimeout: false, timeRemaining: () => 0 } as IdleDeadline), 1));
+    const cic = window.cancelIdleCallback ?? window.clearTimeout;
+    const handle = ric(setup, { timeout: 1000 });
+
     return () => {
-      io.disconnect();
+      cic(handle);
+      io?.disconnect();
       seen.forEach((el) => el.classList.remove("rv", "rv-in"));
     };
   }, [pathname]);
