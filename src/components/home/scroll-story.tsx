@@ -10,7 +10,7 @@ import { SerpMockup, SiteMockup } from "@/components/visuals/mockups";
 const CHAPTERS = [
   { kicker: "01 · SEO", title: "They search. You're the first name they see.", body: "Local SEO and pages written for the exact searches your buyers make put you at the top, above the competitors they'd have called.", href: "/seo", link: "SEO plans" },
   { kicker: "02 · Website", title: "They land on a site that makes them trust you.", body: "Fast, mobile-first and written around your business, with one clear next step on every page. Live in about a week.", href: "/website-development", link: "Website plans" },
-  { kicker: "03 · AI lead response", title: "They enquire. The AI replies in under a minute.", body: "At 2 AM, on a Sunday, mid-job: every lead is answered, qualified and booked into your calendar while you work.", href: "/ai-automation-real-estate", link: "AI plans" },
+  { kicker: "03 · AI Infrastructure", title: "They enquire. The AI replies in under a minute.", body: "At 2 AM, on a Sunday, mid-job: every lead is answered, qualified and booked into your calendar while you work.", href: "/ai-automation-real-estate", link: "AI Infrastructure plans" },
 ];
 
 /**

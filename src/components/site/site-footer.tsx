@@ -42,7 +42,7 @@ export default function SiteFooter() {
             </span>
           </a>
           <p className="mt-3 text-[14px] leading-relaxed text-[var(--text-secondary)] max-w-xs">
-            AI lead response, websites and SEO that bring you more customers — for
+            AI infrastructure, websites and SEO that bring you more customers — for
             businesses in the US and India.
           </p>
         </div>

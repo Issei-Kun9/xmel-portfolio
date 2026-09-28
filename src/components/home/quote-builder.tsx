@@ -13,7 +13,7 @@ function groups(market: Market): Group[] {
   const web = WEBSITE_DEV[market].tiers.filter((t) => t.priceAmount > 0);
   const seo = SEO_SERVICE[market].tiers.filter((t) => t.priceAmount > 0);
   return [
-    { key: "ai", title: "AI lead response", options: ai.map((t) => ({ id: t.name, label: t.name, setup: t.setupAmount ?? 0, monthly: t.monthlyAmount ?? 0 })) },
+    { key: "ai", title: "AI Infrastructure", options: ai.map((t) => ({ id: t.name, label: t.name, setup: t.setupAmount ?? 0, monthly: t.monthlyAmount ?? 0 })) },
     { key: "web", title: "Website", options: web.map((t) => ({ id: t.name, label: `${t.name} · ${t.tagline}`, setup: t.priceAmount, monthly: 0 })) },
     { key: "seo", title: "SEO", options: seo.map((t) => ({ id: t.name, label: t.name, setup: 0, monthly: t.priceAmount })) },
   ];
@@ -47,7 +47,7 @@ export default function QuoteBuilder({ market }: { market: Market }) {
       : { href: `/contact?plan=${encodeURIComponent(summary)}`, label: "Get this plan", external: false };
 
   return (
-    <section id="build" className="scroll-mt-20 py-16 sm:py-24">
+    <section id="build" className="paper scroll-mt-20 py-16 sm:py-24">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">Build your plan</p>
         <h2 className="mt-3 font-display text-[clamp(32px,4.8vw,56px)] font-medium leading-[1.04] tracking-[-0.02em] text-[var(--text-primary)] max-w-3xl">
@@ -57,9 +57,9 @@ export default function QuoteBuilder({ market }: { market: Market }) {
         <div className="mt-10 grid lg:grid-cols-[1.3fr_0.7fr] gap-6 items-start">
           <div className="space-y-6">
             {gs.map((g) => (
-              <fieldset key={g.key} className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-5">
-                <legend className="px-1 text-[15px] font-semibold text-[var(--text-primary)]">{g.title}</legend>
-                <div className="mt-2 flex flex-wrap gap-2">
+              <fieldset key={g.key} className="min-w-0 rounded-2xl border border-[var(--border-subtle)] border-l-[3px] border-l-[var(--gold)] bg-[var(--bg-primary)] p-5 sm:p-6 shadow-[var(--shadow-card)]">
+                <legend className="float-left mb-3 w-full font-display text-[20px] font-medium text-[var(--text-primary)]">{g.title}</legend>
+                <div className="clear-both flex flex-wrap gap-2">
                   {[{ id: null as string | null, label: "Not now", setup: 0, monthly: 0 }, ...g.options].map((o) => {
                     const on = pick[g.key] === o.id;
                     return (
@@ -68,7 +68,7 @@ export default function QuoteBuilder({ market }: { market: Market }) {
                         type="button"
                         aria-pressed={on}
                         onClick={() => setPick((p) => ({ ...p, [g.key]: o.id }))}
-                        className={`rounded-xl border px-4 py-2.5 text-left text-[14px] transition-all duration-200 ${on ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--ivory)] shadow-[0_8px_20px_-10px_rgba(15,15,18,0.6)]" : "border-[var(--border-strong)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--text-primary)]"}`}
+                        className={`max-w-full rounded-xl border px-4 py-2.5 text-left text-[14px] transition-all duration-200 ${on ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--ivory)] shadow-[0_8px_20px_-10px_rgba(15,15,18,0.6)]" : "border-[var(--border-strong)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--text-primary)]"}`}
                       >
                         <span className="block font-semibold">{o.label}</span>
                         {o.id && (

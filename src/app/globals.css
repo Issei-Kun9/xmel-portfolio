@@ -762,6 +762,25 @@ html {
 .link-grow:hover { background-size: 100% 1px; }
 
 @layer components {
+/* Light sections: a warm gold glow and a whisper of grid, so ivory reads as paper, not flat. */
+.paper {
+  position: relative;
+  isolation: isolate;
+}
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 60% at 100% 0%, rgba(201,168,106,.13), transparent 70%),
+    radial-gradient(40% 50% at 0% 100%, rgba(201,168,106,.09), transparent 70%),
+    linear-gradient(rgba(138,106,47,.05) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, rgba(138,106,47,.05) 1px, transparent 1px) 0 0 / 56px 56px;
+  -webkit-mask-image: radial-gradient(90% 90% at 50% 50%, #000 40%, transparent 100%);
+          mask-image: radial-gradient(90% 90% at 50% 50%, #000 40%, transparent 100%);
+}
 /* Ink sections: fine grain plus a faint gold glow, so dark reads as rich, not flat. */
 .ink {
   position: relative;

@@ -62,7 +62,7 @@ export default function Booking({ children }: { children?: React.ReactNode }) {
   }, [requested]);
 
   return (
-    <section id="book" className="scroll-mt-20 py-16 sm:py-24">
+    <section id="book" className="paper scroll-mt-20 py-16 sm:py-24">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-14">
         <div>
           <p className="text-[14px] font-semibold text-[var(--accent)]">Book a call</p>
@@ -84,12 +84,32 @@ export default function Booking({ children }: { children?: React.ReactNode }) {
             data-url={CALENDLY_URL}
           >
             {!loaded && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[var(--bg-primary)] z-10">
-                <div className="w-8 h-8 rounded-full border-2 border-[var(--border-strong)] border-t-[var(--accent)] animate-spin" />
+              <div className="absolute inset-0 z-10 flex flex-col bg-[var(--bg-primary)]">
+                <div className="ink flex items-center justify-between px-6 py-5">
+                  <div>
+                    <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[var(--gold)]">XMEL Automations</p>
+                    <p className="mt-1 font-display text-[22px]">15-minute call</p>
+                  </div>
+                  <span className="rounded-full border border-[rgba(201,168,106,0.4)] px-3 py-1 text-[12px] text-[var(--gold)]">Free · no hard sell</span>
+                </div>
+                <div className="flex-1 px-6 py-6" aria-hidden="true">
+                  <div className="h-4 w-36 rounded bg-[var(--bg-tertiary)] animate-pulse" />
+                  <div className="mt-5 grid grid-cols-7 gap-2">
+                    {Array.from({ length: 35 }, (_, i) => (
+                      <div
+                        key={i}
+                        className={`aspect-square rounded-lg animate-pulse ${[9, 11, 16, 18, 23, 25].includes(i) ? "bg-[var(--accent-dim)] ring-1 ring-[var(--accent-line)]" : "bg-[var(--bg-secondary)]"}`}
+                        style={{ animationDelay: `${(i % 7) * 80}ms` }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col items-center gap-2 pb-6">
                 <span className="text-[14px] text-[var(--text-tertiary)]">Loading available times…</span>
                 <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="text-[14px] font-semibold text-[var(--accent)] underline underline-offset-4">
                   Open the calendar in a new tab
                 </a>
+                </div>
               </div>
             )}
           </div>
