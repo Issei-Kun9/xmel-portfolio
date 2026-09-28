@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Flag from "@/components/shared/flag";
-import { Calculator, Mail, ArrowRight, Check } from "lucide-react";
+import { Mail, ArrowRight, Check, Loader2 } from "lucide-react";
 
 const INDUSTRY_CLOSE_RATE = 0.08;
 // Assumed lift from replying in under a minute instead of hours. An estimate
@@ -128,198 +128,154 @@ export default function CalculatorClient() {
     }
   };
 
+  const baseline = Math.round(leads * INDUSTRY_CLOSE_RATE * commission);
+  const withAi = baseline + monthlyLost;
+  const pct = (v: number, min: number, max: number) => `${((v - min) / (max - min)) * 100}%`;
+  const slider =
+    "roi-range w-full h-6 appearance-none cursor-pointer bg-transparent bg-[linear-gradient(90deg,var(--gold)_var(--p),var(--border-subtle)_var(--p))] bg-[length:100%_8px] bg-center bg-no-repeat";
+
   return (
-    <div className="space-y-8">
-      <div className="inline-flex items-center gap-1 p-1 rounded-lg border border-[var(--border-subtle)]" role="group" aria-label="Currency">
-        {(Object.keys(CURRENCY) as Currency[]).map((c) => (
-          <button
-            key={c}
-            type="button"
-            onClick={() => switchCurrency(c)}
-            aria-pressed={currency === c}
-            className={`h-8 px-3 rounded-md text-[13px] font-medium transition-colors ${
-              currency === c
-                ? "bg-[var(--text-primary)] text-white"
-                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-            }`}
-          >
-            <span className="inline-flex items-center gap-2"><Flag market={c === "USD" ? "us" : "in"} />{c === "USD" ? "USD $" : "INR ₹"}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Live result — always visible */}
-      <div className="relative p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] overflow-hidden">
-        {/* Subtle grid pattern background */}
-        <div className="absolute inset-0 opacity-[0.03] bg-grid-pattern" />
-
-        <div className="relative">
-          <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-2">
-            LOST TO SLOW RESPONSE — EVERY MONTH
-          </div>
-
-          <div className="font-mono text-[clamp(36px,8vw,64px)] font-bold text-[var(--accent)] leading-none mb-4">
-            {formatMoney(monthlyLost, currency)}
-          </div>
-
-          <p className="text-[var(--text-secondary)] text-sm leading-relaxed max-w-lg">
-            At your volume ({leads} leads/mo × {formatMoney(commission, currency)} average
-            deal value), slow lead response could be costing you roughly{" "}
-            <strong className="text-[var(--text-primary)]">
-              {formatMoney(monthlyLost, currency)} per month
-            </strong>{" "}
-            in deals you could win back.
-          </p>
-        </div>
-      </div>
-
-      {/* Sliders */}
-      <div className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-        <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-6">
-          <Calculator className="w-3 h-3 inline mr-1.5 -mt-0.5" />
-          YOUR NUMBERS
-        </div>
-
-        <div className="space-y-8">
-          {/* Leads slider */}
-          <div>
-            <div className="flex justify-between mb-3">
-              <label htmlFor="calc-leads" className="font-mono text-xs text-[var(--text-secondary)]">
-                LEADS / MONTH
-              </label>
-              <span className="font-mono text-sm font-semibold text-[var(--accent)]">
-                {leads}
-              </span>
-            </div>
-            <input
-              id="calc-leads"
-              type="range"
-              min={10}
-              max={500}
-              step={5}
-              value={leads}
-              onChange={(e) => setLeads(Number(e.target.value))}
-              className="w-full h-1 rounded-full appearance-none bg-[var(--border-subtle)] cursor-pointer
-                [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
-                [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--accent)]
-                [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(138,106,47,0.35)]"
-            />
-            <div className="flex justify-between mt-1.5">
-              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">10</span>
-              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">500</span>
-            </div>
-          </div>
-
-          {/* Commission slider */}
-          <div>
-            <div className="flex justify-between mb-3">
-              <label htmlFor="calc-commission" className="font-mono text-xs text-[var(--text-secondary)]">
-                AVG COMMISSION / DEAL VALUE ({range.symbol})
-              </label>
-              <span className="font-mono text-sm font-semibold text-[var(--accent)]">
-                {formatMoney(commission, currency)}
-              </span>
-            </div>
-            <input
-              id="calc-commission"
-              type="range"
-              min={range.min}
-              max={range.max}
-              step={range.step}
-              value={commission}
-              onChange={(e) => setCommission(Number(e.target.value))}
-              className="w-full h-1 rounded-full appearance-none bg-[var(--border-subtle)] cursor-pointer
-                [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5
-                [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[var(--accent)]
-                [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(138,106,47,0.35)]"
-            />
-            <div className="flex justify-between mt-1.5">
-              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">{formatMoney(range.min, currency)}</span>
-              <span className="font-mono text-[12px] text-[var(--text-tertiary)]">{formatMoney(range.max, currency)}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Context line */}
-        <div className="mt-6 pt-4 border-t border-[var(--border-subtle)]">
-          <p className="font-mono text-[12px] text-[var(--text-tertiary)] leading-relaxed">
-            METHODOLOGY — An estimate, not a guarantee. Assumes an 8% baseline close rate and a 34% lift from replying within a minute instead of hours. Recovery = leads × 8% × 34% × deal value.
-          </p>
-        </div>
-      </div>
-
-      {/* Gated deep-dive — email gate */}
-      <div className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-            <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
-              <Mail className="w-3 h-3 inline mr-1.5 -mt-0.5" />
-              GET YOUR FULL BREAKDOWN
-            </div>
-
-            <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6 max-w-lg">
-              Enter your email to see your monthly, quarterly, and annual
-              recovery projection, plus a short note on how an AI lead responder
-              would fit your lead sources.
-            </p>
-
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleUnlock();
-              }}
-              className="flex flex-col sm:flex-row gap-3"
-            >
-              <input
-                type="email"
-                name="email"
-                aria-label="Email address for the breakdown"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (emailError) setEmailError(null);
-                }}
-                placeholder="you@company.com"
-                required
-                className={`flex-1 bg-transparent border-b ${emailError ? "border-[var(--warning)]" : "border-[var(--border-subtle)] focus:border-[var(--accent)]"} outline-none py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-colors`}
-              />
+    <div className="grid lg:grid-cols-[1fr_1fr] gap-6 items-start">
+      {/* Inputs */}
+      <div className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-6 sm:p-8 shadow-[var(--shadow-card)]">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <h2 className="font-display text-[26px] leading-tight text-[var(--text-primary)]">Your numbers</h2>
+          <div role="group" aria-label="Currency" className="inline-flex rounded-full border border-[var(--border-strong)] p-1 text-[13px] font-semibold">
+            {(Object.keys(CURRENCY) as Currency[]).map((c) => (
               <button
-                type="submit"
-                disabled={!email || submitState === "sending"}
-                className={`inline-flex items-center justify-center gap-2 px-6 py-3 font-mono text-sm font-medium rounded transition-all duration-300 whitespace-nowrap ${
-                  submitState === "sent"
-                    ? "bg-[var(--success)] text-white"
-                    : submitState === "error"
-                      ? "bg-[var(--warning)] text-white"
-                      : !email
-                        ? "bg-[var(--accent)] text-white opacity-40 cursor-not-allowed"
-                        : "bg-[var(--accent)] text-white hover:shadow-[0_0_30px_rgba(138,106,47,0.2)]"
+                key={c}
+                type="button"
+                onClick={() => switchCurrency(c)}
+                aria-pressed={currency === c}
+                className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 transition-colors ${
+                  currency === c ? "bg-[var(--ink)] text-[var(--gold)]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 }`}
               >
-                {submitState === "idle" && (
-                  <>
-                    Unlock breakdown
-                    <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
-                {submitState === "sending" && "Sending..."}
-                {submitState === "sent" && (
-                  <>
-                    <Check className="w-4 h-4" />
-                    Sent
-                  </>
-                )}
-                {submitState === "error" && "Try again"}
+                <Flag market={c === "USD" ? "us" : "in"} />
+                {c === "USD" ? "USD" : "INR"}
               </button>
-            </form>
+            ))}
+          </div>
+        </div>
 
-            {emailError && (
-              <p className="font-mono text-[12px] text-[var(--warning)] mt-2">
-                {emailError}
-              </p>
-            )}
+        <div className="mt-8 space-y-9">
+          <div>
+            <div className="flex items-baseline justify-between gap-4">
+              <label htmlFor="calc-leads" className="text-[15px] font-semibold text-[var(--text-primary)]">New leads per month</label>
+              <span className="font-display text-[28px] leading-none text-[var(--accent)] tabular-nums">{leads}</span>
+            </div>
+            <input id="calc-leads" type="range" min={10} max={500} step={5} value={leads} onChange={(e) => setLeads(Number(e.target.value))} className={`mt-4 ${slider}`} style={{ ["--p" as string]: pct(leads, 10, 500) }} />
+            <div className="mt-2 flex justify-between text-[13px] text-[var(--text-tertiary)]">
+              <span>10</span>
+              <span>500</span>
+            </div>
+          </div>
 
-            <p className="font-mono text-[12px] text-[var(--text-tertiary)] mt-3">
-              No spam. One email with your breakdown. Unsubscribe anytime.
-            </p>
+          <div>
+            <div className="flex items-baseline justify-between gap-4">
+              <label htmlFor="calc-commission" className="text-[15px] font-semibold text-[var(--text-primary)]">Average deal value or commission</label>
+              <span className="font-display text-[28px] leading-none text-[var(--accent)] tabular-nums">{formatMoney(commission, currency)}</span>
+            </div>
+            <input id="calc-commission" type="range" min={range.min} max={range.max} step={range.step} value={commission} onChange={(e) => setCommission(Number(e.target.value))} className={`mt-4 ${slider}`} style={{ ["--p" as string]: pct(commission, range.min, range.max) }} />
+            <div className="mt-2 flex justify-between text-[13px] text-[var(--text-tertiary)]">
+              <span>{formatMoney(range.min, currency)}</span>
+              <span>{formatMoney(range.max, currency)}</span>
+            </div>
+          </div>
+        </div>
+
+        <p className="mt-8 border-t border-[var(--border-subtle)] pt-5 text-[13px] leading-relaxed text-[var(--text-tertiary)]">
+          An estimate, not a guarantee. Assumes an 8% baseline close rate and a 34% lift from replying within a minute instead of
+          hours. Recovered = leads × 8% × 34% × deal value.
+        </p>
+      </div>
+
+      {/* Result */}
+      <div className="lg:sticky lg:top-24 space-y-6">
+        <div className="ink rounded-3xl p-6 sm:p-8" aria-live="polite">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--gold)]">Lost to slow replies, every month</p>
+          <p className="mt-3 font-display text-[clamp(48px,7vw,80px)] leading-none tracking-[-0.02em] text-[var(--ivory)] tabular-nums">{formatMoney(monthlyLost, currency)}</p>
+          <p className="mt-3 text-[16px] text-[var(--text-secondary)]">
+            That&apos;s about <strong className="text-[var(--gold)] tabular-nums">{formatMoney(monthlyLost * 12, currency)}</strong> a year you could win back.
+          </p>
+
+          <div className="mt-8 space-y-4" aria-hidden="true">
+            {[
+              { label: "Deals you win today", v: baseline, gold: false },
+              { label: "With replies in under a minute", v: withAi, gold: true },
+            ].map((b) => (
+              <div key={b.label}>
+                <div className="flex justify-between text-[13px]">
+                  <span className="text-[var(--text-secondary)]">{b.label}</span>
+                  <span className="tabular-nums text-[var(--ivory)]">{formatMoney(b.v, currency)}/mo</span>
+                </div>
+                <div className="mt-2 h-3 overflow-hidden rounded-full bg-[rgba(245,240,230,0.08)]">
+                  <div
+                    className={`h-full rounded-full transition-[width] duration-500 ${b.gold ? "bg-[linear-gradient(90deg,rgba(245,240,230,0.35)_0,rgba(245,240,230,0.35)_var(--base),var(--gold)_var(--base))]" : "bg-[rgba(245,240,230,0.35)]"}`}
+                    style={{ width: `${(b.v / withAi) * 100}%`, ["--base" as string]: `${(baseline / withAi) * 100}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-[14px] leading-relaxed text-[var(--text-secondary)]">
+            At {leads} leads a month and {formatMoney(commission, currency)} a deal, the gold slice is what faster replies could add.
+          </p>
+        </div>
+
+        <div className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-6 sm:p-8 shadow-[var(--shadow-card)]">
+          <p className="flex items-center gap-2 text-[15px] font-semibold text-[var(--text-primary)]">
+            <Mail className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" /> Get your full breakdown
+          </p>
+          <p className="mt-2 text-[14px] leading-relaxed text-[var(--text-secondary)]">
+            Monthly, quarterly and annual projections, plus a short note on how an AI lead responder would fit your lead sources.
+          </p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleUnlock();
+            }}
+            className="mt-5 flex flex-col sm:flex-row gap-3"
+          >
+            <input
+              type="email"
+              name="email"
+              aria-label="Email address for the breakdown"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (emailError) setEmailError(null);
+              }}
+              placeholder="you@company.com"
+              required
+              className={`flex-1 rounded-xl border bg-[var(--bg-primary)] px-4 py-3 text-[15px] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] outline-none transition-[border-color,box-shadow] focus:shadow-[0_0_0_4px_rgba(201,168,106,0.2)] ${
+                emailError ? "border-[#A0432E]" : "border-[var(--border-strong)] focus:border-[var(--accent)]"
+              }`}
+            />
+            <button
+              type="submit"
+              disabled={submitState === "sending" || submitState === "sent"}
+              className="shine-sweep inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--ink)] px-6 py-3 text-[15px] font-semibold text-[var(--ivory)] hover:bg-black disabled:opacity-80 transition-colors whitespace-nowrap"
+            >
+              {submitState === "sending" ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> Sending…
+                </>
+              ) : submitState === "sent" ? (
+                <>
+                  <Check className="h-4 w-4 text-[var(--gold)]" aria-hidden="true" /> Sent
+                </>
+              ) : (
+                <>
+                  {submitState === "error" ? "Try again" : "Send my breakdown"} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </>
+              )}
+            </button>
+          </form>
+          <p role="status" className="mt-3 text-[13px]">
+            {emailError ? <span className="text-[#A0432E]">{emailError}</span> : <span className="text-[var(--text-tertiary)]">One email with your breakdown. No spam.</span>}
+          </p>
+        </div>
       </div>
     </div>
   );
