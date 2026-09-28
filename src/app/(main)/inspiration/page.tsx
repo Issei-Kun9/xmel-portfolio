@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 import InspirationGallery from "@/components/site/inspiration-gallery";
+
+export const metadata: Metadata = pageMetadata({
+  path: "/inspiration",
+  title: "Website Design Inspiration for Small Businesses (India & US) | XMEL",
+  description:
+    "Real business websites we admire, sorted by industry: real estate, interiors, clinics, salons, roofers, plumbers and more, from India and the US. Pick a style and we'll build yours in it.",
+});
+
 export default function InspirationPage() {
   return (
     <main className="min-h-screen bg-[var(--bg-primary)]">
