@@ -144,7 +144,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
         </ul>
       </section>
 
-      <section className="ink py-16 sm:py-20">
+      <section className="cta-band ink py-16 sm:py-20">
         <div className="max-w-[900px] mx-auto px-4 sm:px-6 text-center">
           <h2 className="font-display text-[clamp(30px,4.4vw,52px)] font-medium leading-[1.05]">
             Ready to be the first name they call?

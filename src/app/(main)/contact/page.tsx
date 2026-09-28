@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Contact from "@/components/sections/contact";
-import Breadcrumbs from "@/components/shared/breadcrumbs";
-import Lottie from "@/components/motion/lottie";
-import Words from "@/components/motion/words";
+import { PageHero } from "@/components/kit/kit";
 
 
 export const metadata: Metadata = pageMetadata({
@@ -35,27 +33,14 @@ export default function ContactPage() {
       />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-4">
-          <div className="mb-10">
-            <Breadcrumbs items={[{ name: "Contact" }]} />
-          </div>
-
-          {/* Header */}
-          <div className="relative mb-12">
-            <Lottie name="phone-ring" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-              CONTACT
-            </span>
-            <h1 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              <Words text="Contact XMEL Automations" />
-            </h1>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
-              Tell me about your lead flow and what&apos;s broken — I&apos;ll
-              respond within 24 hours with how an AI system can fix it.
-            </p>
-          </div>
-        </div>
-
+        <PageHero
+          crumbs={[{ name: "Contact" }]}
+          eyebrow="Contact"
+          title="Contact XMEL Automations."
+          italic="A personal reply within 24 hours."
+          lede="Tell me about your business, where your customers come from and what's getting missed. I'll reply with what I'd build and what it would cost."
+          proof={["Replies within 24 hours", "WhatsApp, email or a 15-min call", "No hard sell"]}
+        />
         <Contact />
       </main>
     </>

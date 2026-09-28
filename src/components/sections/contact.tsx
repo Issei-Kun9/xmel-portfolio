@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowRight, CalendarDays, Check, Loader2, Mail } from "lucide-react";
 import { useClientValue } from "@/lib/use-client-value";
 import MailtoLink from "@/components/shared/mailto-link";
+import { PHONE_DISPLAY, whatsappHref } from "@/lib/market";
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
 
@@ -10,17 +12,29 @@ const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
 
 const CONTACT_EMAIL = "yashwardhan@xmelautomations.xyz";
 
+const NEEDS = ["AI Infrastructure", "A website", "SEO", "Not sure yet"];
+
+const NEXT = [
+  { title: "I read it myself", body: "A personal reply within 24 hours, usually sooner." },
+  { title: "A 15-minute call", body: "Where your customers come from, and what's getting missed." },
+  { title: "A written plan, fixed price", body: "What we'd build, how long, what it costs. You decide." },
+];
+
 export default function Contact() {
   // message stays null until the visitor types, so it can default to the plan
   // they built on the homepage (?plan=…).
   const [form, setForm] = useState<{ name: string; email: string; project: string; message: string | null }>({ name: "", email: "", project: "", message: null });
+  const [needs, setNeeds] = useState<string[]>([]);
+  const [state, setState] = useState<SubmitState>("idle");
   const plan = useClientValue(() => new URLSearchParams(window.location.search).get("plan") ?? "", "");
   const message = form.message ?? (plan ? `I'm interested in: ${plan}.\n\n` : "");
-  const [state, setState] = useState<SubmitState>("idle");
+
+  const toggleNeed = (n: string) => setNeeds((cur) => (cur.includes(n) ? cur.filter((x) => x !== n) : [...cur, n]));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState("sending");
+    const projectType = [needs.join(", "), form.project].filter(Boolean).join(" · ");
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -30,9 +44,9 @@ export default function Contact() {
           access_key: WEB3FORMS_ACCESS_KEY,
           name: form.name,
           email: form.email,
-          project_type: form.project,
+          project_type: projectType,
           message,
-          subject: `New Project Inquiry — ${form.project || "General"}`,
+          subject: `New Project Inquiry — ${projectType || "General"}`,
           from_name: "XMEL Automations Portfolio",
         }),
       });
@@ -44,9 +58,9 @@ export default function Contact() {
           value: 100,
           currency: "USD",
           event_category: "contact_form",
-          project_type: form.project || "general",
+          project_type: projectType || "general",
         });
-        window.location.href = "/thank-you";
+        window.location.assign("/thank-you");
       } else {
         setState("error");
       }
@@ -55,203 +69,160 @@ export default function Contact() {
     }
   };
 
-  const inputClasses =
-    "w-full bg-transparent border-b border-[var(--border-subtle)] focus:border-[var(--accent)] outline-none py-3 text-[15px] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] transition-colors duration-200";
+  const field =
+    "w-full rounded-xl border border-[var(--border-strong)] bg-[var(--bg-primary)] px-4 py-3 text-[15px] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] outline-none transition-[border-color,box-shadow] focus:border-[var(--accent)] focus:shadow-[0_0_0_4px_rgba(201,168,106,0.2)]";
+  const label = "mb-1.5 block text-[14px] font-semibold text-[var(--text-primary)]";
 
   return (
-    <section id="contact" className="relative py-12 sm:py-16 bg-[var(--bg-secondary)]">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Left */}
-          <div>
-            <div className="mb-6">
-              <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-                CONTACT
-              </span>
+    <section id="contact" className="paper relative py-16 sm:py-24">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-start">
+        {/* Form */}
+        <div className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-6 sm:p-9 shadow-[var(--shadow-card)]">
+          <h2 className="font-display text-[clamp(28px,3.6vw,40px)] font-medium leading-[1.08] tracking-[-0.02em] text-[var(--text-primary)]">
+            Send a message
+          </h2>
+          <p className="mt-2 text-[15px] text-[var(--text-secondary)]">Two minutes. A real reply from the person who&apos;d build it.</p>
+
+          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+            <input type="hidden" name="botcheck" hidden />
+
+            <fieldset>
+              <legend className={label}>What do you need?</legend>
+              <div className="flex flex-wrap gap-2">
+                {NEEDS.map((n) => {
+                  const on = needs.includes(n);
+                  return (
+                    <button
+                      key={n}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() => toggleNeed(n)}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-[14px] font-medium transition-colors ${
+                        on ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--ivory)]" : "border-[var(--border-strong)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--text-primary)]"
+                      }`}
+                    >
+                      {on && <Check className="h-3.5 w-3.5 text-[var(--gold)]" strokeWidth={3} aria-hidden="true" />}
+                      {n}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="contact-name" className={label}>Your name</label>
+                <input id="contact-name" type="text" name="name" autoComplete="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" className={field} required />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className={label}>Email</label>
+                <input id="contact-email" type="email" name="email" autoComplete="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@company.com" className={field} required />
+              </div>
             </div>
 
-            <h2 className="font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-6">
-              Let&apos;s build your lead-response system.
-            </h2>
+            <div>
+              <label htmlFor="contact-project" className={label}>
+                Your business <span className="font-normal text-[var(--text-tertiary)]">(optional)</span>
+              </label>
+              <input id="contact-project" type="text" name="project_type" autoComplete="organization" value={form.project} onChange={(e) => setForm({ ...form, project: e.target.value })} placeholder="e.g. Roofing in Austin, interior studio in Pune" className={field} />
+            </div>
 
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-lg mb-8">
-              Whether you&apos;re a real estate agent losing leads to slow response
-              times or a home services contractor missing calls — I can build the
-              system that fixes it.
+            <div>
+              <label htmlFor="contact-message" className={label}>Message</label>
+              <textarea id="contact-message" name="message" value={message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={4} placeholder="Where do your customers come from, and what happens to their enquiries today?" className={`${field} resize-y min-h-[120px]`} required />
+            </div>
+
+            <button
+              type="submit"
+              disabled={state === "sending" || state === "sent"}
+              className="shine-sweep inline-flex w-full items-center justify-center gap-2 py-3.5 rounded-xl bg-[var(--ink)] text-[15px] font-semibold text-[var(--ivory)] hover:bg-black disabled:opacity-80 transition-colors"
+            >
+              {state === "sending" ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> Sending…
+                </>
+              ) : state === "sent" ? (
+                <>
+                  <Check className="h-4 w-4 text-[var(--gold)]" aria-hidden="true" /> Sent
+                </>
+              ) : (
+                <>
+                  Send message <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </>
+              )}
+            </button>
+            <p role="status" className="min-h-5 text-center text-[13px]">
+              {state === "error" ? (
+                <span className="text-[#A0432E]">That didn&apos;t go through. Please try again, or message on WhatsApp.</span>
+              ) : (
+                <span className="text-[var(--text-tertiary)]">No mailing list. Your details are only used to reply to you.</span>
+              )}
             </p>
-
-            <div className="mb-8">
-              <MailtoLink
-                email={CONTACT_EMAIL}
-                className="flex items-center gap-3 py-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
-              >
-                <span className="font-mono text-[12px] text-[var(--text-tertiary)] w-16">EMAIL</span>
-                <span className="font-mono text-sm">{CONTACT_EMAIL}</span>
-              </MailtoLink>
-            </div>
-
-            <div className="mb-8">
-              <a
-                href="tel:+917905214791"
-                className="flex items-center gap-3 py-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
-              >
-                <span className="font-mono text-[12px] text-[var(--text-tertiary)] w-16">PHONE</span>
-                <span className="font-mono text-sm">+91 79052 14791</span>
-              </a>
-            </div>
-
-            <div className="flex flex-wrap gap-3 mb-8">
-              <a
-                href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-strong)] text-[var(--text-secondary)] font-mono text-[12px] rounded hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-200"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-                LinkedIn
-              </a>
-              <a
-                href="https://www.instagram.com/yashwardhan.ai/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--border-strong)] text-[var(--text-secondary)] font-mono text-[12px] rounded hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-200"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                </svg>
-                Instagram
-              </a>
-            </div>
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(21,128,61,0.3)] bg-[rgba(21,128,61,0.06)]">
-              <span className="w-2 h-2 rounded-full bg-[var(--success)] status-pulse" />
-              <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--success)]">
-                AVAILABLE FOR PROJECTS
-              </span>
-            </div>
-          </div>
-
-          {/* Right — terminal form */}
-          <div>
-            <div className="bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)] p-6 lg:p-8">
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <input type="hidden" name="botcheck" hidden />
-
-                <div className="input-line">
-                  <label
-                    htmlFor="contact-name"
-                    className="text-[14px] font-medium text-[var(--text-primary)] block mb-1"
-                  >
-                    Your name
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Your name"
-                    className={inputClasses}
-                    required
-                  />
-                </div>
-
-                <div className="input-line">
-                  <label
-                    htmlFor="contact-email"
-                    className="text-[14px] font-medium text-[var(--text-primary)] block mb-1"
-                  >
-                    Email
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder="you@company.com"
-                    className={inputClasses}
-                    required
-                  />
-                </div>
-
-                <div className="input-line">
-                  <label
-                    htmlFor="contact-project"
-                    className="text-[14px] font-medium text-[var(--text-primary)] block mb-1"
-                  >
-                    Your business
-                  </label>
-                  <input
-                    id="contact-project"
-                    type="text"
-                    name="project_type"
-                    value={form.project}
-                    onChange={(e) => setForm({ ...form, project: e.target.value })}
-                    placeholder="Real estate, home services, other"
-                    className={inputClasses}
-                  />
-                </div>
-
-                <div className="input-line">
-                  <label
-                    htmlFor="contact-message"
-                    className="text-[14px] font-medium text-[var(--text-primary)] block mb-1"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    value={message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    rows={3}
-                    placeholder="Where do your leads come from, and what happens to them today?"
-                    className={`${inputClasses} resize-none`}
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={state !== "idle"}
-                  className={`w-full py-3.5 rounded-xl text-[15px] font-semibold transition-all duration-300 ${
-                    state === "sent"
-                      ? "bg-[var(--success)] text-[var(--bg-primary)]"
-                      : state === "error"
-                        ? "bg-[var(--warning)] text-[var(--bg-primary)]"
-                        : state === "sending"
-                          ? "bg-[var(--accent)] text-[var(--bg-primary)] opacity-70"
-                          : "bg-[var(--accent)] text-[var(--bg-primary)] hover:shadow-[0_0_30px_rgba(138,106,47,0.2)]"
-                  }`}
-                >
-                  {state === "idle" && "Send message"}
-                  {state === "sending" && "> sending..."}
-                  {state === "sent" && "> message_sent ✓"}
-                  {state === "error" && "> error — try again"}
-                </button>
-
-                {state === "sent" && (
-                  <p className="font-mono text-[12px] text-[var(--success)] text-center">
-                    Message delivered. I&apos;ll respond within 24 hours.
-                  </p>
-                )}
-                {state === "error" && (
-                  <button
-                    type="button"
-                    onClick={() => setState("idle")}
-                    className="font-mono text-[12px] text-[var(--warning)] text-center w-full hover:underline"
-                  >
-                    Click to try again
-                  </button>
-                )}
-              </form>
-            </div>
-          </div>
+          </form>
         </div>
+
+        {/* Faster ways + what happens next */}
+        <aside className="space-y-4">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">Prefer something faster?</p>
+          <a
+            href={whatsappHref("Hi Yashwardhan, I'd like to talk about my business.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cta="whatsapp"
+            data-cta-location="contact"
+            className="lift flex items-center gap-4 rounded-2xl bg-[var(--whatsapp)] p-5 text-[#06300E] hover:brightness-105"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 shrink-0" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 016.988 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+            <span>
+              <span className="block text-[16px] font-semibold">Message on WhatsApp</span>
+              <span className="block text-[14px] opacity-80">{PHONE_DISPLAY} · usually the fastest</span>
+            </span>
+          </a>
+          <a href="/#book" data-cta="book" data-cta-location="contact" className="ink lift flex items-center gap-4 rounded-2xl p-5">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--gold)] text-[var(--ink)]">
+              <CalendarDays className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <span>
+              <span className="block text-[16px] font-semibold">Book a 15-minute call</span>
+              <span className="block text-[14px] text-[var(--text-secondary)]">Pick a time in your own timezone</span>
+            </span>
+          </a>
+          <div className="flex items-center gap-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-5">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[var(--bg-secondary)] text-[var(--accent)]">
+              <Mail className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[16px] font-semibold text-[var(--text-primary)]">Email</span>
+              <MailtoLink email={CONTACT_EMAIL} className="block py-1 break-all text-[14px] font-medium text-[var(--accent)] underline underline-offset-4" />
+            </span>
+          </div>
+
+          <div className="!mt-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-6">
+            <p className="text-[15px] font-semibold text-[var(--text-primary)]">What happens next</p>
+            <ol className="mt-4 space-y-4">
+              {NEXT.map((s, i) => (
+                <li key={s.title} className="flex gap-3">
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--ink)] font-display text-[13px] text-[var(--gold)]">{i + 1}</span>
+                  <span>
+                    <span className="block text-[15px] font-semibold text-[var(--text-primary)]">{s.title}</span>
+                    <span className="block text-[14px] leading-snug text-[var(--text-secondary)]">{s.body}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="flex flex-wrap gap-2 pt-2">
+            <a href="https://www.linkedin.com/in/yashwardhan-chauhan-075684414/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full border border-[var(--border-strong)] px-4 py-2 text-[14px] font-medium text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)]">
+              LinkedIn
+            </a>
+            <a href="https://www.instagram.com/yashwardhan.ai/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full border border-[var(--border-strong)] px-4 py-2 text-[14px] font-medium text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)]">
+              Instagram
+            </a>
+          </div>
+        </aside>
       </div>
     </section>
   );

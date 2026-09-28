@@ -65,9 +65,9 @@ export default function Booking({ children }: { children?: React.ReactNode }) {
     <section id="book" className="paper scroll-mt-20 py-16 sm:py-24">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-14">
         <div>
-          <p className="text-[14px] font-semibold text-[var(--accent)]">Book a call</p>
-          <h2 className="mt-2 font-display text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)]">
-            Tell us what you need. 15 minutes, no hard sell.
+          <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">Book a call</p>
+          <h2 className="mt-3 font-display text-[clamp(32px,4.4vw,52px)] font-medium leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)]">
+            Tell us what you need. <span className="italic text-[var(--accent)]">15 minutes, no hard sell.</span>
           </h2>
           <p className="mt-4 text-[16px] leading-relaxed text-[var(--text-secondary)]">
             Pick a time that suits you — the calendar shows slots in your own
@@ -92,20 +92,33 @@ export default function Booking({ children }: { children?: React.ReactNode }) {
                   </div>
                   <span className="rounded-full border border-[rgba(201,168,106,0.4)] px-3 py-1 text-[12px] text-[var(--gold)]">Free · no hard sell</span>
                 </div>
-                <div className="flex-1 px-6 py-6" aria-hidden="true">
-                  <div className="h-4 w-36 rounded bg-[var(--bg-tertiary)] animate-pulse" />
-                  <div className="mt-5 grid grid-cols-7 gap-2">
-                    {Array.from({ length: 35 }, (_, i) => (
-                      <div
-                        key={i}
-                        className={`aspect-square rounded-lg animate-pulse ${[9, 11, 16, 18, 23, 25].includes(i) ? "bg-[var(--accent-dim)] ring-1 ring-[var(--accent-line)]" : "bg-[var(--bg-secondary)]"}`}
-                        style={{ animationDelay: `${(i % 7) * 80}ms` }}
-                      />
+                <div className="flex-1 px-6 py-8">
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">On the call</p>
+                  <ul className="mt-4 space-y-4">
+                    {[
+                      ["Where your customers come from", "Portals, Google, ads, WhatsApp, walk-ins: where enquiries start today."],
+                      ["What's getting missed", "Slow replies, missed calls, a site that doesn't convert. We find the leak."],
+                      ["What I'd build, and the price", "A plain recommendation and a fixed price. No slides, no pressure."],
+                    ].map(([t, d], i) => (
+                      <li key={t} className="flex gap-3">
+                        <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--ink)] font-display text-[13px] text-[var(--gold)]">{i + 1}</span>
+                        <span>
+                          <span className="block text-[15px] font-semibold text-[var(--text-primary)]">{t}</span>
+                          <span className="block text-[14px] leading-snug text-[var(--text-secondary)]">{d}</span>
+                        </span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
                 <div className="flex flex-col items-center gap-2 pb-6">
-                <span className="text-[14px] text-[var(--text-tertiary)]">Loading available times…</span>
+                <span className="inline-flex items-center gap-2 text-[14px] text-[var(--text-tertiary)]" role="status">
+                  <span aria-hidden="true" className="flex gap-1">
+                    {[0, 1, 2].map((d) => (
+                      <i key={d} className="block h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--gold)]" style={{ animationDelay: `${d * 120}ms` }} />
+                    ))}
+                  </span>
+                  Loading available times…
+                </span>
                 <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-[14px] font-semibold text-[var(--accent)] underline underline-offset-4">
                   Open the calendar in a new tab
                 </a>
