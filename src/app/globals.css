@@ -16,12 +16,12 @@
   --text-secondary: #4A463F;
   --text-tertiary: #6A6358;
   /* Deep green: 5:1 on white, so it works for text, icons and button fills. */
-  --accent: #8A6A2F;
-  --accent-hover: #6F5424;
+  --accent: #7D5F27;
+  --accent-hover: #664C1F;
   --accent-bright: #C9A86A;
   --accent-dim: rgba(138, 106, 47, 0.10);
   --accent-line: rgba(138, 106, 47, 0.32);
-  --success: #15803D;
+  --success: #166534;
   --warning: #B45309;
   --whatsapp: #25D366;
   /* Brand from the logo: ink, ivory, gold — used for dark bands. */
@@ -760,6 +760,8 @@ html {
   transition: background-size .35s ease;
 }
 .link-grow:hover { background-size: 100% 1px; }
+/* Keep standalone text links at a 24px+ hit area (WCAG 2.5.8). */
+.link-grow { padding-block: 3px; }
 
 @layer components {
 /* Light sections: a warm gold glow and a whisper of grid, so ivory reads as paper, not flat. */
@@ -825,3 +827,10 @@ html {
 .gx-orbit-2 { animation-duration: 26s; animation-direction: reverse; }
 .gx-orbit-2::after { width: 5px; height: 5px; top: -2.5px; }
 @media (prefers-reduced-motion: reduce) { .gx-spin, .gx-orbit { animation: none; } }
+
+/* Keyboard focus: a visible gold ring on every interactive element (WCAG 2.4.7).
+   Mouse clicks don't trigger :focus-visible, so this never shows on click. */
+:where(a, button, [role="button"], summary, input, select, textarea):focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}

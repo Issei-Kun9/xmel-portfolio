@@ -38,7 +38,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
               {c.href ? (
                 <Link
                   href={c.href}
-                  className="hover:text-[var(--accent)] transition-colors"
+                  className="inline-flex items-center py-1.5 hover:text-[var(--accent)] transition-colors"
                 >
                   {c.name}
                 </Link>

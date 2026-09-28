@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Flag from "@/components/shared/flag";
 import { Check } from "lucide-react";
 import type { Market } from "@/lib/market";
 import type { ServiceMarketConfig } from "@/lib/services";
@@ -36,7 +37,7 @@ export default function ServicePricing({
                 : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             }`}
           >
-            {m === "us" ? "🇺🇸 United States" : "🇮🇳 India"}
+            <span className="inline-flex items-center gap-2"><Flag market={m} />{m === "us" ? "United States" : "India"}</span>
           </button>
         ))}
       </div>

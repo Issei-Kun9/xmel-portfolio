@@ -1,6 +1,7 @@
 "use client";
 
 import { MARKETS, MARKET_CONFIG, MARKET_COOKIE, MARKET_COOKIE_MAX_AGE, MARKET_PATH, type Market } from "@/lib/market";
+import Flag from "@/components/shared/flag";
 
 /**
  * Saves the choice in the cookie the middleware reads, then opens that
@@ -35,7 +36,7 @@ export default function MarketSwitch({ current }: { current?: Market }) {
                 : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             }`}
           >
-            <span aria-hidden="true">{cfg.flag}</span> {cfg.label} · {cfg.currency}
+            <span className="inline-flex items-center gap-2"><Flag market={m} />{cfg.label} · {cfg.currency}</span>
           </button>
         );
       })}

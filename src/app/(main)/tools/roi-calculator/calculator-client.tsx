@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Flag from "@/components/shared/flag";
 import { Calculator, Mail, ArrowRight, Check } from "lucide-react";
 
 const INDUSTRY_CLOSE_RATE = 0.08;
@@ -146,7 +147,7 @@ export default function CalculatorClient() {
                 : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             }`}
           >
-            {c === "USD" ? "🇺🇸 USD $" : "🇮🇳 INR ₹"}
+            <span className="inline-flex items-center gap-2"><Flag market={c === "USD" ? "us" : "in"} />{c === "USD" ? "USD $" : "INR ₹"}</span>
           </button>
         ))}
       </div>

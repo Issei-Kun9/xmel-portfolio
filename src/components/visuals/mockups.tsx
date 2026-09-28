@@ -4,7 +4,8 @@ import type { Sample } from "@/lib/industries";
 /** A laptop + phone showing the kind of site we build. Illustrative, not a client. */
 export function SiteMockup({ s }: { s: Sample }) {
   return (
-    <div className="relative mx-auto w-full max-w-[520px] pb-10 pr-6 sm:pr-0">
+    <div className="relative mx-auto w-full max-w-[520px] pb-10 pr-6 sm:pr-0" role="img" aria-label={`Illustration: a sample website for ${s.biz}`}>
+      <div aria-hidden="true" className="contents">
       <div className="rounded-t-2xl border border-[rgba(15,15,18,0.25)] bg-[#0F0F12] p-2.5 shadow-[0_40px_80px_-40px_rgba(15,15,18,0.5)]">
         <div className="overflow-hidden rounded-lg bg-[#F5F0E6]">
           <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[rgba(15,15,18,0.08)]">
@@ -39,6 +40,7 @@ export function SiteMockup({ s }: { s: Sample }) {
           <div className="mt-2 h-10 rounded bg-[linear-gradient(135deg,#E8E1D2,#D9CBAE)]" />
         </div>
       </div>
+      </div>
     </div>
   );
 }
@@ -46,7 +48,8 @@ export function SiteMockup({ s }: { s: Sample }) {
 /** A Google-style results page with the business in the top spot. Illustrative. */
 export function SerpMockup({ s }: { s: Sample }) {
   return (
-    <div className="mx-auto w-full max-w-[520px] rounded-2xl border border-[rgba(15,15,18,0.1)] bg-white p-5 shadow-[0_40px_80px_-40px_rgba(15,15,18,0.35)]">
+    <div role="img" aria-label={`Illustration: ${s.biz} ranked first on Google for “${s.query}”`} className="mx-auto w-full max-w-[520px] rounded-2xl border border-[rgba(15,15,18,0.1)] bg-white p-5 shadow-[0_40px_80px_-40px_rgba(15,15,18,0.35)]">
+      <div aria-hidden="true">
       <div className="flex items-center gap-2 rounded-full border border-[#DFE1E5] px-4 py-2 text-[13px] text-[#202124]">
         <Search className="w-4 h-4 text-[#9AA0A6]" aria-hidden="true" />
         {s.query}
@@ -56,19 +59,20 @@ export function SerpMockup({ s }: { s: Sample }) {
           <span className="absolute -top-2.5 right-3 rounded-full bg-[#0F0F12] px-2 py-0.5 text-[10px] font-bold text-[#C9A86A]">#1</span>
           <p className="text-[11px] text-[#4D5156]">{s.domain}</p>
           <p className="text-[16px] text-[#1A0DAB] leading-snug">{s.biz} — {s.serpTitle}</p>
-          <p className="mt-0.5 flex items-center gap-1 text-[12px] text-[#70757A]">
+          <p className="mt-0.5 flex items-center gap-1 text-[12px] text-[#5F6368]">
             <span className="flex text-[#F4B400]">{[0, 1, 2, 3, 4].map((i) => <Star key={i} className="w-3 h-3 fill-current" aria-hidden="true" />)}</span>
             4.9 · Open now
           </p>
         </li>
         {s.rivals.map((o, i) => (
-          <li key={o} className="px-3.5 opacity-55">
+          <li key={o} className="px-3.5">
             <p className="text-[11px] text-[#4D5156]">result {i + 2}</p>
-            <p className="text-[15px] text-[#1A0DAB]">{o}</p>
+            <p className="text-[15px] text-[#1A0DAB]/80">{o}</p>
             <div className="mt-1 h-2 w-3/4 rounded bg-[#E8EAED]" />
           </li>
         ))}
       </ol>
+      </div>
     </div>
   );
 }
