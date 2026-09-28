@@ -1,4 +1,4 @@
-import GoldX from "@/components/visuals/gold-x";
+import GoldX3D from "@/components/visuals/gold-x-3d";
 
 /** Result cards that float around the emblem: what a customer actually gets. */
 const CHIPS = [
@@ -17,7 +17,7 @@ export default function HeroVisual() {
   return (
     <div className="relative">
       <div className="relative mx-auto max-w-[300px] sm:max-w-none">
-        <GoldX />
+        <GoldX3D />
       </div>
 
       {/* Desktop: floating around the emblem */}

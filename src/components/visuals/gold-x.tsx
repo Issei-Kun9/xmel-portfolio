@@ -45,14 +45,14 @@ function Slice({ id, front, z, shade }: { id: string; front: boolean; z: number;
  * object that also tilts toward the cursor. Pure CSS 3D — no WebGL, no
  * library — so it paints instantly on any phone.
  */
-export default function GoldX({ className = "" }: { className?: string }) {
+export default function GoldX({ className = "", hideEmblem = false }: { className?: string; hideEmblem?: boolean }) {
   return (
     <Tilt max={14} className={className}>
       <div className="relative mx-auto aspect-square w-full max-w-[440px]">
         <div className="absolute inset-[8%] rounded-full bg-[radial-gradient(closest-side,rgba(201,168,106,0.35),transparent)] blur-2xl" aria-hidden="true" />
         <div className="gx-orbit absolute inset-[4%] rounded-full border border-[rgba(201,168,106,0.28)]" aria-hidden="true" />
         <div className="gx-orbit gx-orbit-2 absolute inset-[14%] rounded-full border border-dashed border-[rgba(201,168,106,0.18)]" aria-hidden="true" />
-        <div className="gx-spin absolute inset-[10%] [transform-style:preserve-3d]">
+        <div className={`gx-spin absolute inset-[10%] [transform-style:preserve-3d] transition-opacity duration-700 ${hideEmblem ? "opacity-0" : "opacity-100"}`}>
           {Array.from({ length: DEPTH }, (_, i) => (
             <Slice key={i} id={`gx-clip-${i}`} front={i === DEPTH - 1} z={i * 1.6 - DEPTH * 0.8} shade={0.45 + (0.4 * i) / DEPTH} />
           ))}

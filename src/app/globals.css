@@ -720,9 +720,9 @@ html {
 /* ---------------------------------------------------------------
    Premium details: gold line icons, gold rules, ink texture.
    --------------------------------------------------------------- */
-@keyframes icon-draw { from { stroke-dashoffset: 160; } to { stroke-dashoffset: 0; } }
+@keyframes icon-draw { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
 .icon-draw path, .icon-draw circle, .icon-draw rect {
-  stroke-dasharray: 160;
+  stroke-dasharray: 400;
   animation: icon-draw 1.6s cubic-bezier(.65,0,.35,1) both;
 }
 .group:hover .icon-draw path, .group:hover .icon-draw circle, .group:hover .icon-draw rect {
