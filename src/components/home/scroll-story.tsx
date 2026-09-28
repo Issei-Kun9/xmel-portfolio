@@ -41,7 +41,7 @@ export default function ScrollStory({ cfg }: { cfg: MarketConfig }) {
       </div>
 
       {/* Desktop: pinned stage, chapters advance with scroll. */}
-      <div ref={ref} className="hidden lg:block relative h-[300vh]">
+      <div ref={ref} className="hidden lg:block relative h-[240vh]">
         <div className="sticky top-16 h-[calc(100vh-4rem)] max-w-[1200px] mx-auto px-6 grid grid-cols-[0.9fr_1.1fr] gap-16 items-center">
           <div className="relative">
             {/* Progress: a gold rail that fills as the story advances, plus a chapter counter. */}
