@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { MARKET_CONFIG, whatsappHref, type Market } from "@/lib/market";
 import { BUNDLE, SEO_SERVICE, WEBSITE_DEV } from "@/lib/services";
 
-type Opt = { id: string; label: string; setup: number; monthly: number };
+type Opt = { id: string; label: string; setup: number; monthly: number; featured?: boolean };
 type Group = { key: string; title: string; options: Opt[] };
 
 function groups(market: Market): Group[] {
@@ -13,9 +13,9 @@ function groups(market: Market): Group[] {
   const web = WEBSITE_DEV[market].tiers.filter((t) => t.priceAmount > 0);
   const seo = SEO_SERVICE[market].tiers.filter((t) => t.priceAmount > 0);
   return [
-    { key: "ai", title: "AI Infrastructure", options: ai.map((t) => ({ id: t.name, label: t.name, setup: t.setupAmount ?? 0, monthly: t.monthlyAmount ?? 0 })) },
-    { key: "web", title: "Website", options: web.map((t) => ({ id: t.name, label: `${t.name} · ${t.tagline}`, setup: t.priceAmount, monthly: 0 })) },
-    { key: "seo", title: "SEO", options: seo.map((t) => ({ id: t.name, label: t.name, setup: 0, monthly: t.priceAmount })) },
+    { key: "ai", title: "AI Infrastructure", options: ai.map((t) => ({ id: t.name, label: t.name, setup: t.setupAmount ?? 0, monthly: t.monthlyAmount ?? 0, featured: t.featured })) },
+    { key: "web", title: "Website", options: web.map((t) => ({ id: t.name, label: `${t.name} · ${t.tagline}`, setup: t.priceAmount, monthly: 0, featured: t.featured })) },
+    { key: "seo", title: "SEO", options: seo.map((t) => ({ id: t.name, label: t.name, setup: 0, monthly: t.priceAmount, featured: t.featured })) },
   ];
 }
 
@@ -70,7 +70,14 @@ export default function QuoteBuilder({ market }: { market: Market }) {
                         onClick={() => setPick((p) => ({ ...p, [g.key]: o.id }))}
                         className={`max-w-full rounded-xl border px-4 py-2.5 text-left text-[14px] transition-all duration-200 ${on ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--ivory)] shadow-[0_8px_20px_-10px_rgba(15,15,18,0.6)]" : "border-[var(--border-strong)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--text-primary)]"}`}
                       >
-                        <span className="block font-semibold">{o.label}</span>
+                        <span className="flex items-center gap-2 font-semibold">
+                          {o.label}
+                          {"featured" in o && o.featured && (
+                            <span className={`rounded-full px-2 py-px text-[11px] font-semibold ${on ? "bg-[var(--gold)] text-[var(--ink)]" : "bg-[rgba(201,168,106,0.18)] text-[var(--accent)]"}`}>
+                              Most popular
+                            </span>
+                          )}
+                        </span>
                         {o.id && (
                           <span className={`block text-[12px] ${on ? "text-[var(--gold)]" : "text-[var(--text-tertiary)]"}`}>
                             {[o.setup ? `${fmt(o.setup)} once` : "", o.monthly ? `${fmt(o.monthly)}/mo` : ""].filter(Boolean).join(" + ")}
@@ -109,7 +116,19 @@ export default function QuoteBuilder({ market }: { market: Market }) {
               {cta.label}
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </a>
-            <p className="mt-3 text-[12px] text-[var(--text-tertiary)]">No long-term contract. Final quote confirmed on a 15-minute call.</p>
+            <ul className="mt-5 space-y-2 text-[13px] text-[var(--text-secondary)]">
+              {[
+                "AI: 14-day pilot on your real leads. Doesn't beat what you do now? You owe nothing.",
+                "Website: pay the rest only after you've seen the finished site.",
+                "No long-term contract. Cancel the monthly part any time.",
+              ].map((t) => (
+                <li key={t} className="flex gap-2">
+                  <Check className="w-4 h-4 mt-px shrink-0 text-[var(--gold)]" strokeWidth={2.5} aria-hidden="true" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-[12px] text-[var(--text-tertiary)]">Final quote confirmed on a 15-minute call.</p>
           </div>
         </div>
       </div>

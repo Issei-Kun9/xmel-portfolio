@@ -17,11 +17,16 @@ export default function StickyCta({ cfg }: { cfg: MarketConfig }) {
       const book = document.getElementById("book");
       const pastHero = window.scrollY > 640;
       const atBook = book ? book.getBoundingClientRect().top < window.innerHeight : false;
-      setVisible(pastHero && !atBook);
+      const show = pastHero && !atBook;
+      setVisible(show);
+      document.documentElement.toggleAttribute("data-sticky-cta", show);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.documentElement.removeAttribute("data-sticky-cta");
+    };
   }, []);
 
   return (
