@@ -1,0 +1,135 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- Google Business Profile cover v2, 1920x1080. Short headline left, product
+     scene right (3D gold emblem + laptop site + phone reply + Google #1 card).
+     Every element with data-safe must stay inside x 240..1680 (4:3 crop). -->
+<style>
+@font-face{font-family:F;src:url(fonts/fraunces.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:I;src:url(fonts/inter.woff2) format("woff2");font-weight:100 900}
+*{margin:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden}
+.b{position:relative;width:1920px;height:1080px;background:#0F0F12;color:#F5F0E6;font-family:I,sans-serif;overflow:hidden}
+.glow{position:absolute;inset:0;background:
+ radial-gradient(36% 50% at 70% 45%,rgba(201,168,106,.26),transparent 70%),
+ radial-gradient(30% 40% at 18% 30%,rgba(201,168,106,.08),transparent 70%)}
+.lines{position:absolute;inset:0;opacity:.06;background-image:linear-gradient(#C9A86A 1px,transparent 1px),linear-gradient(90deg,#C9A86A 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(40% 55% at 70% 45%,#000,transparent)}
+.grain{position:absolute;inset:0;opacity:.07;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Left: copy */
+.copy{position:absolute;left:290px;top:0;bottom:0;width:640px;display:flex;flex-direction:column;justify-content:center}
+.brand{display:flex;align-items:center;gap:16px;font-size:20px;letter-spacing:.3em;text-transform:uppercase;color:#C9A86A;font-weight:600}
+.brand i{display:block;width:48px;height:1px;background:#C9A86A}
+h1{margin-top:30px;font-family:F,serif;font-weight:500;font-size:90px;line-height:.96;letter-spacing:-.035em}
+h1 em{font-weight:400;color:#C9A86A;display:block}
+.svc{margin-top:40px;display:flex;gap:12px}
+.svc span{border:1px solid rgba(201,168,106,.5);border-radius:999px;padding:11px 22px;font-size:20px;background:rgba(245,240,230,.03)}
+.url{margin-top:34px;font-size:20px;letter-spacing:.06em;color:rgba(245,240,230,.6)}
+.url b{color:#C9A86A;font-weight:500}
+
+/* Right: scene */
+.scene{position:absolute;left:960px;top:150px;width:700px;height:780px;transform:scale(.9);transform-origin:50% 50%}
+
+/* 3D gold emblem: stacked slices read as one extruded object */
+.x3d{position:absolute;right:-10px;top:-10px;width:430px;height:430px;perspective:1400px}
+.x3d .s{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(-32deg) rotateX(10deg) rotateZ(-4deg)}
+.x3d svg{position:absolute;inset:0;width:100%;height:100%}
+.x3d .halo{position:absolute;inset:-10%;border-radius:50%;background:radial-gradient(closest-side,rgba(201,168,106,.35),transparent);filter:blur(10px)}
+
+/* Laptop */
+.laptop{position:absolute;left:40px;top:320px;width:560px}
+.screen{border-radius:18px 18px 0 0;background:#0F0F12;padding:12px;border:1px solid rgba(201,168,106,.35);box-shadow:0 50px 90px -40px rgba(0,0,0,.9)}
+.site{border-radius:8px;overflow:hidden;background:#F5F0E6;color:#0F0F12;height:320px;position:relative}
+.bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid rgba(15,15,18,.08)}
+.bar i{width:9px;height:9px;border-radius:50%;background:#D9C9A8}
+.bar span{margin-left:8px;flex:1;background:rgba(15,15,18,.06);border-radius:5px;padding:3px 10px;font-size:12px;color:#6A6358}
+.sb{padding:22px 26px}
+.nav{display:flex;justify-content:space-between;font-size:12px;color:#6A6358}
+.nav b{font-family:F,serif;font-size:17px;color:#0F0F12}
+.hero{margin-top:22px;font-family:F,serif;font-size:34px;line-height:1.05;letter-spacing:-.02em;max-width:78%}
+.sub{margin-top:10px;font-size:13px;color:#4A463F;max-width:70%}
+.btns{margin-top:16px;display:flex;gap:8px}
+.btns span{border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600}
+.btns .p{background:#8A6A2F;color:#fff}.btns .g{border:1px solid rgba(15,15,18,.15)}
+.tiles{position:absolute;left:26px;right:26px;bottom:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tiles div{height:54px;border-radius:8px;background:linear-gradient(135deg,#E8E1D2,#D6C6A6)}
+.base{height:16px;margin:0 -34px;border-radius:0 0 18px 18px;background:linear-gradient(#2A2A30,#0F0F12);border:1px solid rgba(201,168,106,.25);border-top:0}
+
+/* Phone */
+.phone{position:absolute;left:-85px;top:455px;width:210px;border-radius:34px;background:#0F0F12;padding:9px;border:1px solid rgba(201,168,106,.45);box-shadow:0 40px 70px -30px rgba(0,0,0,.95);transform:rotate(-5deg)}
+.ps{border-radius:26px;background:#ECE5D8;overflow:hidden;color:#0F0F12;padding:14px 12px 16px}
+.ph{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600}
+.ph span{font-size:10px;background:rgba(201,168,106,.25);color:#8A6A2F;border-radius:999px;padding:3px 7px}
+.m{margin-top:9px;font-size:12px;line-height:1.3;border-radius:13px;padding:8px 10px;max-width:88%}
+.m.l{background:#fff}
+.m.a{margin-left:auto;background:#8A6A2F;color:#fff}
+.bk{margin-top:10px;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(138,106,47,.4);border-radius:12px;padding:8px}
+.bk i{width:20px;height:20px;border-radius:50%;background:#8A6A2F;color:#fff;font-style:normal;font-size:11px;display:grid;place-items:center;font-weight:800}
+.bk b{font-size:11px}
+
+/* Google card */
+.serp{position:absolute;left:-10px;top:215px;width:300px;background:#fff;color:#202124;border-radius:16px;padding:14px 16px;box-shadow:0 30px 60px -25px rgba(0,0,0,.9),0 0 0 1px rgba(201,168,106,.5);transform:rotate(-3deg)}
+.q{font-size:12px;color:#5f6368;border:1px solid #dfe1e5;border-radius:999px;padding:5px 12px}
+.r{margin-top:10px;position:relative}
+.r small{font-size:11px;color:#4d5156}
+.r p{font-size:15px;color:#1a0dab;margin-top:1px}
+.r .st{font-size:11px;color:#70757a;margin-top:2px}.r .st b{color:#E0A800;font-weight:400}
+.one{position:absolute;right:-6px;top:-4px;background:#0F0F12;color:#C9A86A;font-weight:800;font-size:12px;border-radius:999px;padding:3px 9px}
+</style></head><body><div class="b">
+<div class="glow"></div><div class="lines"></div><div class="grain"></div>
+
+<div class="copy" data-safe>
+  <div class="brand"><i></i>XMEL Automations</div>
+  <h1>More customers.<em>Less chasing.</em></h1>
+  <div class="svc"><span>AI Infrastructure</span><span>Websites</span><span>SEO</span></div>
+  <div class="url">US · India &nbsp;·&nbsp; <b>xmelautomations.xyz</b></div>
+</div>
+
+<div class="scene" data-safe>
+  <div class="x3d"><div class="halo"></div><div class="s" id="xs"></div></div>
+
+  <div class="laptop">
+    <div class="screen"><div class="site">
+      <div class="bar"><i></i><i></i><i></i><span>yourbusiness.com</span></div>
+      <div class="sb">
+        <div class="nav"><b>Your Business</b><span>Services · Work · Reviews · Contact</span></div>
+        <div class="hero">The first name your customers call.</div>
+        <div class="sub">Fast, mobile-first and built to turn visitors into bookings.</div>
+        <div class="btns"><span class="p">Book now</span><span class="g">Call us</span></div>
+      </div>
+      <div class="tiles"><div></div><div></div><div></div></div>
+    </div></div>
+    <div class="base"></div>
+  </div>
+
+  <div class="serp">
+    <div class="q">⌕ best near me</div>
+    <div class="r"><span class="one">#1</span><small>yourbusiness.com</small><p>Your Business — Top rated</p><div class="st"><b>★★★★★</b> 4.9 · Open now</div></div>
+  </div>
+
+  <div class="phone"><div class="ps">
+    <div class="ph">New lead · 2:14 AM<span>● 42s</span></div>
+    <div class="m l">Hi, are you free this week?</div>
+    <div class="m a">Yes! Sat 11 AM or Sun 4 PM?</div>
+    <div class="m l">Saturday 👍</div>
+    <div class="bk"><i>✓</i><b>Booked · Sat 11:00 AM</b></div>
+  </div></div>
+</div>
+
+<script>
+// Build the extruded emblem: 16 slices, darker toward the back, lit face in front.
+const N = 16, host = document.getElementById('xs');
+for (let i = 0; i < N; i++) {
+  const front = i === N - 1, k = 0.42 + 0.45 * i / N;
+  const gold = front ? 'url(#gg)' : `rgb(${Math.round(150*k)},${Math.round(116*k)},${Math.round(56*k)})`;
+  const ivory = front ? 'url(#gv)' : `rgb(${Math.round(170*k)},${Math.round(160*k)},${Math.round(140*k)})`;
+  host.insertAdjacentHTML('beforeend', `<svg viewBox="-100 -100 200 200" style="transform:translateZ(${(i - N) * 1.8}px)">
+    <defs><clipPath id="c${i}"><rect x="-100" y="-61.8" width="200" height="123.6"/></clipPath>
+    ${front ? `<linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6E3B8"/><stop offset=".5" stop-color="#C9A86A"/><stop offset="1" stop-color="#8A6A2F"/></linearGradient>
+    <linearGradient id="gv" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFDF7"/><stop offset="1" stop-color="#D4C9B5"/></linearGradient>` : ''}</defs>
+    <g transform="scale(.764)" clip-path="url(#c${i})" stroke-width="19.1" fill="none">
+      <line x1="-47.4" y1="-99.6" x2="71" y2="99.6" stroke="${gold}"/>
+      ${front ? '<line x1="47.4" y1="-99.6" x2="-71" y2="99.6" stroke="#0F0F12" stroke-width="33.7"/>' : ''}
+      <line x1="47.4" y1="-99.6" x2="-71" y2="99.6" stroke="${ivory}"/>
+    </g></svg>`);
+}
+</script>
+</div></body></html>
