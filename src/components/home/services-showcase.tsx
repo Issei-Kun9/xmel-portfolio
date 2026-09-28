@@ -1,5 +1,5 @@
 import { ArrowRight, Check } from "lucide-react";
-import Lottie from "@/components/motion/lottie";
+import ServiceArt, { type ServiceKind } from "@/components/visuals/service-art";
 import { MARKET_CONFIG, type Market } from "@/lib/market";
 import { SEO_SERVICE, WEBSITE_DEV } from "@/lib/services";
 import { INDUSTRIES } from "@/lib/industries";
@@ -17,7 +17,7 @@ export default function ServicesShowcase({ market }: { market: Market }) {
 
   const services = [
     {
-      lottie: "house",
+      art: "real-estate" as ServiceKind,
       label: "AI for real estate",
       title: "Every portal lead answered and qualified in under a minute",
       points: ["Replies by " + MARKET_CONFIG[market].replyChannel + " at 2 AM too", "Qualifies budget and timeline", "Books showings and site visits"],
@@ -25,7 +25,7 @@ export default function ServicesShowcase({ market }: { market: Market }) {
       href: "/ai-automation-real-estate",
     },
     {
-      lottie: "tools",
+      art: "home-services" as ServiceKind,
       label: "AI for home services",
       title: "An AI receptionist that never misses a call or a job",
       points: ["Answers every call and missed call", "Captures the job details", "Books the slot, flags emergencies"],
@@ -33,7 +33,7 @@ export default function ServicesShowcase({ market }: { market: Market }) {
       href: "/ai-automation-home-services",
     },
     {
-      lottie: "laptop",
+      art: "website" as ServiceKind,
       label: "Website development",
       title: "A website that turns visitors into enquiries, live in a week",
       points: ["Written around your business", "Mobile-first and fast", "Yours to keep, no page-builder fee"],
@@ -41,7 +41,7 @@ export default function ServicesShowcase({ market }: { market: Market }) {
       href: "/website-development",
     },
     {
-      lottie: "growth-chart",
+      art: "seo" as ServiceKind,
       label: "SEO",
       title: "Get found on Google by people ready to buy",
       points: ["Technical fixes first", "Content for real searches", "Monthly report in plain English"],
@@ -71,9 +71,11 @@ export default function ServicesShowcase({ market }: { market: Market }) {
               href={s.href}
               className="spotlight lift group relative flex flex-col overflow-hidden rounded-2xl border border-[rgba(245,240,230,0.12)] bg-[rgba(245,240,230,0.04)] p-7 hover:border-[var(--gold)] hover:bg-[rgba(201,168,106,0.07)] transition-colors duration-300"
             >
-              <Lottie name={s.lottie} className="absolute right-5 top-5 w-16 h-16 opacity-90" />
+              <div className="-mx-7 -mt-7 mb-6 flex h-44 items-center justify-center border-b border-[rgba(245,240,230,0.08)] bg-[radial-gradient(70%_90%_at_50%_100%,rgba(201,168,106,0.12),transparent_70%)]">
+                <ServiceArt kind={s.art} className="h-36 w-auto transition-transform duration-500 group-hover:scale-[1.04]" />
+              </div>
               <span className="text-[13px] font-semibold uppercase tracking-[0.08em] text-[var(--gold)]">{s.label}</span>
-              <h3 className="mt-3 pr-16 text-[22px] font-semibold leading-snug">{s.title}</h3>
+              <h3 className="mt-3 text-[22px] font-semibold leading-snug">{s.title}</h3>
               <ul className="mt-4 space-y-2 flex-1">
                 {s.points.map((p) => (
                   <li key={p} className="flex gap-2.5 text-[15px] text-[rgba(245,240,230,0.78)]">
