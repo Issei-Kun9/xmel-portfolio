@@ -971,3 +971,14 @@ main:has(> .cta-band:last-child) + footer .footer-cta { display: none; }
 /* On ink, the primary booking button turns gold like every other ink CTA. */
 .ink .cta-book { background: var(--gold); color: var(--ink); }
 .ink .cta-book:hover { background: var(--gold); filter: brightness(1.1); }
+
+/* Service illustrations: strokes draw on, badges float gently. */
+@media (prefers-reduced-motion: no-preference) {
+  .art-draw path, .art-draw rect, .art-draw circle {
+    stroke-dasharray: 420;
+    animation: icon-draw 1.8s cubic-bezier(.65,0,.35,1) both;
+  }
+  .art-draw path[stroke-dasharray="3 4"] { stroke-dasharray: 3 4; animation: none; }
+  @keyframes art-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  .art-float { animation: art-float 5s ease-in-out infinite; transform-box: fill-box; }
+}

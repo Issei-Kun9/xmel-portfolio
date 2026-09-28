@@ -9,6 +9,7 @@ import Breadcrumbs from "@/components/shared/breadcrumbs";
 import MarketMockups from "@/components/visuals/market-mockups";
 import Lottie from "@/components/motion/lottie";
 import ChatDemo from "@/components/home/chat-demo";
+import ServiceArt from "@/components/visuals/service-art";
 import RelatedGuides from "@/components/site/related-guides";
 import { INDUSTRY_CHATS } from "@/lib/chat-scripts";
 
@@ -45,9 +46,9 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
   if (!ind) notFound();
   const aiHref = ind.ai === "real-estate" ? "/ai-automation-real-estate" : "/ai-automation-home-services";
   const services = [
-    { icon: "laptop", title: "A website that wins the job", body: `Built for ${ind.plural}: your work, your reviews and one clear way to book, on every phone.`, price: `From ${WEBSITE_DEV.us.tiers[0].price} · ${WEBSITE_DEV.in.tiers[0].price}`, href: "/website-development" },
-    { icon: "growth-chart", title: "Found first on Google", body: `Local SEO for the searches your customers make, so you show up above other ${ind.plural}.`, price: `From ${SEO_SERVICE.us.tiers[0].price} · ${SEO_SERVICE.in.tiers[0].price}/mo`, href: "/seo" },
-    { icon: ind.ai === "real-estate" ? "house" : "tools", title: "Every enquiry answered in 60s", body: "AI replies, qualifies and books into your calendar, day and night, so no lead goes to a competitor.", price: `From ${MARKET_CONFIG.us.tiers[0].setup} · ${MARKET_CONFIG.in.tiers[0].setup} setup`, href: aiHref },
+    { art: "website" as const, title: "A website that wins the job", body: `Built for ${ind.plural}: your work, your reviews and one clear way to book, on every phone.`, price: `From ${WEBSITE_DEV.us.tiers[0].price} · ${WEBSITE_DEV.in.tiers[0].price}`, href: "/website-development" },
+    { art: "seo" as const, title: "Found first on Google", body: `Local SEO for the searches your customers make, so you show up above other ${ind.plural}.`, price: `From ${SEO_SERVICE.us.tiers[0].price} · ${SEO_SERVICE.in.tiers[0].price}/mo`, href: "/seo" },
+    { art: ind.ai, title: "Every enquiry answered in 60s", body: "AI replies, qualifies and books into your calendar, day and night, so no lead goes to a competitor.", price: `From ${MARKET_CONFIG.us.tiers[0].setup} · ${MARKET_CONFIG.in.tiers[0].setup} setup`, href: aiHref },
   ];
   const ld = {
     "@context": "https://schema.org",
@@ -128,8 +129,10 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
         </h2>
         <div className="mt-10 grid md:grid-cols-3 gap-4">
           {services.map((s) => (
-            <a key={s.href} href={s.href} className="group lift rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-7 hover:border-[var(--accent)] transition-colors">
-              <span className="inline-flex w-14 h-14 items-center justify-center rounded-2xl bg-[var(--ink)]"><Lottie name={s.icon} className="w-9 h-9" /></span>
+            <a key={s.href} href={s.href} className="group lift overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-7 shadow-[var(--shadow-card)] hover:border-[var(--gold)] transition-colors">
+              <span className="-mx-7 -mt-7 mb-2 flex h-40 items-center justify-center bg-[var(--ink)] bg-[radial-gradient(70%_90%_at_50%_100%,rgba(201,168,106,0.16),transparent_70%)]">
+                <ServiceArt kind={s.art} className="h-32 w-auto transition-transform duration-500 group-hover:scale-[1.04]" />
+              </span>
               <h3 className="mt-5 text-[20px] font-semibold text-[var(--text-primary)]">{s.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-[var(--text-secondary)]">{s.body}</p>
               <p className="mt-4 text-[13px] font-semibold text-[var(--accent)]">{s.price}</p>

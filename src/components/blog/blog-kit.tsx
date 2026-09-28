@@ -1,8 +1,18 @@
 import Link from "next/link";
 import { isValidElement, type ReactNode } from "react";
 import Lottie from "@/components/motion/lottie";
+import ServiceArt, { type ServiceKind } from "@/components/visuals/service-art";
 import type { BlogPost } from "@/lib/blog";
 import { CATEGORY_LABELS, type PostCategory } from "@/lib/blog-categories";
+
+/** Categories that match a service get its illustration; the rest a line icon. */
+const COVER_ART: Partial<Record<PostCategory, ServiceKind>> = {
+  "real-estate": "real-estate",
+  "home-services": "home-services",
+  websites: "website",
+  seo: "seo",
+  automation: "automation",
+};
 
 const COVER_ICON: Record<PostCategory, string> = {
   "real-estate": "house",
@@ -21,9 +31,15 @@ export function PostCover({ category, big = false, className = "" }: { category:
   return (
     <div aria-hidden="true" className={`relative overflow-hidden bg-[var(--ink)] ${className}`}>
       <div className="absolute inset-0" style={{ background: "radial-gradient(60% 70% at 78% 18%, rgba(201,168,106,0.28), transparent 70%), radial-gradient(40% 50% at 10% 100%, rgba(201,168,106,0.12), transparent 70%)" }} />
-      <div className={`absolute top-1/2 -translate-y-1/2 rounded-full border border-[rgba(201,168,106,0.22)] ${big ? "right-[8%] h-[78%] aspect-square" : "right-[6%] h-[90%] aspect-square"}`} />
-      <div className={`absolute top-1/2 -translate-y-1/2 rounded-full border border-dashed border-[rgba(201,168,106,0.18)] ${big ? "right-[16%] h-[50%] aspect-square" : "right-[15%] h-[60%] aspect-square"}`} />
-      <Lottie name={COVER_ICON[category]} strokeWidth={1.6} className={`absolute top-1/2 -translate-y-1/2 ${big ? "right-[20%] h-[34%] w-auto aspect-square" : "right-[19%] h-[40%] w-auto aspect-square"}`} />
+      {COVER_ART[category] ? (
+        <ServiceArt kind={COVER_ART[category]!} className="absolute left-1/2 top-[46%] h-[72%] w-auto -translate-x-1/2 -translate-y-1/2" />
+      ) : (
+        <>
+          <div className={`absolute top-1/2 -translate-y-1/2 rounded-full border border-[rgba(201,168,106,0.22)] ${big ? "right-[8%] h-[78%] aspect-square" : "right-[6%] h-[90%] aspect-square"}`} />
+          <div className={`absolute top-1/2 -translate-y-1/2 rounded-full border border-dashed border-[rgba(201,168,106,0.18)] ${big ? "right-[16%] h-[50%] aspect-square" : "right-[15%] h-[60%] aspect-square"}`} />
+          <Lottie name={COVER_ICON[category]} strokeWidth={1.6} className={`absolute top-1/2 -translate-y-1/2 ${big ? "right-[20%] h-[34%] w-auto aspect-square" : "right-[19%] h-[40%] w-auto aspect-square"}`} />
+        </>
+      )}
       <span className="absolute left-5 bottom-4 rounded-full border border-[rgba(201,168,106,0.4)] bg-[rgba(15,15,18,0.6)] px-3 py-1 text-[12px] font-semibold text-[var(--gold)]">
         {CATEGORY_LABELS[category]}
       </span>
