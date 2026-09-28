@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { INSPIRATION, INSPO_CATEGORIES, INDUSTRY_TO_CATEGORY, type InspoMarket } from "@/lib/inspiration";
-import LivePreview from "./live-preview";
+import { INSPIRATION, INSPO_CATEGORIES, INDUSTRY_TO_CATEGORY, shotFor, type InspoMarket } from "@/lib/inspiration";
 
 /**
- * Filterable grid of real sites we admire, India first. Sites that allow
- * framing show a live preview; the rest show a branded card. Every card
- * links to the original.
+ * Filterable grid of real sites we admire, India first. Cards show a homepage
+ * screenshot we host ourselves where we have one, otherwise a branded card.
+ * Every card links to the original.
  */
-export default function InspirationGallery({ embeddable }: { embeddable: Record<string, boolean> }) {
+export default function InspirationGallery() {
   const [market, setMarket] = useState<InspoMarket>("in");
   const [cat, setCat] = useState<string>("all");
 
@@ -26,7 +25,9 @@ export default function InspirationGallery({ embeddable }: { embeddable: Record<
   const inMarket = INSPIRATION.filter((s) => s.market === market);
   const chips = [{ slug: "all", name: "All" }, ...INSPO_CATEGORIES.filter((c) => inMarket.some((s) => s.category === c.slug))];
   const active = chips.some((c) => c.slug === cat) ? cat : "all";
-  const shown = active === "all" ? inMarket : inMarket.filter((s) => s.category === active);
+  const shown = (active === "all" ? inMarket : inMarket.filter((s) => s.category === active))
+    // Cards with a screenshot first, so every filter opens on real visuals.
+    .toSorted((x, y) => Number(!!shotFor(y.url)) - Number(!!shotFor(x.url)));
 
   const chip = (on: boolean) =>
     `rounded-full border px-4 py-2 text-[14px] font-medium transition-colors ${
@@ -66,7 +67,18 @@ export default function InspirationGallery({ embeddable }: { embeddable: Record<
                     <span className="font-display text-[26px] text-[var(--text-primary)]">{s.name}</span>
                     <span className="text-[13px] text-[var(--text-tertiary)]">{host} ↗</span>
                   </span>
-                  {embeddable[s.url] && <LivePreview url={s.url} title={s.name} />}
+                  {shotFor(s.url) && (
+                    // eslint-disable-next-line @next/next/no-img-element -- small static webp
+                    <img
+                      src={shotFor(s.url)!}
+                      alt={`Homepage of ${s.name}`}
+                      loading="lazy"
+                      decoding="async"
+                      width={960}
+                      height={600}
+                      className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                    />
+                  )}
                   <span className="absolute left-3 top-3 rounded-full bg-[rgba(15,15,18,0.85)] px-2.5 py-1 text-[11px] font-semibold text-[var(--gold)]">{label}</span>
                 </div>
               </a>

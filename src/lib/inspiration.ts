@@ -79,3 +79,20 @@ export const INDUSTRY_TO_CATEGORY: Record<string, Inspo["category"]> = {
   hvac: "hvac",
   electricians: "electricians",
 };
+
+/**
+ * Homepage screenshots we captured and host ourselves (public/inspiration/),
+ * above-the-fold at desktop width. Sites that block automated visits or were
+ * covered by popups keep the branded name card instead.
+ */
+const SHOTS = new Set([
+  "bardi-com", "benjaminfranklinplumbing-com", "caratlane-com", "enrichbeauty-com",
+  "kaya-in", "mistersparky-com", "mrelectric-com", "naturals-in", "rotorooter-com",
+  "sabkadentist-com", "seattledentalco-com", "suzyhoodless-com", "theagencyre-com",
+  "thirdwavecoffeeroasters-com", "urbancompany-com", "zen-dentist",
+]);
+
+export function shotFor(url: string): string | null {
+  const slug = new URL(url).hostname.replace(/^www\./, "").replace(/[^a-z0-9]+/gi, "-");
+  return SHOTS.has(slug) ? `/inspiration/${slug}.webp` : null;
+}
