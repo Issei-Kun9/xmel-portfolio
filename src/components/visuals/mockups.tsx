@@ -4,7 +4,7 @@ import type { Sample } from "@/lib/industries";
 /** A laptop + phone showing the kind of site we build. Illustrative, not a client. */
 export function SiteMockup({ s }: { s: Sample }) {
   return (
-    <div className="relative mx-auto w-full max-w-[520px] pb-10">
+    <div className="relative mx-auto w-full max-w-[520px] pb-10 pr-6 sm:pr-0">
       <div className="rounded-t-2xl border border-[rgba(15,15,18,0.25)] bg-[#0F0F12] p-2.5 shadow-[0_40px_80px_-40px_rgba(15,15,18,0.5)]">
         <div className="overflow-hidden rounded-lg bg-[#F5F0E6]">
           <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[rgba(15,15,18,0.08)]">
@@ -30,8 +30,8 @@ export function SiteMockup({ s }: { s: Sample }) {
           </div>
         </div>
       </div>
-      <div className="h-3 w-[108%] -ml-[4%] rounded-b-xl bg-[linear-gradient(#2A2A30,#0F0F12)]" />
-      <div className="absolute -right-2 sm:-right-6 bottom-0 w-[118px] rounded-[22px] border border-[rgba(15,15,18,0.25)] bg-[#0F0F12] p-1.5 shadow-xl">
+      <div className="h-3 w-full sm:w-[108%] sm:-ml-[4%] rounded-b-xl bg-[linear-gradient(#2A2A30,#0F0F12)]" />
+      <div className="absolute right-0 sm:-right-6 bottom-0 w-[104px] sm:w-[118px] rounded-[22px] border border-[rgba(15,15,18,0.25)] bg-[#0F0F12] p-1.5 shadow-xl">
         <div className="overflow-hidden rounded-[17px] bg-[#F5F0E6] px-2.5 pt-4 pb-3">
           <b className="block font-display text-[9px] text-[#0F0F12]">{s.biz}</b>
           <p className="mt-2 font-display text-[12px] leading-tight text-[#0F0F12]">{s.sub.split(".")[0]}.</p>
