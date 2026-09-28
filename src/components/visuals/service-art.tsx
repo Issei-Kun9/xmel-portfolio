@@ -33,7 +33,7 @@ function RealEstate() {
         <circle cx="160" cy="92" r="17" fill={G} stroke={G} />
         <text x="160" y="96" textAnchor="middle" fontSize="11" fontWeight="700" fill={INK} fontFamily="var(--font-inter), sans-serif">42s</text>
       </g>
-      <path d="M150 124l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" stroke={G} strokeOpacity=".8" />
+      <path d="M132 96l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" stroke={G} strokeOpacity=".8" />
     </>
   );
 }

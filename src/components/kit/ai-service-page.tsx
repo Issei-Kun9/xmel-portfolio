@@ -68,27 +68,28 @@ export default function AiServicePage(p: {
         </div>
       </section>
 
-      <section className="ink py-20 sm:py-24">
+      <section className="paper py-20 sm:py-24">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
           <div>
-            <SectionHead onInk eyebrow="Under the hood" title="Real systems," italic="not a chatbot plugin." lede={p.stack.lede} />
+            <SectionHead eyebrow="Under the hood" title="Real systems," italic="not a chatbot plugin." lede={p.stack.lede} />
             <ul className="mt-8 flex flex-wrap gap-2">
               {p.stack.tools.map((t) => (
-                <li key={t} className="rounded-full border border-[rgba(201,168,106,0.35)] bg-[rgba(201,168,106,0.06)] px-3.5 py-1.5 text-[13px] text-[var(--ivory)]">
+                <li key={t} className="rounded-full border border-[var(--border-strong)] bg-[var(--bg-primary)] px-3.5 py-1.5 text-[13px] text-[var(--text-secondary)]">
                   {t}
                 </li>
               ))}
             </ul>
-            <Link href={p.stack.guide.href} className="link-grow mt-8 inline-block text-[15px] font-semibold text-[var(--gold)]">
+            <Link href={p.stack.guide.href} className="link-grow mt-8 inline-block text-[15px] font-semibold text-[var(--accent)]">
               {p.stack.guide.label} →
             </Link>
           </div>
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--border-subtle)]">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--border-subtle)] shadow-[var(--shadow-card)]">
             {p.stack.stats.map((s) => (
-              <div key={s.label} className="bg-[#141417] p-7">
+              <div key={s.label} className="relative bg-[var(--bg-primary)] p-7">
+                <span aria-hidden="true" className="absolute left-7 top-0 h-[2px] w-10 bg-[var(--gold)]" />
                 <dt className="sr-only">{s.label}</dt>
                 <dd>
-                  <span className="block font-display text-[clamp(36px,4.5vw,56px)] leading-none text-[var(--gold)]">{s.n}</span>
+                  <span className="block font-display text-[clamp(36px,4.5vw,56px)] leading-none text-[var(--accent)]">{s.n}</span>
                   <span className="mt-3 block text-[14px] leading-snug text-[var(--text-secondary)]">{s.label}</span>
                 </dd>
               </div>
@@ -97,7 +98,7 @@ export default function AiServicePage(p: {
         </div>
       </section>
 
-      <section id="pricing" className="paper scroll-mt-20 py-20 sm:py-28">
+      <section id="pricing" className="paper bg-[var(--bg-secondary)] scroll-mt-20 py-20 sm:py-28">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <SectionHead
             eyebrow="Pricing"
@@ -112,13 +113,13 @@ export default function AiServicePage(p: {
         </div>
       </section>
 
-      <section className="paper bg-[var(--bg-secondary)] py-20 sm:py-28">
+      <section className="paper py-20 sm:py-28">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Faq faqs={p.faqs} />
         </div>
       </section>
 
-      <section className="paper py-20 sm:py-24">
+      <section className="paper bg-[var(--bg-secondary)] py-20 sm:py-24">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <RelatedGuides slugs={p.guides} limit={6} title={p.guidesTitle} />
         </div>

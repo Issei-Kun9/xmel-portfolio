@@ -133,7 +133,7 @@ export default function WebsiteDevelopmentPage() {
         <PageHero
           crumbs={[{ name: "Website Development" }]}
           eyebrow="Website development"
-          title="A website built around your business,"
+          title="A website built for your business,"
           italic="live in about a week."
           lede="Mobile-first, fast, and written for what you actually do, not a template you have to wrestle into shape. One flat price, no monthly page-builder fee."
           proof={["From $499 / ₹2,500", "Live in about a week", "See it before you pay in full"]}
