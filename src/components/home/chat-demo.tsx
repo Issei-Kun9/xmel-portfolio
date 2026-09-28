@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check, CheckCheck, RotateCcw, Phone, Video, ChevronLeft, BellRing } from "lucide-react";
 import type { Market } from "@/lib/market";
+import { useClientValue } from "@/lib/use-client-value";
 import { HOME_SERVICES, REAL_ESTATE, type Script, type ScriptSet } from "@/lib/chat-scripts";
 import Flag from "@/components/shared/flag";
 
@@ -46,7 +47,10 @@ export default function ChatDemo({
   const script = (scripts ?? (variant === "home-services" ? HOME_SERVICES : REAL_ESTATE))[market];
   const steps = stepsFor(script);
   const total = script.messages.length + 1; // + the booked/notify step
-  const [shown, setShown] = useState(0);
+  const [played, setShown] = useState(0);
+  // Reduced motion: show the whole conversation at once, no scroll trigger.
+  const reduce = useClientValue(() => matchMedia("(prefers-reduced-motion: reduce)").matches, false);
+  const shown = reduce ? total : played;
   const [typing, setTyping] = useState(false);
   const [started, setStarted] = useState(false);
   const [notifDone, setNotifDone] = useState(false);

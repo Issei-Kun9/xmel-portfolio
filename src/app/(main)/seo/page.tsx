@@ -4,10 +4,9 @@ import { SEO_SERVICE } from "@/lib/services";
 import { MARKETS } from "@/lib/market";
 import { SerpMockup } from "@/components/visuals/mockups";
 import { DEFAULT_SAMPLES } from "@/lib/industries";
-import Breadcrumbs from "@/components/shared/breadcrumbs";
 import ServicePricing from "@/components/site/service-pricing";
-import Lottie from "@/components/motion/lottie";
-import Words from "@/components/motion/words";
+import { ArrowRight, BarChart3, FileText, MapPin, Wrench } from "lucide-react";
+import { CtaBand, Faq, FeatureGrid, PageHero, SectionHead, Steps, btn } from "@/components/kit/kit";
 import RelatedGuides from "@/components/site/related-guides";
 
 const siteUrl = "https://xmelautomations.xyz/seo";
@@ -59,20 +58,25 @@ const jsonLd = {
   ],
 };
 
+const icon = "h-6 w-6";
 const features = [
   {
+    icon: <Wrench className={icon} />,
     title: "Technical SEO fixed first",
     body: "Titles, descriptions, structured data, sitemaps, page speed and mobile usability — the basics Google checks before anything else matters.",
   },
   {
+    icon: <FileText className={icon} />,
     title: "Content for real searches",
     body: "Pages and posts written for what your customers actually type into Google, not just broad, crowded terms you'll never win.",
   },
   {
+    icon: <MapPin className={icon} />,
     title: "Local presence",
     body: "Your Google Business Profile, local citations and directory listings, kept accurate and consistent across the web.",
   },
   {
+    icon: <BarChart3 className={icon} />,
     title: "Reporting you can read",
     body: "A monthly report in plain language: what moved, what we changed, and what's next — not a dashboard you have to decode yourself.",
   },
@@ -113,153 +117,89 @@ const faqs = [
   },
 ];
 
-const faqLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
-};
-
 export default function SeoPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
-        <div className="ink overflow-hidden">
-          <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-16 sm:pb-20">
-          <div className="mb-10">
-            <Breadcrumbs items={[{ name: "SEO" }]} />
-          </div>
-
-          <div className="relative">
-            <Lottie name="growth-chart" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-              SOLUTIONS — SEO
-            </span>
-            <h1 className="font-display text-[clamp(36px,6vw,64px)] font-medium leading-[1.02] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              <Words text="Get found on Google for the searches that bring you customers" />
-            </h1>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
-              Technical fixes, local search presence and content built around
-              real search queries — reported on every month, in plain
-              language.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-8">
-              <a
-                href="#pricing"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
-              >
+        <PageHero
+          crumbs={[{ name: "SEO" }]}
+          eyebrow="SEO"
+          title="Get found on Google"
+          italic="for the searches that bring you customers."
+          lede="Technical fixes, local search presence and content built around real search queries, reported on every month in plain language."
+          proof={["From $397 / ₹7,999 a month", "Month-to-month, no contract", "A plain-English monthly report"]}
+          actions={
+            <>
+              <a href="#pricing" className={btn.gold}>
                 See pricing
-                <span>→</span>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </a>
-              <a
-                href="/#book"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--bg-secondary)] text-[var(--text-primary)] text-[15px] font-semibold rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300"
-              >
-                Get a free audit
-              </a>
-            </div>
+              <a href="/#book" data-cta="book" data-cta-location="hero" className={btn.ghost}>Get a free audit</a>
+            </>
+          }
+          visual={
+            <figure>
+              <SerpMockup s={DEFAULT_SAMPLES.us} />
+              <figcaption className="mt-4 text-center text-[12px] text-[var(--text-tertiary)]">Illustration with a sample business, not a client.</figcaption>
+            </figure>
+          }
+        />
+
+        <section className="paper py-20 sm:py-28">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <SectionHead eyebrow="What's included" title="The fixes that" italic="actually move rankings." />
+            <FeatureGrid items={features} cols={4} />
           </div>
+        </section>
+
+        <section className="paper bg-[var(--bg-secondary)] py-20 sm:py-28">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <Steps eyebrow="How it works" title="From audit" italic="to steady growth." steps={steps} />
           </div>
-        </div>
-        <div className="bg-[var(--bg-secondary)] py-14 sm:py-20 px-4 sm:px-6">
-          <SerpMockup s={DEFAULT_SAMPLES.us} />
-          <p className="mt-6 text-center text-[12px] text-[var(--text-tertiary)]">Illustration with a sample business, not a client.</p>
-        </div>
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-16 pb-24">
+        </section>
 
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              WHAT&apos;S INCLUDED
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              The fixes that actually move rankings
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {features.map((f) => (
-                <div key={f.title} className="p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-                  <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-2">{f.title}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{f.body}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+        <section className="ink py-20 sm:py-24">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-px overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--border-subtle)]">
+            {[
+              { n: "8–12", label: "weeks until most clients see rankings start to move" },
+              { n: "3", label: "things Google weighs for local results: relevance, distance, prominence" },
+              { n: "0", label: "long-term contracts. Month-to-month, cancel any time" },
+            ].map((s) => (
+              <div key={s.label} className="bg-[#141417] p-8">
+                <p className="font-display text-[clamp(40px,5vw,64px)] leading-none text-[var(--gold)]">{s.n}</p>
+                <p className="mt-3 text-[15px] leading-snug text-[var(--text-secondary)]">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              HOW IT WORKS
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              From audit to steady growth
-            </h2>
-            <ol className="space-y-6">
-              {steps.map((s) => (
-                <li key={s.step} className="flex gap-6">
-                  <span className="font-mono text-[12px] text-[var(--accent)] pt-1">{s.step}</span>
-                  <div>
-                    <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-1">{s.title}</h3>
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{s.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              FAQ
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              Common questions
-            </h2>
-            <div className="space-y-6">
-              {faqs.map((f) => (
-                <div key={f.q} className="p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-                  <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-2">{f.q}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section id="pricing" className="scroll-mt-20 mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              PRICING
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              A monthly retainer, no long-term contract
-            </h2>
+        <section id="pricing" className="paper scroll-mt-20 py-20 sm:py-28">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <SectionHead eyebrow="Pricing" title="A monthly retainer." italic="No long-term contract." />
             <ServicePricing configs={SEO_SERVICE} idPrefix="seo" />
-          </section>
+          </div>
+        </section>
 
-          <RelatedGuides slugs={["google-map-pack-local-seo-contractors", "google-business-profile-india-local-seo", "contractor-website-checklist"]} title="SEO guides" className="mb-16" />
+        <section className="paper bg-[var(--bg-secondary)] py-20 sm:py-28">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <Faq faqs={faqs} />
+          </div>
+        </section>
 
-          <section className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-            <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-3">
-              Ready to get found on Google?
-            </h2>
-            <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6">
-              Tell me your website and what you sell — I&apos;ll run a free
-              audit and show you exactly what&apos;s holding your rankings
-              back.
-            </p>
-            <a
-              href="/#book"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
-            >
-              Start the conversation
-              <span>→</span>
-            </a>
-            <p className="text-[var(--text-tertiary)] text-sm mt-6">
-              Need a website before SEO makes sense?{" "}
-              <a href="/website-development" className="text-[var(--accent)] underline hover:no-underline">
-                See website development
-              </a>
-              .
-            </p>
-          </section>
-        </div>
+        <section className="paper py-20 sm:py-24">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <RelatedGuides slugs={["google-map-pack-local-seo-contractors", "google-business-profile-india-local-seo", "contractor-website-checklist"]} title="SEO guides" />
+          </div>
+        </section>
+
+        <CtaBand
+          title="Ready to get found"
+          italic="on Google?"
+          body="Tell me your website and what you sell. I'll run a free audit and show you exactly what's holding your rankings back."
+          secondary={{ label: "Need a website first?", href: "/website-development" }}
+        />
       </main>
     </>
   );

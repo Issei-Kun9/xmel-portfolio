@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import ChatDemo from "@/components/home/chat-demo";
+import { CalendarCheck, PhoneIncoming, Siren, Stethoscope } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
-import Link from "next/link";
-import Breadcrumbs from "@/components/shared/breadcrumbs";
-import RelatedGuides from "@/components/site/related-guides";
-import Lottie from "@/components/motion/lottie";
-import Words from "@/components/motion/words";
+import AiServicePage from "@/components/kit/ai-service-page";
 
 const siteUrl = "https://xmelautomations.xyz/ai-automation-home-services";
 
@@ -76,281 +72,72 @@ const faqs = [
   },
 ];
 
-const faqLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
+const icon = "h-6 w-6";
 
 export default function AiAutomationHomeServicesPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <AiServicePage
+        crumb="AI Automation for Home Services"
+        eyebrow="AI for home services"
+        title="AI automation for home services."
+        italic="Missed calls become booked jobs."
+        lede="An AI receptionist that answers every call while you're on a job site, qualifies the job and its urgency, books the slot into your calendar and escalates real emergencies to your on-call tech."
+        auditLabel="Get a free call-flow audit"
+        proof={["Answers every call, 24/7", "HVAC, plumbing, electrical, roofing", "14-day pilot on your real calls"]}
+        flow={{
+          replyIn: "38s",
+          steps: [
+            { kind: "missed", label: "Missed call · (512) 555-0148", time: "11:52 PM", text: "Everyone's on a job. The call would have gone to voicemail." },
+            { kind: "ai", label: "Your AI receptionist", time: "11:52 PM", text: "Sorry we missed you! What's going on, and what's your ZIP code?" },
+            { kind: "booked", label: "Job booked", time: "Tomorrow 7:00 AM", text: "Water heater leak, valve closed, ZIP 78704. Tech assigned." },
+          ],
+        }}
+        variant="home-services"
+        features={{
+          eyebrow: "What the system does",
+          title: "A receptionist that",
+          italic: "never misses a call.",
+          items: [
+            { icon: <PhoneIncoming className={icon} />, title: "Every call answered", body: "An AI voice agent picks up after hours, on weekends, on holidays and whenever every tech is on a job. No call goes to voicemail." },
+            { icon: <Stethoscope className={icon} />, title: "The job qualified on the call", body: "It asks what the problem is, where they are and how urgent it is, and classifies the job (repair, install or maintenance) as the conversation happens." },
+            { icon: <CalendarCheck className={icon} />, title: "The slot booked automatically", body: "Qualified jobs go straight into your calendar and the caller gets a text with the arrival window. The schedule fills itself, without phone tag." },
+            { icon: <Siren className={icon} />, title: "Emergencies escalated instantly", body: "A burst pipe, no heat, a gas smell or an electrical hazard goes straight to your on-call tech by phone, with the team alerted at the same time." },
+          ],
+        }}
+        steps={{
+          title: "From ringing phone",
+          italic: "to booked job.",
+          items: [
+            { title: "The call reaches the AI", body: "It picks up on the first ring in a natural voice. If someone on your team answers first, it stays out of the way and only handles calls that would go unanswered." },
+            { title: "The AI qualifies the job", body: "It asks what's needed, confirms the address and timing, and works out the job type and urgency from the conversation." },
+            { title: "Emergency, or booked in", body: "Urgent jobs go straight to the on-call tech. Everything else is booked into your calendar with a confirmation text, and logged." },
+            { title: "Your team sees it all", body: "A message with the caller's details, the job and the booked slot lands in your team channel. No phone log to check." },
+            { title: "Reminders run themselves", body: "Reminder texts cut no-shows and handle reschedules, so your techs don't have to chase the schedule." },
+          ],
+        }}
+        stack={{
+          lede: "The home services build shares the real estate system's backbone, tuned for voice-first call handling, on established tools rather than a black box.",
+          tools: ["n8n", "Vapi", "ElevenLabs", "GPT-4o-mini", "Twilio", "Google Calendar", "Google Sheets", "Slack"],
+          stats: [
+            { n: "1", label: "number: it goes live on your existing business line" },
+            { n: "24/7", label: "nights, weekends and holidays" },
+            { n: "<60s", label: "to text back a missed call" },
+            { n: "0", label: "calls sent to voicemail" },
+          ],
+          guide: { href: "/blog/voice-ai-agent-vs-human-isa", label: "Voice AI vs a human receptionist, compared" },
+        }}
+        faqs={faqs}
+        guides={["missed-call-automation-contractors", "ai-receptionist-hvac", "home-service-lead-response-automation", "ai-lead-response-cost", "voice-ai-agent-vs-human-isa", "n8n-workflow-automation-guide"]}
+        guidesTitle="Home services guides"
+        cta={{
+          title: "How many calls did you",
+          italic: "miss this week?",
+          body: "Every missed call is a job that went to whoever picked up. Tell us how your calls come in today and we'll show you what an AI receptionist would capture. No obligation.",
+        }}
+        crossLink={{ lead: "Selling on property portals instead?", href: "/ai-automation-real-estate", label: "See AI for real estate" }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
-
-      <main className="min-h-screen bg-[var(--bg-primary)]">
-        <div className="ink overflow-hidden">
-          <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-16 sm:pb-20">
-          <div className="mb-10">
-            <Breadcrumbs
-              items={[{ name: "AI Automation for Home Services" }]}
-            />
-          </div>
-
-          {/* Header */}
-          <div className="relative">
-            <Lottie name="tools" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-              SOLUTIONS — HOME SERVICES
-            </span>
-            <h1 className="font-display text-[clamp(36px,6vw,64px)] font-medium leading-[1.02] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              <Words text="AI automation for home services" />
-            </h1>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
-              An AI receptionist that answers every call while you&apos;re on a
-              job site — qualifies the job type and urgency, books the slot into
-              your calendar, and escalates real emergencies to your on-call
-              technician. Missed calls become booked jobs.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-8">
-              <a
-                href="/#book"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
-              >
-                Get a free call-flow audit
-                <span>→</span>
-              </a>
-              <Link
-                href="/tools/roi-calculator"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--bg-secondary)] text-[var(--text-primary)] text-[15px] font-semibold rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300"
-              >
-                Calculate your ROI
-              </Link>
-            </div>
-          </div>
-          </div>
-        </div>
-        <ChatDemo variant="home-services" />
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-16 pb-24">
-
-          {/* What the system does */}
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              WHAT THE SYSTEM DOES
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              AI automation for home services: a receptionist that never misses a call
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                {
-                  title: "100% call answering",
-                  body: "Every inbound call is answered by an AI voice agent built on Vapi with ElevenLabs voice synthesis — after hours, weekends, holidays, and while every tech is on a job site. No call goes to voicemail.",
-                },
-                {
-                  title: "Job qualification on the call",
-                  body: "The AI asks the caller what the problem is, where they are, and how urgent it is. GPT-4o-mini classifies the job type — repair, install, maintenance — and the urgency level in real time.",
-                },
-                {
-                  title: "Automatic slot booking",
-                  body: "Qualified jobs are booked directly into Google Calendar. The caller gets a confirmation SMS with the technician's arrival window, so the schedule fills itself without phone tag.",
-                },
-                {
-                  title: "Emergency escalation",
-                  body: "When the AI detects a true emergency — a burst pipe, no heat, an electrical hazard — it routes the call instantly to the on-call technician via Twilio, and notifies the team on Slack.",
-                },
-              ].map((f) => (
-                <div
-                  key={f.title}
-                  className="p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]"
-                >
-                  <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-2">
-                    {f.title}
-                  </h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    {f.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* How it works */}
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              HOW IT WORKS
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              From ringing phone to booked job — automatically
-            </h2>
-
-            <ol className="space-y-6">
-              {[
-                {
-                  step: "01",
-                  title: "Call lands on the AI receptionist",
-                  body: "A caller dials your business number and the AI picks up on the first ring, in a natural voice. If a human answers first, the system never interferes — it only handles calls that would otherwise go unanswered.",
-                },
-                {
-                  step: "02",
-                  title: "The AI qualifies the job",
-                  body: "It asks what the caller needs, confirms the address and time constraints, and classifies the job type and urgency using GPT-4o-mini reasoning over the live conversation.",
-                },
-                {
-                  step: "03",
-                  title: "Emergency or scheduled booking",
-                  body: "Urgent jobs trigger an instant escalation to the on-call technician. Everything else is booked into Google Calendar with a confirmation SMS, and the job is logged in Google Sheets.",
-                },
-                {
-                  step: "04",
-                  title: "Your team sees everything in Slack",
-                  body: "A Slack notification with the caller's details, job type, and booked slot lands in your team channel. You know what's booked without touching a phone log.",
-                },
-                {
-                  step: "05",
-                  title: "Follow-up happens automatically",
-                  body: "No-shows and reschedules are handled by scheduled SMS reminders. The system stays on top of the schedule so your techs don't have to.",
-                },
-              ].map((s) => (
-                <li key={s.step} className="flex gap-6">
-                  <span className="font-mono text-[12px] text-[var(--accent)] pt-1">
-                    {s.step}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-1">
-                      {s.title}
-                    </h3>
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                      {s.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          {/* Architecture note */}
-          <section className="mb-16 p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-            <div className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)] mb-4">
-              SYSTEM ARCHITECTURE
-            </div>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
-              The home services build shares the same n8n backbone as the real
-              estate system, tuned for voice-first call handling. The stack:
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "n8n",
-                "Vapi",
-                "ElevenLabs",
-                "GPT-4o-mini",
-                "Twilio",
-                "Google Calendar",
-                "Google Sheets",
-                "Slack",
-              ].map((t) => (
-                <span
-                  key={t}
-                  className="inline-block px-3 py-1 rounded-full border border-[var(--border-subtle)] font-mono text-[12px] text-[var(--text-tertiary)]"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-            <div className="mt-6">
-              <Link
-                href="/blog/voice-ai-agent-vs-human-isa"
-                className="inline-block py-1.5 font-mono text-xs uppercase tracking-[0.12em] text-[var(--accent)] hover:opacity-80 transition-opacity duration-200"
-              >
-                Voice AI vs human receptionist — the full comparison →
-              </Link>
-            </div>
-          </section>
-
-          {/* FAQ */}
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              FAQ
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              Common questions
-            </h2>
-
-            <div className="space-y-6">
-              {faqs.map((f) => (
-                <div
-                  key={f.q}
-                  className="p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]"
-                >
-                  <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-2">
-                    {f.q}
-                  </h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    {f.a}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Pricing */}
-          <section className="mb-16 rounded-2xl border border-[var(--accent-line)] bg-[var(--accent-dim)] p-6 lg:p-8">
-            <h2 className="font-display text-xl font-semibold text-[var(--text-primary)]">What it costs</h2>
-            <p className="mt-2 text-[15px] leading-relaxed text-[var(--text-secondary)]">
-              Starter from <strong className="text-[var(--text-primary)]">$997</strong> setup + $197/month in the US, or 
-              <strong className="text-[var(--text-primary)]">₹24,999</strong> setup + ₹4,999/month in India — with a 14-day pilot
-              on your real leads. If it doesn&apos;t outperform your current process, you owe nothing.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[15px] font-semibold">
-              <a href="/#pricing" className="inline-block py-1 text-[var(--accent)] underline underline-offset-4">US pricing</a>
-              <a href="/in#pricing" className="inline-block py-1 text-[var(--accent)] underline underline-offset-4">India pricing</a>
-              <Link href="/blog/ai-lead-response-cost" className="inline-block py-1 text-[var(--accent)] underline underline-offset-4">How pricing compares</Link>
-            </div>
-          </section>
-
-          <RelatedGuides slugs={["missed-call-automation-contractors", "ai-receptionist-hvac", "home-service-lead-response-automation", "ai-lead-response-cost", "voice-ai-agent-vs-human-isa", "n8n-workflow-automation-guide"]} limit={6} title="Home services guides" className="mb-16" />
-
-          {/* CTA */}
-          <section className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-            <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-3">
-              How many calls did you miss this week?
-            </h2>
-            <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6">
-              Every missed call is a job that went to whoever picked up. Tell us
-              how your calls come in today and we&apos;ll show you what an AI
-              receptionist would capture — no obligation.
-            </p>
-            <a
-              href="/#book"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
-            >
-              Start the conversation
-              <span>→</span>
-            </a>
-            <p className="text-[var(--text-tertiary)] text-sm mt-6">
-              Selling on property portals instead?{" "}
-              <Link
-                href="/ai-automation-real-estate"
-                className="text-[var(--accent)] underline hover:no-underline"
-              >
-                See AI automation for real estate agents
-              </Link>
-              .
-            </p>
-          </section>
-        </div>
-      </main>
     </>
   );
 }
