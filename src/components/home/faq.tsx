@@ -27,6 +27,25 @@ function faqsFor(cfg: MarketConfig) {
       a: "The AI introduces itself as your assistant and writes naturally. It never pretends to be you, and it hands the conversation to you the moment someone asks for a person or needs something unusual.",
     },
     {
+      q: "What happens to my customers' data?",
+      a: "Lead details are used for one thing: replying to that lead and booking them in. Every conversation is logged to your own Google Sheet or CRM, so you always have the full record. We never sell or share it, and if you leave, it stays with you.",
+    },
+    {
+      q: "What if the AI says something wrong?",
+      a: "It only answers from the facts you approve during setup: your services, areas, hours and how you like to price. Anything outside that (a custom quote, a complaint, a tricky question) goes straight to you with the conversation so far. You can read every message it sends.",
+    },
+    {
+      q: m === "in" ? "Is WhatsApp automation allowed?" : "Is it legal to text leads automatically?",
+      a:
+        m === "in"
+          ? "Yes, when it's done properly. The AI replies to people who messaged you first, through WhatsApp's official Business Platform, and anyone who asks to stop is never messaged again."
+          : "Yes, when it's done properly. The AI only texts people who contacted you first, for the enquiry they made. Anyone who replies STOP is opted out automatically and never texted again.",
+    },
+    {
+      q: "I already have a website. Do I need a new one?",
+      a: "Not necessarily. The AI and SEO work with the site you have. If it's slow, hard to use on a phone or doesn't show up on Google, we'll say so on the call, and only then suggest a rebuild.",
+    },
+    {
       q: "Do I need to be technical?",
       a: "No. We build, connect and run everything. You keep using your phone, your calendar and WhatsApp — we handle the rest.",
     },

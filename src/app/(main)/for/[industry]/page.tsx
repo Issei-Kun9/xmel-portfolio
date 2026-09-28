@@ -8,6 +8,8 @@ import { pageMetadata } from "@/lib/seo";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 import MarketMockups from "@/components/visuals/market-mockups";
 import Lottie from "@/components/motion/lottie";
+import ChatDemo from "@/components/home/chat-demo";
+import { INDUSTRY_CHATS } from "@/lib/chat-scripts";
 
 export const dynamicParams = false;
 
@@ -93,6 +95,8 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
           ))}
         </ul>
       </section>
+
+      {INDUSTRY_CHATS[ind.slug] && <ChatDemo scripts={INDUSTRY_CHATS[ind.slug]} eyebrow={`The AI, for ${ind.plural}`} />}
 
       <section className="bg-[var(--bg-secondary)] py-16 sm:py-24">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">

@@ -6,6 +6,7 @@ import HomeFaq from "./faq";
 import ServicesShowcase from "./services-showcase";
 import Bundle from "./bundle";
 import HowWeWork from "./how-we-work";
+import Commitments from "./commitments";
 import BeforeAfter from "./before-after";
 import OutcomeTicker from "./outcome-ticker";
 import ScrollStory from "./scroll-story";
@@ -31,6 +32,7 @@ export default function HomePage({ market }: { market: Market }) {
         <Bundle market={market} />
         <div className="gold-rule" aria-hidden="true" />
         <HowWeWork />
+        <Commitments />
         <HomeFaq cfg={cfg} />
         <Booking>
           <div className="mt-8 rounded-2xl bg-[var(--bg-secondary)] p-6">
