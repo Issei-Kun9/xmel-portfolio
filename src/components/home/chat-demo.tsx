@@ -3,100 +3,48 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check, CheckCheck, RotateCcw, Phone, Video, ChevronLeft, BellRing } from "lucide-react";
 import type { Market } from "@/lib/market";
+import { HOME_SERVICES, REAL_ESTATE, type Script, type ScriptSet } from "@/lib/chat-scripts";
 import Flag from "@/components/shared/flag";
 
-type Msg = { from: "lead" | "ai"; text: string; time: string };
-type Script = {
-  contact: string;
-  channel: string;
-  source: string;
-  messages: Msg[];
-  booked: string;
-  notify: string;
-};
-
-/** Simulated conversations — clearly labelled as a demo on the page. */
-const SCRIPTS: Record<Market, Script> = {
-  us: {
-    contact: "Sarah M.",
-    channel: "Text message",
-    source: "Zillow",
-    messages: [
-      { from: "lead", text: "Hi, is the 3-bed on Oak Street still available?", time: "2:14 AM" },
-      { from: "ai", text: "Hi Sarah! Yes, it is. Quick question so I can help: are you hoping to move in the next 3 months, and are you pre-approved?", time: "2:14 AM" },
-      { from: "lead", text: "Yes to both, within 2 months.", time: "2:16 AM" },
-      { from: "ai", text: "Great. I can set up a showing: Saturday 11 AM or Sunday 4 PM?", time: "2:16 AM" },
-      { from: "lead", text: "Saturday works", time: "2:17 AM" },
-      { from: "ai", text: "Booked! Saturday 11 AM at 14 Oak Street. I'll text you a reminder the day before.", time: "2:17 AM" },
-    ],
-    booked: "Showing booked · Sat 11:00 AM",
-    notify: "Hot lead: pre-approved, moving in 2 months",
-  },
-  in: {
-    contact: "Priya S.",
-    channel: "WhatsApp",
-    source: "MagicBricks",
-    messages: [
-      { from: "lead", text: "Hi, Baner wala 3BHK abhi available hai?", time: "2:14 AM" },
-      { from: "ai", text: "Hi Priya! Haan, available hai. Aap kab tak shift karna chahte hain, aur budget roughly ₹1.2 Cr ke aas-paas hai?", time: "2:14 AM" },
-      { from: "lead", text: "Haan, 2 mahine mein. Budget theek hai.", time: "2:16 AM" },
-      { from: "ai", text: "Perfect. Site visit ke liye Saturday 11 AM ya Sunday 4 PM?", time: "2:16 AM" },
-      { from: "lead", text: "Saturday 11 AM", time: "2:17 AM" },
-      { from: "ai", text: "Done! Saturday 11 AM site visit booked. Location pin aur reminder bhej diya hai.", time: "2:17 AM" },
-    ],
-    booked: "Site visit booked · Sat 11:00 AM",
-    notify: "Hot lead: budget ₹1.2 Cr, buying in 2 months",
-  },
-};
-
-const HOME_SERVICES: Record<Market, Script> = {
-  us: {
-    contact: "Mike R.",
-    channel: "Text message",
-    source: "your website",
-    messages: [
-      { from: "lead", text: "Water heater is leaking all over the garage. Can someone come tonight?", time: "11:52 PM" },
-      { from: "ai", text: "Sorry to hear that, Mike. First, turn the cold-water valve on top of the heater clockwise to stop the flow. What's your ZIP code?", time: "11:52 PM" },
-      { from: "lead", text: "Done, it stopped. 78704", time: "11:54 PM" },
-      { from: "ai", text: "Thanks. A technician can be there between 7 and 8 AM, or I can flag it as an emergency call-out tonight. Which do you prefer?", time: "11:54 PM" },
-      { from: "lead", text: "7 AM is fine now that it's off", time: "11:55 PM" },
-      { from: "ai", text: "Booked for 7 AM. You'll get a text when the tech is on the way.", time: "11:55 PM" },
-    ],
-    booked: "Job booked · Tomorrow 7:00 AM",
-    notify: "Water heater leak, valve closed, ZIP 78704",
-  },
-  in: {
-    contact: "Rahul K.",
-    channel: "WhatsApp",
-    source: "Google Maps",
-    messages: [
-      { from: "lead", text: "AC se paani tapak raha hai, aaj koi aa sakta hai?", time: "9:40 PM" },
-      { from: "ai", text: "Hi Rahul! Haan, zaroor. Split AC hai ya window? Aur aapka area/pincode?", time: "9:40 PM" },
-      { from: "lead", text: "Split, 1.5 ton. Andheri West 400053", time: "9:42 PM" },
-      { from: "ai", text: "Theek hai. Kal subah 10-11 ya shaam 5-6 ka slot free hai. Kaunsa chalega?", time: "9:42 PM" },
-      { from: "lead", text: "Subah 10 baje", time: "9:43 PM" },
-      { from: "ai", text: "Booked! Kal 10 AM technician aa jayega. Visit charge ₹299, service ke baad adjust ho jayega.", time: "9:43 PM" },
-    ],
-    booked: "Service booked · Tomorrow 10:00 AM",
-    notify: "Split AC leak, Andheri West, 400053",
-  },
-};
+/** "2:14 AM" → asleep, "9:40 PM" → off the clock, "4:12 PM" → on a job. */
+function busyWith(time: string) {
+  const [, h, ap] = time.match(/^(\d+):\d+ (AM|PM)$/) ?? [];
+  const hour = (Number(h) % 12) + (ap === "PM" ? 12 : 0);
+  if (hour < 6) return "asleep";
+  if (hour >= 19) return "off the clock";
+  return "on a job";
+}
 
 /** Timeline beside the phone; each step lights up when the chat reaches it. */
-const STEPS = [
-  { at: 1, t: "0:00", title: "A lead messages at 2:14 AM", body: "From a portal ad, your website or WhatsApp — while you're asleep." },
-  { at: 2, t: "0:42", title: "The AI replies in 42 seconds", body: "Warm, natural, in your tone — and in the lead's language." },
-  { at: 4, t: "2:10", title: "It qualifies them", body: "Budget, timeline, pre-approval: the questions you'd ask." },
-  { at: 6, t: "3:05", title: "It books the visit", body: "Straight into your calendar, with a reminder sent." },
-  { at: 7, t: "3:06", title: "You wake up to a booked, qualified lead", body: "A summary lands on your phone. You just show up." },
-];
+function stepsFor(script: Script) {
+  const n = script.messages.length;
+  return [
+    { at: 1, t: "0:00", title: `A lead messages at ${script.messages[0].time}`, body: `From ${script.source}, while you're busy, off the clock or asleep.` },
+    { at: 2, t: "0:42", title: "The AI replies in 42 seconds", body: "Warm, natural, in your tone, and in the customer's language." },
+    { at: 4, t: "2:10", title: "It qualifies them", body: `${script.qualifies}: the questions you'd ask.` },
+    { at: n, t: "3:05", title: `It books ${script.books}`, body: "Straight into your calendar, with a reminder sent." },
+    { at: n + 1, t: "3:06", title: "You get a booked, qualified lead", body: "A summary lands on your phone. You just show up." },
+  ];
+}
 
 const TYPING_MS = 1100;
 const GAP_MS = 900;
 
-export default function ChatDemo({ market: initial = "us", variant = "real-estate" }: { market?: Market; variant?: "real-estate" | "home-services" }) {
+export default function ChatDemo({
+  market: initial = "us",
+  variant = "real-estate",
+  scripts,
+  eyebrow = "Watch it work",
+}: {
+  market?: Market;
+  variant?: "real-estate" | "home-services";
+  /** Overrides `variant` with a specific conversation (industry pages). */
+  scripts?: ScriptSet;
+  eyebrow?: string;
+}) {
   const [market, setMarket] = useState<Market>(initial);
-  const script = (variant === "home-services" ? HOME_SERVICES : SCRIPTS)[market];
+  const script = (scripts ?? (variant === "home-services" ? HOME_SERVICES : REAL_ESTATE))[market];
+  const steps = stepsFor(script);
   const total = script.messages.length + 1; // + the booked/notify step
   const [shown, setShown] = useState(0);
   const [typing, setTyping] = useState(false);
@@ -153,9 +101,9 @@ export default function ChatDemo({ market: initial = "us", variant = "real-estat
       <div ref={box} className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--gold)]">Watch it work</p>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--gold)]">{eyebrow}</p>
             <h2 className="mt-3 font-display text-[clamp(32px,4.8vw,56px)] font-medium leading-[1.04] tracking-[-0.02em] max-w-2xl">
-              2:14 AM. A lead messages. <span className="gold-italic">You&apos;re asleep.</span>
+              {script.messages[0].time}. A lead messages. <span className="gold-italic">You&apos;re {busyWith(script.messages[0].time)}.</span>
             </h2>
           </div>
           <div className="flex items-center gap-3">
@@ -248,7 +196,7 @@ export default function ChatDemo({ market: initial = "us", variant = "real-estat
 
           {/* Timeline */}
           <ol className="relative space-y-7 border-l border-[var(--border-subtle)] pl-8">
-            {STEPS.map((s) => {
+            {steps.map((s) => {
               const on = shown >= s.at;
               return (
                 <li key={s.title} className={`relative transition-opacity duration-500 ${on ? "opacity-100" : "opacity-35"}`}>
