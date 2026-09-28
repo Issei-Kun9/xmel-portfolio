@@ -47,12 +47,20 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
   return (
     <main className="min-h-screen bg-[var(--bg-primary)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <div className="ink overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-16 sm:pb-24">
+      <div
+        className="ink overflow-hidden"
+        style={{ backgroundImage: `radial-gradient(55% 70% at 85% 30%, ${ind.mood.tint}33, transparent 70%)` }}
+      >
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-16 sm:pb-24 grid lg:grid-cols-[1.35fr_0.65fr] gap-10 items-center">
+          <div>
           <div className="mb-10"><Breadcrumbs items={[{ name: "Industries" }, { name: ind.name }]} /></div>
-          <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[var(--gold)]">For {ind.plural}</p>
+          <p className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.12em]" style={{ color: ind.mood.tint }}>
+            <span className="h-2 w-2 rounded-full" style={{ background: ind.mood.tint }} aria-hidden="true" />
+            For {ind.plural}
+          </p>
           <h1 className="mt-4 font-display text-[clamp(38px,6.4vw,76px)] font-medium leading-[1.0] tracking-[-0.03em] max-w-4xl">
-            More jobs for {ind.plural}. <span className="gold-italic">Without chasing a single lead.</span>
+            More jobs for {ind.plural}.{" "}
+            <span className="italic font-normal" style={{ color: ind.mood.tint }}>{ind.mood.tagline}</span>
           </h1>
           <p className="mt-6 text-[18px] leading-relaxed text-[var(--text-secondary)] max-w-2xl">
             A website that makes people trust you, SEO that puts you first on Google, and AI that
@@ -61,6 +69,13 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="/#build" className="inline-flex h-12 items-center rounded-xl bg-[var(--gold)] px-6 text-[15px] font-semibold text-[var(--ink)] hover:brightness-110">Build your plan →</a>
             <a href="/#book" className="inline-flex h-12 items-center rounded-xl border border-[var(--border-strong)] px-6 text-[15px] font-semibold hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors">Book a 15-min call</a>
+          </div>
+          </div>
+          <div className="relative mx-auto hidden aspect-square w-full max-w-[340px] lg:block" aria-hidden="true">
+            <div className="absolute inset-0 rounded-full border" style={{ borderColor: `${ind.mood.tint}55` }} />
+            <div className="absolute inset-[12%] rounded-full border border-dashed" style={{ borderColor: `${ind.mood.tint}33` }} />
+            <div className="absolute inset-[18%] rounded-full blur-2xl" style={{ background: `radial-gradient(closest-side, ${ind.mood.tint}40, transparent)` }} />
+            <Lottie name={ind.mood.icon} color={ind.mood.tint} strokeWidth={1.4} className="absolute inset-[22%] h-[56%] w-[56%]" />
           </div>
         </div>
       </div>

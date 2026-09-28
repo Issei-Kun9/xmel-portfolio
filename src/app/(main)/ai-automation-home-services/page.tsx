@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ChatDemo from "@/components/home/chat-demo";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
@@ -139,6 +140,7 @@ export default function AiAutomationHomeServicesPage() {
           </div>
           </div>
         </div>
+        <ChatDemo variant="home-services" />
         <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-16 pb-24">
 
           {/* What the system does */}
