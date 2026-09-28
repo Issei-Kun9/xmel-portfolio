@@ -93,7 +93,7 @@ export default function SiteHeader() {
   return (
     <>
     <header
-      className={`ink sticky top-0 z-50 !bg-[rgba(15,15,18,0.9)] backdrop-blur-md transition-[border-color,box-shadow,translate] duration-300 border-b ${
+      className={`site-header ink sticky top-0 z-50 !bg-[rgba(15,15,18,0.9)] backdrop-blur-md transition-[border-color,box-shadow,translate] duration-300 border-b ${
         scrolled ? "border-[var(--border-subtle)] shadow-[0_1px_20px_rgba(0,0,0,0.35)]" : "border-transparent"
       } ${tucked ? "-translate-y-full" : "translate-y-0"}`}
     >

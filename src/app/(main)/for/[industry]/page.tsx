@@ -86,7 +86,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
             <a href="/#book" className="inline-flex h-12 items-center rounded-xl border border-[var(--border-strong)] px-6 text-[15px] font-semibold hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors">Book a 15-min call</a>
           </div>
           </div>
-          <div className="relative mx-auto hidden aspect-square w-full max-w-[340px] lg:block" aria-hidden="true">
+          <div className="relative mx-auto aspect-square w-full max-w-[200px] sm:max-w-[260px] lg:max-w-[340px]" aria-hidden="true">
             <div className="absolute inset-0 rounded-full border" style={{ borderColor: `${ind.mood.tint}55` }} />
             <div className="absolute inset-[12%] rounded-full border border-dashed" style={{ borderColor: `${ind.mood.tint}33` }} />
             <div className="absolute inset-[18%] rounded-full blur-2xl" style={{ background: `radial-gradient(closest-side, ${ind.mood.tint}40, transparent)` }} />

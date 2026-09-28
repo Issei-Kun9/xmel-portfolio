@@ -34,7 +34,7 @@ export default function CtaButton({
     variant === "primary"
       ? whatsapp
         ? "bg-[var(--whatsapp)] text-[#06300E] hover:brightness-105"
-        : "bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)]"
+        : "cta-book bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)]"
       : "border border-[var(--border-strong)] bg-[var(--bg-primary)] text-[var(--ink)] hover:border-[var(--gold)]";
 
   return (
