@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Flag from "@/components/shared/flag";
 import { ArrowUpRight } from "lucide-react";
 import { INSPIRATION, INSPO_CATEGORIES, INDUSTRY_TO_CATEGORY, shotFor, type InspoMarket } from "@/lib/inspiration";
 
@@ -42,7 +43,7 @@ export default function InspirationGallery() {
         {(["in", "us"] as const).map((m) => (
           <button key={m} type="button" aria-pressed={market === m} onClick={() => setMarket(m)}
             className={`rounded-full px-5 py-2 transition-colors ${market === m ? "bg-[var(--ink)] text-[var(--gold)]" : "text-[var(--text-tertiary)] hover:text-[var(--text-primary)]"}`}>
-            {m === "in" ? "🇮🇳 India" : "🇺🇸 United States"}
+            <span className="inline-flex items-center gap-2"><Flag market={m} />{m === "in" ? "India" : "United States"}</span>
           </button>
         ))}
       </div>
@@ -65,7 +66,7 @@ export default function InspirationGallery() {
                 <div className="relative aspect-[16/10] overflow-hidden bg-[var(--bg-secondary)]">
                   <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-[radial-gradient(60%_60%_at_50%_40%,rgba(201,168,106,0.16),transparent)]" aria-hidden="true">
                     <span className="font-display text-[26px] text-[var(--text-primary)]">{s.name}</span>
-                    <span className="text-[13px] text-[var(--text-tertiary)]">{host} ↗</span>
+                    <span className="inline-flex items-center gap-1 text-[13px] text-[var(--text-tertiary)]">{host}<ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></span>
                   </span>
                   {shotFor(s.url) && (
                     // eslint-disable-next-line @next/next/no-img-element -- small static webp
@@ -89,10 +90,10 @@ export default function InspirationGallery() {
                 </div>
                 <p className="mt-2 flex-1 text-[14px] leading-relaxed text-[var(--text-secondary)]">{s.why}</p>
                 <div className="mt-4 flex items-center justify-between gap-3 border-t border-[var(--border-subtle)] pt-4 text-[14px] font-semibold">
-                  <a href={s.url} target="_blank" rel="noopener noreferrer nofollow" className="inline-flex items-center gap-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                  <a href={s.url} target="_blank" rel="noopener noreferrer nofollow" className="inline-flex items-center gap-1 py-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
                     Open site <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                   </a>
-                  <a href={`/contact?plan=${encodeURIComponent(`A website in the style of ${s.name} (${host})`)}`} className="text-[var(--accent)] link-grow">
+                  <a href={`/contact?plan=${encodeURIComponent(`A website in the style of ${s.name} (${host})`)}`} className="inline-flex items-center py-2 text-[var(--accent)] link-grow">
                     I want this style →
                   </a>
                 </div>

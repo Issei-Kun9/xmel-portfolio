@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "motion/react";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import type { MarketConfig } from "@/lib/market";
 import { DEFAULT_SAMPLES } from "@/lib/industries";
 import PhoneMock from "@/components/visuals/phone-mock";
@@ -43,6 +43,14 @@ export default function ScrollStory({ cfg }: { cfg: MarketConfig }) {
       {/* Desktop: pinned stage, chapters advance with scroll. */}
       <div ref={ref} className="hidden lg:block relative h-[300vh]">
         <div className="sticky top-16 h-[calc(100vh-4rem)] max-w-[1200px] mx-auto px-6 grid grid-cols-[0.9fr_1.1fr] gap-16 items-center">
+          <div className="relative">
+            {/* Progress: a gold rail that fills as the story advances, plus a chapter counter. */}
+            <div className="absolute -left-6 top-0 bottom-0 w-px bg-[var(--border-subtle)]" aria-hidden="true">
+              <motion.div className="h-full w-full origin-top bg-[var(--gold)]" style={{ scaleY: scrollYProgress }} />
+            </div>
+            <p className="mb-6 font-display text-[15px] tracking-[0.2em] text-[var(--text-tertiary)]" aria-live="polite">
+              <span className="text-[var(--accent)]">0{active + 1}</span> / 03
+            </p>
           <ol className="space-y-8">
             {CHAPTERS.map((c, i) => (
               <li key={c.kicker} className={`border-l-2 pl-6 transition-all duration-500 ${active === i ? "border-[var(--gold)] opacity-100" : "border-[var(--border-subtle)] opacity-35"}`}>
@@ -57,6 +65,7 @@ export default function ScrollStory({ cfg }: { cfg: MarketConfig }) {
               </li>
             ))}
           </ol>
+          </div>
           <div className="relative h-[600px]">
             {frames.map((f, i) => (
               <div

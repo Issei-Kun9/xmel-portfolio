@@ -70,7 +70,7 @@ export default function SiteHeader() {
             <a
               key={l.href}
               href={l.href}
-              className="text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors"
+              className="inline-flex items-center py-2 text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors"
             >
               {l.name}
             </a>
@@ -86,7 +86,7 @@ export default function SiteHeader() {
             <a
               key={l.href}
               href={l.href}
-              className="text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors"
+              className="inline-flex items-center py-2 text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors"
             >
               {l.name}
             </a>

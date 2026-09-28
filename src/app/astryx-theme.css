@@ -6,11 +6,11 @@
  */
 :root {
   color-scheme: light;
-  --color-accent: #8A6A2F;
+  --color-accent: #7D5F27;
   --color-accent-muted: rgba(201, 168, 106, 0.18);
   --color-on-accent: #FFFFFF;
-  --color-text-accent: #8A6A2F;
-  --color-icon-accent: #8A6A2F;
+  --color-text-accent: #7D5F27;
+  --color-icon-accent: #7D5F27;
   --color-background-body: #FAF7F0;
   --color-background-surface: #FAF7F0;
   --color-background-card: #FFFFFF;

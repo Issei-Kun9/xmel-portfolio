@@ -33,7 +33,7 @@ export default function RelatedGuides({
         <h2 id="related-guides" className="font-display text-[clamp(22px,3vw,30px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)]">
           {title}
         </h2>
-        <Link href="/blog" className="text-[14px] font-semibold text-[var(--accent)] hover:underline underline-offset-4 shrink-0">
+        <Link href="/blog" className="inline-block py-1.5 text-[14px] font-semibold text-[var(--accent)] hover:underline underline-offset-4 shrink-0">
           All guides
         </Link>
       </div>

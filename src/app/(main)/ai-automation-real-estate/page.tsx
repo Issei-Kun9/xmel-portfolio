@@ -270,7 +270,7 @@ export default function AiAutomationRealEstatePage() {
             <div className="mt-6">
               <Link
                 href="/blog/n8n-workflow-automation-guide"
-                className="font-mono text-xs uppercase tracking-[0.12em] text-[var(--accent)] hover:opacity-80 transition-opacity duration-200"
+                className="inline-block py-1.5 font-mono text-xs uppercase tracking-[0.12em] text-[var(--accent)] hover:opacity-80 transition-opacity duration-200"
               >
                 Read the n8n workflow build guide →
               </Link>
@@ -312,9 +312,9 @@ export default function AiAutomationRealEstatePage() {
               on your real leads. If it doesn&apos;t outperform your current process, you owe nothing.
             </p>
             <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[15px] font-semibold">
-              <a href="/#pricing" className="text-[var(--accent)] underline underline-offset-4">US pricing</a>
-              <a href="/in#pricing" className="text-[var(--accent)] underline underline-offset-4">India pricing</a>
-              <Link href="/blog/ai-lead-response-cost" className="text-[var(--accent)] underline underline-offset-4">How pricing compares</Link>
+              <a href="/#pricing" className="inline-block py-1 text-[var(--accent)] underline underline-offset-4">US pricing</a>
+              <a href="/in#pricing" className="inline-block py-1 text-[var(--accent)] underline underline-offset-4">India pricing</a>
+              <Link href="/blog/ai-lead-response-cost" className="inline-block py-1 text-[var(--accent)] underline underline-offset-4">How pricing compares</Link>
             </div>
           </section>
 

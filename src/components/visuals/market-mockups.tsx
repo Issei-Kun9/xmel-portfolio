@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Flag from "@/components/shared/flag";
 import type { Market } from "@/lib/market";
 import type { Sample } from "@/lib/industries";
 import { SerpMockup, SiteMockup } from "./mockups";
@@ -17,7 +18,7 @@ export default function MarketMockups({ samples }: { samples: Record<Market, Sam
         {(["us", "in"] as const).map((k) => (
           <button key={k} type="button" aria-pressed={m === k} onClick={() => setM(k)}
             className={`rounded-full px-4 py-1.5 transition-colors ${m === k ? "bg-[var(--ink)] text-[var(--gold)]" : "text-[var(--text-tertiary)] hover:text-[var(--text-primary)]"}`}>
-            {k === "us" ? "🇺🇸 United States" : "🇮🇳 India"}
+            <span className="inline-flex items-center gap-2"><Flag market={k} />{k === "us" ? "United States" : "India"}</span>
           </button>
         ))}
       </div>

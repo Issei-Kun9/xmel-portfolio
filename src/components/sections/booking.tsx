@@ -106,7 +106,7 @@ export default function Booking({ children }: { children?: React.ReactNode }) {
                 </div>
                 <div className="flex flex-col items-center gap-2 pb-6">
                 <span className="text-[14px] text-[var(--text-tertiary)]">Loading available times…</span>
-                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="text-[14px] font-semibold text-[var(--accent)] underline underline-offset-4">
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-[14px] font-semibold text-[var(--accent)] underline underline-offset-4">
                   Open the calendar in a new tab
                 </a>
                 </div>

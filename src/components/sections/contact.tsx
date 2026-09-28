@@ -84,7 +84,7 @@ export default function Contact() {
             <div className="mb-8">
               <MailtoLink
                 email={CONTACT_EMAIL}
-                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
+                className="flex items-center gap-3 py-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
               >
                 <span className="font-mono text-[12px] text-[var(--text-tertiary)] w-16">EMAIL</span>
                 <span className="font-mono text-sm">{CONTACT_EMAIL}</span>
@@ -94,7 +94,7 @@ export default function Contact() {
             <div className="mb-8">
               <a
                 href="tel:+917905214791"
-                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
+                className="flex items-center gap-3 py-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
               >
                 <span className="font-mono text-[12px] text-[var(--text-tertiary)] w-16">PHONE</span>
                 <span className="font-mono text-sm">+91 79052 14791</span>
