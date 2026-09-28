@@ -11,18 +11,18 @@ export const dynamic = "force-static";
  * so new posts appear here automatically.
  */
 const PAGES: { path: string; lastmod: string; homepage?: boolean }[] = [
-  { path: MARKET_PATH.us, lastmod: "2026-09-22", homepage: true },
-  { path: MARKET_PATH.in, lastmod: "2026-09-22", homepage: true },
+  { path: MARKET_PATH.us, lastmod: "2026-09-28", homepage: true },
+  { path: MARKET_PATH.in, lastmod: "2026-09-28", homepage: true },
   { path: "/ai-automation-real-estate", lastmod: "2026-09-22" },
   { path: "/ai-automation-home-services", lastmod: "2026-09-22" },
-  { path: "/website-development", lastmod: "2026-09-25" },
-  { path: "/seo", lastmod: "2026-09-25" },
+  { path: "/website-development", lastmod: "2026-09-28" },
+  { path: "/seo", lastmod: "2026-09-28" },
   { path: "/tools/roi-calculator", lastmod: "2026-09-22" },
-  { path: "/blog", lastmod: "2026-09-22" },
+  { path: "/blog", lastmod: "2026-09-28" },
   { path: "/about", lastmod: "2026-09-22" },
   { path: "/contact", lastmod: "2026-09-22" },
   { path: "/inspiration", lastmod: "2026-09-26" },
-  ...INDUSTRIES.map((i) => ({ path: `/for/${i.slug}`, lastmod: "2026-09-26" })),
+  ...INDUSTRIES.map((i) => ({ path: `/for/${i.slug}`, lastmod: "2026-09-28" })),
 ];
 
 const homepageAlternates = [
