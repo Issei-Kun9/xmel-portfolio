@@ -41,3 +41,8 @@
   --color-overlay-hover: rgba(245, 240, 230, 0.08);
   font-size: 14px;
 }
+.astryx-nav-trigger.is-current {
+  --color-text-primary: #f5f0e6;
+  --color-icon-primary: #c9a86a;
+  box-shadow: inset 0 -1px 0 #c9a86a;
+}

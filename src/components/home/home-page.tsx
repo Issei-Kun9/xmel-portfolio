@@ -13,7 +13,6 @@ import QuoteBuilder from "./quote-builder";
 import NumbersBand from "./numbers-band";
 import ChatDemo from "./chat-demo";
 import StickyCta from "./sticky-cta";
-import CtaTracker from "./cta-tracker";
 import CtaButton from "./cta-button";
 
 export default function HomePage({ market }: { market: Market }) {
@@ -56,7 +55,6 @@ export default function HomePage({ market }: { market: Market }) {
         </Booking>
       </main>
       <StickyCta cfg={cfg} />
-      <CtaTracker market={market} />
     </>
   );
 }

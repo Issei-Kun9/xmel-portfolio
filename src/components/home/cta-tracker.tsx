@@ -1,30 +1,57 @@
 "use client";
 
 import { useEffect } from "react";
-import type { Market } from "@/lib/market";
+import { MARKET_COOKIE, isMarket, type Market } from "@/lib/market";
+
+/** What a link does, from its data-cta or, failing that, from where it goes. */
+function ctaKind(a: HTMLElement): string | null {
+  if (a.dataset.cta) return a.dataset.cta;
+  const href = a.getAttribute("href") ?? "";
+  if (href.includes("wa.me/")) return "whatsapp";
+  if (href.includes("calendly.com") || href.endsWith("#book")) return "book";
+  if (href.startsWith("tel:")) return "phone";
+  if (href.startsWith("mailto:")) return "email";
+  if (href.endsWith("#pricing")) return "pricing";
+  if (href.endsWith("#demo")) return "demo";
+  return null;
+}
+
+/** The market this visitor is seeing: "/in" pages, else the region cookie, else US. */
+function currentMarket(): Market {
+  if (location.pathname === "/in" || location.pathname.startsWith("/in/")) return "in";
+  const m = document.cookie.match(new RegExp(`(?:^|; )${MARKET_COOKIE}=([^;]+)`))?.[1];
+  return isMarket(m) ? m : "us";
+}
 
 /**
- * One delegated listener instead of an onClick per button: any element with
- * data-cta sends a GA4 "cta_click" event tagged with the market and where on
- * the page it was clicked. A WhatsApp click, or a meeting actually booked in
- * the Calendly embed, is also sent as "generate_lead".
+ * One delegated listener for the whole site: every link that books, messages,
+ * calls or emails sends a GA4 "cta_click" tagged with the market, the page
+ * and where on the page it sits (data-cta-location, else the nearest section
+ * id). WhatsApp, phone and email clicks, and a meeting actually booked in the
+ * Calendly embed, also count as "generate_lead".
  */
-export default function CtaTracker({ market }: { market: Market }) {
+export default function CtaTracker() {
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      const el = (e.target as Element | null)?.closest<HTMLElement>("[data-cta]");
+      const el = (e.target as Element | null)?.closest<HTMLElement>("[data-cta], a[href]");
       if (!el) return;
-      const cta = el.dataset.cta ?? "unknown";
-      const location = el.dataset.ctaLocation ?? "unknown";
-      window.gtag?.("event", "cta_click", { cta, location, market });
-      if (cta === "whatsapp") {
-        window.gtag?.("event", "generate_lead", { method: "whatsapp", location, market });
+      const cta = ctaKind(el);
+      if (!cta) return;
+      const where =
+        el.dataset.ctaLocation ??
+        el.closest("header, footer")?.tagName.toLowerCase() ??
+        el.closest("section[id]")?.id ??
+        "page";
+      const params = { cta, location: where, page: location.pathname, market: currentMarket() };
+      window.gtag?.("event", "cta_click", params);
+      if (cta === "whatsapp" || cta === "phone" || cta === "email") {
+        window.gtag?.("event", "generate_lead", { ...params, method: cta });
       }
     };
     const onMessage = (e: MessageEvent) => {
       if (e.origin !== "https://calendly.com") return;
       if ((e.data as { event?: string } | null)?.event === "calendly.event_scheduled") {
-        window.gtag?.("event", "generate_lead", { method: "calendly", location: "book", market });
+        window.gtag?.("event", "generate_lead", { method: "calendly", location: "book", page: location.pathname, market: currentMarket() });
       }
     };
     document.addEventListener("click", onClick);
@@ -33,7 +60,7 @@ export default function CtaTracker({ market }: { market: Market }) {
       document.removeEventListener("click", onClick);
       window.removeEventListener("message", onMessage);
     };
-  }, [market]);
+  }, []);
 
   return null;
 }
