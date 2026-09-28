@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import Link from "next/link";
-import About from "@/components/sections/about";
-import Breadcrumbs from "@/components/shared/breadcrumbs";
-import Lottie from "@/components/motion/lottie";
-import Words from "@/components/motion/words";
-
+import About, { FounderCard } from "@/components/sections/about";
+import Commitments from "@/components/home/commitments";
+import { CtaBand, PageHero } from "@/components/kit/kit";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
@@ -36,55 +33,23 @@ export default function AboutPage() {
       />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
-        <div className="ink overflow-hidden">
-          <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-16 sm:pb-20">
-          <div className="mb-10">
-            <Breadcrumbs items={[{ name: "About" }]} />
-          </div>
-
-          {/* Header */}
-          <div className="relative">
-            <Lottie name="rocket" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-              ABOUT
-            </span>
-            <h1 className="font-display text-[clamp(36px,6vw,64px)] font-medium leading-[1.02] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              <Words text="About XMEL Automations" />
-            </h1>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
-              XMEL Automations is an AI automation company founded by
-              Yashwardhan Chauhan. We build autonomous lead response systems,
-              AI voice agents, and n8n workflow automations for real estate
-              agents and home services contractors — systems that qualify
-              leads, respond in under 50 seconds, and book appointments 24/7.
-            </p>
-          </div>
-          </div>
-        </div>
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-16 pb-24">
-
-          {/* Founder / company section */}
-          <About />
-
-          {/* CTA */}
-          <section className="mt-16 p-8 lg:p-10 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-center">
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)]">
-              Let&apos;s build your lead-response system.
-            </h2>
-            <p className="text-[var(--text-secondary)] mt-4 mb-8 max-w-xl mx-auto">
-              Whether you&apos;re a real estate agent losing leads to slow
-              response times or a home services contractor missing calls — I
-              can build the system that fixes it.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
-            >
-              Start the conversation
-              <span>→</span>
-            </Link>
-          </section>
-        </div>
+        <PageHero
+          crumbs={[{ name: "About" }]}
+          eyebrow="About"
+          title="About XMEL Automations."
+          italic="One builder, end to end."
+          lede="XMEL Automations is an AI automation company founded by Yashwardhan Chauhan. We build AI lead-response systems, voice agents, websites and SEO for real estate agents, home services contractors and local businesses in the US and India."
+          proof={["Founder-built, founder-supported", "US & India", "Replies within 24 hours"]}
+          visual={<FounderCard />}
+        />
+        <About />
+        <Commitments />
+        <CtaBand
+          title="Let's build your"
+          italic="lead-response system."
+          body="Whether you're losing leads to slow replies or missing calls on the job, tell me how customers reach you today and I'll show you what I'd build."
+          secondary={{ label: "Send a message", href: "/contact" }}
+        />
       </main>
     </>
   );

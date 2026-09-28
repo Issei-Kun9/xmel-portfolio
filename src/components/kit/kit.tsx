@@ -244,7 +244,7 @@ export function CtaBand({
   note?: ReactNode;
 }) {
   return (
-    <section className="ink py-20 sm:py-28">
+    <section className="cta-band ink py-20 sm:py-28">
       <div className="max-w-[900px] mx-auto px-4 sm:px-6 text-center">
         <h2 className="font-display text-[clamp(34px,5vw,64px)] font-medium leading-[1.02] tracking-[-0.02em]">
           {title} {italic && <span className="gold-italic">{italic}</span>}
