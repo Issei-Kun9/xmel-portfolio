@@ -642,9 +642,11 @@ html {
   animation: ring-spin 5s linear infinite;
 }
 
-/* Headline words rise in on load. */
+/* Headline words rise in on load. They start as a faint blurred ghost, not
+   invisible: Chrome ignores opacity:0 paints for Largest Contentful Paint, so
+   a fade from 0 delayed (or erased) the page's LCP until after hydration. */
 @keyframes word-rise {
-  from { opacity: 0; transform: translateY(0.45em) rotate(2deg); filter: blur(8px); }
+  from { opacity: 0.2; transform: translateY(0.45em) rotate(2deg); filter: blur(8px); }
   to { opacity: 1; transform: none; filter: none; }
 }
 .word {
@@ -707,9 +709,11 @@ html {
 }
 
 /* Route entrance (src/app/template.tsx). */
+/* Rise only, no fade: an opacity-0 start hides every page's LCP paint until
+   the main thread is free (see word-rise). */
 @keyframes page-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: none; }
+  from { transform: translateY(12px); }
+  to { transform: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
   /* `backwards`, not `both`: a fill that holds `transform` after the animation

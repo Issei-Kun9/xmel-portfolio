@@ -73,14 +73,19 @@ export default function GoldX3D({ className = "" }: { className?: string }) {
 
     let disposed = false;
     let cleanup = () => {};
+    // Phones: lighter pixel ratio and ~30fps. Plenty for a slow turn, half the work.
+    const coarse = matchMedia("(pointer: coarse)").matches;
 
-    (async () => {
+    // Start only once the page has loaded and the browser is idle, so the 3D
+    // set-up never competes with first paint or hydration. The CSS emblem
+    // shows until then.
+    const start = async () => {
       const THREE = await import("three");
       const { RoomEnvironment } = await import("three/examples/jsm/environments/RoomEnvironment.js");
       if (disposed) return;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, coarse ? 1.5 : 2));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 0.95;
@@ -90,7 +95,9 @@ export default function GoldX3D({ className = "" }: { className?: string }) {
 
       const scene = new THREE.Scene();
       const pmrem = new THREE.PMREMGenerator(renderer);
-      scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+      // A 128px reflection map looks the same at this size and is ~4× less work
+      // than the 256px default, the bulk of the 3D set-up cost on phones.
+      scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04, 0.1, 100, { size: 128 }).texture;
 
       const camera = new THREE.PerspectiveCamera(30, 1, 1, 2000);
       camera.position.set(0, 0, 330);
@@ -147,9 +154,11 @@ export default function GoldX3D({ className = "" }: { className?: string }) {
       const clock = new THREE.Clock();
       let raf = 0;
       let shown = false;
+      let frame = 0;
       const tick = () => {
         raf = requestAnimationFrame(tick);
         if (!visible || document.hidden) return;
+        if (coarse && frame++ % 2) return;
         const t = clock.getElapsedTime();
         group.rotation.y += (target.y + Math.sin(t * 0.55) * 0.42 - group.rotation.y) * 0.06;
         group.rotation.x += (target.x + Math.sin(t * 0.4) * 0.08 - group.rotation.x) * 0.06;
@@ -171,9 +180,23 @@ export default function GoldX3D({ className = "" }: { className?: string }) {
         renderer.dispose();
         renderer.domElement.remove();
       };
-    })();
+    };
 
-    return () => { disposed = true; cleanup(); };
+    // Safari has no requestIdleCallback; a short timeout after load is close enough.
+    const ric = typeof requestIdleCallback === "function";
+    const idle = (cb: () => void) => (ric ? requestIdleCallback(cb, { timeout: 3000 }) : setTimeout(cb, 200));
+    let idleId: number | ReturnType<typeof setTimeout> = 0;
+    const kick = () => { idleId = idle(() => { void start(); }); };
+    if (document.readyState === "complete") kick();
+    else window.addEventListener("load", kick, { once: true });
+
+    return () => {
+      disposed = true;
+      window.removeEventListener("load", kick);
+      if (ric) cancelIdleCallback(idleId as number);
+      else clearTimeout(idleId);
+      cleanup();
+    };
   }, []);
 
   return (

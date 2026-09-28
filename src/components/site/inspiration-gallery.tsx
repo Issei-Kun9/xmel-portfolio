@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useClientValue } from "@/lib/use-client-value";
 import Flag from "@/components/shared/flag";
 import { ArrowUpRight } from "lucide-react";
 import { INSPIRATION, INSPO_CATEGORIES, INDUSTRY_TO_CATEGORY, shotFor, type InspoMarket } from "@/lib/inspiration";
@@ -11,17 +12,16 @@ import { INSPIRATION, INSPO_CATEGORIES, INDUSTRY_TO_CATEGORY, shotFor, type Insp
  * Every card links to the original.
  */
 export default function InspirationGallery() {
-  const [market, setMarket] = useState<InspoMarket>("in");
-  const [cat, setCat] = useState<string>("all");
-
-  // ?market=us and ?industry=<industry-page slug> or ?category=<slug> preselect filters.
-  useEffect(() => {
-    const q = new URLSearchParams(window.location.search);
-    const m = q.get("market");
-    if (m === "us" || m === "in") setMarket(m);
-    const c = q.get("category") ?? INDUSTRY_TO_CATEGORY[q.get("industry") ?? ""];
-    if (c && INSPO_CATEGORIES.some((x) => x.slug === c)) setCat(c);
-  }, []);
+  // ?market=us and ?industry=<industry-page slug> or ?category=<slug> preselect
+  // the filters until the visitor picks their own.
+  const search = useClientValue(() => window.location.search, "");
+  const q = new URLSearchParams(search);
+  const qm = q.get("market");
+  const qc = q.get("category") ?? INDUSTRY_TO_CATEGORY[q.get("industry") ?? ""];
+  const [pickedMarket, setMarket] = useState<InspoMarket | null>(null);
+  const [pickedCat, setCat] = useState<string | null>(null);
+  const market: InspoMarket = pickedMarket ?? (qm === "us" || qm === "in" ? qm : "in");
+  const cat = pickedCat ?? (qc && INSPO_CATEGORIES.some((x) => x.slug === qc) ? qc : "all");
 
   const inMarket = INSPIRATION.filter((s) => s.market === market);
   const chips = [{ slug: "all", name: "All" }, ...INSPO_CATEGORIES.filter((c) => inMarket.some((s) => s.category === c.slug))];

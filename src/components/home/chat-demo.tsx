@@ -49,6 +49,7 @@ export default function ChatDemo({
   const [shown, setShown] = useState(0);
   const [typing, setTyping] = useState(false);
   const [started, setStarted] = useState(false);
+  const [notifDone, setNotifDone] = useState(false);
   const box = useRef<HTMLDivElement>(null);
   const timers = useRef<number[]>([]);
   const chat = useRef<HTMLDivElement>(null);
@@ -57,9 +58,11 @@ export default function ChatDemo({
 
   const play = useCallback(() => {
     clear();
-    setShown(0);
-    setTyping(false);
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { setShown(total); return; }
+    // Every state change runs from a timer, so starting from an effect never
+    // renders synchronously.
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    timers.current.push(window.setTimeout(() => { setShown(reduce ? total : 0); setTyping(false); setNotifDone(false); }, 0));
+    if (reduce) return;
     let t = 400;
     script.messages.forEach((m, i) => {
       if (m.from === "ai") {
@@ -88,11 +91,10 @@ export default function ChatDemo({
   const wa = market === "in";
   const done = shown >= total;
   // The "to you" notification drops in when the booking lands, then slides away.
-  const [notif, setNotif] = useState(false);
+  const notif = done && !notifDone;
   useEffect(() => {
-    if (!done) { setNotif(false); return; }
-    setNotif(true);
-    const t = window.setTimeout(() => setNotif(false), 4200);
+    if (!done) return;
+    const t = window.setTimeout(() => setNotifDone(true), 4200);
     return () => clearTimeout(t);
   }, [done]);
 

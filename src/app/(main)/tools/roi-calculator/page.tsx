@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import Link from "next/link";
 import CalculatorClient from "./calculator-client";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 

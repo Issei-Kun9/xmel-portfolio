@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useClientValue } from "@/lib/use-client-value";
 import MailtoLink from "@/components/shared/mailto-link";
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
@@ -10,14 +11,12 @@ const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
 const CONTACT_EMAIL = "yashwardhan@xmelautomations.xyz";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", project: "", message: "" });
+  // message stays null until the visitor types, so it can default to the plan
+  // they built on the homepage (?plan=…).
+  const [form, setForm] = useState<{ name: string; email: string; project: string; message: string | null }>({ name: "", email: "", project: "", message: null });
+  const plan = useClientValue(() => new URLSearchParams(window.location.search).get("plan") ?? "", "");
+  const message = form.message ?? (plan ? `I'm interested in: ${plan}.\n\n` : "");
   const [state, setState] = useState<SubmitState>("idle");
-
-  // Arriving from the homepage plan builder: start the message with the plan.
-  useEffect(() => {
-    const plan = new URLSearchParams(window.location.search).get("plan");
-    if (plan) setForm((f) => (f.message ? f : { ...f, message: `I'm interested in: ${plan}.\n\n` }));
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ export default function Contact() {
           name: form.name,
           email: form.email,
           project_type: form.project,
-          message: form.message,
+          message,
           subject: `New Project Inquiry — ${form.project || "General"}`,
           from_name: "XMEL Automations Portfolio",
         }),
@@ -207,7 +206,7 @@ export default function Contact() {
                   <textarea
                     id="contact-message"
                     name="message"
-                    value={form.message}
+                    value={message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     rows={3}
                     placeholder="Where do your leads come from, and what happens to them today?"
