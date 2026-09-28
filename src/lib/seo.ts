@@ -25,6 +25,8 @@ export function homepageAlternates(market: Market): Metadata["alternates"] {
 /**
  * Standard metadata for a main-site page: title, description, canonical and
  * matching Open Graph / Twitter cards, so no page inherits another's preview.
+ * Every page using this has its own `opengraph-image` route (lib/og.tsx);
+ * Next adds that image to og:image itself, and X falls back to og:image.
  */
 export function pageMetadata({
   path,
@@ -51,13 +53,11 @@ export function pageMetadata({
       type,
       siteName: "XMEL Automations",
       locale: "en_US",
-      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle ?? title,
       description,
-      images: [OG_IMAGE.url],
     },
   };
 }

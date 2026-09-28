@@ -9,6 +9,7 @@ import Breadcrumbs from "@/components/shared/breadcrumbs";
 import MarketMockups from "@/components/visuals/market-mockups";
 import Lottie from "@/components/motion/lottie";
 import ChatDemo from "@/components/home/chat-demo";
+import RelatedGuides from "@/components/site/related-guides";
 import { INDUSTRY_CHATS } from "@/lib/chat-scripts";
 
 export const dynamicParams = false;
@@ -16,6 +17,18 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return INDUSTRIES.map((i) => ({ industry: i.slug }));
 }
+
+/** Most useful guides per industry; the rest fill in from the industry's AI category. */
+const GUIDES: Record<string, string[]> = {
+  "real-estate-agents": ["zillow-lead-response-time", "whatsapp-auto-reply-99acres-magicbricks-leads", "real-estate-lead-qualification"],
+  roofers: ["google-map-pack-local-seo-contractors", "contractor-website-checklist", "missed-call-automation-contractors"],
+  plumbers: ["missed-call-automation-contractors", "contractor-website-checklist", "google-map-pack-local-seo-contractors"],
+  hvac: ["ai-receptionist-hvac", "contractor-website-checklist", "google-map-pack-local-seo-contractors"],
+  electricians: ["contractor-website-checklist", "google-map-pack-local-seo-contractors", "missed-call-automation-contractors"],
+  dentists: ["dental-clinic-missed-calls-new-patients", "google-business-profile-india-local-seo", "whatsapp-business-app-vs-api"],
+  "interior-designers": ["website-cost-small-business-india", "whatsapp-business-app-vs-api", "google-business-profile-india-local-seo"],
+  salons: ["google-business-profile-india-local-seo", "whatsapp-business-app-vs-api", "website-cost-small-business-india"],
+};
 
 export async function generateMetadata({ params }: { params: Promise<{ industry: string }> }): Promise<Metadata> {
   const ind = industryBySlug((await params).industry);
@@ -123,6 +136,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
             </a>
           ))}
         </div>
+        <RelatedGuides slugs={GUIDES[ind.slug] ?? []} categories={[ind.ai]} title={`Guides for ${ind.plural}`} className="mt-16" />
         <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-[var(--text-secondary)]">
           {["No long-term contracts", "Websites live in about a week", "See the site before you pay in full"].map((t) => (
             <li key={t} className="inline-flex items-center gap-2"><Check className="w-4 h-4 text-[var(--accent)]" strokeWidth={2.5} aria-hidden="true" />{t}</li>

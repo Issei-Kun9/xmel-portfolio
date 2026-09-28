@@ -8,6 +8,7 @@ import Breadcrumbs from "@/components/shared/breadcrumbs";
 import ServicePricing from "@/components/site/service-pricing";
 import Lottie from "@/components/motion/lottie";
 import Words from "@/components/motion/words";
+import RelatedGuides from "@/components/site/related-guides";
 
 const siteUrl = "https://xmelautomations.xyz/website-development";
 
@@ -231,6 +232,8 @@ export default function WebsiteDevelopmentPage() {
             </h2>
             <ServicePricing configs={WEBSITE_DEV} idPrefix="webdev" />
           </section>
+
+          <RelatedGuides slugs={["website-cost-small-business-india", "contractor-website-checklist", "google-business-profile-india-local-seo"]} title="Website guides" className="mb-16" />
 
           <section className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
             <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-3">

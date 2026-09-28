@@ -4,11 +4,13 @@ import matter from "gray-matter";
 
 const postsDir = path.join(process.cwd(), "content/blog");
 
-export type PostCategory = "real-estate" | "home-services" | "automation";
+export type PostCategory = "real-estate" | "home-services" | "websites" | "seo" | "automation";
 
 export const CATEGORY_LABELS: Record<PostCategory, string> = {
   "real-estate": "Real Estate",
   "home-services": "Home Services",
+  websites: "Websites",
+  seo: "SEO",
   automation: "Automation",
 };
 

@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import { getAllPosts, CATEGORY_LABELS, type PostCategory } from "@/lib/blog";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
 
-const CATEGORY_ORDER: PostCategory[] = ["real-estate", "home-services", "automation"];
+const CATEGORY_ORDER: PostCategory[] = ["real-estate", "home-services", "websites", "seo", "automation"];
 
 export const metadata: Metadata = pageMetadata({
   path: "/blog",

@@ -72,7 +72,19 @@ export default async function BlogPost({ params }: Props) {
             label: "AI automation for home services",
             desc: "An AI receptionist that answers every call, qualifies the job, and books the slot — 24/7.",
           }
-        : null;
+        : post.category === "websites"
+          ? {
+              href: "/website-development",
+              label: "Website development",
+              desc: "A mobile-first website written around your business, live in about a week. See it before you pay in full.",
+            }
+          : post.category === "seo"
+            ? {
+                href: "/seo",
+                label: "SEO for small businesses",
+                desc: "Technical fixes, local search and content for the searches your customers actually make. Month-to-month.",
+              }
+            : null;
 
   const url = `https://xmelautomations.xyz/blog/${post.slug}`;
   const jsonLd = {
