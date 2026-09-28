@@ -52,7 +52,7 @@ export function renderOg({ eyebrow, title, footer }: { eyebrow: string; title: s
         </div>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 24, color: "#46514B" }}>
-          <div style={{ display: "flex" }}>{footer ?? "AI lead response · Websites · SEO · US & India"}</div>
+          <div style={{ display: "flex" }}>{footer ?? "AI Infrastructure · Websites · SEO · US & India"}</div>
           <div
             style={{
               display: "flex",

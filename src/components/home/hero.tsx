@@ -13,7 +13,7 @@ export default function Hero({ cfg }: { cfg: MarketConfig }) {
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-[rgba(201,168,106,0.35)] px-3 py-1.5 text-[13px] font-medium tracking-wide text-[var(--gold)]">
             <span className="live-dot w-2 h-2 rounded-full bg-[var(--gold)]" aria-hidden="true" />
-            AI automation · Websites · SEO
+            AI Infrastructure · Websites · SEO
           </p>
 
           <h1 className="mt-5 font-display text-[clamp(44px,7.4vw,92px)] font-medium leading-[0.98] tracking-[-0.03em] text-balance">

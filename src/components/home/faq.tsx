@@ -12,11 +12,11 @@ function faqsFor(cfg: MarketConfig) {
     },
     {
       q: "How much does it cost?",
-      a: `AI lead response starts at ${starter.setup} setup + ${starter.monthly}/month. Websites start at ${WEBSITE_DEV[m].tiers[0].price} one-time. SEO starts at ${SEO_SERVICE[m].tiers[0].price}/month. The Growth Bundle (website + AI + SEO) is ${BUNDLE[m].setup} setup + ${BUNDLE[m].monthly}/month.`,
+      a: `AI Infrastructure starts at ${starter.setup} setup + ${starter.monthly}/month. Websites start at ${WEBSITE_DEV[m].tiers[0].price} one-time. SEO starts at ${SEO_SERVICE[m].tiers[0].price}/month. The Growth Bundle (website + AI + SEO) is ${BUNDLE[m].setup} setup + ${BUNDLE[m].monthly}/month.`,
     },
     {
       q: "How fast can I get started?",
-      a: "A website is usually live in about a week. AI lead response takes 2–3 weeks. SEO work starts in the first month, and rankings usually start moving within 8–12 weeks.",
+      a: "A website is usually live in about a week. AI Infrastructure takes 2–3 weeks. SEO work starts in the first month, and rankings usually start moving within 8–12 weeks.",
     },
     {
       q: "What if it doesn't work for me?",
@@ -46,7 +46,7 @@ export default function HomeFaq({ cfg }: { cfg: MarketConfig }) {
   };
 
   return (
-    <section id="faq" className="scroll-mt-20 py-16 sm:py-24 bg-[var(--bg-secondary)]">
+    <section id="faq" className="paper scroll-mt-20 py-16 sm:py-24 bg-[var(--bg-secondary)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
         <div>

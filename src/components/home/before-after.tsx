@@ -17,7 +17,7 @@ const ROWS = [
 export default function BeforeAfter() {
   const [on, setOn] = useState(true);
   return (
-    <section className="py-16 sm:py-24">
+    <section className="paper py-16 sm:py-24">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <h2 className="font-display text-[clamp(30px,4.6vw,52px)] font-medium leading-[1.05] tracking-[-0.02em] text-[var(--text-primary)] max-w-2xl">
