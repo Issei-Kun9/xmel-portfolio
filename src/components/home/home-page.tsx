@@ -11,7 +11,6 @@ import BeforeAfter from "./before-after";
 import OutcomeTicker from "./outcome-ticker";
 import ScrollStory from "./scroll-story";
 import QuoteBuilder from "./quote-builder";
-import NumbersBand from "./numbers-band";
 import ChatDemo from "./chat-demo";
 import StickyCta from "./sticky-cta";
 import CtaButton from "./cta-button";
@@ -28,7 +27,6 @@ export default function HomePage({ market }: { market: Market }) {
         <ScrollStory cfg={cfg} />
         <ChatDemo market={market} />
         <QuoteBuilder market={market} />
-        <NumbersBand />
         <Bundle market={market} />
         <div className="gold-rule" aria-hidden="true" />
         <HowWeWork />

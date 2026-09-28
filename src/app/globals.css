@@ -940,20 +940,6 @@ main:has(> .cta-band:last-child) + footer .footer-cta { display: none; }
 .roi-range { border-radius: 999px; }
 .roi-range::-webkit-slider-runnable-track { height: 24px; background: transparent; }
 
-/* Numbers band: each gold rule draws down as the band scrolls in. */
-.num-cell::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(var(--gold), rgba(201, 168, 106, 0.2));
-  transform-origin: top;
-  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
-}
-.num-cell.rv:not(.rv-in)::before { transform: scaleY(0); }
-
 /* Page-to-page transitions (Chrome, Edge, Safari 18.2+): a quick fade-rise,
    with the header held still so navigation feels like one app. */
 @media (prefers-reduced-motion: no-preference) {

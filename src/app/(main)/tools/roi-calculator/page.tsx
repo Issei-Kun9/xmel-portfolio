@@ -49,7 +49,7 @@ export default function RoiCalculatorPage() {
           crumbs={[{ name: "Tools" }, { name: "ROI Calculator" }]}
           eyebrow="Free tool"
           title="Lead Response ROI Calculator."
-          italic="What are slow replies costing you?"
+          italic="What slow replies cost."
           lede={
             <>
               Firms that contact a new lead within an hour are nearly 7× as likely to qualify it as those that wait longer

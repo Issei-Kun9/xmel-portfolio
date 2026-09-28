@@ -37,7 +37,7 @@ export default function AboutPage() {
           crumbs={[{ name: "About" }]}
           eyebrow="About"
           title="About XMEL Automations."
-          italic="One builder, end to end."
+          italic="One builder."
           lede="XMEL Automations is an AI automation company founded by Yashwardhan Chauhan. We build AI lead-response systems, voice agents, websites and SEO for real estate agents, home services contractors and local businesses in the US and India."
           proof={["Founder-built, founder-supported", "US & India", "Replies within 24 hours"]}
           visual={<FounderCard />}

@@ -127,7 +127,7 @@ export default function SeoPage() {
           crumbs={[{ name: "SEO" }]}
           eyebrow="SEO"
           title="Get found on Google"
-          italic="for the searches that bring you customers."
+          italic="by people ready to buy."
           lede="Technical fixes, local search presence and content built around real search queries, reported on every month in plain language."
           proof={["From $397 / ₹7,999 a month", "Month-to-month, no contract", "A plain-English monthly report"]}
           actions={

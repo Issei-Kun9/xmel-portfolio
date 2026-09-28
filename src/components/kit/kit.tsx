@@ -57,7 +57,7 @@ export function PageHero({
         <div className={`mt-8 sm:mt-12 grid gap-12 lg:gap-16 items-center ${visual ? "lg:grid-cols-[1.05fr_0.95fr]" : ""}`}>
           <div className="min-w-0">
             <Eyebrow onInk>{eyebrow}</Eyebrow>
-            <h1 className="mt-4 font-display text-[clamp(38px,5.8vw,72px)] font-medium leading-[1.02] tracking-[-0.03em] max-w-3xl">
+            <h1 className="mt-4 font-display text-[clamp(36px,5.2vw,64px)] font-medium leading-[1.03] tracking-[-0.03em] max-w-3xl">
               <Words text={title} />
               {italic && (
                 <>

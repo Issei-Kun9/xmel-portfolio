@@ -37,7 +37,7 @@ export default function ContactPage() {
           crumbs={[{ name: "Contact" }]}
           eyebrow="Contact"
           title="Contact XMEL Automations."
-          italic="A personal reply within 24 hours."
+          italic="Reply in 24 hours."
           lede="Tell me about your business, where your customers come from and what's getting missed. I'll reply with what I'd build and what it would cost."
           proof={["Replies within 24 hours", "WhatsApp, email or a 15-min call", "No hard sell"]}
         />
