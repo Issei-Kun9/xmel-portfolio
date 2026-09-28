@@ -866,3 +866,76 @@ html:has(#mobile-menu) .wa-float { display: none; }
 
 /* A page that already closes on an ink CTA band doesn't repeat the footer's CTA line. */
 main:has(> .cta-band:last-child) + footer .footer-cta { display: none; }
+
+/* Blog reading styles, second pass: bigger body, gold accents, carded quotes and tables. */
+.prose-custom p, .prose-custom li { font-size: 17px; line-height: 1.8; }
+.prose-custom > :first-child { margin-top: 0; }
+.prose-custom h2 {
+  font-size: clamp(26px, 3.2vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  position: relative;
+}
+.prose-custom h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+}
+.prose-custom h3 { font-weight: 500; font-size: clamp(20px, 2.4vw, 24px); }
+.prose-custom li::marker { color: var(--gold); font-weight: 600; }
+.prose-custom blockquote {
+  border-left: 3px solid var(--gold);
+  background: var(--bg-secondary);
+  border-radius: 0 16px 16px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  color: var(--text-primary);
+  font-family: var(--font-display), serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+.prose-custom blockquote p { color: inherit; font-size: inherit; margin-bottom: 0; }
+.prose-custom table {
+  display: block;
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  background: var(--bg-primary);
+  margin: 2rem 0;
+  font-size: 15px;
+}
+.prose-custom th {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--bg-secondary);
+}
+.prose-custom td { vertical-align: top; }
+
+/* ROI sliders: gold-filled track (the fill is set inline via --p), ink thumb with a gold ring. */
+.roi-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--ink);
+  border: 3px solid var(--gold);
+  box-shadow: 0 4px 12px rgba(15, 15, 18, 0.25);
+}
+.roi-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--ink);
+  border: 3px solid var(--gold);
+}
+.roi-range { border-radius: 999px; }
+.roi-range::-webkit-slider-runnable-track { height: 24px; background: transparent; }

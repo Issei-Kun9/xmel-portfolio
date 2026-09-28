@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import CalculatorClient from "./calculator-client";
-import Breadcrumbs from "@/components/shared/breadcrumbs";
+import { CtaBand, PageHero } from "@/components/kit/kit";
 
 export const metadata: Metadata = pageMetadata({
   path: "/tools/roi-calculator",
@@ -45,77 +45,38 @@ export default function RoiCalculatorPage() {
       />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-24">
-          {/* Breadcrumb */}
-          <div className="mb-10">
-            <Breadcrumbs items={[{ name: "Tools" }, { name: "ROI Calculator" }]} />
+        <PageHero
+          crumbs={[{ name: "Tools" }, { name: "ROI Calculator" }]}
+          eyebrow="Free tool"
+          title="Lead Response ROI Calculator."
+          italic="What are slow replies costing you?"
+          lede={
+            <>
+              Firms that contact a new lead within an hour are nearly 7× as likely to qualify it as those that wait longer
+              (Harvard Business Review). Drag the sliders to see what faster replies could be worth to you, in dollars or rupees.
+            </>
+          }
+          proof={["Takes 30 seconds", "USD or INR", "No sign-up to see your number"]}
+        />
+        <section className="paper py-14 sm:py-20">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <CalculatorClient />
           </div>
-
-          {/* Header */}
-          <div className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-              FREE TOOL
-            </span>
-            <h1 className="font-display text-[clamp(28px,5vw,44px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              Lead Response ROI Calculator
-            </h1>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
-              Every minute you take to respond to a lead, your chance of closing
-              drops by roughly 5×. Drag the sliders to see how much revenue
-              you&apos;re leaving on the table — and what an AI lead-response
-              system could recover.
-            </p>
-          </div>
-
-          {/* Calculator */}
-          <CalculatorClient />
-
-          {/* Bottom CTA */}
-          <div className="mt-20 pt-8 border-t border-[var(--border-subtle)]">
-            <p className="text-[var(--text-secondary)] text-sm mb-4">
-              Want to build an AI lead-response system that captures the revenue
-              you&apos;re currently losing?
-            </p>
-            <a
-              href="/#book"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
-            >
-              Get in touch
-              <span>→</span>
-            </a>
-
-            <div className="mt-10 grid md:grid-cols-2 gap-4">
-              <a
-                href="/ai-automation-real-estate"
-                className="group block p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
-              >
-                <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] block mb-2">
-                  REAL ESTATE
-                </span>
-                <h2 className="font-display text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
-                  AI Automation for Real Estate Agents
-                </h2>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  See the AI inside sales agent behind these numbers.
-                </p>
+        </section>
+        <CtaBand
+          title="Want that money"
+          italic="back?"
+          body="An AI lead responder replies to every new lead within a minute, day and night, and books the appointment. See how it would work for you."
+          secondary={{ label: "See AI for real estate", href: "/ai-automation-real-estate" }}
+          note={
+            <>
+              Trades business?{" "}
+              <a href="/ai-automation-home-services" className="font-semibold text-[var(--gold)] underline underline-offset-4">
+                See AI for home services
               </a>
-              <a
-                href="/ai-automation-home-services"
-                className="group block p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors duration-300"
-              >
-                <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] block mb-2">
-                  HOME SERVICES
-                </span>
-                <h2 className="font-display text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors mb-2">
-                  AI Automation for Home Services
-                </h2>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  The AI receptionist that stops missed calls from costing jobs.
-                </p>
-              </a>
-            </div>
-          </div>
-        </div>
+            </>
+          }
+        />
       </main>
     </>
   );
