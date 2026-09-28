@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import LogoMark from "@/components/site/logo-mark";
 import Lottie from "@/components/motion/lottie";
@@ -50,9 +51,9 @@ export default function NotFound() {
           <a href="/" className="inline-flex h-12 items-center rounded-xl bg-[var(--gold)] px-6 text-[15px] font-semibold text-[var(--ink)] hover:brightness-110">
             Back to home
           </a>
-          <a href="/blog" className="inline-flex h-12 items-center rounded-xl border border-[var(--border-strong)] px-6 text-[15px] font-semibold hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors">
+          <Link href="/blog" className="inline-flex h-12 items-center rounded-xl border border-[var(--border-strong)] px-6 text-[15px] font-semibold hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors">
             Read the guides
-          </a>
+          </Link>
         </div>
       </div>
     </main>
