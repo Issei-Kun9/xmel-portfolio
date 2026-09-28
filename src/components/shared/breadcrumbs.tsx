@@ -32,13 +32,13 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <nav aria-label="Breadcrumb">
-        <ol className="flex flex-wrap items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
+        <ol className="flex flex-wrap items-center gap-x-2 text-[13px] font-medium text-[var(--text-tertiary)]">
           {crumbs.map((c, i) => (
             <li key={i} className="flex items-center gap-2">
               {c.href ? (
                 <Link
                   href={c.href}
-                  className="inline-flex items-center py-1.5 hover:text-[var(--accent)] transition-colors"
+                  className="inline-flex items-center py-1.5 hover:text-[var(--gold)] transition-colors"
                 >
                   {c.name}
                 </Link>
@@ -47,7 +47,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                   {c.name}
                 </span>
               )}
-              {i < crumbs.length - 1 && <span>/</span>}
+              {i < crumbs.length - 1 && <span aria-hidden="true" className="text-[var(--gold)] opacity-70">/</span>}
             </li>
           ))}
         </ol>

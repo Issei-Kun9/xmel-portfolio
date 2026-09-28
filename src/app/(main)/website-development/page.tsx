@@ -4,11 +4,11 @@ import { WEBSITE_DEV } from "@/lib/services";
 import { MARKETS } from "@/lib/market";
 import { SiteMockup } from "@/components/visuals/mockups";
 import { DEFAULT_SAMPLES } from "@/lib/industries";
-import Breadcrumbs from "@/components/shared/breadcrumbs";
 import ServicePricing from "@/components/site/service-pricing";
-import Lottie from "@/components/motion/lottie";
-import Words from "@/components/motion/words";
 import RelatedGuides from "@/components/site/related-guides";
+import { ArrowRight, ArrowUpRight, KeyRound, PenLine, Search, Smartphone } from "lucide-react";
+import { CtaBand, Faq, FeatureGrid, PageHero, SectionHead, Steps, btn } from "@/components/kit/kit";
+import { INSPIRATION, shotFor } from "@/lib/inspiration";
 
 const siteUrl = "https://xmelautomations.xyz/website-development";
 
@@ -59,20 +59,25 @@ const jsonLd = {
   ],
 };
 
+const icon = "h-6 w-6";
 const features = [
   {
+    icon: <PenLine className={icon} />,
     title: "Written around your business",
     body: "A short call or WhatsApp chat, then I write and design the site from what you actually do — not a form you fill into a template.",
   },
   {
+    icon: <Smartphone className={icon} />,
     title: "Mobile-first and fast",
     body: "Most visitors are on a phone. Every site is built to load fast and look right on a small screen first, desktop second.",
   },
   {
+    icon: <Search className={icon} />,
     title: "Basic SEO built in",
     body: "Titles, descriptions, one clear heading per page and correct structured data from day one — so Google can actually read the site.",
   },
   {
+    icon: <KeyRound className={icon} />,
     title: "Yours to keep",
     body: "No locked page-builder account. The site runs on your own domain, and you can move it or hand it to someone else at any time.",
   },
@@ -112,153 +117,110 @@ const faqs = [
   },
 ];
 
-const faqLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
-};
+/** Three real sites from the inspiration gallery (with screenshots), one per style. */
+const styles = ["mahindralifespaces.com", "enrichbeauty.com", "urbanladder.com"]
+  .map((d) => INSPIRATION.find((s) => s.url.includes(d)))
+  .filter((s) => s !== undefined)
+  .map((s) => ({ ...s, shot: shotFor(s.url) }))
+  .filter((s) => s.shot);
 
 export default function WebsiteDevelopmentPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
 
       <main className="min-h-screen bg-[var(--bg-primary)]">
-        <div className="ink overflow-hidden">
-          <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-16 sm:pb-20">
-          <div className="mb-10">
-            <Breadcrumbs items={[{ name: "Website Development" }]} />
-          </div>
-
-          <div className="relative">
-            <Lottie name="laptop" className="float-slow absolute right-0 -top-6 hidden md:block w-36 h-36 lg:w-44 lg:h-44 pointer-events-none" />
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--accent)]">
-              SOLUTIONS — WEBSITE DEVELOPMENT
-            </span>
-            <h1 className="font-display text-[clamp(36px,6vw,64px)] font-medium leading-[1.02] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-6">
-              <Words text="A website built around your business, live in about a week" />
-            </h1>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl">
-              Mobile-first, fast, and written for what you actually do — not a
-              template you have to wrestle into shape. One flat price, no
-              monthly page-builder fee.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-8">
-              <a
-                href="#pricing"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
-              >
+        <PageHero
+          crumbs={[{ name: "Website Development" }]}
+          eyebrow="Website development"
+          title="A website built around your business,"
+          italic="live in about a week."
+          lede="Mobile-first, fast, and written for what you actually do, not a template you have to wrestle into shape. One flat price, no monthly page-builder fee."
+          proof={["From $499 / ₹2,500", "Live in about a week", "See it before you pay in full"]}
+          actions={
+            <>
+              <a href="#pricing" className={btn.gold}>
                 See pricing
-                <span>→</span>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </a>
-              <a
-                href="/#book"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--bg-secondary)] text-[var(--text-primary)] text-[15px] font-semibold rounded-xl border border-[var(--border-subtle)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300"
-              >
-                Book a 15-min call
-              </a>
-            </div>
+              <a href="/#book" data-cta="book" data-cta-location="hero" className={btn.ghost}>Book a 15-min call</a>
+            </>
+          }
+          visual={
+            <figure>
+              <SiteMockup s={DEFAULT_SAMPLES.us} />
+              <figcaption className="mt-4 text-center text-[12px] text-[var(--text-tertiary)]">Illustration with a sample business, not a client.</figcaption>
+            </figure>
+          }
+        />
+
+        <section className="paper py-20 sm:py-28">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <SectionHead eyebrow="What you get" title="Not a template." italic="A site built for your business." />
+            <FeatureGrid items={features} cols={4} />
           </div>
+        </section>
+
+        <section className="paper bg-[var(--bg-secondary)] py-20 sm:py-28">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <Steps eyebrow="How it works" title="From a first call" italic="to a live website." steps={steps} />
           </div>
-        </div>
-        <div className="bg-[var(--bg-secondary)] py-14 sm:py-20 px-4 sm:px-6">
-          <SiteMockup s={DEFAULT_SAMPLES.us} />
-          <p className="mt-6 text-center text-[12px] text-[var(--text-tertiary)]">Illustration with a sample business, not a client.</p>
-          <p className="mt-4 text-center"><a href="/inspiration" className="link-grow text-[15px] font-semibold text-[var(--accent)]">Browse style inspiration by industry →</a></p>
-        </div>
-        <div className="max-w-[900px] mx-auto px-4 sm:px-6 pt-16 pb-24">
+        </section>
 
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              WHAT YOU GET
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              Not a template. A site built for your business.
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {features.map((f) => (
-                <div key={f.title} className="p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-                  <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-2">{f.title}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{f.body}</p>
-                </div>
-              ))}
+        {styles.length > 0 && (
+          <section className="ink py-20 sm:py-24">
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+              <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                <SectionHead onInk eyebrow="Style inspiration" title="Pick a look you love." italic="We'll build yours in it." />
+                <a href="/inspiration" className={btn.ghost}>Browse all by industry</a>
+              </div>
+              <ul className="mt-10 grid md:grid-cols-3 gap-4">
+                {styles.map((s) => (
+                  <li key={s.url}>
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" className="lift group block overflow-hidden rounded-2xl border border-[rgba(245,240,230,0.12)] bg-[rgba(245,240,230,0.04)] hover:border-[var(--gold)] transition-colors">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- static screenshot, already sized */}
+                      <img src={s.shot!} alt={`${s.name} homepage`} width={960} height={600} loading="lazy" className="aspect-[16/10] w-full object-cover object-left-top" />
+                      <span className="flex items-center justify-between gap-3 p-5">
+                        <span>
+                          <span className="block font-semibold text-[var(--ivory)]">{s.name}</span>
+                          <span className="block text-[13px] text-[var(--text-tertiary)]">{s.why}</span>
+                        </span>
+                        <ArrowUpRight className="h-4 w-4 shrink-0 text-[var(--gold)]" aria-hidden="true" />
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-[13px] text-[var(--text-tertiary)]">Real sites by their own teams, shown as style references. Not XMEL work.</p>
             </div>
           </section>
+        )}
 
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              HOW IT WORKS
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              From a first call to a live website
-            </h2>
-            <ol className="space-y-6">
-              {steps.map((s) => (
-                <li key={s.step} className="flex gap-6">
-                  <span className="font-mono text-[12px] text-[var(--accent)] pt-1">{s.step}</span>
-                  <div>
-                    <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-1">{s.title}</h3>
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{s.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          <section className="mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              FAQ
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              Common questions
-            </h2>
-            <div className="space-y-6">
-              {faqs.map((f) => (
-                <div key={f.q} className="p-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-                  <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-2">{f.q}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section id="pricing" className="scroll-mt-20 mb-16">
-            <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-[var(--text-tertiary)]">
-              PRICING
-            </span>
-            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text-primary)] mt-4 mb-8">
-              One flat price. No monthly page-builder fee.
-            </h2>
+        <section id="pricing" className="paper scroll-mt-20 py-20 sm:py-28">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <SectionHead eyebrow="Pricing" title="One flat price." italic="No monthly page-builder fee." />
             <ServicePricing configs={WEBSITE_DEV} idPrefix="webdev" />
-          </section>
+          </div>
+        </section>
 
-          <RelatedGuides slugs={["website-cost-small-business-india", "contractor-website-checklist", "google-business-profile-india-local-seo"]} title="Website guides" className="mb-16" />
+        <section className="paper bg-[var(--bg-secondary)] py-20 sm:py-28">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <Faq faqs={faqs} />
+          </div>
+        </section>
 
-          <section className="p-6 lg:p-8 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-subtle)]">
-            <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-3">
-              Ready to get your business online?
-            </h2>
-            <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6">
-              Tell me about your business and what the site needs to do —
-              I&apos;ll tell you which tier fits and how soon it can be live.
-            </p>
-            <a
-              href="/#book"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-white text-[15px] font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(138,106,47,0.2)] transition-shadow duration-300"
-            >
-              Start the conversation
-              <span>→</span>
-            </a>
-            <p className="text-[var(--text-tertiary)] text-sm mt-6">
-              Need to get found on Google once it&apos;s live?{" "}
-              <a href="/seo" className="text-[var(--accent)] underline hover:no-underline">
-                See SEO services
-              </a>
-              .
-            </p>
-          </section>
-        </div>
+        <section className="paper py-20 sm:py-24">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+            <RelatedGuides slugs={["website-cost-small-business-india", "contractor-website-checklist", "google-business-profile-india-local-seo"]} title="Website guides" />
+          </div>
+        </section>
+
+        <CtaBand
+          title="Ready to get your business"
+          italic="online?"
+          body="Tell me about your business and what the site needs to do. I'll tell you which plan fits and how soon it can be live."
+          secondary={{ label: "See SEO services", href: "/seo" }}
+        />
       </main>
     </>
   );

@@ -15,7 +15,7 @@
  */
 
 import type { Market } from "./market";
-import { whatsappHref } from "./market";
+import { MARKET_CONFIG, MARKETS, whatsappHref } from "./market";
 
 export type ServiceTier = {
   name: string;
@@ -23,7 +23,9 @@ export type ServiceTier = {
   price: string;
   /** Numeric price, for schema.org Offer. */
   priceAmount: number;
-  period: "one-time" | "month";
+  period: "one-time" | "month" | "setup";
+  /** A second price line, e.g. "+ $197/month" after a setup fee. */
+  extra?: string;
   features: string[];
   cta: { label: string; href: string; external: boolean };
   featured?: boolean;
@@ -254,3 +256,31 @@ export const BUNDLE: Record<Market, { setup: string; setupWas: string; monthly: 
   us: { setup: "$1,997", setupWas: "$2,496", monthly: "$497", monthlyWas: "$594" },
   in: { setup: "₹22,999", setupWas: "₹28,999", monthly: "₹9,999", monthlyWas: "₹12,998" },
 };
+
+/**
+ * The AI Infrastructure tiers (market.ts) in the same shape as the website
+ * and SEO plans, so the AI service pages can use the shared pricing cards.
+ */
+export const AI_SERVICE = Object.fromEntries(
+  MARKETS.map((m) => {
+    const cfg = MARKET_CONFIG[m];
+    return [
+      m,
+      {
+        currency: cfg.currency,
+        note: cfg.pricingNote,
+        tiers: cfg.tiers.map((t) => ({
+          name: t.name,
+          tagline: t.tagline,
+          price: t.setup ?? "Custom",
+          priceAmount: t.setupAmount ?? 0,
+          period: "setup" as const,
+          extra: t.monthly ? `+ ${t.monthly}/month` : undefined,
+          features: t.features,
+          cta: { label: "Book a 15-min call", href: "/#book", external: false },
+          featured: t.featured,
+        })),
+      },
+    ];
+  })
+) as Record<Market, ServiceMarketConfig>;
