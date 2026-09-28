@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Flag from "@/components/shared/flag";
 import { Calculator, Mail, ArrowRight, Check } from "lucide-react";
 
@@ -82,13 +82,10 @@ export default function CalculatorClient() {
   const [emailError, setEmailError] = useState<string | null>(null);
 
   const monthlyLost = Math.round(leads * INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT * commission);
-  const monthlyBaseline = Math.round(leads * INDUSTRY_CLOSE_RATE * commission);
-  const monthlyWithAI = Math.round(leads * (INDUSTRY_CLOSE_RATE + INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT) * commission);
-  const annualLost = monthlyLost * 12;
 
   const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
 
-  const handleUnlock = useCallback(async () => {
+  const handleUnlock = async () => {
     const validation = isValidEmail(email);
     if (!validation.valid) {
       setEmailError(validation.reason || "Please enter a valid email");
@@ -97,7 +94,6 @@ export default function CalculatorClient() {
     setEmailError(null);
     setSubmitState("sending");
     try {
-      const monthlyLost = Math.round(leads * INDUSTRY_CLOSE_RATE * AI_IMPROVEMENT * commission);
       const annualLost = monthlyLost * 12;
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -123,14 +119,14 @@ export default function CalculatorClient() {
           calculator_currency: currency,
           leads_per_month: leads,
         });
-        window.location.href = "/thank-you";
+        window.location.assign("/thank-you");
       } else {
         setSubmitState("error");
       }
     } catch {
       setSubmitState("error");
     }
-  }, [email, leads, commission, currency]);
+  };
 
   return (
     <div className="space-y-8">

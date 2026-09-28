@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useClientValue } from "@/lib/use-client-value";
 import Flag from "@/components/shared/flag";
 import type { Market } from "@/lib/market";
 import type { Sample } from "@/lib/industries";
@@ -8,10 +9,10 @@ import { SerpMockup, SiteMockup } from "./mockups";
 
 /** Site + Google mockups for one industry, switchable between the US and India samples. */
 export default function MarketMockups({ samples }: { samples: Record<Market, Sample> }) {
-  const [m, setM] = useState<Market>("us");
-  useEffect(() => {
-    if (document.cookie.includes("market=in")) setM("in");
-  }, []);
+  // Start on the visitor's region (cookie) until they pick one.
+  const fromCookie = useClientValue<Market>(() => (document.cookie.includes("market=in") ? "in" : "us"), "us");
+  const [picked, setM] = useState<Market | null>(null);
+  const m = picked ?? fromCookie;
   return (
     <div>
       <div role="group" aria-label="Market" className="mb-8 inline-flex rounded-full border border-[var(--border-strong)] p-1 text-[13px] font-semibold">
