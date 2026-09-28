@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import LogoMark from "./logo-mark";
 import { Menu, X } from "lucide-react";
 import { TopNavMenu } from "@astryxdesign/core/TopNav";
@@ -115,10 +116,10 @@ export default function SiteHeader() {
 
     </header>
 
-    {/* Rendered outside <header>: the header's backdrop-filter makes it the
-        containing block for fixed children, which squeezed this full-screen
-        panel into the header's 64px. */}
-      {open && (
+    {/* Portalled to <body>: any ancestor with a transform, filter or
+        backdrop-filter (the header's blur, the page-in wrapper) becomes the
+        containing block for fixed children and pulls this panel off-screen. */}
+      {open && createPortal(
         <div
           id="mobile-menu"
           className="ink lg:hidden fixed inset-x-0 top-16 bottom-0 z-50 border-t border-[var(--border-subtle)] px-4 sm:px-6 py-6 overflow-y-auto"
@@ -169,7 +170,8 @@ export default function SiteHeader() {
           >
             Book a 15-min demo
           </a>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
