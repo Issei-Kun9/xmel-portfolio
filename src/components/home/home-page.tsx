@@ -7,6 +7,7 @@ import ServicesShowcase from "./services-showcase";
 import Bundle from "./bundle";
 import HowWeWork from "./how-we-work";
 import BeforeAfter from "./before-after";
+import OutcomeTicker from "./outcome-ticker";
 import ScrollStory from "./scroll-story";
 import QuoteBuilder from "./quote-builder";
 import NumbersBand from "./numbers-band";
@@ -20,6 +21,7 @@ export default function HomePage({ market }: { market: Market }) {
     <>
       <main>
         <Hero cfg={cfg} />
+        <OutcomeTicker />
         <BeforeAfter />
         <ServicesShowcase market={market} />
         <ScrollStory cfg={cfg} />

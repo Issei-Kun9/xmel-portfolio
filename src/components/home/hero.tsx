@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import type { MarketConfig } from "@/lib/market";
 import CtaButton from "./cta-button";
 import Words from "@/components/motion/words";
-import GoldX from "@/components/visuals/gold-x";
+import HeroVisual from "./hero-visual";
 
 const TRUST = ["AI replies in under 60 seconds", "Websites live in about a week", "No long-term contracts"];
 
@@ -45,7 +45,7 @@ export default function Hero({ cfg }: { cfg: MarketConfig }) {
           </ul>
         </div>
 
-        <GoldX className="hidden sm:block" />
+        <HeroVisual />
       </div>
     </section>
   );

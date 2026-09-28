@@ -19,7 +19,7 @@ function chooseMarket(market: Market) {
 /** Lets a visitor override the geo guess. */
 export default function MarketSwitch({ current }: { current?: Market }) {
   return (
-    <div className="inline-flex items-center gap-1 p-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)]" role="group" aria-label="Choose your region">
+    <div className="inline-flex items-center gap-1 p-1 rounded-full border border-[var(--border-strong)]" role="group" aria-label="Choose your region">
       {MARKETS.map((m) => {
         const cfg = MARKET_CONFIG[m];
         const active = m === current;
@@ -29,10 +29,10 @@ export default function MarketSwitch({ current }: { current?: Market }) {
             type="button"
             onClick={() => chooseMarket(m)}
             aria-pressed={active}
-            className={`h-8 px-3 rounded-md text-[13px] font-medium transition-colors ${
+            className={`h-9 px-4 rounded-full text-[13px] font-semibold transition-colors ${
               active
-                ? "bg-[var(--text-primary)] text-white"
-                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]"
+                ? "bg-[#C9A86A] text-[#0F0F12]"
+                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             }`}
           >
             <span aria-hidden="true">{cfg.flag}</span> {cfg.label} · {cfg.currency}
