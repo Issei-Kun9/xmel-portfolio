@@ -11,7 +11,7 @@
  * This count is separate from the ₹2,500 batch on sites.xmelautomations.xyz.
  */
 export const BATCH_SIZE = 4;
-export const BUILDS_RESERVED = 0;
+export const BUILDS_RESERVED = 1;
 
 export const PLACES_LEFT = Math.max(BATCH_SIZE - BUILDS_RESERVED, 0);
 const PERCENT_FILLED = Math.round((BUILDS_RESERVED / BATCH_SIZE) * 100);
