@@ -3,16 +3,16 @@ import CursorWrapper from "@/components/shared/cursor-wrapper";
 
 const SITE_URL = "https://pro.xmelautomations.xyz";
 const TITLE =
-  "Multi-Page Business Website for ₹4,000 — ₹500 to Start | XMEL Automations";
+  "Your Own Online Store for ₹12,000 — ₹2,000 to Start | XMEL Automations";
 const DESCRIPTION =
-  "A full multi-page website for your business — services, about, gallery and contact. ₹4,000 total: ₹500 to start, ₹3,500 when it goes live. No monthly fee.";
+  "A complete online store for your brand: products, cart, UPI/card/COD checkout, shipping and WhatsApp orders. ₹12,000 total: ₹2,000 to start, ₹10,000 when it goes live.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: "A full multi-page website for your business — ₹4,000",
+    title: "Your own online store — ₹12,000",
     description: DESCRIPTION,
     url: SITE_URL,
     siteName: "XMEL Automations",
@@ -22,31 +22,32 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "A full multi-page website for your business — ₹4,000",
+    title: "Your own online store — ₹12,000",
     description: DESCRIPTION,
     images: ["https://xmelautomations.xyz/og-image.png"],
   },
 };
 
 /**
- * Same scoped light palette as the ₹2,500 offer page: paper background,
- * near-black ink, one deep blue accent. Declared on the wrapper so the
+ * Scoped dark palette for the online-store offer: XMEL ink, ivory type and
+ * the brand gold as the one accent. Declared on the wrapper so the
  * var(--token) classes inside resolve here without touching globals.css or
- * anything on the main site.
+ * anything on the main site. `--on-accent` is the text colour on gold.
  */
 const PALETTE = {
-  "--bg-primary": "#FFFFFF",
-  "--bg-secondary": "#F6F7F4",
-  "--bg-tertiary": "#ECEEE8",
-  "--border-subtle": "rgba(16, 24, 40, 0.10)",
-  "--border-strong": "rgba(16, 24, 40, 0.22)",
-  "--text-primary": "#0E1520",
-  "--text-secondary": "#4A5567",
-  "--text-tertiary": "#6B7687",
-  "--accent": "#0F4C9C",
-  "--accent-soft": "rgba(15, 76, 156, 0.07)",
-  "--accent-line": "rgba(15, 76, 156, 0.30)",
-  colorScheme: "light",
+  "--bg-primary": "#0B0B0E",
+  "--bg-secondary": "#131317",
+  "--bg-tertiary": "#1B1B21",
+  "--border-subtle": "rgba(245, 240, 230, 0.09)",
+  "--border-strong": "rgba(245, 240, 230, 0.18)",
+  "--text-primary": "#F5F0E6",
+  "--text-secondary": "rgba(245, 240, 230, 0.70)",
+  "--text-tertiary": "rgba(245, 240, 230, 0.48)",
+  "--accent": "#C9A86A",
+  "--on-accent": "#0F0F12",
+  "--accent-soft": "rgba(201, 168, 106, 0.10)",
+  "--accent-line": "rgba(201, 168, 106, 0.40)",
+  colorScheme: "dark",
 } as React.CSSProperties;
 
 export default function ProLayout({
