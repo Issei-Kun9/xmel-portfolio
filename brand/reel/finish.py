@@ -1,6 +1,6 @@
 """Mux picture + score and cut the deliverables.
 
-python3 finish.py us   → out/deliver/XMEL_TheGap_30s_9x16_us.mp4, _15s_, _6s_
+python3 finish.py us   → out/deliver/XMEL_TheGap_30s_9x16_us.mp4, _14s_, _6s_
 """
 import subprocess
 import sys
@@ -37,8 +37,8 @@ def cut(segs, out):
     run(["-i", src, "-i", wav, "-filter_complex", ";".join(f), "-map", "[v]", "-map", "[a]", *ENC, out])
 
 
-# 15s: the gap in 5.6s, the hard stop, the answer, the mark.
-cut([(0.0, 5.6), (10.4, 12.0), (18.0, 21.4), (26.6, 30.0)], f"{base}_15s_9x16_{v}.mp4")
+# 14s: the gap in 5.6s, the hard stop, the answer, the mark.
+cut([(0.0, 5.6), (10.4, 12.0), (18.0, 21.4), (26.6, 30.0)], f"{base}_14s_9x16_{v}.mp4")
 # 6s bumper: every time → the mark → close the gap.
 cut([(24.0, 30.0)], f"{base}_6s_9x16_{v}.mp4")
 print("ok")
