@@ -250,7 +250,8 @@ export async function buildResolve({ engine, env, cam, W, H, lead, IN }) {
 
     if (t < 25.0) {
       // EVERY LEAD. EVERY TIME. The board fills on the beat.
-      const smooth = [0, 0.03, 0.06, 0.09, 0.12].map((d) => layout(t - d).pos);
+      // Box-filter the stepped layout over 0.16s in fine steps: moves glide, no ghosting.
+      const smooth = Array.from({ length: 17 }, (_, k) => layout(t - k * 0.01).pos);
       const now = layout(t);
       cards.forEach((c, i) => {
         let x = 0, y = 0;

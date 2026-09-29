@@ -12,15 +12,15 @@ v = sys.argv[1] if len(sys.argv) > 1 else "us"
 src, wav = f"out/reel_{v}_silent.mp4", "out/score.wav"
 os.makedirs("out/deliver", exist_ok=True)
 base = f"out/deliver/XMEL_TheGap"
-ENC = ["-c:v", "libx264", "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart"]
+ENC = ["-c:v", "libx264", "-preset", "slow", "-crf", "18", "-maxrate", "20M", "-bufsize", "40M", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart"]
 
 
 def run(args):
     subprocess.run([FF, "-y", "-loglevel", "error", *args], check=True)
 
 
-# 30s master: the picture is already encoded, only the audio is added.
-run(["-i", src, "-i", wav, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", "-shortest", "-movflags", "+faststart", f"{base}_30s_9x16_{v}.mp4"])
+# 30s master, capped at 20 Mbps so platforms don't re-crush it on upload.
+run(["-i", src, "-i", wav, "-map", "0:v", "-map", "1:a", "-t", "30", *ENC, f"{base}_30s_9x16_{v}.mp4"])
 
 
 def cut(segs, out):
