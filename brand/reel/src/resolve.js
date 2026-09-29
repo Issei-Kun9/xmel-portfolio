@@ -50,8 +50,9 @@ export async function buildResolve({ engine, env, cam, W, H, lead, IN }) {
   gold42.material.emissive = new THREE.Color(0x5a4420);
   gold42.material.emissiveIntensity = 0.4;
   scene.add(gold42);
-  const chips = makeCard({ w: 4.0, h: 0.34, ppu: 300, shadow: false, draw: (ctx, w, h, s) => UI.chips(ctx, w, h, { items: IN ? ["₹1.2 Cr budget", "Loan ready", "This week"] : ["Pre-approved", "$640k", "This week"], p: s.p }) });
-  chips.group.position.set(-0.3, -1.3, 0.7);
+  const chips = makeCard({ w: 3.4, h: 0.34, ppu: 300, shadow: false, draw: (ctx, w, h, s) => UI.chips(ctx, w, h, { items: IN ? ["₹1.2 Cr budget", "Loan ready", "This week"] : ["Pre-approved", "$640k", "This week"], p: s.p }) });
+  chips.group.position.set(0.1, -1.3, 0.7);
+  chips.group.scale.setScalar(0.56);
   scene.add(chips.group);
 
   // ── 2. Calendar locks (x = 12) ──
@@ -233,8 +234,8 @@ export async function buildResolve({ engine, env, cam, W, H, lead, IN }) {
       const k = kick(t - 21.82, 0.03);
       aim(cam, [lerp(23.0, 23.4, p) + k, lerp(-0.5, 0.35, p), lerp(3.4, 3.0, p)], [lerp(23.6, 24.3, p), lerp(-0.8, 0, p), 0], 34, 0.04);
       T.scrim(ov, W, H, 1100, 1920);
-      T.slam(ov, W, H, ["Never"], t - 21.45, { size: 176, y: 1460 });
-      T.slam(ov, W, H, ["forgotten."], t - 21.82, { size: 176, y: 1460 + 162, color: C.gold });
+      T.slam(ov, W, H, ["Never"], t - 21.45, { size: 150, y: 1480 });
+      T.slam(ov, W, H, ["forgotten."], t - 21.82, { size: 150, y: 1480 + 138, color: C.gold });
       T.counter(ov, W, H, v, { gold: true });
       return { scene, camera: cam, bloom: 0.6 };
     }

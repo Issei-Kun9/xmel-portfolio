@@ -419,7 +419,9 @@ export function nodeFace(ctx, W, H, { label, kind, p = 1, who = { name: "Priya S
 /** Qualification chips row. */
 export function chips(ctx, W, H, { items, p = 1 }) {
   ctx.clearRect(0, 0, W, H);
-  let x = 10;
+  font(ctx, 700, 34);
+  const total = items.reduce((a, s) => a + ctx.measureText(s).width + 110, 0) + 18 * (items.length - 1);
+  let x = Math.max(10, (W - total) / 2);
   items.forEach((s, i) => {
     const k = clamp(p * items.length - i);
     if (k <= 0) return;

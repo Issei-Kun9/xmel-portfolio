@@ -284,8 +284,8 @@ export async function buildDirector(engine, { variant = "us" } = {}) {
         threadL.visible = threadR.visible = true;
         const snap = seg(t, 6.25, 6.9);
         const rec = ease.outExpo(snap);
-        threadL.position.set(80 - 2.6 - rec * 1.2, 0.3 - rec * 0.35 - snap * snap * 1.2, 0.05);
-        threadR.position.set(80 + 0.4 + rec * 1.0, 0.3 + rec * 0.1 - snap * snap * 1.4, 0.05);
+        threadL.position.set(80 - 2.6 - rec * 1.2, -0.08 - rec * 0.35 - snap * snap * 1.2, 0.05);
+        threadR.position.set(80 + 0.4 + rec * 1.0, -0.08 + rec * 0.1 - snap * snap * 1.4, 0.05);
         threadL.rotation.z = Math.PI / 2 + rec * 0.35;
         threadR.rotation.z = Math.PI / 2 - rec * 0.5;
         threadMat.emissiveIntensity = snap > 0 ? lerp(0.6, 0, snap) : 0.6;
