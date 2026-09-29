@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // The brand reel is a standalone render tool, not part of the site.
+    "brand/**",
   ]),
 ]);
 
