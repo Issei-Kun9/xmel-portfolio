@@ -6,7 +6,7 @@
  * already-live WhatsApp offers on sites./pro. rather than duplicating them.
  *
  * India website-dev prices are NOT invented: they're the same ₹2,500 /
- * ₹4,000 offers already running on sites.xmelautomations.xyz and
+ * ₹12,000 store offers already running on sites.xmelautomations.xyz and
  * pro.xmelautomations.xyz. US website-dev and both markets' SEO prices are
  * new — set from researched 2026 freelancer/small-agency market rates
  * (small US business sites commonly run $1,500–$8,000; local SEO retainers
@@ -117,27 +117,27 @@ export const WEBSITE_DEV: Record<Market, ServiceMarketConfig> = {
           "Everything in Starter",
           "Multiple pages, built around what your business actually needs",
           "₹500 to start, the rest only after you see the finished site",
-          "Current batch size and queue shown on the offer page",
+          "Built to order: message on WhatsApp to reserve a slot",
         ],
-        cta: { label: "See the ₹4,000 offer", href: "https://pro.xmelautomations.xyz", external: true },
+        cta: { label: "Chat on WhatsApp", href: whatsappHref(WEBSITE_DEV_PREFILL), external: true },
         featured: true,
       },
       {
-        name: "Custom",
-        tagline: "Online stores, bookings, more pages",
-        price: "Custom",
-        priceAmount: 0,
+        name: "Online store",
+        tagline: "Sell on your own domain",
+        price: "₹12,000",
+        priceAmount: 12000,
         period: "one-time",
         features: [
-          "Online stores, booking systems, member areas",
-          "Content migration from an existing site",
-          "Ongoing care plans available",
-          "Priced after a WhatsApp chat",
+          "Up to 50 products, collections, UPI / card / COD checkout",
+          "Shipping, policy pages and WhatsApp on every product",
+          "₹2,000 to start, the rest once the store is live",
+          "Style picked from real stores; monthly slots shown on the offer page",
         ],
-        cta: { label: "Chat on WhatsApp", href: whatsappHref(WEBSITE_DEV_PREFILL), external: true },
+        cta: { label: "See the ₹12,000 store offer", href: "https://pro.xmelautomations.xyz", external: true },
       },
     ],
-    note: "Starter and Business are the same offers running on sites.xmelautomations.xyz and pro.xmelautomations.xyz — this page just explains them. Domain and hosting billed at cost.",
+    note: "Starter and Online store are the same offers running on sites.xmelautomations.xyz and pro.xmelautomations.xyz — this page just explains them. Booking systems, member areas and bigger builds are priced after a WhatsApp chat. Domain, hosting and platform fees billed at cost.",
   },
 };
 

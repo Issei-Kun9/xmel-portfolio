@@ -18,7 +18,7 @@ const APEX = "xmelautomations.xyz";
  */
 const OFFER_HOSTS: Record<string, string> = {
   sites: "/sites", // ₹2,500 single-page build
-  pro: "/pro", // ₹4,000 multi-page build
+  pro: "/pro", // ₹12,000 online store
 };
 
 /** Search-engine and link-preview crawlers: never geo-redirected. */

@@ -1,27 +1,31 @@
 /**
- * Batch capacity bar for the multi-page build.
+ * Monthly capacity for online-store builds.
  *
  * ── EDIT THESE TWO NUMBERS ────────────────────────────────────────────────
- * BATCH_SIZE      how many multi-page builds run in parallel before the queue
- *                 is full for the month
+ * BATCH_SIZE      how many store builds run in a month before the queue is
+ *                 full
  * BUILDS_RESERVED how many are actually reserved right now
  *
- * Update BUILDS_RESERVED each time someone pays the ₹500. Keep it honest: a
+ * Update BUILDS_RESERVED each time someone pays the ₹2,000. Keep it honest: a
  * real number is what makes the pressure survive a customer asking about it.
  * This count is separate from the ₹2,500 batch on sites.xmelautomations.xyz.
  */
-const BATCH_SIZE = 6;
-const BUILDS_RESERVED = 1;
+export const BATCH_SIZE = 4;
+export const BUILDS_RESERVED = 0;
 
-const PLACES_LEFT = Math.max(BATCH_SIZE - BUILDS_RESERVED, 0);
+export const PLACES_LEFT = Math.max(BATCH_SIZE - BUILDS_RESERVED, 0);
 const PERCENT_FILLED = Math.round((BUILDS_RESERVED / BATCH_SIZE) * 100);
 
 export default function CapacityBar() {
   return (
-    <div className="p-5 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-secondary)]">
+    <div className="p-5 rounded-xl border border-[var(--accent-line)] bg-[var(--bg-secondary)]">
       <div className="flex items-baseline justify-between gap-4 mb-3">
-        <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
-          Build queue this month
+        <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">
+          <span className="relative flex w-1.5 h-1.5" aria-hidden="true">
+            <span className="absolute inline-flex w-full h-full rounded-full bg-[var(--accent)] status-pulse" />
+            <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+          </span>
+          Store builds this month
         </span>
         <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
           {PLACES_LEFT} of {BATCH_SIZE} left
@@ -32,7 +36,7 @@ export default function CapacityBar() {
       <div
         className="flex gap-1 mb-3"
         role="img"
-        aria-label={`${BUILDS_RESERVED} of ${BATCH_SIZE} build slots reserved this month`}
+        aria-label={`${BUILDS_RESERVED} of ${BATCH_SIZE} store builds reserved this month`}
       >
         {Array.from({ length: BATCH_SIZE }, (_, i) => (
           <span
@@ -40,7 +44,7 @@ export default function CapacityBar() {
             className={`h-2.5 flex-1 rounded-sm ${
               i < BUILDS_RESERVED
                 ? "bg-[var(--accent)]"
-                : "bg-[var(--border-subtle)]"
+                : "bg-[var(--bg-tertiary)] border border-[var(--border-subtle)]"
             }`}
           />
         ))}
@@ -55,11 +59,12 @@ export default function CapacityBar() {
             so far.{" "}
           </>
         ) : null}
-        A multi-page build takes real time, so only {BATCH_SIZE} run in a month.
-        Builds start in the order they&apos;re reserved.
+        A store is a lot more than a website — products, payments, shipping —
+        so only {BATCH_SIZE}{" "}are built in a month. Builds start in the order
+        they&apos;re reserved.
       </p>
 
-      {PERCENT_FILLED >= 60 && (
+      {PERCENT_FILLED >= 50 && (
         <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold mt-3">
           Filling up — {PLACES_LEFT} place{PLACES_LEFT === 1 ? "" : "s"}{" "}
           remaining
