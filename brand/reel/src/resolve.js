@@ -245,7 +245,7 @@ export async function buildResolve({ engine, env, cam, W, H, lead, IN }) {
       const p = ease.outCubic(seg(t, 22.2, 23.0));
       aim(cam, [36 + lerp(-0.6, -0.2, p), lerp(0.6, 0.35, p), lerp(6.4, 5.0, p)], [36, 0.1, 0], 30, lerp(-0.03, 0, p));
       T.slam(ov, W, H, ["While you", "slept."], t - 22.28, { size: 170, y: 1500, fam: "Fraunces", weight: 400, style: "italic", upper: false, track: -0.02, lh: 1.0 });
-      T.counter(ov, W, H, v, { gold: true });
+      // No counter here: it would sit on the lock-screen clock.
       return { scene, camera: cam, bloom: 0.5 };
     }
 

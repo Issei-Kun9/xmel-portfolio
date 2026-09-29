@@ -12,7 +12,7 @@ v = sys.argv[1] if len(sys.argv) > 1 else "us"
 src, wav = f"out/reel_{v}_silent.mp4", "out/score.wav"
 os.makedirs("out/deliver", exist_ok=True)
 base = f"out/deliver/XMEL_TheGap"
-ENC = ["-c:v", "libx264", "-preset", "slow", "-crf", "18", "-maxrate", "20M", "-bufsize", "40M", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart"]
+ENC = ["-r", "30", "-fps_mode", "cfr", "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-maxrate", "20M", "-bufsize", "40M", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart"]
 
 
 def run(args):
