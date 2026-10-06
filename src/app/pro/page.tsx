@@ -4,7 +4,7 @@ import WhatsappCta, {
   WhatsappIcon,
   PHONE_DISPLAY,
 } from "./whatsapp-cta";
-import StoreInspirations from "./store-inspirations";
+import StoreInspirations from "@/components/offer/store-inspirations";
 import CallbackForm from "./callback-form";
 import Words from "@/components/motion/words";
 
