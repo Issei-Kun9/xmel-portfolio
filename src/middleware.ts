@@ -18,7 +18,7 @@ const APEX = "xmelautomations.xyz";
  */
 const OFFER_HOSTS: Record<string, string> = {
   sites: "/sites", // ₹2,500 single-page build
-  pro: "/pro", // ₹12,000 online store
+  pro: "/pro", // E-commerce for Dubai / UAE, quotes on WhatsApp
 };
 
 /** Search-engine and link-preview crawlers: never geo-redirected. */
