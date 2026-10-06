@@ -5,6 +5,7 @@ import WhatsappCta, {
   PHONE_DISPLAY,
 } from "./whatsapp-cta";
 import StoreInspirations from "./store-inspirations";
+import CallbackForm from "./callback-form";
 import Words from "@/components/motion/words";
 
 /**
@@ -61,7 +62,7 @@ const STEPS = [
   {
     n: "02",
     title: "Tell us what you sell",
-    body: "Roughly how many products, whether you need Arabic, and a store you like the look of.",
+    body: "Just the basics. No photos or product list needed yet — if you have a store you like the look of, even better.",
   },
   {
     n: "03",
@@ -71,6 +72,10 @@ const STEPS = [
 ];
 
 const FAQS = [
+  {
+    q: "I don't have my photos or product list ready. Can I still ask?",
+    a: "Yes — most people don't at this stage. Tell us what you sell and roughly how many products, and we'll quote from that. We'll tell you exactly what to send later, and help with product photos and descriptions if you need it.",
+  },
   {
     q: `What does "from ${FROM_PRICE}" include?`,
     a: "A complete store with your products, checkout, delivery setup and WhatsApp button. The final price depends on how many products you have and what you need — Arabic, extra pages, integrations — and you get it as a fixed quote on WhatsApp before anything starts.",
@@ -115,6 +120,19 @@ function BigCta({ label, where }: { label: string; where: string }) {
       <p className="text-[13px] text-[var(--text-tertiary)] mt-3">
         Free quote · No obligation · Opens WhatsApp
       </p>
+      <p className="text-[14px] text-[var(--text-secondary)] mt-4 max-w-[400px]">
+        <strong className="text-[var(--text-primary)] font-semibold">You don&apos;t need anything ready.</strong>{" "}
+        Just tell us what you sell — we&apos;ll guide you from there.
+      </p>
+      <a
+        href="#callback"
+        data-cta="callback_link"
+        data-cta-location={where}
+        className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-medium text-[var(--accent)] underline-offset-4 hover:underline"
+      >
+        Not ready to chat? Leave your number instead
+        <ArrowDown className="w-3.5 h-3.5" aria-hidden="true" />
+      </a>
     </div>
   );
 }
@@ -204,6 +222,38 @@ export default function ProLanding() {
           </div>
 
           <BigCta label="Get my quote on WhatsApp" where="hero" />
+        </div>
+      </section>
+
+      {/* ==================================================== Callback form */}
+      <section
+        id="callback"
+        aria-labelledby="callback-heading"
+        className="scroll-mt-6 border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+      >
+        <div className="max-w-[1000px] mx-auto px-5 sm:px-8 py-14 sm:py-20 grid md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-12 items-start">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)] mb-3">
+              Not ready to chat yet?
+            </p>
+            <h2 id="callback-heading" className={`${h2} mb-3`}>
+              Leave your number. We&apos;ll contact you.
+            </h2>
+            <p className="text-[var(--text-secondary)] leading-relaxed mb-5">
+              No photos, no product list, no brief needed. Tell us how to reach
+              you and we&apos;ll come to you with a few quick questions and your
+              quote — on WhatsApp, a call or email, whichever you prefer.
+            </p>
+            <ul className="space-y-2.5 text-[14px] text-[var(--text-secondary)]">
+              {["Free quote, no obligation", "Nothing to prepare", "Your number is only used for your quote"].map((t) => (
+                <li key={t} className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-[var(--accent)] shrink-0" aria-hidden="true" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <CallbackForm where="callback" />
         </div>
       </section>
 
