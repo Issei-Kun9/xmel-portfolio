@@ -3,26 +3,26 @@ import CursorWrapper from "@/components/shared/cursor-wrapper";
 
 const SITE_URL = "https://pro.xmelautomations.xyz";
 const TITLE =
-  "Your Own Online Store for ₹12,000 — ₹2,000 to Start | XMEL Automations";
+  "E-commerce Websites in Dubai & the UAE from AED 740 | XMEL Automations";
 const DESCRIPTION =
-  "A complete online store for your brand: products, cart, UPI/card/COD checkout, shipping and WhatsApp orders. ₹12,000 total: ₹2,000 to start, ₹10,000 when it goes live.";
+  "Your own online store: products, cart, card and cash-on-delivery checkout, delivery and WhatsApp orders. E-commerce websites starting from AED 740. Message us on WhatsApp for a quote.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: "Your own online store — ₹12,000",
+    title: "E-commerce websites from AED 740",
     description: DESCRIPTION,
     url: SITE_URL,
     siteName: "XMEL Automations",
     type: "website",
-    locale: "en_IN",
+    locale: "en_AE",
     images: ["https://xmelautomations.xyz/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Your own online store — ₹12,000",
+    title: "E-commerce websites from AED 740",
     description: DESCRIPTION,
     images: ["https://xmelautomations.xyz/og-image.png"],
   },

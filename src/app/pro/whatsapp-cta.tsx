@@ -1,6 +1,6 @@
 const WHATSAPP_NUMBER = "917905214791";
 const PREFILL =
-  "Hi! I'd like to reserve a ₹12,000 online store build. Please send me the ₹2,000 payment link.";
+  "Hi! I'd like a quote for an e-commerce website for my business.";
 
 export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   PREFILL
@@ -10,7 +10,7 @@ export const PHONE_DISPLAY = "+91 79052 14791";
 
 type Props = {
   children: React.ReactNode;
-  size?: "lg" | "md";
+  size?: "xl" | "lg" | "md";
   className?: string;
 };
 
@@ -27,9 +27,11 @@ export default function WhatsappCta({
   className = "",
 }: Props) {
   const sizing =
-    size === "lg"
-      ? "min-h-[60px] px-7 text-[15px] sm:text-base gap-3"
-      : "min-h-[52px] px-6 text-[14px] gap-2.5";
+    size === "xl"
+      ? "min-h-[72px] sm:min-h-[80px] px-5 sm:px-12 text-[17px] sm:text-[20px] gap-3 sm:gap-3.5 rounded-2xl whitespace-nowrap"
+      : size === "lg"
+        ? "min-h-[60px] px-7 text-[15px] sm:text-base gap-3"
+        : "min-h-[52px] px-6 text-[14px] gap-2.5";
 
   return (
     <a
