@@ -94,7 +94,7 @@ const FAQS = [
 ];
 
 /** The hero button, with a pulsing glow and a pointer so it can't be missed. */
-function BigCta({ label }: { label: string }) {
+function BigCta({ label, where }: { label: string; where: string }) {
   return (
     <div className="flex flex-col items-center sm:items-start">
       <span className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[#25D366] mb-3">
@@ -106,7 +106,7 @@ function BigCta({ label }: { label: string }) {
           className="absolute -inset-1 rounded-[20px] bg-[#25D366] opacity-45 blur-lg motion-safe:animate-pulse pointer-events-none"
           aria-hidden="true"
         />
-        <WhatsappCta size="xl" className="relative w-full sm:w-auto shadow-[0_10px_40px_-8px_rgba(37,211,102,0.65)]">
+        <WhatsappCta size="xl" where={where} className="relative w-full sm:w-auto shadow-[0_10px_40px_-8px_rgba(37,211,102,0.65)]">
           <WhatsappIcon className="w-6 h-6 sm:w-7 sm:h-7" />
           {label}
           <ArrowRight className="hidden sm:block w-5 h-5" aria-hidden="true" />
@@ -203,7 +203,7 @@ export default function ProLanding() {
             </span>
           </div>
 
-          <BigCta label="Get my quote on WhatsApp" />
+          <BigCta label="Get my quote on WhatsApp" where="hero" />
         </div>
       </section>
 
@@ -233,7 +233,7 @@ export default function ProLanding() {
           </div>
 
           <div className="mt-10">
-            <WhatsappCta className="w-full sm:w-auto">
+            <WhatsappCta where="included" className="w-full sm:w-auto">
               <WhatsappIcon />
               Ask for my price on WhatsApp
             </WhatsappCta>
@@ -270,7 +270,7 @@ export default function ProLanding() {
           </ol>
 
           <div className="mt-10">
-            <WhatsappCta className="w-full sm:w-auto">
+            <WhatsappCta where="steps" className="w-full sm:w-auto">
               <WhatsappIcon />
               Start step 1 — open WhatsApp
             </WhatsappCta>
@@ -304,7 +304,7 @@ export default function ProLanding() {
           </p>
 
           <div className="mt-9">
-            <WhatsappCtaGhost>
+            <WhatsappCtaGhost where="inspirations">
               I like one of these — get my quote
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
@@ -348,7 +348,7 @@ export default function ProLanding() {
         className="sm:hidden sticky bottom-0 z-40 px-3 pt-3 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)] to-transparent"
         style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))" }}
       >
-        <WhatsappCta size="md" className="w-full">
+        <WhatsappCta size="md" where="sticky-mobile" className="w-full">
           <WhatsappIcon className="w-[18px] h-[18px]" />
           Get my quote on WhatsApp
         </WhatsappCta>
@@ -375,7 +375,7 @@ export default function ProLanding() {
           </h2>
 
           <div className="flex justify-center">
-            <BigCta label="Get my quote on WhatsApp" />
+            <BigCta label="Get my quote on WhatsApp" where="final" />
           </div>
 
           <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-12">

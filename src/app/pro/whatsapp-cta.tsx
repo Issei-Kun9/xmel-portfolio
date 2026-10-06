@@ -12,6 +12,8 @@ type Props = {
   children: React.ReactNode;
   size?: "xl" | "lg" | "md";
   className?: string;
+  /** Which button this is, sent to GA4 as the cta_click "location". */
+  where: string;
 };
 
 /**
@@ -25,6 +27,7 @@ export default function WhatsappCta({
   children,
   size = "lg",
   className = "",
+  where,
 }: Props) {
   const sizing =
     size === "xl"
@@ -36,6 +39,8 @@ export default function WhatsappCta({
   return (
     <a
       data-magnetic
+      data-cta="whatsapp"
+      data-cta-location={where}
       href={WHATSAPP_HREF}
       target="_blank"
       rel="noopener noreferrer"
@@ -50,12 +55,16 @@ export default function WhatsappCta({
 export function WhatsappCtaGhost({
   children,
   className = "",
+  where,
 }: {
   children: React.ReactNode;
   className?: string;
+  where: string;
 }) {
   return (
     <a
+      data-cta="whatsapp"
+      data-cta-location={where}
       href={WHATSAPP_HREF}
       target="_blank"
       rel="noopener noreferrer"
