@@ -27,7 +27,8 @@ function currentMarket(): Market {
  * One delegated listener for the whole site: every link that books, messages,
  * calls or emails sends a GA4 "cta_click" tagged with the market, the page
  * and where on the page it sits (data-cta-location, else the nearest section
- * id). WhatsApp, phone and email clicks, and a meeting actually booked in the
+ * id) and the hostname, so the pro./sites. subdomains (whose pathname is
+ * also "/") don't blur into the main site. WhatsApp, phone and email clicks, and a meeting actually booked in the
  * Calendly embed, also count as "generate_lead".
  */
 export default function CtaTracker() {
@@ -42,7 +43,7 @@ export default function CtaTracker() {
         el.closest("header, footer")?.tagName.toLowerCase() ??
         el.closest("section[id]")?.id ??
         "page";
-      const params = { cta, location: where, page: location.pathname, market: currentMarket() };
+      const params = { cta, location: where, page: location.pathname, host: location.hostname, market: currentMarket() };
       window.gtag?.("event", "cta_click", params);
       if (cta === "whatsapp" || cta === "phone" || cta === "email") {
         window.gtag?.("event", "generate_lead", { ...params, method: cta });

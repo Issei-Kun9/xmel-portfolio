@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CursorWrapper from "@/components/shared/cursor-wrapper";
+import CtaTracker from "@/components/home/cta-tracker";
 
 const SITE_URL = "https://pro.xmelautomations.xyz";
 const TITLE =
@@ -59,6 +60,7 @@ export default function ProLayout({
       className="grain custom-cursor min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]"
     >
       <CursorWrapper />
+      <CtaTracker />
       {children}
     </div>
   );
