@@ -3,11 +3,11 @@
  * SEO. Kept separate from market.ts (the AI lead-response product) because
  * their shape differs — website dev is one-time, SEO is a monthly retainer
  * with no setup fee, and India's website-dev tiers hand off to the existing,
- * already-live WhatsApp offer on sites. rather than duplicating it.
+ * already-live store offer on sites. rather than duplicating it.
  *
- * India website-dev prices are NOT invented: ₹2,500 is the offer running on
- * sites.xmelautomations.xyz, and ₹4,000 / ₹12,000 are the owner's set prices
- * (pro.xmelautomations.xyz now serves UAE e-commerce, quoted in AED). US website-dev and both markets' SEO prices are
+ * India website-dev prices are NOT invented: they're the owner's set prices.
+ * The ₹15,000 online store is the offer running on sites.xmelautomations.xyz;
+ * pro.xmelautomations.xyz serves UAE e-commerce, quoted in AED. US website-dev and both markets' SEO prices are
  * new — set from researched 2026 freelancer/small-agency market rates
  * (small US business sites commonly run $1,500–$8,000; local SEO retainers
  * commonly run $500–$3,000/mo, with $501–$1,000/mo the single most common
@@ -103,9 +103,9 @@ export const WEBSITE_DEV: Record<Market, ServiceMarketConfig> = {
           "A single-page site: services, prices, photos, timings, location",
           "₹500 to start (refundable before your build begins), rest after you see it live",
           "Mobile-first, written around your business, not a template",
-          "Runs as an introductory-batch offer — current spots and terms on the offer page",
+          "Built to order: message on WhatsApp to reserve a slot",
         ],
-        cta: { label: "See the ₹2,500 offer", href: "https://sites.xmelautomations.xyz", external: true },
+        cta: { label: "Chat on WhatsApp", href: whatsappHref(WEBSITE_DEV_PREFILL), external: true },
       },
       {
         name: "Business",
@@ -125,19 +125,19 @@ export const WEBSITE_DEV: Record<Market, ServiceMarketConfig> = {
       {
         name: "Online store",
         tagline: "Sell on your own domain",
-        price: "₹12,000",
-        priceAmount: 12000,
+        price: "₹15,000",
+        priceAmount: 15000,
         period: "one-time",
         features: [
           "Up to 50 products, collections, UPI / card / COD checkout",
           "Shipping, policy pages and WhatsApp on every product",
           "₹2,000 to start, the rest once the store is live",
-          "Style picked from real stores you like",
+          "Style picked from real stores you like; monthly slots on the offer page",
         ],
-        cta: { label: "Chat on WhatsApp", href: whatsappHref(WEBSITE_DEV_PREFILL), external: true },
+        cta: { label: "See the ₹15,000 store offer", href: "https://sites.xmelautomations.xyz", external: true },
       },
     ],
-    note: "Starter is the same offer running on sites.xmelautomations.xyz — this page just explains it. Booking systems, member areas and bigger builds are priced after a WhatsApp chat. Domain, hosting and platform fees billed at cost.",
+    note: "Online store is the same offer running on sites.xmelautomations.xyz — this page just explains it. Booking systems, member areas and bigger builds are priced after a WhatsApp chat. Domain, hosting and platform fees billed at cost.",
   },
 };
 

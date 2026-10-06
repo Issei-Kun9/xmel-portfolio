@@ -4,145 +4,165 @@ import WhatsappCta, {
   WhatsappIcon,
   PHONE_DISPLAY,
 } from "./whatsapp-cta";
-import BusinessPreviews from "@/components/offer/business-previews";
-import CapacityBar from "./capacity";
+import CapacityBar, { BATCH_SIZE, PLACES_LEFT } from "./capacity";
+import StoreInspirations from "@/components/offer/store-inspirations";
 import Lottie from "@/components/motion/lottie";
 import Words from "@/components/motion/words";
 
 /**
- * Ad landing page for the ₹2,500 website offer.
+ * Ad landing page for the ₹15,000 online-store offer for Indian businesses.
  * Served at https://sites.xmelautomations.xyz (see src/middleware.ts).
  *
- * One conversion: visitor → WhatsApp → asks for the ₹500 link.
+ * One conversion: visitor → WhatsApp → asks for the ₹2,000 link.
+ *
+ * Sibling of /pro (UAE e-commerce, quoted in AED). Kept as a separate page
+ * rather than a shared template on purpose: the two are tested and rewritten
+ * independently for different markets.
  */
 const OFFER = {
-  total: "₹2,500",
-  today: "₹500",
-  later: "₹2,000",
-  regular: "₹4,000",
-  deliveryDays: 7,
+  total: "₹15,000",
+  today: "₹2,000",
+  later: "₹13,000",
+  products: 50,
+  deliveryDays: 21,
 };
 
 const INCLUDED = [
   {
-    title: "A professional website",
-    body: "Designed around your business, your services and the customers you want.",
+    title: "Your own store, on your own domain",
+    body: "yourbrand.com, not a marketplace listing. Your logo, your colours, your customers.",
+  },
+  {
+    title: `Up to ${OFFER.products} products uploaded`,
+    body: "Photos, prices, sizes, colours and descriptions — set up for you, organised into collections.",
+  },
+  {
+    title: "UPI, cards and cash on delivery",
+    body: "Checkout connected to a payment gateway, so money lands in your bank account. COD if you want it.",
+  },
+  {
+    title: "Shipping, sorted",
+    body: "Delivery charges, free-shipping thresholds and a shipping partner connected, so orders are ready to dispatch.",
+  },
+  {
+    title: "WhatsApp on every product",
+    body: "A tap-to-ask button for customers who want to check a size or a colour before they buy.",
   },
   {
     title: "Built for phones first",
-    body: "Looks right on phones, tablets and desktops — most of your visitors are on a phone.",
+    body: "Nearly all of your buyers will be on a phone. Every page, cart and checkout step is designed for that.",
   },
   {
-    title: "WhatsApp enquiries",
-    body: "A tap-to-message button on every screen, so customers reach you without a phone call.",
+    title: "Policy pages done",
+    body: "Returns, shipping, privacy and terms — the pages payment gateways ask for before they approve you.",
   },
   {
-    title: "Your own web address",
-    body: "Your business on its own domain, so you can put it on a card, a board or a bill.",
+    title: "Found on Google",
+    body: "Titles, descriptions and a sitemap set up for every product and collection, and submitted to Google.",
   },
   {
-    title: "Your business content",
-    body: "Your services, prices, photos, timings, location and contact details — written for you.",
-  },
-  {
-    title: "Launch and setup",
-    body: "The technical side of getting the site live is handled. You don't touch any of it.",
+    title: "You can run it yourself",
+    body: "A walkthrough video at launch: add a product, change a price, fulfil an order. No developer needed.",
   },
 ];
 
 /**
- * Urgency on this page is structural, not theatrical: every claim below is a
- * consequence of how the offer actually works, so it stays true however long
- * the page is live. No countdowns, no spot counters, no invented statistics.
+ * Why a store of your own, stated as consequences rather than statistics.
+ * Every line holds whatever marketplace or month it is.
  */
-const COST_OF_WAITING = [
+const WHY_OWN_STORE = [
   {
-    title: "They search your name and find nothing",
-    body: "Someone hears about you, looks you up, and lands on an empty result or an old social page. They have no way to judge you, so they move on.",
+    title: "Instagram DMs don't scale",
+    body: "Answering “price?” forty times a day, chasing UPI screenshots, typing addresses into notes. A store takes the order and the payment while you sleep.",
   },
   {
-    title: "The enquiry goes to whoever looks established",
-    body: "When two businesses offer the same thing, the one with a proper website looks like the safer choice. That comparison is happening without you in it.",
+    title: "Marketplaces own your customer",
+    body: "On a marketplace you pay a cut of every order and the buyer belongs to the platform. On your store the customer, the data and the repeat order are yours.",
   },
   {
-    title: "Nothing is working while you sleep",
-    body: "A website answers the same questions at 11pm on a Sunday that you answer on the phone all week. Until it exists, every enquiry costs you your own time.",
+    title: "A real store makes you look established",
+    body: "A proper checkout on your own domain reads as a brand, not a side hustle — and people pay more readily to a brand.",
   },
 ];
 
 const WHY_NOW = [
   {
-    title: `${OFFER.total} is the introductory price`,
-    body: `This batch is priced to build up my portfolio of business websites. When it closes, this build goes back to ${OFFER.regular} — the same work, the ordinary price.`,
-  },
-  {
-    title: "I build these one at a time",
-    body: "This isn't a team or a template factory. One build gets my attention at a time, so the number I can take in a month is small and fixed by how long a good one takes.",
+    title: `Only ${BATCH_SIZE} stores a month`,
+    body: "A store is products, payments, shipping and policies, not just pages. Each one takes real hours, so the number per month is fixed.",
   },
   {
     title: "Builds start in the order they're reserved",
-    body: `Your ${OFFER.today} holds your place in that queue. Reserve later and you aren't turned away — you just start later.`,
+    body: `Your ${OFFER.today} holds your place in the queue. Reserve later and you aren't turned away — you just start later.`,
+  },
+  {
+    title: "Nothing more is owed until it's live",
+    body: `The ${OFFER.later} is due when your store is live and you've placed a test order yourself. Until then you've risked ${OFFER.today}, refundable.`,
   },
 ];
 
 const STEPS = [
   {
     n: "01",
-    title: "Reserve your spot",
-    body: `Message me on WhatsApp. I send the ${OFFER.today} payment details, and your build is booked.`,
+    title: "Reserve your store",
+    body: `Message me on WhatsApp. I send the ${OFFER.today} payment details and your place in the queue is held.`,
   },
   {
     n: "02",
-    title: "We build your website",
-    body: "Send your business details, photos and anything you want on it. I write and design the rest.",
+    title: "Pick a look and send your products",
+    body: "Point at a store below that you like. Then send your logo, product photos, prices and variants.",
   },
   {
     n: "03",
-    title: "You see it, then you pay the rest",
-    body: `You review the finished website. The remaining ${OFFER.later} is due only after that.`,
+    title: "I build it",
+    body: `Around ${OFFER.deliveryDays} days. You get a preview link the whole way, so you're never waiting in the dark.`,
+  },
+  {
+    n: "04",
+    title: "It goes live, then you pay the rest",
+    body: `Once the store is live on your domain and you've placed a test order, the ${OFFER.later} is due.`,
   },
 ];
 
 const FAQS = [
   {
-    q: `Why is it only ${OFFER.total}?`,
-    a: "I'm taking on an introductory batch of business websites to build up this side of my work, so the price is lower than what I'll charge once that batch is done. The work isn't smaller — the price is introductory.",
+    q: "Which platform is the store built on?",
+    a: "We decide together on WhatsApp. Shopify if you want the easiest dashboard to run yourself (Shopify has its own monthly plan, paid directly to them), or WooCommerce if you'd rather avoid a monthly platform fee. Either way, the store and the account are in your name.",
+  },
+  {
+    q: `What's included for ${OFFER.total}?`,
+    a: `Store design, up to ${OFFER.products} products uploaded, collections, payment gateway, shipping setup, WhatsApp button, policy pages, basic Google setup and a walkthrough video. If you have far more products, say so and I'll quote it before we start — never after.`,
   },
   {
     q: `Why do I only pay ${OFFER.today} first?`,
-    a: `Because you shouldn't have to hand over ${OFFER.total} to someone you've just met on the internet. The ${OFFER.today} reserves your build and lets me start. It's the smallest amount that makes the commitment real on both sides.`,
+    a: `Because you shouldn't hand ${OFFER.total} to someone you've just met online. The ${OFFER.today} reserves your build and lets me start. It's the smallest amount that makes the commitment real on both sides.`,
   },
   {
     q: `What if I change my mind after paying the ${OFFER.today}?`,
     a: `If I haven't started your build yet, message me and I'll refund the ${OFFER.today}. You're reserving a place, not signing a contract you can't get out of.`,
   },
   {
-    q: `When do I pay the remaining ${OFFER.later}?`,
-    a: "After the website is finished and you've seen it. Not before.",
+    q: `When exactly do I pay the ${OFFER.later}?`,
+    a: "When the store is live on your domain and you've placed a test order yourself. Not on a milestone, not halfway — live and taking orders.",
   },
   {
-    q: "How long does the website take?",
-    a: `Around ${OFFER.deliveryDays} days from the day you send me your business details — not from the day you pay. If you take a week to send photos, the clock starts when they arrive.`,
+    q: "How long does it take?",
+    a: `Around ${OFFER.deliveryDays} days from the day you send your products and details — not from the day you pay. Payment-gateway approval can add a few days; I handle the paperwork with you.`,
   },
   {
-    q: "Do I have to pay every month?",
-    a: "Not to me. There's no monthly fee for the website itself. Domain renewal is paid once a year directly to the registrar, and hosting for a site this size is free or close to it — you pay those yourself, not through me.",
+    q: "Are there any ongoing costs?",
+    a: "Nothing monthly to me. You pay directly for your domain (yearly), your platform plan if you choose Shopify, and the payment gateway's per-transaction fee. I'll show you the exact numbers for your setup before you pay anything.",
   },
   {
-    q: "What do you need from me?",
-    a: "Your business name, what you do, your contact details, and any photos you have. If you don't have photos, tell me and we work with what's available. I write the words.",
+    q: "Can you make it look like one of the stores on this page?",
+    a: "In spirit, yes: the layout, the feel, the way products are shown. Not a copy — your brand, your colours, your photos. Point at the one you like on WhatsApp and we start from there.",
   },
   {
-    q: "Can I use my own domain?",
-    a: "Yes. If you already own one, I'll connect it. If you don't, I'll help you pick and register one — you own it, in your name.",
+    q: "Can I add products myself later?",
+    a: "Yes. That's the point of the walkthrough video. Adding a product takes a couple of minutes once you've seen it done.",
   },
   {
     q: "What happens after I message you on WhatsApp?",
-    a: `I reply with a couple of questions about your business and the ${OFFER.today} payment details. No call unless you want one, and no pressure — if it isn't a fit, I'll say so.`,
-  },
-  {
-    q: "Can you build a website for my type of business?",
-    a: "If customers need to find you, see what you offer and contact you, then yes. Shops, restaurants, salons, clinics, tradespeople, agents, tutors, consultants. Message me what you do and I'll tell you straight if it's a fit.",
+    a: `I reply with a few questions about your products and the ${OFFER.today} payment details. No call unless you want one, and if a store isn't the right fit yet I'll say so.`,
   },
 ];
 
@@ -150,8 +170,8 @@ export default function SitesLanding() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Website design and development",
-    name: "Business website launch",
+    serviceType: "E-commerce website development",
+    name: "Online store build",
     provider: {
       "@type": "Organization",
       name: "XMEL Automations",
@@ -159,11 +179,10 @@ export default function SitesLanding() {
       telephone: "+91 7905214791",
     },
     areaServed: "IN",
-    description:
-      "A professional, mobile-first website for a small business. ₹2,500 total — ₹500 to start, ₹2,000 after you see the finished site.",
+    description: `A complete online store with up to ${OFFER.products} products, payments and shipping. ₹15,000 total — ₹2,000 to start, ₹13,000 when it goes live.`,
     offers: {
       "@type": "Offer",
-      price: "2500",
+      price: "15000",
       priceCurrency: "INR",
     },
   };
@@ -178,6 +197,9 @@ export default function SitesLanding() {
     })),
   };
 
+  const h2 =
+    "font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)]";
+
   return (
     <main className="relative">
       <script
@@ -190,180 +212,158 @@ export default function SitesLanding() {
       />
 
       {/* -------------------------------------------------------- Scarcity bar */}
-      <div className="sticky top-0 z-40 bg-[var(--accent)] text-white shadow-[0_2px_12px_-4px_rgba(15,76,156,0.5)]">
+      <div className="sticky top-0 z-40 bg-[var(--accent)] text-[var(--on-accent)] shadow-[0_2px_18px_-4px_rgba(201,168,106,0.45)]">
         <div className="max-w-[900px] mx-auto px-4 sm:px-8 py-2.5 flex items-center justify-center gap-2.5 text-center">
           <span className="relative flex w-2 h-2 shrink-0" aria-hidden="true">
-            <span className="absolute inline-flex w-full h-full rounded-full bg-white status-pulse" />
-            <span className="relative inline-flex w-2 h-2 rounded-full bg-white" />
+            <span className="absolute inline-flex w-full h-full rounded-full bg-[var(--on-accent)] status-pulse" />
+            <span className="relative inline-flex w-2 h-2 rounded-full bg-[var(--on-accent)]" />
           </span>
-
           <p className="font-mono text-[11px] sm:text-[12.5px] uppercase tracking-[0.08em]">
-            <strong className="font-semibold">Introductory batch open</strong>
-            <span className="mx-1.5 opacity-60">·</span>
+            <strong className="font-semibold">
+              Online store · {OFFER.total}
+            </strong>
+            <span className="mx-1.5 opacity-50">·</span>
             <span className="whitespace-nowrap">
-              {OFFER.total} not {OFFER.regular}
+              {PLACES_LEFT} of {BATCH_SIZE} builds left this month
             </span>
             <span className="hidden sm:inline">
-              <span className="mx-1.5 opacity-60">·</span>
-              <span className="opacity-90">
-                Limited builds, reserved in order
-              </span>
+              <span className="mx-1.5 opacity-50">·</span>
+              <span>{OFFER.today} to start</span>
             </span>
           </p>
         </div>
       </div>
 
       {/* ============================================================== Hero */}
-      <section
-        aria-labelledby="hero-heading"
-        className="relative overflow-hidden"
-      >
+      <section aria-labelledby="hero-heading" className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div
-            className="absolute top-[-35%] left-1/2 -translate-x-1/2 w-[85%] h-[70%] rounded-full opacity-[0.10] blur-[110px]"
-            style={{
-              background:
-                "radial-gradient(circle, var(--accent) 0%, transparent 70%)",
-            }}
+            className="absolute top-[-35%] left-1/2 -translate-x-1/2 w-[85%] h-[70%] rounded-full opacity-[0.16] blur-[120px]"
+            style={{ background: "radial-gradient(circle, var(--accent) 0%, transparent 70%)" }}
           />
         </div>
 
         <Lottie name="rocket" className="float-slow absolute right-[4%] top-10 hidden md:block w-40 h-40 lg:w-52 lg:h-52 z-0 pointer-events-none" />
-        <Lottie name="laptop" className="float-slow absolute right-[18%] bottom-16 hidden lg:block w-32 h-32 z-0 pointer-events-none [animation-delay:-3.5s]" />
         <div className="relative z-10 max-w-[840px] mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-12">
-          {/*
-            Everything that makes the decision — headline, price, scarcity,
-            button — is kept above the fold on a small phone. Supporting
-            detail (payment split, delivery terms) sits below the CTA, and the
-            section immediately after the hero covers it in full.
-          */}
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)] mb-4">
+            E-commerce package
+          </p>
           <h1
             id="hero-heading"
             className="font-display text-[clamp(30px,7.2vw,56px)] font-semibold leading-[1.05] tracking-[-0.025em] text-[var(--text-primary)] mb-4"
           >
-            <Words text="Your business deserves a proper website." />
+            <Words text="Your own online store. Taking orders in 3 weeks." />
           </h1>
 
-          <p className="text-[16px] sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-[520px] mb-5">
-            Built for your business, ready in {OFFER.deliveryDays} days.
+          <p className="text-[16px] sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-[540px] mb-5">
+            Up to {OFFER.products} products, UPI / card / COD checkout, shipping
+            and WhatsApp — built, set up and handed over, ready to sell.
           </p>
 
           <div className="flex items-baseline gap-3 mb-5">
             <span className="font-display text-[40px] sm:text-[52px] font-semibold leading-none text-[var(--text-primary)]">
               {OFFER.total}
             </span>
-            <span className="font-display text-[20px] sm:text-[26px] leading-none text-[var(--text-tertiary)] line-through decoration-2">
-              {OFFER.regular}
-            </span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
-              Introductory
+            <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+              total · {OFFER.today} to start
             </span>
           </div>
 
           <div className="max-w-[480px] mb-5">
-            <CapacityBar regularPrice={OFFER.regular} />
+            <CapacityBar />
           </div>
 
-          <WhatsappCta className="w-full sm:w-auto">
+          <WhatsappCta where="hero" className="w-full sm:w-auto">
             <WhatsappIcon />
-            WhatsApp — Reserve my spot for {OFFER.today}
+            WhatsApp — Reserve my store for {OFFER.today}
           </WhatsappCta>
 
-          <p className="inline-flex items-start gap-2 mt-3 max-w-[460px]">
-            <ShieldCheck
-              className="w-4 h-4 shrink-0 text-[var(--accent)] mt-0.5"
-              aria-hidden="true"
-            />
+          <p className="inline-flex items-start gap-2 mt-3 max-w-[470px]">
+            <ShieldCheck className="w-4 h-4 shrink-0 text-[var(--accent)] mt-0.5" aria-hidden="true" />
             <span className="text-[13.5px] text-[var(--text-secondary)] leading-relaxed">
               <strong className="text-[var(--text-primary)] font-semibold">
                 {OFFER.today} to start, refundable
               </strong>{" "}
-              before your build begins — the rest only after you see the
-              finished website.
+              before your build begins — the {OFFER.later} is due only once your
+              store is live.
             </span>
           </p>
 
-          {/* ---- below the fold on a phone: the supporting detail ---- */}
           <div className="mt-9 pt-8 border-t border-[var(--border-subtle)] max-w-[520px]">
-            <div className="flex flex-col gap-2 p-5 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-secondary)]">
-              <p className="text-[15px] sm:text-base text-[var(--text-primary)]">
-                Pay{" "}
-                <strong className="text-[var(--accent)] font-semibold">
-                  {OFFER.today} to start.
-                </strong>
-              </p>
-              <p className="text-[15px] sm:text-base text-[var(--text-secondary)]">
-                Pay the remaining {OFFER.later}{" "}
-                <strong className="text-[var(--text-primary)] font-medium">
-                  only after you see the finished website.
-                </strong>
-              </p>
-            </div>
-
+            <a
+              href="#inspirations"
+              className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] hover:underline underline-offset-4"
+            >
+              See the stores you can pick a style from
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+            </a>
             <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-5">
-              {OFFER.deliveryDays}-day delivery · One-time payment · No monthly
-              website fee
-            </p>
-
-            <p className="text-sm text-[var(--text-tertiary)] mt-4">
-              Takes about 30 seconds. I&apos;ll send the {OFFER.today} payment
-              details on WhatsApp — it holds your place in the build queue.
+              One-time build fee · No monthly fee to me
             </p>
           </div>
         </div>
       </section>
 
-      {/* =================================================== Risk reversal flow */}
+      {/* ======================================================= Inspirations */}
       <section
-        aria-labelledby="flow-heading"
-        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+        id="inspirations"
+        aria-labelledby="inspo-heading"
+        className="scroll-mt-14 border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
       >
+        <div className="max-w-[1080px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)] mb-3">
+            Inspirations
+          </p>
+          <h2 id="inspo-heading" className={`${h2} mb-3`}>
+            Pick a style. I&apos;ll build yours in that direction.
+          </h2>
+          <p className="text-[var(--text-secondary)] leading-relaxed max-w-[600px] mb-10">
+            Real Indian brands with stores worth borrowing from. Send me the one
+            closest to what you want — the layout, the feel, the way products
+            are shown — and your store starts there, in your brand.
+          </p>
+
+          <StoreInspirations />
+
+          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-5">
+            Real stores we admire, shown for style reference — not our work, no
+            affiliation
+          </p>
+
+          <div className="mt-9">
+            <WhatsappCtaGhost where="inspirations">
+              I like one of these — reserve my store
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </WhatsappCtaGhost>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================== Risk reversal flow */}
+      <section aria-labelledby="flow-heading" className="border-t border-[var(--border-subtle)]">
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-16">
           <h2
             id="flow-heading"
             className="font-display text-[clamp(22px,4.5vw,32px)] font-semibold tracking-[-0.015em] text-[var(--text-primary)] mb-3"
           >
-            You are not paying {OFFER.total} upfront.
+            You pay the bulk of it only once it&apos;s taking orders.
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-9">
-            And the {OFFER.today} that starts it is refundable right up until I
-            begin your build — so the decision you&apos;re making today is
-            genuinely reversible.
+            And the {OFFER.today}{" "}that starts it is refundable right up until I
+            begin your build — so today&apos;s decision is genuinely reversible.
           </p>
 
           <ol className="grid sm:grid-cols-4 gap-3">
             {[
-              {
-                label: "You pay",
-                value: OFFER.today,
-                note: "Reserves your build",
-                strong: true,
-              },
-              {
-                label: "Then",
-                value: "I build it",
-                note: `About ${OFFER.deliveryDays} days`,
-                strong: false,
-              },
-              {
-                label: "Then",
-                value: "You see it",
-                note: "The finished website",
-                strong: false,
-              },
-              {
-                label: "Only then",
-                value: OFFER.later,
-                note: "The remaining balance",
-                strong: true,
-              },
+              { label: "You pay", value: OFFER.today, note: "Holds your place", strong: true },
+              { label: "Then", value: "Pick a style", note: "From the stores above", strong: false },
+              { label: "Then", value: "It goes live", note: "You place a test order", strong: false },
+              { label: "Only then", value: OFFER.later, note: "The remaining balance", strong: true },
             ].map((step) => (
               <li
                 key={step.value}
-                className={`relative p-5 rounded-xl border bg-[var(--bg-primary)] ${
-                  step.strong
-                    ? "border-[var(--accent)]"
-                    : "border-[var(--border-subtle)]"
+                className={`relative p-5 rounded-xl border bg-[var(--bg-secondary)] ${
+                  step.strong ? "border-[var(--accent-line)]" : "border-[var(--border-subtle)]"
                 }`}
               >
                 <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] block mb-2">
@@ -371,16 +371,12 @@ export default function SitesLanding() {
                 </span>
                 <span
                   className={`font-display text-[22px] font-semibold block leading-none mb-2 ${
-                    step.strong
-                      ? "text-[var(--accent)]"
-                      : "text-[var(--text-primary)]"
+                    step.strong ? "text-[var(--accent)]" : "text-[var(--text-primary)]"
                   }`}
                 >
                   {step.value}
                 </span>
-                <span className="text-[13px] text-[var(--text-secondary)]">
-                  {step.note}
-                </span>
+                <span className="text-[13px] text-[var(--text-secondary)]">{step.note}</span>
               </li>
             ))}
           </ol>
@@ -390,119 +386,63 @@ export default function SitesLanding() {
       {/* ====================================================== What you get */}
       <section
         aria-labelledby="included-heading"
-        className="border-t border-[var(--border-subtle)]"
+        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
       >
         <div className="max-w-[1000px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
-          <h2
-            id="included-heading"
-            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-10 max-w-[620px]"
-          >
-            Everything you need to get your business online.
+          <h2 id="included-heading" className={`${h2} mb-10 max-w-[620px]`}>
+            Everything a store needs to sell on day one.
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {INCLUDED.map((item) => (
               <div
                 key={item.title}
-                className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+                className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)]"
               >
-                <Check
-                  className="w-5 h-5 text-[var(--accent)] mb-4"
-                  aria-hidden="true"
-                />
+                <Check className="w-5 h-5 text-[var(--accent)] mb-4" aria-hidden="true" />
                 <h3 className="font-display text-base font-semibold text-[var(--text-primary)] mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  {item.body}
-                </p>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-10">
-            <WhatsappCtaGhost>
-              Reserve my spot for {OFFER.today}
+            <WhatsappCtaGhost where="included">
+              Reserve my store for {OFFER.today}
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
           </div>
         </div>
       </section>
 
-      {/* ==================================================== Cost of waiting */}
-      <section
-        aria-labelledby="waiting-heading"
-        className="border-t border-[var(--border-subtle)]"
-      >
+      {/* ===================================================== Why own store */}
+      <section aria-labelledby="own-heading" className="border-t border-[var(--border-subtle)]">
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
-          <h2
-            id="waiting-heading"
-            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-3"
-          >
-            What another month without one costs you.
+          <h2 id="own-heading" className={`${h2} mb-3`}>
+            Why a store of your own.
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-10">
-            Not having a website isn&apos;t neutral. It quietly costs you
-            customers you never hear about.
+            Selling through DMs and marketplaces works — until it becomes the
+            thing holding you back.
           </p>
 
           <div className="space-y-3">
-            {COST_OF_WAITING.map((item) => (
+            {WHY_OWN_STORE.map((item) => (
               <div
                 key={item.title}
                 className="flex gap-4 p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
               >
-                <span
-                  className="shrink-0 w-1 rounded-full bg-[var(--accent-line)]"
-                  aria-hidden="true"
-                />
+                <span className="shrink-0 w-1 rounded-full bg-[var(--accent-line)]" aria-hidden="true" />
                 <div>
                   <h3 className="font-display text-[16px] font-semibold text-[var(--text-primary)] mb-1.5">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    {item.body}
-                  </p>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{item.body}</p>
                 </div>
               </div>
             ))}
-          </div>
-
-          <p className="text-[15px] text-[var(--text-primary)] mt-8 max-w-[520px]">
-            None of this is urgent in the way an emergency is. It&apos;s worse —
-            it&apos;s the kind of loss you never get told about.
-          </p>
-        </div>
-      </section>
-
-      {/* ========================================================== Previews */}
-      <section
-        aria-labelledby="previews-heading"
-        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
-      >
-        <div className="max-w-[1000px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
-          <h2
-            id="previews-heading"
-            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-3"
-          >
-            Imagine your business here.
-          </h2>
-          <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-10">
-            Every business needs slightly different things on its website. Here
-            is the shape it usually takes.
-          </p>
-
-          <BusinessPreviews />
-
-          <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-5">
-            Illustrations of layout — not screenshots of real client sites
-          </p>
-
-          <div className="mt-9">
-            <WhatsappCtaGhost>
-              Ask about my business
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </WhatsappCtaGhost>
           </div>
         </div>
       </section>
@@ -510,13 +450,10 @@ export default function SitesLanding() {
       {/* ============================================================ Hermont */}
       <section
         aria-labelledby="built-heading"
-        className="border-t border-[var(--border-subtle)]"
+        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
       >
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
-          <h2
-            id="built-heading"
-            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-10"
-          >
+          <h2 id="built-heading" className={`${h2} mb-10`}>
             Here&apos;s what I&apos;ve built.
           </h2>
 
@@ -524,7 +461,7 @@ export default function SitesLanding() {
             href="https://hermont.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="group block rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-colors duration-300"
+            className="group block rounded-xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-primary)] hover:border-[var(--accent-line)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-colors duration-300"
           >
             <div
               className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
@@ -535,7 +472,7 @@ export default function SitesLanding() {
                 <span className="w-2.5 h-2.5 rounded-full bg-[var(--border-strong)]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[var(--border-strong)]" />
               </span>
-              <span className="flex-1 mx-2 px-3 py-1 rounded bg-[var(--bg-primary)] font-mono text-[11px] text-[var(--text-tertiary)] truncate">
+              <span className="flex-1 mx-2 px-3 py-1 rounded bg-[var(--bg-secondary)] font-mono text-[11px] text-[var(--text-tertiary)] truncate">
                 hermont.in
               </span>
             </div>
@@ -549,14 +486,8 @@ export default function SitesLanding() {
                 Jaipur, Delhi and Dubai. A clean, fast, mobile-first site that
                 explains what they do and how to reach them.
               </p>
-
               <ul className="flex flex-wrap gap-2 mb-5">
-                {[
-                  "Design and build",
-                  "Mobile-first",
-                  "Content and structure",
-                  "Live on its own domain",
-                ].map((tag) => (
+                {["Design and build", "Mobile-first", "Content and structure", "Live on its own domain"].map((tag) => (
                   <li
                     key={tag}
                     className="px-3 py-1 rounded-full border border-[var(--border-subtle)] font-mono text-[11px] text-[var(--text-tertiary)]"
@@ -565,7 +496,6 @@ export default function SitesLanding() {
                   </li>
                 ))}
               </ul>
-
               <span className="inline-flex items-center gap-2 font-mono text-[12px] text-[var(--accent)]">
                 Open the live site
                 <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
@@ -574,21 +504,15 @@ export default function SitesLanding() {
           </a>
 
           <p className="text-sm text-[var(--text-tertiary)] leading-relaxed mt-5">
-            Yours would be built the same way, around your business.
+            Same care, applied to your products, your checkout and your brand.
           </p>
         </div>
       </section>
 
       {/* ======================================================= How it works */}
-      <section
-        aria-labelledby="how-heading"
-        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
-      >
+      <section aria-labelledby="how-heading" className="border-t border-[var(--border-subtle)]">
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
-          <h2
-            id="how-heading"
-            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-10"
-          >
+          <h2 id="how-heading" className={`${h2} mb-10`}>
             How it works.
           </h2>
 
@@ -596,32 +520,23 @@ export default function SitesLanding() {
             {STEPS.map((s) => (
               <li
                 key={s.n}
-                className="flex gap-5 p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)]"
+                className="flex gap-5 p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
               >
-                <span
-                  className="font-mono text-[13px] text-[var(--accent)] shrink-0 pt-0.5"
-                  aria-hidden="true"
-                >
+                <span className="font-mono text-[13px] text-[var(--accent)] shrink-0 pt-0.5" aria-hidden="true">
                   {s.n}
                 </span>
                 <div>
                   <h3 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-1.5">
                     {s.title}
                   </h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    {s.body}
-                  </p>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{s.body}</p>
                 </div>
               </li>
             ))}
           </ol>
 
-          <p className="text-[var(--text-secondary)] mt-7">
-            That&apos;s it. No complicated process.
-          </p>
-
           <div className="mt-8">
-            <WhatsappCtaGhost>
+            <WhatsappCtaGhost where="how">
               Start with {OFFER.today}
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
@@ -632,44 +547,40 @@ export default function SitesLanding() {
       {/* ========================================================= Why now */}
       <section
         aria-labelledby="whynow-heading"
-        className="border-t border-[var(--border-subtle)]"
+        className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
       >
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
-          <h2
-            id="whynow-heading"
-            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-3"
-          >
+          <h2 id="whynow-heading" className={`${h2} mb-3`}>
             Why reserve now rather than later.
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-[560px] mb-10">
-            No countdown on this page, and no invented shortage. Three plain
-            reasons, all of them true whenever you happen to read this.
+            No fake countdown and no invented shortage. Three plain reasons,
+            all true whenever you happen to read this.
           </p>
 
           <ol className="grid sm:grid-cols-3 gap-4">
             {WHY_NOW.map((item, i) => (
               <li
                 key={item.title}
-                className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
+                className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)]"
               >
-                <span
-                  className="font-mono text-[12px] text-[var(--accent)] block mb-3"
-                  aria-hidden="true"
-                >
+                <span className="font-mono text-[12px] text-[var(--accent)] block mb-3" aria-hidden="true">
                   0{i + 1}
                 </span>
                 <h3 className="font-display text-[16px] font-semibold text-[var(--text-primary)] mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  {item.body}
-                </p>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{item.body}</p>
               </li>
             ))}
           </ol>
 
-          <div className="mt-9">
-            <WhatsappCtaGhost>
+          <div className="max-w-[520px] mt-9">
+            <CapacityBar />
+          </div>
+
+          <div className="mt-6">
+            <WhatsappCtaGhost where="whynow">
               Hold my place for {OFFER.today}
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
@@ -678,20 +589,14 @@ export default function SitesLanding() {
       </section>
 
       {/* ========================================================= Pricing */}
-      <section
-        aria-labelledby="pricing-heading"
-        className="border-t border-[var(--border-subtle)]"
-      >
+      <section aria-labelledby="pricing-heading" className="border-t border-[var(--border-subtle)]">
         <div className="max-w-[840px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
-          <h2
-            id="pricing-heading"
-            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-3"
-          >
+          <h2 id="pricing-heading" className={`${h2} mb-3`}>
             One price. Split in two.
           </h2>
           <p className="text-[var(--text-secondary)] mb-10">
-            Introductory price while this batch lasts — my regular price for
-            this build is {OFFER.regular}.
+            Agreed before I start. No hourly billing, no invoice at the end you
+            didn&apos;t expect.
           </p>
 
           <dl className="grid sm:grid-cols-3 gap-3 mb-4">
@@ -713,7 +618,7 @@ export default function SitesLanding() {
             </div>
             <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
               <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] mb-2">
-                After you see it
+                When it&apos;s live
               </dt>
               <dd className="font-display text-[40px] font-semibold text-[var(--text-primary)] leading-none">
                 {OFFER.later}
@@ -721,13 +626,9 @@ export default function SitesLanding() {
             </div>
           </dl>
 
-          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] mb-8">
-            No monthly website fee
+          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)]">
+            No monthly fee to me · Platform and gateway fees paid directly, at cost
           </p>
-
-          <div className="max-w-[520px]">
-            <CapacityBar regularPrice={OFFER.regular} />
-          </div>
         </div>
       </section>
 
@@ -737,10 +638,7 @@ export default function SitesLanding() {
         className="border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"
       >
         <div className="max-w-[760px] mx-auto px-5 sm:px-8 py-14 sm:py-20">
-          <h2
-            id="faq-heading"
-            className="font-display text-[clamp(24px,5vw,38px)] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-9"
-          >
+          <h2 id="faq-heading" className={`${h2} mb-9`}>
             Before you message me.
           </h2>
 
@@ -758,15 +656,13 @@ export default function SitesLanding() {
                     +
                   </span>
                 </summary>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mt-3 pr-8">
-                  {f.a}
-                </p>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mt-3 pr-8">{f.a}</p>
               </details>
             ))}
           </div>
 
           <div className="mt-9">
-            <WhatsappCtaGhost>
+            <WhatsappCtaGhost where="faq">
               Ask me something else
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
@@ -775,56 +671,46 @@ export default function SitesLanding() {
       </section>
 
       {/*
-        Sticky mobile CTA.
-
-        position:sticky (not fixed) so it rides the viewport bottom while
-        scrolling and then simply lands in the flow just above the final CTA —
-        no duplicate CTAs on screen, and no JavaScript to make that happen.
+        Sticky mobile CTA — position:sticky, not fixed, so it rides the bottom
+        of the viewport and then lands in the flow just above the final CTA.
       */}
       <div
         className="sm:hidden sticky bottom-0 z-40 px-3 pt-3 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)] to-transparent"
         style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))" }}
       >
-        <WhatsappCta size="md" className="w-full">
+        <WhatsappCta where="sticky-mobile" size="md" className="w-full">
           <WhatsappIcon className="w-[18px] h-[18px]" />
           WhatsApp — Start for {OFFER.today}
         </WhatsappCta>
         <p className="text-center text-[11px] text-[var(--text-tertiary)] mt-1.5">
-          Refundable before your build starts
+          {PLACES_LEFT} of {BATCH_SIZE} store builds left this month
         </p>
       </div>
 
       {/* ===================================================== Final CTA */}
-      <section
-        aria-labelledby="final-heading"
-        className="border-t border-[var(--border-subtle)]"
-      >
+      <section aria-labelledby="final-heading" className="border-t border-[var(--border-subtle)]">
         <div className="max-w-[720px] mx-auto px-5 sm:px-8 py-16 sm:py-20 text-center">
           <h2
             id="final-heading"
             className="font-display text-[clamp(26px,6vw,42px)] font-semibold tracking-[-0.025em] text-[var(--text-primary)] mb-5"
           >
-            Ready to get your business online?
+            Ready to start selling on your own store?
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed mb-4 max-w-[460px] mx-auto">
-            Reserve your website build for {OFFER.today}. I&apos;ll send the
-            payment details on WhatsApp.
+            Reserve your store for {OFFER.today}. I&apos;ll send the payment
+            details on WhatsApp.
           </p>
           <p className="text-[15px] text-[var(--text-primary)] mb-9 max-w-[460px] mx-auto">
-            {OFFER.total} while this batch is open, {OFFER.regular} after it
-            closes — and builds start in the order they&apos;re reserved.
+            {OFFER.total} total — and the {OFFER.later} is due only once your
+            store is live and taking orders.
           </p>
 
-          <WhatsappCta className="w-full sm:w-auto">
+          <WhatsappCta where="final" className="w-full sm:w-auto">
             <WhatsappIcon />
-            WhatsApp — Reserve my spot for {OFFER.today}
+            WhatsApp — Reserve my store for {OFFER.today}
           </WhatsappCta>
 
-          <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] mt-6">
-            {OFFER.total} total · {OFFER.today} to start · {OFFER.later} after
-            you see it
-          </p>
-          <p className="text-[13px] text-[var(--accent)] mt-3 font-medium">
+          <p className="text-[13px] text-[var(--accent)] mt-4 font-medium">
             {OFFER.today} refundable before your build starts
           </p>
 
