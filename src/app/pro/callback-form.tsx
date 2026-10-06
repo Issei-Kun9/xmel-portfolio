@@ -4,8 +4,9 @@ import { useState } from "react";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 
 /**
- * "Not ready to chat? Leave your number" — for visitors who want a quote but
- * won't open WhatsApp with a stranger yet, or have nothing prepared.
+ * "Don't have WhatsApp? Leave your email or number — we'll call you": for
+ * visitors without WhatsApp, who won't message a stranger first, or who have
+ * nothing prepared. A number is required unless they choose Email.
  *
  * Submits from the browser to Web3Forms, the same service and inbox as the
  * main site's contact form, and records a GA4 generate_lead with
@@ -13,7 +14,7 @@ import { ArrowRight, Check, Loader2 } from "lucide-react";
  */
 const WEB3FORMS_ACCESS_KEY = "00038c9b-dba4-4daa-8dc7-8d0a7aaec3ce";
 
-const METHODS = ["WhatsApp", "Call", "Email"] as const;
+const METHODS = ["Call", "WhatsApp", "Email"] as const;
 type Method = (typeof METHODS)[number];
 type State = "idle" | "sending" | "sent" | "error";
 
@@ -21,7 +22,7 @@ export default function CallbackForm({ where }: { where: string }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("+971 ");
   const [sells, setSells] = useState("");
-  const [method, setMethod] = useState<Method>("WhatsApp");
+  const [method, setMethod] = useState<Method>("Call");
   const [email, setEmail] = useState("");
   const [state, setState] = useState<State>("idle");
   const [error, setError] = useState("");
@@ -30,7 +31,9 @@ export default function CallbackForm({ where }: { where: string }) {
     e.preventDefault();
     const bot = new FormData(e.currentTarget).get("botcheck");
     if (bot) return;
-    if (phone.replace(/\D/g, "").length < 8) {
+    // Email chosen: the email is enough. Otherwise we need a number to call.
+    const hasPhone = phone.replace(/\D/g, "").length >= 8;
+    if (method !== "Email" && !hasPhone) {
       setError("Please enter your full number, with the country code.");
       return;
     }
@@ -45,7 +48,7 @@ export default function CallbackForm({ where }: { where: string }) {
           subject: `UAE e-commerce lead — ${name} (contact by ${method})`,
           from_name: "pro.xmelautomations.xyz",
           name,
-          phone,
+          phone: hasPhone ? phone : "—",
           sells: sells || "—",
           contact_by: method,
           ...(method === "Email" ? { email } : {}),
@@ -100,8 +103,10 @@ export default function CallbackForm({ where }: { where: string }) {
           <input id={id("name")} type="text" autoComplete="name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className={field} />
         </div>
         <div>
-          <label htmlFor={id("phone")} className={label}>WhatsApp / phone number</label>
-          <input id={id("phone")} type="tel" inputMode="tel" autoComplete="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+971 50 123 4567" className={field} />
+          <label htmlFor={id("phone")} className={label}>
+            Phone number{method === "Email" && <span className="font-normal text-[var(--text-tertiary)]"> (optional)</span>}
+          </label>
+          <input id={id("phone")} type="tel" inputMode="tel" autoComplete="tel" required={method !== "Email"} value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+971 50 123 4567" className={field} />
         </div>
       </div>
 
@@ -167,7 +172,7 @@ export default function CallbackForm({ where }: { where: string }) {
         )}
       </button>
       <p className="text-[12px] text-[var(--text-tertiary)] text-center">
-        Free and no obligation. Your number is only used to send your quote.
+        Free and no obligation. Your details are only used to send your quote.
       </p>
     </form>
   );

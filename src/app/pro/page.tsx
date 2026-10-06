@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, Check } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, PhoneCall } from "lucide-react";
 import WhatsappCta, {
   WhatsappCtaGhost,
   WhatsappIcon,
@@ -128,10 +128,10 @@ function BigCta({ label, where }: { label: string; where: string }) {
         href="#callback"
         data-cta="callback_link"
         data-cta-location={where}
-        className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-medium text-[var(--accent)] underline-offset-4 hover:underline"
+        className="mt-4 inline-flex items-center justify-center gap-2 min-h-[44px] px-4 rounded-xl border border-[var(--accent-line)] text-[13.5px] font-medium text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] transition-colors"
       >
-        Not ready to chat? Leave your number instead
-        <ArrowDown className="w-3.5 h-3.5" aria-hidden="true" />
+        <PhoneCall className="w-4 h-4 text-[var(--accent)] shrink-0" aria-hidden="true" />
+        Don&apos;t have WhatsApp? Leave your email or number — we&apos;ll call you
       </a>
     </div>
   );
@@ -234,18 +234,18 @@ export default function ProLanding() {
         <div className="max-w-[1000px] mx-auto px-5 sm:px-8 py-14 sm:py-20 grid md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-12 items-start">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)] mb-3">
-              Not ready to chat yet?
+              No WhatsApp? No problem.
             </p>
             <h2 id="callback-heading" className={`${h2} mb-3`}>
-              Leave your number. We&apos;ll contact you.
+              Leave your email or number. We&apos;ll call you.
             </h2>
             <p className="text-[var(--text-secondary)] leading-relaxed mb-5">
-              No photos, no product list, no brief needed. Tell us how to reach
-              you and we&apos;ll come to you with a few quick questions and your
-              quote — on WhatsApp, a call or email, whichever you prefer.
+              No WhatsApp needed, and no photos, product list or brief. Tell us
+              how to reach you and we&apos;ll come to you with a few quick
+              questions and your quote — by call, WhatsApp or email.
             </p>
             <ul className="space-y-2.5 text-[14px] text-[var(--text-secondary)]">
-              {["Free quote, no obligation", "Nothing to prepare", "Your number is only used for your quote"].map((t) => (
+              {["Free quote, no obligation", "Nothing to prepare", "Your details are only used for your quote"].map((t) => (
                 <li key={t} className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-[var(--accent)] shrink-0" aria-hidden="true" />
                   {t}
