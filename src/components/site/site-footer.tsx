@@ -99,7 +99,11 @@ export default function SiteFooter() {
 
       <div className="border-t border-[var(--border-subtle)]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-[13px] text-[var(--text-tertiary)]">
-          <span>© {new Date().getFullYear()} XMEL Automations. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} XMEL Automations. All rights reserved.
+            <span className="mx-2" aria-hidden="true">·</span>
+            <a href="/privacy" className="hover:text-[var(--gold)] transition-colors">Privacy</a>
+          </span>
           <span>Serving clients in the United States and India.</span>
         </div>
       </div>
