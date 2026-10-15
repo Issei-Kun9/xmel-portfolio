@@ -15,7 +15,7 @@ export const H = {
   upperTop: 7.7,
   pavilion: { x0: -9, x1: 9, z0: 3, z1: 12 },
   corridor: { x0: 9, x1: 15, z0: 8, z1: 12 },
-  upper: { x0: -5, x1: 22, z0: -7, z1: 11 },
+  upper: { x0: -5, x1: 15.5, z0: -7, z1: 11 },
   pool: { x0: 16, x1: 26, z0: 2, z1: 10, floor: -0.6, water: 0.5 },
   monolith: { x: -14, z: 24, w: 6.4, h: 3.2, t: 0.5 },
   gobo: { x0: -8.6, x1: -1.6 }, // plaster wall that catches the projected sunlight
@@ -130,7 +130,8 @@ export async function buildHouse(scene: THREE.Scene) {
         if (axis === "x") pane.rotation.y = Math.PI / 2;
         pane.renderOrder = 2;
       }
-      const at = (v: number) => (axis === "z" ? block(v - 0.03, v + 0.03, F, C, fixed - 0.06, fixed + 0.06, steel) : block(fixed - 0.06, fixed + 0.06, F, C, v - 0.03, v + 0.03, steel));
+      // Mullions don't cast: their shadows would stripe the projected services text.
+      const at = (v: number) => ((axis === "z" ? block(v - 0.03, v + 0.03, F, C, fixed - 0.06, fixed + 0.06, steel) : block(fixed - 0.06, fixed + 0.06, F, C, v - 0.03, v + 0.03, steel)).castShadow = false);
       at(s0);
       if (i === n - 1) at(s1);
     }
@@ -177,8 +178,8 @@ export async function buildHouse(scene: THREE.Scene) {
   await place("lounge_chair", -1.4, 9.4, Math.PI * 0.62);
   await place("lounge_chair", 3.6, 9.5, -Math.PI * 0.62);
   await place("arm_chair", 1.1, 5.7, Math.PI);
-  await place("side_table", -2.6, 10.6, 0.2);
-  await place("vase_a", -2.6, 10.6, 0, 1, F + 0.55);
+  await place("side_table", -2.6, 7.9, 0.2);
+  await place("vase_a", -2.6, 7.9, 0, 1, F + 0.55);
   await place("aloe", -8.3, 11.3, 0.4);
   await place("aloe", 8.4, 3.6, 1.2);
   await place("pendant", 1.1, 8.1, 0, 1.15, C - 0.02).then((m) => {
@@ -187,8 +188,8 @@ export async function buildHouse(scene: THREE.Scene) {
     m.position.y -= b.max.y - C;
   });
   // Gallery: a bust on a concrete plinth.
-  block(7.75, 8.45, F, F + 1.05, 9.6, 10.3, concrete, 3);
-  await place("marble_bust", 8.1, 9.95, -Math.PI / 2, 1, F + 1.05);
+  block(7.95, 8.65, F, F + 1.05, 5.65, 6.35, concrete, 3);
+  await place("marble_bust", 8.3, 6.0, -Math.PI / 2, 1, F + 1.05);
   await place("vase_b", 4.2, 3.7, 0);
   // Terrace: fire pit.
   await place("fire_pit", 21, 13.4, 0, 1.2);

@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "XMEL Automations",
     type: "website",
-    images: ["/estate/stills/og.webp"],
+    images: ["/estate/stills/og.jpg"],
   },
-  twitter: { card: "summary_large_image", title: "Vantmere — a 3D real-estate website concept", description: DESCRIPTION, images: ["/estate/stills/og.webp"] },
+  twitter: { card: "summary_large_image", title: "Vantmere — a 3D real-estate website concept", description: DESCRIPTION, images: ["/estate/stills/og.jpg"] },
 };
 
 export const viewport: Viewport = { themeColor: "#0b0e14" };

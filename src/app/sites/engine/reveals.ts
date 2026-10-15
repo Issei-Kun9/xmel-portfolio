@@ -239,7 +239,7 @@ export function openBook(scene: THREE.Scene, center: THREE.Vector3, top: number)
   cover.position.y = 0.011;
   group.add(cover, pages);
   group.position.set(center.x - 0.1, top + 0.001, center.z - 0.05);
-  group.rotation.y = Math.PI + 0.12;
+  group.rotation.y = 0.12;
   group.traverse((o) => { (o as THREE.Mesh).castShadow = true; (o as THREE.Mesh).receiveShadow = true; });
   scene.add(group);
   return {
@@ -256,7 +256,7 @@ export function galleryFrames(scene: THREE.Scene) {
   const z = H.pavilion.z1 - 0.13;
   const frames: { photo: THREE.MeshBasicMaterial; light: THREE.SpotLight; x: number }[] = [];
   const oak = new THREE.MeshStandardMaterial({ color: 0x2b2420, roughness: 0.55 });
-  const xs = [3.9, 6.0, 8.1].map((x) => x - 1.0);
+  const xs = [4.0, 5.95, 7.9];
   LISTINGS.forEach((l, i) => {
     const x = xs[i];
     const fw = 1.5, fh = 1.1;
@@ -528,29 +528,36 @@ export function jettyEngraving(scene: THREE.Scene, jetty: { x: number; z1: numbe
     g.font = `400 ${w * 0.048}px ${SANS}`;
     g.letterSpacing = `${w * 0.012}px`;
     g.fillText(`${BRAND.place.toUpperCase()}  ·  ${BRAND.founded.toUpperCase()}`, w / 2, h * 0.47);
-  }, 0x3b3631);
+  }, 0xd9cdb5);
   mesh.rotation.x = -Math.PI / 2;
   mesh.rotation.z = Math.PI; // read from the lake end, looking back at the house
   const cz = jetty.z1 + len / 2 + 0.6;
   mesh.position.set(jetty.x, jetty.y + 0.004, cz);
   scene.add(mesh);
-  const lanterns: THREE.PointLight[] = [];
+  // The letters are inlaid with pale lime, so they read under lantern light at night.
+  const inlay = mesh.material as THREE.MeshStandardMaterial;
+  inlay.emissive.set(0x6b5233);
+  inlay.emissiveIntensity = 0;
   const glowMat = new THREE.MeshBasicMaterial({ color: 0xffc27a, transparent: true, opacity: 0 });
+  const postMat = new THREE.MeshStandardMaterial({ color: 0x1b1c1e, roughness: 0.5, metalness: 0.6 });
   for (const sx of [-1, 1]) {
-    const post = new THREE.Mesh(box(0.14, 0.7, 0.14, 1), new THREE.MeshStandardMaterial({ color: 0x1b1c1e, roughness: 0.5, metalness: 0.6 }));
-    post.position.set(jetty.x + sx * (jetty.w / 2 - 0.18), jetty.y + 0.35, jetty.z1 + 0.5);
+    const post = new THREE.Mesh(box(0.14, 0.7, 0.14, 1), postMat);
+    post.position.set(jetty.x + sx * (jetty.w / 2 - 0.18), jetty.y + 0.35, cz);
     const glow = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.18, 0.1), glowMat);
     glow.position.set(post.position.x, jetty.y + 0.6, post.position.z);
-    const l = new THREE.PointLight(0xffb873, 0, 9, 2);
-    l.position.set(post.position.x, jetty.y + 0.62, post.position.z);
-    scene.add(post, glow, l);
-    lanterns.push(l);
+    scene.add(post, glow);
   }
+  // One light between the two lanterns stands in for both.
+  const lantern = new THREE.PointLight(0xffb873, 0, 10, 1.6);
+  lantern.position.set(jetty.x, jetty.y + 0.9, cz);
+  scene.add(lantern);
   return {
-    anchor: new THREE.Vector3(jetty.x, jetty.y, cz + len * 0.2),
+    // Links sit on the near end of the jetty, below the lettering.
+    anchor: new THREE.Vector3(jetty.x, jetty.y, cz - len * 0.62),
     update(k: number, night: number) {
       const on = ease(k) * (0.4 + 0.6 * night);
-      lanterns.forEach((l) => (l.intensity = 9 * on));
+      lantern.intensity = 16 * on;
+      inlay.emissiveIntensity = 0.9 * on;
       glowMat.opacity = on;
     },
   };

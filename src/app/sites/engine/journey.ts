@@ -15,10 +15,10 @@ export const STOPS: Stop[] = [
   { id: "lake", pos: [4, 2.6, -62], look: [4, 3.2, 6], fov: 34, tod: 0, hold: 1.4 },
   { id: "about", pos: [-14.6, 1.78, 30.6], look: [-14, 1.95, 24.2], fov: 42, tod: 0.05, hold: 1.2 },
   { id: "services", pos: [-5.0, 1.66, 6.2], look: [-5.1, 2.25, 11.8], fov: 50, tod: 0.12, hold: 1.2 },
-  { id: "testimonial", pos: [0.86, 1.42, 7.36], look: [1.02, 0.6, 8.1], fov: 36, tod: 0.17, hold: 1.1 },
-  { id: "listings", pos: [5.0, 1.72, 6.3], look: [5.0, 2.25, 11.8], fov: 52, tod: 0.22, hold: 1.2 },
+  { id: "testimonial", pos: [0.95, 1.75, 7.2], look: [1.02, 1.0, 8.1], fov: 36, tod: 0.17, hold: 1.1 },
+  { id: "listings", pos: [5.95, 1.72, 6.3], look: [5.95, 2.25, 11.8], fov: 52, tod: 0.22, hold: 1.2 },
   { id: "process", pos: E, look: L, fov: 58, tod: 0.27, hold: 1.2 },
-  { id: "numbers", pos: [21.0, 7.2, 4.4], look: [21.0, 0, 6.25], fov: 52, tod: 0.48, hold: 1.1 },
+  { id: "numbers", pos: [21.0, 7.5, 3.5], look: [21.0, 0, 6.1], fov: 52, tod: 0.48, hold: 1.1 },
   { id: "contact", pos: [21.6, 1.8, 17.2], look: [6, 62, -70], fov: 46, tod: 0.9, hold: 1.3 },
   { id: "footer", pos: [-12, 2.35, -30.2], look: [-12, 0.35, -21.6], fov: 46, tod: 1, hold: 1.4 },
 ];
@@ -31,7 +31,7 @@ const LEGS: Leg[] = [
   // services → testimonial: turn to the lounge, lower over the coffee table.
   { length: 1.1, via: [{ p: [-2.4, 1.7, 6.6], l: [0.8, 1.0, 8.4] }] },
   // testimonial → listings: rise and turn to the gallery wall.
-  { length: 1.1, via: [{ p: [2.6, 1.7, 6.4], l: [4.2, 2.0, 11] }] },
+  { length: 1.1, via: [{ p: [3.0, 1.7, 6.4], l: [5.0, 2.0, 11] }] },
   // listings → process: step into the corridor mouth.
   { length: 1.0, via: [{ p: [7.4, 1.66, 8.6], l: [12, 1.8, 10.2] }] },
   // process → numbers: down the corridor, out the door, lift over the pool.
