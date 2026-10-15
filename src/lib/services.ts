@@ -7,7 +7,7 @@
  *
  * India website-dev prices are NOT invented: they're the owner's set prices,
  * quoted on WhatsApp. pro.xmelautomations.xyz serves UAE e-commerce (AED);
- * sites.xmelautomations.xyz is the Vantmere 3D real-estate concept. US website-dev and both markets' SEO prices are
+ * US website-dev and both markets' SEO prices are
  * new — set from researched 2026 freelancer/small-agency market rates
  * (small US business sites commonly run $1,500–$8,000; local SEO retainers
  * commonly run $500–$3,000/mo, with $501–$1,000/mo the single most common

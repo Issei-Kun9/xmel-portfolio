@@ -17,9 +17,11 @@ const APEX = "xmelautomations.xyz";
  * headers all follow — there is nothing else to wire up.
  */
 const OFFER_HOSTS: Record<string, string> = {
-  sites: "/sites", // Vantmere: 3D real-estate website concept
   pro: "/pro", // E-commerce for Dubai / UAE, quotes on WhatsApp
 };
+
+/** Former offer subdomains that now redirect to the main site. */
+const RETIRED_HOSTS = ["sites"];
 
 /** Search-engine and link-preview crawlers: never geo-redirected. */
 const BOT_UA =
@@ -35,6 +37,11 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const subdomain = host.split(".")[0];
   const route = OFFER_HOSTS[subdomain];
+
+  // Retired subdomains: send visitors to the main site.
+  if (RETIRED_HOSTS.includes(subdomain) && host.endsWith(APEX)) {
+    return withSecurityHeaders(NextResponse.redirect(`https://${APEX}`, 308));
+  }
 
   // On an offer subdomain: serve that offer's route from the site root.
   if (route) {
@@ -115,7 +122,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Static files are served as-is on every host (estate/ holds the 3D scene's models, HDRs and fonts).
-    "/((?!_next/static|_next/image|favicon\\.ico|estate/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|mp4|woff2?|ttf|glb|hdr)$).*)",
+    "/((?!_next/static|_next/image|favicon\\.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|mp4|woff2?)$).*)",
   ],
 };
