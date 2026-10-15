@@ -34,7 +34,7 @@ export default function PrivacyPage() {
           <p>
             XMEL Automations (&ldquo;XMEL&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) builds AI lead-response
             systems, websites and SEO for businesses in the United States, India and the UAE. This policy covers{" "}
-            <strong>xmelautomations.xyz</strong>, our offer pages (including sites.xmelautomations.xyz and
+            <strong>xmelautomations.xyz</strong>, our offer pages (including
             pro.xmelautomations.xyz), and the ads and lead forms we run on platforms such as LinkedIn. XMEL is
             responsible for the personal information described here. You can reach us at{" "}
             <MailtoLink email={CONTACT_EMAIL} /> or on WhatsApp at {PHONE_DISPLAY}.
