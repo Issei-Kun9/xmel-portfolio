@@ -17,11 +17,9 @@ const APEX = "xmelautomations.xyz";
  * headers all follow — there is nothing else to wire up.
  */
 const OFFER_HOSTS: Record<string, string> = {
+  sites: "/sites", // ₹15,000 online store, India
   pro: "/pro", // E-commerce for Dubai / UAE, quotes on WhatsApp
 };
-
-/** Former offer subdomains that now redirect to the main site. */
-const RETIRED_HOSTS = ["sites"];
 
 /** Search-engine and link-preview crawlers: never geo-redirected. */
 const BOT_UA =
@@ -37,11 +35,6 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const subdomain = host.split(".")[0];
   const route = OFFER_HOSTS[subdomain];
-
-  // Retired subdomains: send visitors to the main site.
-  if (RETIRED_HOSTS.includes(subdomain) && host.endsWith(APEX)) {
-    return withSecurityHeaders(NextResponse.redirect(`https://${APEX}`, 308));
-  }
 
   // On an offer subdomain: serve that offer's route from the site root.
   if (route) {
