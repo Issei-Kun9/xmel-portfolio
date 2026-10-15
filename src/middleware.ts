@@ -17,7 +17,7 @@ const APEX = "xmelautomations.xyz";
  * headers all follow — there is nothing else to wire up.
  */
 const OFFER_HOSTS: Record<string, string> = {
-  sites: "/sites", // ₹15,000 online store, India
+  sites: "/sites", // Vantmere: 3D real-estate website concept
   pro: "/pro", // E-commerce for Dubai / UAE, quotes on WhatsApp
 };
 

@@ -1,65 +1,39 @@
-import type { Metadata } from "next";
-import CursorWrapper from "@/components/shared/cursor-wrapper";
+import type { Metadata, Viewport } from "next";
 import CtaTracker from "@/components/home/cta-tracker";
 
 const SITE_URL = "https://sites.xmelautomations.xyz";
-const TITLE =
-  "Your Own Online Store for ₹15,000 — ₹2,000 to Start | XMEL Automations";
+const TITLE = "Vantmere — Private estates on still water · A 3D concept by XMEL Automations";
 const DESCRIPTION =
-  "A complete online store for your brand: products, cart, UPI/card/COD checkout, shipping and WhatsApp orders. ₹15,000 total: ₹2,000 to start, ₹13,000 when it goes live.";
+  "An interactive architectural film: scroll through a lakeside house where every word lives inside the world. A real-estate website concept designed and built by XMEL Automations.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: "Your own online store — ₹15,000",
+    title: "Vantmere — a 3D real-estate website concept",
     description: DESCRIPTION,
     url: SITE_URL,
     siteName: "XMEL Automations",
     type: "website",
-    locale: "en_IN",
-    images: ["https://xmelautomations.xyz/og-image.png"],
+    images: ["/estate/stills/og.webp"],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Your own online store — ₹15,000",
-    description: DESCRIPTION,
-    images: ["https://xmelautomations.xyz/og-image.png"],
-  },
+  twitter: { card: "summary_large_image", title: "Vantmere — a 3D real-estate website concept", description: DESCRIPTION, images: ["/estate/stills/og.webp"] },
 };
 
-/**
- * Scoped dark palette for the online-store offer: XMEL ink, ivory type and
- * the brand gold as the one accent. Declared on the wrapper so the
- * var(--token) classes inside resolve here without touching globals.css or
- * anything on the main site. `--on-accent` is the text colour on gold.
- */
-const PALETTE = {
-  "--bg-primary": "#0B0B0E",
-  "--bg-secondary": "#131317",
-  "--bg-tertiary": "#1B1B21",
-  "--border-subtle": "rgba(245, 240, 230, 0.09)",
-  "--border-strong": "rgba(245, 240, 230, 0.18)",
-  "--text-primary": "#F5F0E6",
-  "--text-secondary": "rgba(245, 240, 230, 0.70)",
-  "--text-tertiary": "rgba(245, 240, 230, 0.48)",
-  "--accent": "#C9A86A",
-  "--on-accent": "#0F0F12",
-  "--accent-soft": "rgba(201, 168, 106, 0.10)",
-  "--accent-line": "rgba(201, 168, 106, 0.40)",
-  colorScheme: "dark",
-} as React.CSSProperties;
+export const viewport: Viewport = { themeColor: "#0b0e14" };
 
-export default function SitesLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+/** Brand faces for the HTML layer; the 3D scene loads the same files for its textures. */
+const FONTS = `
+@font-face{font-family:"Instrument Serif";src:url(/estate/fonts/InstrumentSerif-Regular.ttf) format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Serif";src:url(/estate/fonts/InstrumentSerif-Italic.ttf) format("truetype");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Schibsted Grotesk";src:url(/estate/fonts/SchibstedGrotesk-Variable.ttf) format("truetype");font-weight:400 900;font-display:swap}
+`;
+
+export default function SitesLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div
-      style={PALETTE}
-      className="grain custom-cursor min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]"
-    >
-      <CursorWrapper />
+    <div className="estate-root min-h-screen bg-[#0b0e14] text-[#efe7da]" style={{ colorScheme: "dark" }}>
+      <style dangerouslySetInnerHTML={{ __html: FONTS }} />
       <CtaTracker />
       {children}
     </div>
