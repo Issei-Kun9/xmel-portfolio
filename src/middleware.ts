@@ -115,6 +115,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon\\.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|mp4|woff2?)$).*)",
+    // Static files are served as-is on every host (estate/ holds the 3D scene's models, HDRs and fonts).
+    "/((?!_next/static|_next/image|favicon\\.ico|estate/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|mp4|woff2?|ttf|glb|hdr)$).*)",
   ],
 };
