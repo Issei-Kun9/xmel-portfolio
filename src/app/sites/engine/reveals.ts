@@ -239,7 +239,7 @@ export function openBook(scene: THREE.Scene, center: THREE.Vector3, top: number)
   cover.position.y = 0.011;
   group.add(cover, pages);
   group.position.set(center.x - 0.1, top + 0.001, center.z - 0.05);
-  group.rotation.y = 0.12;
+  group.rotation.y = Math.PI + 0.12; // spine across the table, text toward the lounge
   group.traverse((o) => { (o as THREE.Mesh).castShadow = true; (o as THREE.Mesh).receiveShadow = true; });
   scene.add(group);
   return {
@@ -365,7 +365,7 @@ export function anamorphic(scene: THREE.Scene) {
 export function poolMosaic(scene: THREE.Scene, waterNormals: THREE.Texture) {
   const P = H.pool;
   const W = P.x1 - P.x0, D = P.z1 - P.z0;
-  const tile = 0.05;
+  const tile = 0.04;
   const cols = Math.round(W / tile), rows = Math.round(D / tile);
   // Text mask at one pixel per tile.
   const [, mg] = canvas(cols, rows);
@@ -373,13 +373,19 @@ export function poolMosaic(scene: THREE.Scene, waterNormals: THREE.Texture) {
   mg.fillRect(0, 0, cols, rows);
   mg.fillStyle = "#fff";
   mg.textBaseline = "alphabetic";
+  mg.textAlign = "center";
   const colW = cols / 3;
   EXPERTISE.stats.forEach((s, i) => {
-    const cx = colW * i + colW * 0.12;
-    mg.font = `400 ${rows * 0.42}px ${SERIF}`;
-    mg.fillText(s.value, cx, rows * 0.55);
-    mg.font = `500 ${rows * 0.085}px ${SANS}`;
-    mg.fillText(s.label.toUpperCase(), cx + 2, rows * 0.74);
+    const cx = colW * (i + 0.5);
+    mg.font = `400 ${rows * 0.4}px ${SERIF}`;
+    mg.fillText(s.value, cx, rows * 0.54);
+    // Labels wrap to two short lines so each stays inside its column.
+    const words = s.label.toUpperCase().split(" ");
+    const lines = words.length > 1 ? [words.slice(0, Math.ceil(words.length / 2)).join(" "), words.slice(Math.ceil(words.length / 2)).join(" ")] : words;
+    let size = rows * 0.075;
+    mg.font = `600 ${size}px ${SANS}`;
+    while (Math.max(...lines.map((l) => mg.measureText(l).width)) > colW * 0.86 && size > 6) mg.font = `600 ${(size -= 0.5)}px ${SANS}`;
+    lines.forEach((l, k) => mg.fillText(l, cx, rows * 0.7 + k * size * 1.25));
   });
   const mask = mg.getImageData(0, 0, cols, rows).data;
   const px = 10;

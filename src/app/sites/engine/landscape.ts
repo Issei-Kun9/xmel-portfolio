@@ -79,10 +79,13 @@ export async function buildLandscape(scene: THREE.Scene, quality: "high" | "low"
   ground.onBeforeCompile = (sh) => {
     sh.uniforms.map2 = { value: rockTex[0] };
     sh.vertexShader = sh.vertexShader
-      .replace("#include <common>", "#include <common>\nattribute float aBlend;\nvarying float vBlend;\nvarying vec2 vUvW;")
-      .replace("#include <uv_vertex>", "#include <uv_vertex>\nvBlend = aBlend;\nvUvW = uv;");
+      .replace("#include <common>", "#include <common>\nattribute float aBlend;\nvarying float vBlend;\nvarying vec2 vUvW;\nvarying vec2 vWXZ;")
+      .replace("#include <uv_vertex>", "#include <uv_vertex>\nvBlend = aBlend;\nvUvW = uv;")
+      .replace("#include <begin_vertex>", "#include <begin_vertex>\nvWXZ = (modelMatrix * vec4(transformed, 1.0)).xz;");
     sh.fragmentShader = sh.fragmentShader
-      .replace("#include <common>", "#include <common>\nuniform sampler2D map2;\nvarying float vBlend;\nvarying vec2 vUvW;")
+      .replace("#include <common>", "#include <common>\nuniform sampler2D map2;\nvarying float vBlend;\nvarying vec2 vUvW;\nvarying vec2 vWXZ;")
+      // Cut the ground away inside the pool basin (H.pool in house.ts).
+      .replace("void main() {", "void main() {\n  if (vWXZ.x > 16.0 && vWXZ.x < 26.0 && vWXZ.y > 2.0 && vWXZ.y < 10.0) discard;")
       .replace(
         "#include <map_fragment>",
         `#include <map_fragment>
@@ -108,10 +111,16 @@ export async function buildLandscape(scene: THREE.Scene, quality: "high" | "low"
     sunDirection: new THREE.Vector3(0.5, 0.2, -0.5).normalize(),
     sunColor: 0xffd9a8,
     waterColor: 0x0d2329,
-    distortionScale: 1.4,
+    distortionScale: 0.75,
     fog: true,
     alpha: 1,
   });
+  // The pool basin (H.pool in house.ts) sits below lake level: keep the lake out of it.
+  const wm = water.material as THREE.ShaderMaterial;
+  wm.fragmentShader = wm.fragmentShader.replace(
+    "void main() {",
+    "void main() {\n  if (worldPosition.x > 16.0 && worldPosition.x < 26.0 && worldPosition.z > 2.0 && worldPosition.z < 10.0) discard;",
+  );
   water.rotation.x = -Math.PI / 2;
   water.position.y = 0;
   water.name = "lake";

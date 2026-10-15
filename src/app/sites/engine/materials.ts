@@ -100,6 +100,10 @@ export function loadModel(name: string): Promise<THREE.Group> {
             const mat = m.material as THREE.MeshStandardMaterial;
             if (mat.alphaTest > 0) {
               mat.side = THREE.DoubleSide;
+              // Thin needle cards lose coverage in the smaller mips; a lower cutoff
+              // plus alpha-to-coverage (MSAA) keeps distant canopies full and soft-edged.
+              mat.alphaTest = 0.22;
+              mat.alphaToCoverage = true;
               m.castShadow = true;
             }
           }
@@ -120,6 +124,15 @@ export async function modelParts(name: string) {
     const m = o as THREE.Mesh;
     if (m.isMesh) {
       const g = m.geometry.clone();
+      // Quantized (normalized int) attributes would clamp to [-1, 1] when the
+      // transform is baked in, so expand them to float first.
+      for (const [key, attr] of Object.entries(g.attributes)) {
+        const a = attr as THREE.BufferAttribute;
+        if (a.array instanceof Float32Array) continue;
+        const f = new Float32Array(a.count * a.itemSize);
+        for (let i = 0; i < a.count; i++) for (let k = 0; k < a.itemSize; k++) f[i * a.itemSize + k] = a.getComponent(i, k);
+        g.setAttribute(key, new THREE.BufferAttribute(f, a.itemSize));
+      }
       g.applyMatrix4(m.matrixWorld);
       parts.push({ geometry: g, material: m.material as THREE.Material });
     }

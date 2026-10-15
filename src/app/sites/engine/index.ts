@@ -149,7 +149,8 @@ export async function createEstate(canvas: HTMLCanvasElement, opts: { quality: Q
     wu.sunDirection.value.copy(sunDir);
     wu.sunColor.value.setRGB(1, 0.85, 0.66).multiplyScalar(0.25 + 0.75 * sunUp);
     wu.waterColor.value.setRGB(0.05, 0.13, 0.16).multiplyScalar(1 - 0.75 * night);
-    wu.distortionScale.value = shot.chapter === 0 ? 0.9 : 2.2;
+    // The lake stills as you arrive, and the reflected title sharpens with it.
+    wu.distortionScale.value = 0.25 + (1 - shot.reveal[0]) * 1.95;
 
     // Reveals.
     const r = shot.reveal;

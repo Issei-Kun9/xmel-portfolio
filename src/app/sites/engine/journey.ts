@@ -15,7 +15,7 @@ export const STOPS: Stop[] = [
   { id: "lake", pos: [4, 2.6, -62], look: [4, 3.2, 6], fov: 34, tod: 0, hold: 1.4 },
   { id: "about", pos: [-14.6, 1.78, 30.6], look: [-14, 1.95, 24.2], fov: 42, tod: 0.05, hold: 1.2 },
   { id: "services", pos: [-5.0, 1.66, 6.2], look: [-5.1, 2.25, 11.8], fov: 50, tod: 0.12, hold: 1.2 },
-  { id: "testimonial", pos: [0.95, 1.75, 7.2], look: [1.02, 1.0, 8.1], fov: 36, tod: 0.17, hold: 1.1 },
+  { id: "testimonial", pos: [0.98, 1.62, 7.45], look: [1.02, 1.0, 8.1], fov: 30, tod: 0.17, hold: 1.1 },
   { id: "listings", pos: [5.95, 1.72, 6.3], look: [5.95, 2.25, 11.8], fov: 52, tod: 0.22, hold: 1.2 },
   { id: "process", pos: E, look: L, fov: 58, tod: 0.27, hold: 1.2 },
   { id: "numbers", pos: [21.0, 7.5, 3.5], look: [21.0, 0, 6.1], fov: 52, tod: 0.48, hold: 1.1 },
