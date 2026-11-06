@@ -4,7 +4,7 @@ import CtaTracker from "@/components/home/cta-tracker";
 
 const SITE_URL = "https://sites.xmelautomations.xyz";
 const TITLE =
-  "Your Own Online Store for ₹15,000 — ₹2,000 to Start | XMEL Automations";
+  "Your Own Online Store for ₹15,000 | XMEL Automations";
 const DESCRIPTION =
   "A complete online store for your brand: products, cart, UPI/card/COD checkout, shipping and WhatsApp orders. ₹15,000 total: ₹2,000 to start, ₹13,000 when it goes live.";
 

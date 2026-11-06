@@ -1,6 +1,6 @@
 const WHATSAPP_NUMBER = "917905214791";
 const PREFILL =
-  "Hi! I'd like to reserve a ₹15,000 online store build. Please send me the ₹2,000 payment link.";
+  "Hi! I'm interested in the ₹15,000 online store. Can you tell me more?";
 
 export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   PREFILL
