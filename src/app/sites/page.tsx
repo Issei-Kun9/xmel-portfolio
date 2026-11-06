@@ -226,10 +226,6 @@ export default function SitesLanding() {
             <span className="whitespace-nowrap">
               {PLACES_LEFT} of {BATCH_SIZE} builds left this month
             </span>
-            <span className="hidden sm:inline">
-              <span className="mx-1.5 opacity-50">·</span>
-              <span>{OFFER.today} to start</span>
-            </span>
           </p>
         </div>
       </div>
@@ -265,7 +261,7 @@ export default function SitesLanding() {
               {OFFER.total}
             </span>
             <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
-              total · {OFFER.today} to start
+              one-time total
             </span>
           </div>
 
@@ -275,17 +271,16 @@ export default function SitesLanding() {
 
           <WhatsappCta where="hero" className="w-full sm:w-auto">
             <WhatsappIcon />
-            WhatsApp — Reserve my store for {OFFER.today}
+            WhatsApp — Message us
           </WhatsappCta>
 
           <p className="inline-flex items-start gap-2 mt-3 max-w-[470px]">
             <ShieldCheck className="w-4 h-4 shrink-0 text-[var(--accent)] mt-0.5" aria-hidden="true" />
             <span className="text-[13.5px] text-[var(--text-secondary)] leading-relaxed">
               <strong className="text-[var(--text-primary)] font-semibold">
-                {OFFER.today} to start, refundable
+                No payment to ask questions.
               </strong>{" "}
-              before your build begins — the {OFFER.later} is due only once your
-              store is live.
+              Message us on WhatsApp and we&apos;ll tell you exactly how it works.
             </span>
           </p>
 
@@ -410,7 +405,7 @@ export default function SitesLanding() {
 
           <div className="mt-10">
             <WhatsappCtaGhost where="included">
-              Reserve my store for {OFFER.today}
+              Message us
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
           </div>
@@ -537,7 +532,7 @@ export default function SitesLanding() {
 
           <div className="mt-8">
             <WhatsappCtaGhost where="how">
-              Start with {OFFER.today}
+              Message us
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
           </div>
@@ -581,7 +576,7 @@ export default function SitesLanding() {
 
           <div className="mt-6">
             <WhatsappCtaGhost where="whynow">
-              Hold my place for {OFFER.today}
+              Message us
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </WhatsappCtaGhost>
           </div>
@@ -680,7 +675,7 @@ export default function SitesLanding() {
       >
         <WhatsappCta where="sticky-mobile" size="md" className="w-full">
           <WhatsappIcon className="w-[18px] h-[18px]" />
-          WhatsApp — Start for {OFFER.today}
+          WhatsApp — Message us
         </WhatsappCta>
         <p className="text-center text-[11px] text-[var(--text-tertiary)] mt-1.5">
           {PLACES_LEFT} of {BATCH_SIZE} store builds left this month
@@ -697,8 +692,8 @@ export default function SitesLanding() {
             Ready to start selling on your own store?
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed mb-4 max-w-[460px] mx-auto">
-            Reserve your store for {OFFER.today}. I&apos;ll send the payment
-            details on WhatsApp.
+            Message us on WhatsApp. Tell us what you sell and we&apos;ll take it
+            from there.
           </p>
           <p className="text-[15px] text-[var(--text-primary)] mb-9 max-w-[460px] mx-auto">
             {OFFER.total} total — and the {OFFER.later} is due only once your
@@ -707,7 +702,7 @@ export default function SitesLanding() {
 
           <WhatsappCta where="final" className="w-full sm:w-auto">
             <WhatsappIcon />
-            WhatsApp — Reserve my store for {OFFER.today}
+            WhatsApp — Message us
           </WhatsappCta>
 
           <p className="text-[13px] text-[var(--accent)] mt-4 font-medium">
